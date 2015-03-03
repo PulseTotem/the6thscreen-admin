@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc overview
- * @name Christian Brel <christian@the6thscreen.fr, ch.brel@gmail.com>
+ * @name the6thscreenAdminApp
  * @description
  * # the6thscreenAdminApp
  *
@@ -17,8 +17,7 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-//        $locationProvider.html5Mode(true);
+  .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -31,4 +30,4 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  }]);
+  });
