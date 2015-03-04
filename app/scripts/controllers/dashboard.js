@@ -8,18 +8,16 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('the6thscreenAdminApp')
-  .controller('DashboardCtrl', ['$scope', 'backendSocket', function ($scope) {
+  .controller('DashboardCtrl', ['$scope', 'backendSocket', function ($scope, backendSocket) {
 
     $scope.user = {
       "id": 1,
       "username": "toto"
     };
 
-    $scope.listSDI = [
-      {"name": "machin", "description": "toto"},
-      {"name": "bidule", "description": "blabla"}
-    ];
+    backendSocket.on('UserDescription', function(userInfo) {
+      $scope.listSDI = userInfo.sdis;
+    });
 
-
-
+    backendSocket.emit('RetrieveUserDescription', {'userId' : $scope.user.id});
   }]);
