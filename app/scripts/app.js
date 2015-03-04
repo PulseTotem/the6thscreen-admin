@@ -38,6 +38,10 @@ angular
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl'
       })
+      .when('/sdi/:sdiId', {
+        templateUrl: 'views/sdi.html',
+        controller: 'SdiCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
