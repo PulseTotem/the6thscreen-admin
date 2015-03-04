@@ -1,0 +1,17 @@
+<div class="row marketing">
+  <h3>
+    Bienvenue {{ user.name }}, voici les SDI auxquels vous avez accès.
+  </h3>
+</div>
+
+<table class="table table-striped">
+  <tr>
+    <th>Nom</th>
+    <th>Description</th>
+  </tr>
+
+  <tr ng-repeat="sdi in listSDI">
+    <td>{{ sdi.name }}</td>
+    <td>{{ sdi.description }}</td>
+  </tr>
+</table>
