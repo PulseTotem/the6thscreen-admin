@@ -50,6 +50,10 @@ angular
         templateUrl: 'views/source.html',
         controller: 'SourceCtrl'
       })
+      .when('/addsource', {
+        templateUrl: 'views/addsource.html',
+        controller: 'AddsourceCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

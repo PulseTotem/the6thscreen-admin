@@ -1,0 +1,51 @@
+<h3>Créer une nouvelle source</h3>
+
+<div>
+  <form>
+    <div class="control-group">
+      <label for="inputName">Nom</label>
+      <div class="controls">
+        <input type="text" id="inputName" placeholder="Nom" ng-model="source.name" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="inputService">Service</label>
+      <div class="controls">
+        <input type="text" id="inputService" placeholder="Service" ng-model="source.service" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="inputDescription">Description</label>
+      <div class="controls">
+        <textarea rows="3" id="inputDescription" placeholder="Description" ng-model="source.description"></textarea>
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="inputHost">Host:Port</label>
+      <div class="controls">
+        <input type="text" id="inputHost" placeholder="Host" ng-model="source.host" />:
+        <input type="number" id="inputPort" placeholder="Port" ng-model="source.port" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="inputInfoType">Type d'information</label>
+      <div class="controls">
+        <select id="inputInfoType" ng-model="source.infoType" class="form-control">
+          <option ng-repeat="type in infoTypes" value="{{ type }}">{{ type.name }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="inputParamType">Type de paramètre </label>
+      <div class="controls">
+        <select multiple id="inputParamType" ng-model="source.paramType" class="form-control">
+          <option ng-repeat="type in paramTypes" value="{{ type }}">{{ type.name }}</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div>
+  {{ source }}
+</div>

@@ -15,6 +15,6 @@ angular.module('the6thscreenAdminApp')
       $scope.sources = allSources;
     });
 
-    backendSocket.emit('RetrieveAllSourceDescription', "test");
+    backendSocket.emit('RetrieveAllSourceDescription');
 
   }]);
