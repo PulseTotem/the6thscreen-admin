@@ -42,6 +42,10 @@ angular
         templateUrl: 'views/sdi.html',
         controller: 'SdiCtrl'
       })
+      .when('/zone/:zoneId', {
+        templateUrl: 'views/zone.html',
+        controller: 'ZoneCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
