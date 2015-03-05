@@ -1,0 +1,29 @@
+<h3>List of all Sources</h3>
+
+<table class="table table-striped">
+  <tr>
+    <th>#</th>
+    <th>Nom</th>
+    <th>Service</th>
+    <th>Description</th>
+    <th>host:port</th>
+    <th>Type</th>
+    <th>Param Types</th>
+    <th>Param Values</th>
+  </tr>
+
+  <tr ng-repeat="source in sources">
+    <td>{{ source.id }}</td>
+    <td>{{ source.name }}</td>
+    <td>{{ source.service }}</td>
+    <td>{{ source.description }}</td>
+    <td>{{ source.host }}:{{ source.port }}</td>
+    <td>{{ source.infoType.name }}</td>
+    <td>{{ source.paramTypes }}</td>
+    <td>{{ source.paramValue }}</td>
+  </tr>
+</table>
+
+<div style="float: right">
+  <a href="" class="btn btn-primary"><i class="icon-plus icon-white"></i> Ajouter une source</a>
+</div>
