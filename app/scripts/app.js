@@ -46,6 +46,14 @@ angular
         templateUrl: 'views/zone.html',
         controller: 'ZoneCtrl'
       })
+      .when('/source', {
+        templateUrl: 'views/source.html',
+        controller: 'SourceCtrl'
+      })
+      .when('/addsource', {
+        templateUrl: 'views/addsource.html',
+        controller: 'AddsourceCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
