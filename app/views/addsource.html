@@ -31,7 +31,7 @@
       <label for="inputInfoType">Type d'information</label>
       <div class="controls">
         <select id="inputInfoType" ng-model="source.infoType" class="form-control">
-          <option ng-repeat="type in infoTypes" value="{{ type }}">{{ type.name }}</option>
+          <option ng-repeat="type in infoTypes" value="{{ type.id }}">{{ type.name }}</option>
         </select>
       </div>
     </div>
@@ -39,10 +39,11 @@
       <label for="inputParamType">Type de paramètre </label>
       <div class="controls">
         <select multiple id="inputParamType" ng-model="source.paramType" class="form-control">
-          <option ng-repeat="type in paramTypes" value="{{ type }}">{{ type.name }}</option>
+          <option ng-repeat="type in paramTypes" value="{{ type.id }}">{{ type.name }}</option>
         </select>
       </div>
     </div>
+    <input type="button" ng-click="save()" value="save" class="btn btn-success" />
   </form>
 </div>
 
