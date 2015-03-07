@@ -38,8 +38,8 @@ angular.module('the6thscreenAdminApp')
                     }
                 });
 
-                backendIOSocket.on("UserDescription", function (userDesc) {
-                    console.info("UserDescription received.");
+                backendIOSocket.on("UserDescriptionFromToken", function (userDesc) {
+                    console.info("UserDescriptionFromToken received.");
                     backendSocketFactory.user = userDesc;
                     successCB();
                 });
@@ -83,7 +83,7 @@ angular.module('the6thscreenAdminApp')
 
                 backendSocketFactory.backendSocket = backendSocket;
             }
-        }
+        };
 
         backendSocketFactory.on = function() {
             if(backendSocketFactory.backendSocket != null) {

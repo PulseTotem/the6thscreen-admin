@@ -8,27 +8,23 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('the6thscreenAdminApp')
-  .controller('MainCtrl', ['$scope', '$http', '$location', 'ADMIN_CONSTANTS', 'backendSocket', function ($scope, $http, $location, ADMIN_CONSTANTS, backendSocket) {
+  .controller('MainCtrl', ['$rootScope', '$scope', '$http', '$location', 'ADMIN_CONSTANTS', 'backendSocket', function ($rootScope, $scope, $http, $location, ADMIN_CONSTANTS, backendSocket) {
 
-        $scope.user = {};
+        $rootScope.user = {};
 
         $scope.login = function(user) {
-            console.log(user);
-
             var shaObj = new jsSHA(user.password, "TEXT");
-            var encryptedPwd = shaObj.getHash("SHA-512", "HEX");
-
-            console.log(encryptedPwd);
+            var encryptedPwd = shaObj.getHash("SHA-256", "HEX");
 
             $http.post(ADMIN_CONSTANTS.loginBackendUrl, {'usernameOrEmail' : user.usernameOrEmail, 'password' : encryptedPwd})
                 .success(function(data, status, headers, config) {
-                    console.log("success login");
-                    console.log(data);
-
                     $scope.authToken = data.token;
 
                     var successBackendInit = function() {
-                        $location.path('/dashboard');
+                        $rootScope.user = backendSocket.user;
+                        $rootScope.$apply(function() {
+                            $location.path('/dashboard');
+                        });
                     };
 
                     var failBackendInit = function(errorDesc) {
