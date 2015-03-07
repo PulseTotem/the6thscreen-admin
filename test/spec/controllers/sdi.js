@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: SdiCtrl', function () {
 
   // load the controller's module
   beforeEach(module('the6thscreenAdminApp'));
 
-  var MainCtrl,
+  var SdiCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    SdiCtrl = $controller('SdiCtrl', {
       $scope: scope
     });
   }));
