@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('the6thscreenAdminApp', [
+    .module('the6thscreenAdminApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -17,28 +17,21 @@ angular
     'ngSanitize',
     'ngTouch',
     'btford.socket-io'
-  ])
-  .factory('backendSocket', function (socketFactory) {
-        var backendIOSocket = io('http://localhost:4000/admins',
-            {'reconnection' : true, 'reconnectionAttempts' : 10, 'reconnectionDelay' : 1000, 'reconnectionDelayMax' : 5000, 'timeout' : 5000, 'autoConnect' : true, 'multiplex': false});
-
-        var backendSocket = socketFactory({
-            ioSocket: backendIOSocket
-        });
-
-        return backendSocket;
-  })
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/dashboard', {
-        templateUrl: 'views/dashboard.html',
-        controller: 'DashboardCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+    ])
+    .config(function($locationProvider) {
+        $locationProvider.html5Mode(true).hashPrefix('!');
+    })
+    .config(function ($routeProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'views/main.html',
+                controller: 'MainCtrl'
+            })
+            .when('/dashboard', {
+                templateUrl: 'views/dashboard.html',
+                controller: 'DashboardCtrl'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
+    });
