@@ -27,9 +27,15 @@ angular.module('the6thscreenAdminApp')
 
                     $scope.authToken = data.token;
 
-                    backendSocket.init($scope.authToken);
+                    var successBackendInit = function() {
+                        $location.path('/dashboard');
+                    };
 
-                    $location.path('/dashboard');
+                    var failBackendInit = function(errorDesc) {
+                        console.error(errorDesc);
+                    };
+
+                    backendSocket.init($scope.authToken, successBackendInit, failBackendInit);
                 })
                 .error(function(data, status, headers, config) {
                     // called asynchronously if an error occurs

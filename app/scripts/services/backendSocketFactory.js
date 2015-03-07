@@ -13,8 +13,9 @@ angular.module('the6thscreenAdminApp')
         var backendSocketFactory = {}
         backendSocketFactory.backendSocket = null;
         backendSocketFactory.token = null;
+        backendSocketFactory.user = null;
 
-        backendSocketFactory.init = function(token) {
+        backendSocketFactory.init = function(token, successCB, failCB) {
             if(backendSocketFactory.token == null) {
                 backendSocketFactory.token = token;
 
@@ -32,11 +33,23 @@ angular.module('the6thscreenAdminApp')
 
                 backendIOSocket.on("connect", function () {
                     console.info("Connected to Backend.");
+                    if(backendSocketFactory.user == null) {
+                        backendIOSocket.emit("RetrieveUserDescriptionFromToken", {'token' : token});
+                    }
+                });
+
+                backendIOSocket.on("UserDescription", function (userDesc) {
+                    console.info("UserDescription received.");
+                    backendSocketFactory.user = userDesc;
+                    successCB();
                 });
 
                 backendIOSocket.on("error", function (errorData) {
                     console.error("An error occurred during connection to Backend.");
                     console.debug(errorData);
+                    if(backendSocketFactory.user == null) {
+                        failCB("An error occurred during connection to Backend.");
+                    }
                 });
 
                 backendIOSocket.on("disconnect", function () {
