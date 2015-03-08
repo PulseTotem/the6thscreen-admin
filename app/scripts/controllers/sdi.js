@@ -8,13 +8,19 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('the6thscreenAdminApp')
-  .controller('SdiCtrl', ['$scope', '$routeParams', 'backendSocket', function ($scope, $routeParams, backendSocket) {
+  .controller('SdiCtrl', ['$scope', '$routeParams', 'backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
 
     $scope.sdiID = $routeParams.sdiId;
 
         backendSocket.userIsLogin(function() {
-            backendSocket.on('SDIDescription', function(sdiInfo) {
-                $scope.sdi = sdiInfo;
+            backendSocket.on('SDIDescription', function(response) {
+                callbackManager(response, function (sdiInfo) {
+                        $scope.sdi = sdiInfo;
+                    },
+                    function (fail) {
+                        console.error(fail);
+                    }
+                );
             });
 
             backendSocket.emit('RetrieveSDIDescription', {'sdiId' : $scope.sdiID});

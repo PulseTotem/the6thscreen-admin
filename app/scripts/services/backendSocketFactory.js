@@ -8,7 +8,7 @@
  * Factory of the the6thscreenAdminApp
  */
 angular.module('the6thscreenAdminApp')
-    .factory('backendSocket', ['$rootScope', '$cookies', '$location', 'ADMIN_CONSTANTS', 'socketFactory', function ($rootScope, $cookies, $location, ADMIN_CONSTANTS, socketFactory) {
+    .factory('backendSocket', ['$rootScope', '$cookies', '$location', 'ADMIN_CONSTANTS', 'callbackManager', 'socketFactory', function ($rootScope, $cookies, $location, ADMIN_CONSTANTS, callbackManager, socketFactory) {
         var backendSocketFactory = {}
         backendSocketFactory.backendSocket = null;
         backendSocketFactory.token = null;
@@ -37,12 +37,18 @@ angular.module('the6thscreenAdminApp')
                     }
                 });
 
-                backendIOSocket.on("UserDescriptionFromToken", function (userDesc) {
-                    console.info("UserDescriptionFromToken received.");
-                    backendSocketFactory.user = userDesc;
-                    $rootScope.user = backendSocketFactory.user;
-                    $cookies.sToken = backendSocketFactory.token;
-                    successCB();
+                backendIOSocket.on("UserDescriptionFromToken", function (response) {
+                    callbackManager(response, function (userDesc) {
+                            console.info("UserDescriptionFromToken received.");
+                            backendSocketFactory.user = userDesc;
+                            $rootScope.user = backendSocketFactory.user;
+                            $cookies.sToken = backendSocketFactory.token;
+                            successCB();
+                        },
+                        function (fail) {
+                            console.error(fail);
+                        }
+                    );
                 });
 
                 backendIOSocket.on("error", function (errorData) {
@@ -163,9 +169,6 @@ angular.module('the6thscreenAdminApp')
                 }
             }
         };
-
-
-
 
         return backendSocketFactory;
     }]);

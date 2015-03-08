@@ -9,14 +9,12 @@
  */
 angular.module('the6thscreenAdminApp')
   .factory('callbackManager', function () {
-    // Service logic
 
-
-    return function (message, successCallback, failCallback) {
-      if (message.status == 'success') {
-        successCallback(message);
+    return function (backendMessage, successCallback, failCallback) {
+      if (backendMessage.success == true) {
+        successCallback(backendMessage.response);
       } else {
-        failCallback(message);
+        failCallback(backendMessage.response);
       }
     }
   });
