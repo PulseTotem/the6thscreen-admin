@@ -12,9 +12,11 @@ angular.module('the6thscreenAdminApp')
 
     $scope.sdiID = $routeParams.sdiId;
 
-    backendSocket.on('SDIDescription', function(sdiInfo) {
-      $scope.sdi = sdiInfo;
-    });
+        backendSocket.userIsLogin(function() {
+            backendSocket.on('SDIDescription', function(sdiInfo) {
+                $scope.sdi = sdiInfo;
+            });
 
-    backendSocket.emit('RetrieveSDIDescription', {'sdiId' : $scope.sdiID});
+            backendSocket.emit('RetrieveSDIDescription', {'sdiId' : $scope.sdiID});
+        });
   }]);

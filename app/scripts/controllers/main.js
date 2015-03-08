@@ -21,10 +21,13 @@ angular.module('the6thscreenAdminApp')
                     $scope.authToken = data.token;
 
                     var successBackendInit = function() {
-                        $rootScope.user = backendSocket.user;
-                        $rootScope.$apply(function() {
+                        if (!$rootScope.$$phase) {
+                            $rootScope.$apply(function () {
+                                $location.path('/dashboard');
+                            });
+                        } else {
                             $location.path('/dashboard');
-                        });
+                        }
                     };
 
                     var failBackendInit = function(errorDesc) {
@@ -45,4 +48,14 @@ angular.module('the6thscreenAdminApp')
                     console.log(config);
                 });
         };
+
+        backendSocket.userIsLogin(function() {
+            if (!$rootScope.$$phase) {
+                $rootScope.$apply(function () {
+                    $location.path('/dashboard');
+                });
+            } else {
+                $location.path('/dashboard');
+            }
+        }, true);
   }]);

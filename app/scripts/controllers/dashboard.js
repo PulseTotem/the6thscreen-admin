@@ -10,9 +10,11 @@
 angular.module('the6thscreenAdminApp')
     .controller('DashboardCtrl', ['$rootScope', '$scope', 'backendSocket', function ($rootScope, $scope, backendSocket) {
 
-        backendSocket.on('UserDescription', function(userInfo) {
-            $scope.listSDI = userInfo.sdis;
-        });
+        backendSocket.userIsLogin(function() {
+            backendSocket.on('UserDescription', function(userInfo) {
+                $scope.listSDI = userInfo.sdis;
+            });
 
-        backendSocket.emit('RetrieveUserDescription', {'userId' : $rootScope.user.id});
+            backendSocket.emit('RetrieveUserDescription', {'userId' : $rootScope.user.id});
+        });
     }]);

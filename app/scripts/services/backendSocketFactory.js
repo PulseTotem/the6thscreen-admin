@@ -8,15 +8,14 @@
  * Factory of the the6thscreenAdminApp
  */
 angular.module('the6thscreenAdminApp')
-    .factory('backendSocket', ['ADMIN_CONSTANTS', 'socketFactory', function (ADMIN_CONSTANTS, socketFactory) {
-
+    .factory('backendSocket', ['$rootScope', '$cookies', '$location', 'ADMIN_CONSTANTS', 'socketFactory', function ($rootScope, $cookies, $location, ADMIN_CONSTANTS, socketFactory) {
         var backendSocketFactory = {}
         backendSocketFactory.backendSocket = null;
         backendSocketFactory.token = null;
         backendSocketFactory.user = null;
 
         backendSocketFactory.init = function(token, successCB, failCB) {
-            if(backendSocketFactory.token == null) {
+            if(backendSocketFactory.backendSocket == null) {
                 backendSocketFactory.token = token;
 
                 var backendIOSocket = io(ADMIN_CONSTANTS.adminBackendUrl,
@@ -41,12 +40,14 @@ angular.module('the6thscreenAdminApp')
                 backendIOSocket.on("UserDescriptionFromToken", function (userDesc) {
                     console.info("UserDescriptionFromToken received.");
                     backendSocketFactory.user = userDesc;
+                    $rootScope.user = backendSocketFactory.user;
+                    $cookies.sToken = backendSocketFactory.token;
                     successCB();
                 });
 
                 backendIOSocket.on("error", function (errorData) {
                     console.error("An error occurred during connection to Backend.");
-                    console.debug(errorData);
+                    console.log(errorData);
                     if(backendSocketFactory.user == null) {
                         failCB("An error occurred during connection to Backend.");
                     }
@@ -70,7 +71,7 @@ angular.module('the6thscreenAdminApp')
 
                 backendIOSocket.on("reconnect_error", function (errorData) {
                     console.error("An error occurred during reconnection to Backend.");
-                    console.debug(errorData);
+                    console.log(errorData);
                 });
 
                 backendIOSocket.on("reconnect_failed", function () {
@@ -132,6 +133,38 @@ angular.module('the6thscreenAdminApp')
                 console.error("An error occurred : BackendSocket isn't initialized.");
             }
         };
+
+        backendSocketFactory.userIsLogin = function(successCB, onLoginPage) {
+            var fail = function(error) {
+                console.error(error);
+                if(typeof(onLoginPage) == "undefined" || !onLoginPage) {
+                    if (!$rootScope.$$phase) {
+                        $rootScope.$apply(function () {
+                            $location.path('/');
+                        });
+                    } else {
+                        $location.path('/');
+                    }
+                }
+            };
+
+            if(backendSocketFactory.backendSocket != null) {
+                successCB();
+            } else {
+                if(typeof($cookies.sToken) != "undefined") {
+                    backendSocketFactory.init($cookies.sToken, function() {
+                        console.log("Reconnection with user in cookie.");
+                        successCB();
+                    }, function(error) {
+                        fail(error);
+                    });
+                } else {
+                    fail("User is not identified.");
+                }
+            }
+        };
+
+
 
 
         return backendSocketFactory;

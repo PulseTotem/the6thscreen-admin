@@ -74,31 +74,35 @@ module.exports = function (grunt) {
       livereload: {
         options: {
           open: true,
-          middleware: function (connect) {
-            return [
-              connect.static('.tmp'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect.static(appConfig.app)
-            ];
+          middleware: function (connect, options) {
+              var optBase = (typeof options.base === 'string') ? [options.base] : options.base;
+              return [require('connect-modrewrite')(['!(\\..+)$ / [L]'])].concat(
+                  optBase.map(function(path){ return connect.static(path); })).concat([
+                      connect.static('.tmp'),
+                      connect().use(
+                          '/bower_components',
+                          connect.static('./bower_components')
+                      ),
+                      connect.static(appConfig.app)
+                  ]);
           }
         }
       },
       test: {
         options: {
           port: 9001,
-          middleware: function (connect) {
-            return [
-              connect.static('.tmp'),
-              connect.static('test'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect.static(appConfig.app)
-            ];
+          middleware: function (connect, options) {
+              var optBase = (typeof options.base === 'string') ? [options.base] : options.base;
+              return [require('connect-modrewrite')(['!(\\..+)$ / [L]'])].concat(
+                  optBase.map(function(path){ return connect.static(path); })).concat([
+                      connect.static('.tmp'),
+                      connect.static('test'),
+                      connect().use(
+                          '/bower_components',
+                          connect.static('./bower_components')
+                      ),
+                      connect.static(appConfig.app)
+                  ]);
           }
         }
       },

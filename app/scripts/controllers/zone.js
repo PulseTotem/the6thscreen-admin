@@ -12,10 +12,12 @@ angular.module('the6thscreenAdminApp')
 
     $scope.zoneID = $routeParams.zoneId;
 
-    backendSocket.on('ZoneDescription', function(zoneInfo) {
-      $scope.zone = zoneInfo;
-    });
+        backendSocket.userIsLogin(function() {
+            backendSocket.on('ZoneDescription', function(zoneInfo) {
+                $scope.zone = zoneInfo;
+            });
 
-    backendSocket.emit('RetrieveZoneDescription', {'zoneId' : $scope.zoneID});
+            backendSocket.emit('RetrieveZoneDescription', {'zoneId' : $scope.zoneID});
+        });
 
   }]);

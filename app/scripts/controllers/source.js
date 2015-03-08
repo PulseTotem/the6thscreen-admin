@@ -10,11 +10,14 @@
 angular.module('the6thscreenAdminApp')
   .controller('SourceCtrl', ['$scope', 'backendSocket', function ($scope, backendSocket) {
 
-    backendSocket.on('AllSourceDescription', function(allSources) {
-      console.log("Information : "+allSources);
-      $scope.sources = allSources;
-    });
+        backendSocket.userIsLogin(function() {
+            backendSocket.on('AllSourceDescription', function(allSources) {
+                console.log("Information : "+allSources);
+                $scope.sources = allSources;
+            });
 
-    backendSocket.emit('RetrieveAllSourceDescription');
+            backendSocket.emit('RetrieveAllSourceDescription');
+        });
+
 
   }]);
