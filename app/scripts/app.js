@@ -19,6 +19,6 @@ angular
     'pascalprecht.translate',
     'btford.socket-io'
     ])
-    .config(function($locationProvider) {
+    .config(['$locationProvider', function($locationProvider) {
         $locationProvider.html5Mode(true).hashPrefix('!');
-    });
+    }]);

@@ -68,7 +68,8 @@ module.exports = function (grunt) {
             files: [
               '<%= yeoman.app %>/{,*/}*.html',
               '.tmp/styles/{,*/}*.css',
-              '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+              '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+              '<%= yeoman.app %>/locales/{,*/}*.json'
             ]
         }
     },
@@ -92,6 +93,10 @@ module.exports = function (grunt) {
                       connect().use(
                           '/bower_components',
                           connect.static('./bower_components')
+                      ),
+                      connect().use(
+                          '/locales',
+                          connect.static('./app/locales')
                       ),
                       connect.static(appConfig.app)
                   ]);
@@ -342,6 +347,7 @@ module.exports = function (grunt) {
             '*.html',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
+            'locales/{,*/}*.json',
             'styles/fonts/{,*/}*.*'
           ]
         }, {

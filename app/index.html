@@ -70,8 +70,13 @@
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
+              <li class="active"><a href="#/" translate="HOME"></a></li>
             </ul>
+
+              <ul class="nav navbar-nav right">
+                  <li><button ng-click="" translate="ENGLISH"></button></li>
+                  <li><button ng-click="" translate="FRENCH"></button></li>
+              </ul>
           </div>
         </div>
       </div>
@@ -113,11 +118,14 @@
     <script src="bower_components/angular-socket-io/socket.js"></script>
     <script src="bower_components/jsSHA/src/sha.js"></script>
     <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="bower_components/angular-translate-handler-log/angular-translate-handler-log.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/translation.js"></script>
     <script src="scripts/routes.js"></script>
     <script src="scripts/services/adminConstants.js"></script>
     <script src="scripts/services/backendSocketFactory.js"></script>
