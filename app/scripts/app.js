@@ -16,6 +16,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'pascalprecht.translate',
     'btford.socket-io'
     ])
     .config(function($locationProvider) {
