@@ -35,7 +35,7 @@ module.exports = function (grunt) {
         },
         js: {
             files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-            tasks: ['newer:jshint:all'],
+//            tasks: ['newer:jshint:all'],
             options: {
               livereload: '<%= connect.options.livereload %>'
             }
@@ -44,16 +44,16 @@ module.exports = function (grunt) {
             files: ['test/spec/{,*/}*.js'],
             tasks: ['newer:jshint:test', 'karma']
         },
-        jsWithoutJSHint: {
-            files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-            options: {
-                livereload: '<%= connect.options.livereload %>'
-            }
-        },
-        jsTestWithoutJSHint: {
-            files: ['test/spec/{,*/}*.js'],
-            tasks: ['karma']
-        },
+//        jsWithoutJSHint: {
+//            files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+//            options: {
+//                livereload: '<%= connect.options.livereload %>'
+//            }
+//        },
+//        jsTestWithoutJSHint: {
+//            files: ['test/spec/{,*/}*.js'],
+//            tasks: ['karma']
+//        },
         styles: {
             files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
             tasks: ['newer:copy:styles', 'autoprefixer']
