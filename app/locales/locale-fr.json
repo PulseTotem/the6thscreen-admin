@@ -1,12 +1,13 @@
 {
     "MENU" : {
+        "ADMIN_PANEL" : "Panneau d'administration",
         "HOME" : "Accueil",
         "LANGUAGE" : "Langage",
         "ENGLISH" : "English",
         "FRENCH" : "Fran&ccedil;ais"
     },
     "DASHBOARD" : {
-        "WELCOME" : "Bienvenue {{username}}, voici les SDI auxquels vous avez acc&eagrave;s.",
+        "WELCOME" : "Bienvenue {{username}}, voici les SDI auxquels vous avez acc&egrave;s.",
         "SDI_NAME" : "Nom",
         "SDI_DESCRIPTION" : "Description"
     },

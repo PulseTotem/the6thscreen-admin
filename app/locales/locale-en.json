@@ -1,5 +1,6 @@
 {
     "MENU" : {
+        "ADMIN_PANEL" : "Administration Panel",
         "HOME": "Home",
         "LANGUAGE" : "Language",
         "ENGLISH": "English",

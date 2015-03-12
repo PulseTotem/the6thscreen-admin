@@ -53,7 +53,7 @@
 
     <!-- Add your site or application content here -->
     <div class="header">
-      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="MenuCtrl">
         <div class="container-fluid">
           <div class="navbar-header">
 
@@ -64,7 +64,7 @@
               <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#/">Administration Panel</a>
+            <a class="navbar-brand" href="#/" translate="MENU.ADMIN_PANEL"></a>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
@@ -75,10 +75,10 @@
 
               <ul class="nav navbar-nav navbar-right">
                   <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" translate>MENU.LANGUAGE <span class="caret"></span></a>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> <span translate="MENU.LANGUAGE"></span> <span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
-                          <li ng-click=""><img src="/images/flags/en.png" class="img-responsive" alt="{{ 'MENU.ENGLISH' | translate }}" /><span translate="MENU.ENGLISH"></span></li>
-                          <li ng-click=""><img src="/images/flags/fr.png" class="img-responsive" alt="{{ 'MENU.FRENCH' | translate }}" /><span translate="MENU.FRENCH"></span></li>
+                          <li ng-click="changeLanguage('en')" class="menuLangItem"><img src="/images/flags/en.png" class="img-responsive" alt="{{ 'MENU.ENGLISH' | translate }}" /> <span translate="MENU.ENGLISH"></span></li>
+                          <li ng-click="changeLanguage('fr')" class="menuLangItem"><img src="/images/flags/fr.png" class="img-responsive" alt="{{ 'MENU.FRENCH' | translate }}" /> <span translate="MENU.FRENCH"></span></li>
                       </ul>
                   </li>
               </ul>
@@ -135,6 +135,7 @@
     <script src="scripts/services/adminConstants.js"></script>
     <script src="scripts/services/backendSocketFactory.js"></script>
     <script src="scripts/services/callbackmanager.js"></script>
+    <script src="scripts/controllers/menu.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/dashboard.js"></script>
     <script src="scripts/controllers/sdi.js"></script>
