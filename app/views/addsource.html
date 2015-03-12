@@ -1,34 +1,34 @@
-<h3>Créer une nouvelle source</h3>
+<h3 translate="ADD_SOURCE.CREATE_SOURCE"></h3>
 
 <div>
   <form>
     <div class="control-group">
-      <label for="inputName">Nom</label>
+      <label for="inputName" translate="ADD_SOURCE.SOURCE_NAME"></label>
       <div class="controls">
         <input type="text" id="inputName" placeholder="Nom" ng-model="source.name" />
       </div>
     </div>
     <div class="control-group">
-      <label for="inputService">Service</label>
+      <label for="inputService" translate="ADD_SOURCE.SOURCE_SERVICE">Service</label>
       <div class="controls">
         <input type="text" id="inputService" placeholder="Service" ng-model="source.service" />
       </div>
     </div>
     <div class="control-group">
-      <label for="inputDescription">Description</label>
+      <label for="inputDescription" translate="ADD_SOURCE.SOURCE_DESCRIPTION"></label>
       <div class="controls">
         <textarea rows="3" id="inputDescription" placeholder="Description" ng-model="source.description"></textarea>
       </div>
     </div>
     <div class="control-group">
-      <label for="inputHost">Host:Port</label>
+      <label for="inputHost" translate="ADD_SOURCE.SOURCE_HOST_PORT"></label>
       <div class="controls">
         <input type="text" id="inputHost" placeholder="Host" ng-model="source.host" />:
         <input type="number" id="inputPort" placeholder="Port" ng-model="source.port" />
       </div>
     </div>
     <div class="control-group">
-      <label for="inputInfoType">Type d'information</label>
+      <label for="inputInfoType" translate="ADD_SOURCE.SOURCE_TYPE"></label>
       <div class="controls">
         <select id="inputInfoType" ng-model="source.infoType" class="form-control">
           <option ng-repeat="type in infoTypes" value="{{ type.id }}">{{ type.name }}</option>
@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="control-group">
-      <label for="inputParamType">Type de paramètre </label>
+      <label for="inputParamType" translate="ADD_SOURCE.SOURCE_PARAM_TYPE"></label>
       <div class="controls">
         <select multiple id="inputParamType" ng-model="source.paramType" class="form-control">
           <option ng-repeat="type in paramTypes" value="{{ type.id }}">{{ type.name }}</option>

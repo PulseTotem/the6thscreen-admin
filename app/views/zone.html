@@ -1,15 +1,15 @@
 <div>
-  <h3>SDI : {{zone.name }} (id : {{ zone.id }})</h3>
-  <h4>Description : {{ zone.description }}</h4>
+  <h3>{{zone.name }}</h3>
+  <h4>{{ zone.description }}</h4>
 </div>
 
-<h5>CallTypes : </h5>
+<h5 translate="ZONE.CALLTYPES_LIST"></h5>
 
 <table class="table table-striped">
   <tr>
     <th>#</th>
-    <th>Nom</th>
-    <th>Description</th>
+    <th translate="ZONE.CALLTYPE_NAME"></th>
+    <th translate="ZONE.CALLTYPE_DESCRIPTION"></th>
   </tr>
 
   <tr ng-repeat="ct in zone.callTypes">

@@ -1,14 +1,12 @@
 <div class="row marketing">
-  <h3>
-    Bienvenue {{ user.username }}, voici les SDI auxquels vous avez accès.
-  </h3>
+  <h3 translate="DASHBOARD.WELCOME" translate-value-username="{{ user.username }}"></h3>
 </div>
 
 <table class="table table-striped table-hover">
   <tr>
     <th>#</th>
-    <th>Nom</th>
-    <th>Description</th>
+    <th translate="DASHBOARD.SDI_NAME"></th>
+    <th translate="DASHBOARD.SDI_DESCRIPTION"></th>
   </tr>
 
   <tr ng-repeat="sdi in listSDI">

@@ -1,15 +1,15 @@
-<h3>List of all Sources</h3>
+<h3 translate="SOURCE.SOURCES_LIST"></h3>
 
 <table class="table table-striped">
   <tr>
     <th>#</th>
-    <th>Nom</th>
-    <th>Service</th>
-    <th>Description</th>
-    <th>host:port</th>
-    <th>Type</th>
-    <th>Param Types</th>
-    <th>Param Values</th>
+    <th translate="SOURCE.SOURCE_NAME">Nom</th>
+    <th translate="SOURCE.SOURCE_SERVICE">Service</th>
+    <th translate="SOURCE.SOURCE_DESCRIPTION">Description</th>
+    <th translate="SOURCE.SOURCE_HOST_PORT">host:port</th>
+    <th translate="SOURCE.SOURCE_TYPE">Type</th>
+    <th translate="SOURCE.SOURCE_PARAM_TYPES">Param Types</th>
+    <th translate="SOURCE.SOURCE_PARAM_VALUES">Param Values</th>
   </tr>
 
   <tr ng-repeat="source in sources">
@@ -25,5 +25,5 @@
 </table>
 
 <div style="float: right">
-  <a ng-href="/addsource" class="btn btn-primary"><i class="icon-plus icon-white"></i> Ajouter une source</a>
+  <a ng-href="/addsource" class="btn btn-primary" translate><i class="icon-plus icon-white"></i> SOURCE.ADD_SOURCE</a>
 </div>

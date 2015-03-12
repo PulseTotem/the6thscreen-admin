@@ -1,0 +1,56 @@
+{
+    "MENU" : {
+        "ADMIN_PANEL" : "Administration Panel",
+        "HOME": "Home",
+        "LANGUAGE" : "Language",
+        "ENGLISH": "English",
+        "FRENCH": "Fran&ccedil;ais"
+    },
+    "MAIN" : {
+        "ADMIN_PANEL" : "The 6th Screen : Administration Panel",
+        "LOGIN" : "Log In",
+        "USERNAME_OR_EMAIL" : "Username or Email",
+        "PASSWORD" : "Password",
+        "LOGIN_BUTTON" : "Log In",
+        "PASSWORD_LOST" : "Password lost ?"
+    },
+    "DASHBOARD" : {
+        "WELCOME" : "Welcome {{username}}, here are Digital Signages you can edit.",
+        "SDI_NAME" : "Name",
+        "SDI_DESCRIPTION" : "Description"
+    },
+    "SDI" : {
+        "ZONES_LIST" : "Zones List",
+        "ZONE_NAME" : "Name",
+        "ZONE_DESCRIPTION" : "Description",
+        "ZONE_WIDTH" : "Width",
+        "ZONE_HEIGHT" : "Height",
+        "ZONE_POSITION_FROM_TOP" : "Position from top of screen",
+        "ZONE_POSITION_FROM_LEFT" : "Positon from left of screen"
+    },
+    "ZONE" : {
+        "CALLTYPES_LIST" : "CallTypes List",
+        "CALLTYPE_NAME" : "Name",
+        "CALLTYPE_DESCRIPTION" : "Description"
+    },
+    "SOURCE" : {
+        "SOURCES_LIST" : "Sources List",
+        "SOURCE_NAME" : "Name",
+        "SOURCE_SERVICE" : "Service",
+        "SOURCE_DESCRIPTION" : "Description",
+        "SOURCE_HOST_PORT" : "Host:Port",
+        "SOURCE_TYPE" : "Type",
+        "SOURCE_PARAM_TYPES" : "Parameter Types",
+        "SOURCE_PARAM_VALUES" : "Parameter Values",
+        "ADD_SOURCE" : "Add new Source"
+    },
+    "ADD_SOURCE" : {
+        "CREATE_SOURCE" : "Create a new Source",
+        "SOURCE_NAME" : "Name",
+        "SOURCE_SERVICE" : "Service",
+        "SOURCE_DESCRIPTION" : "Description",
+        "SOURCE_HOST_PORT" : "Host:Port",
+        "SOURCE_TYPE" : "Information Type",
+        "SOURCE_PARAM_TYPE" : "Parameter Type"
+    }
+}

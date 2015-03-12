@@ -1,0 +1,56 @@
+{
+    "MENU" : {
+        "ADMIN_PANEL" : "Panneau d'administration",
+        "HOME" : "Accueil",
+        "LANGUAGE" : "Langage",
+        "ENGLISH" : "English",
+        "FRENCH" : "Fran&ccedil;ais"
+    },
+    "DASHBOARD" : {
+        "WELCOME" : "Bienvenue {{username}}, voici les SDI auxquels vous avez acc&egrave;s.",
+        "SDI_NAME" : "Nom",
+        "SDI_DESCRIPTION" : "Description"
+    },
+    "MAIN" : {
+        "ADMIN_PANEL" : "The 6th Screen : Panneau d'administration",
+        "LOGIN" : "Connexion",
+        "USERNAME_OR_EMAIL" : "Pseudo ou adresse mail",
+        "PASSWORD" : "Mot de passe",
+        "LOGIN_BUTTON" : "Se connecter",
+        "PASSWORD_LOST" : "Mot de passe perdu ?"
+    },
+    "SDI" : {
+        "ZONES_LIST" : "Liste des zones",
+        "ZONE_NAME" : "Nom",
+        "ZONE_DESCRIPTION" : "Description",
+        "ZONE_WIDTH" : "Largeur",
+        "ZONE_HEIGHT" : "Hauteur",
+        "ZONE_POSITION_FROM_TOP" : "Position &agrave; partir du haut de l'&eacute;cran",
+        "ZONE_POSITION_FROM_LEFT" : "Position &agrave; partir de la gauche de l'&eacute;cran"
+    },
+    "ZONE" : {
+        "CALLTYPES_LIST" : "Liste des CallTypes",
+        "CALLTYPE_NAME" : "Nom",
+        "CALLTYPE_DESCRIPTION" : "Description"
+    },
+    "SOURCE" : {
+        "SOURCES_LIST" : "Liste des Sources",
+        "SOURCE_NAME" : "Nom",
+        "SOURCE_SERVICE" : "Service",
+        "SOURCE_DESCRIPTION" : "Description",
+        "SOURCE_HOST_PORT" : "Host:Port",
+        "SOURCE_TYPE" : "Type d'information",
+        "SOURCE_PARAM_TYPES" : "Types de param&egrave;tre",
+        "SOURCE_PARAM_VALUES" : "Valeurs des param&egrave;tre",
+        "ADD_SOURCE" : "Ajouter une nouvelle Source"
+    },
+    "ADD_SOURCE" : {
+        "CREATE_SOURCE" : "Cr&eacute;er une nouvelle source",
+        "SOURCE_NAME" : "Nom",
+        "SOURCE_SERVICE" : "Service",
+        "SOURCE_DESCRIPTION" : "Description",
+        "SOURCE_HOST_PORT" : "Host:Port",
+        "SOURCE_TYPE" : "Type d'information",
+        "SOURCE_PARAM_TYPE" : "Type de param&egrave;tre"
+    }
+}

@@ -29,38 +29,49 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
-      bower: {
-        files: ['bower.json'],
-        tasks: ['wiredep']
-      },
-      js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-        tasks: ['newer:jshint:all'],
-        options: {
-          livereload: '<%= connect.options.livereload %>'
-        }
-      },
-      jsTest: {
-        files: ['test/spec/{,*/}*.js'],
-        tasks: ['newer:jshint:test', 'karma']
-      },
-      styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
-      },
-      gruntfile: {
-        files: ['Gruntfile.js']
-      },
-      livereload: {
-        options: {
-          livereload: '<%= connect.options.livereload %>'
+        bower: {
+            files: ['bower.json'],
+            tasks: ['wiredep']
         },
-        files: [
-          '<%= yeoman.app %>/{,*/}*.html',
-          '.tmp/styles/{,*/}*.css',
-          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-        ]
-      }
+        js: {
+            files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+//            tasks: ['newer:jshint:all'],
+            options: {
+              livereload: '<%= connect.options.livereload %>'
+            }
+        },
+        jsTest: {
+            files: ['test/spec/{,*/}*.js'],
+            tasks: ['newer:jshint:test', 'karma']
+        },
+//        jsWithoutJSHint: {
+//            files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+//            options: {
+//                livereload: '<%= connect.options.livereload %>'
+//            }
+//        },
+//        jsTestWithoutJSHint: {
+//            files: ['test/spec/{,*/}*.js'],
+//            tasks: ['karma']
+//        },
+        styles: {
+            files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
+            tasks: ['newer:copy:styles', 'autoprefixer']
+        },
+        gruntfile: {
+            files: ['Gruntfile.js']
+        },
+        livereload: {
+            options: {
+              livereload: '<%= connect.options.livereload %>'
+            },
+            files: [
+              '<%= yeoman.app %>/{,*/}*.html',
+              '.tmp/styles/{,*/}*.css',
+              '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+              '<%= yeoman.app %>/locales/{,*/}*.json'
+            ]
+        }
     },
 
     // The actual grunt server settings
@@ -82,6 +93,10 @@ module.exports = function (grunt) {
                       connect().use(
                           '/bower_components',
                           connect.static('./bower_components')
+                      ),
+                      connect().use(
+                          '/locales',
+                          connect.static('./app/locales')
                       ),
                       connect.static(appConfig.app)
                   ]);
@@ -332,6 +347,7 @@ module.exports = function (grunt) {
             '*.html',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
+            'locales/{,*/}*.json',
             'styles/fonts/{,*/}*.*'
           ]
         }, {
@@ -366,7 +382,20 @@ module.exports = function (grunt) {
         'copy:styles',
         'imagemin',
         'svgmin'
-      ]
+      ],
+      watchWithoutJSHint: {
+          tasks : [
+              'watch:bower',
+              'watch:jsWithoutJSHint',
+              'watch:jsTestWithoutJSHint',
+              'watch:styles',
+              'watch:gruntfile',
+              'watch:livereload'
+          ],
+          options : {
+              limit : 6
+          }
+      }
     },
 
     // Test settings
@@ -393,6 +422,21 @@ module.exports = function (grunt) {
       'watch'
     ]);
   });
+
+    grunt.registerTask('serveWithoutJSHint', 'Compile then start a connect web server without JS Hint check during watch !', function (target) {
+        if (target === 'dist') {
+            return grunt.task.run(['build', 'connect:dist:keepalive']);
+        }
+
+        grunt.task.run([
+            'clean:server',
+            'wiredep',
+            'concurrent:server',
+            'autoprefixer',
+            'connect:livereload',
+            'concurrent:watchWithoutJSHint'
+        ]);
+    });
 
   grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');

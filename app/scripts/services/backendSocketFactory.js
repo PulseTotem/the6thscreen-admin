@@ -82,6 +82,7 @@ angular.module('the6thscreenAdminApp')
 
                 backendIOSocket.on("reconnect_failed", function () {
                     console.error("Failed to connect to Backend. No new attempt will be done.");
+                    backendSocketFactory.backendSocket = null;
                 });
 
                 var backendSocket = socketFactory({

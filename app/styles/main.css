@@ -81,3 +81,11 @@ body {
     border-bottom: 0;
   }
 }
+
+.menuLangItem {
+    cursor: pointer;
+}
+
+.menuLangItem img {
+    display: inline;
+}
