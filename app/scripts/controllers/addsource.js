@@ -21,7 +21,19 @@ angular.module('the6thscreenAdminApp')
                 );
             });
 
-            backendSocket.emit('RetrieveAllInfoTypeDescription');
+            backendSocket.emit('RetrieveAllInfoTypeDescription')
+
+            backendSocket.on('AllServiceDescription', function(response) {
+              callbackManager(response, function (allServices) {
+                  $scope.services = allServices;
+                },
+                function (fail) {
+                  console.error(fail);
+                }
+              );
+            });
+
+            backendSocket.emit('RetrieveAllServiceDescription');
 
             backendSocket.on('AllParamTypeDescription', function(response) {
                 callbackManager(response, function (allParamTypes) {
@@ -34,19 +46,24 @@ angular.module('the6thscreenAdminApp')
             });
 
             backendSocket.emit('RetrieveAllParamTypeDescription');
+
+            backendSocket.on('SourceDescription', function(response) {
+              callbackManager(response, function (source) {
+                  $scope.source = source;
+                },
+                function (fail) {
+                  console.error(fail);
+                }
+              );
+            });
         });
 
-        $scope.save = function () {
-          backendSocket.on('sourceSaved', function (response) {
-            callbackManager(response, function (success) {
-                console.log("save ok");
-                console.log(JSON.stringify(success));
-              },
-              function (fail) {
-                console.error(fail);
-              }
-            );
-          });
-          backendSocket.emit('SaveSourceDescription', $scope.source);
+        $scope.saveAttribute = function (element, value) {
+          if (!$scope.source.id) {
+            backendSocket.emit('CreateSourceDescription', $scope.source);
+          } else {
+            var data = { "id" : $scope.source.id, "method": element, "value": value };
+            backendSocket.emit("UpdateSourceDescription", data);
+          }
         };
   }]);

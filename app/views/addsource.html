@@ -3,47 +3,47 @@
 <div>
   <form>
     <div class="control-group">
-      <label for="inputName" translate="ADD_SOURCE.SOURCE_NAME"></label>
+      <label for="setName" translate="ADD_SOURCE.SOURCE_NAME"></label>
       <div class="controls">
-        <input type="text" id="inputName" placeholder="Nom" ng-model="source.name" />
+        <input type="text" id="setName" placeholder="Nom" ng-model="source.name" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setName', source.name)" />
       </div>
     </div>
     <div class="control-group">
-      <label for="inputService" translate="ADD_SOURCE.SOURCE_SERVICE">Service</label>
+      <label for="setDescription" translate="ADD_SOURCE.SOURCE_DESCRIPTION"></label>
       <div class="controls">
-        <input type="text" id="inputService" placeholder="Service" ng-model="source.service" />
-      </div>
-    </div>
-    <div class="control-group">
-      <label for="inputDescription" translate="ADD_SOURCE.SOURCE_DESCRIPTION"></label>
-      <div class="controls">
-        <textarea rows="3" id="inputDescription" placeholder="Description" ng-model="source.description"></textarea>
-      </div>
-    </div>
-    <div class="control-group">
-      <label for="inputHost" translate="ADD_SOURCE.SOURCE_HOST_PORT"></label>
-      <div class="controls">
-        <input type="text" id="inputHost" placeholder="Host" ng-model="source.host" />:
-        <input type="number" id="inputPort" placeholder="Port" ng-model="source.port" />
+        <textarea rows="3" id="setDescription" placeholder="Description" ng-model="source.description" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setDescription', source.description)"></textarea>
       </div>
     </div>
     <div class="control-group">
       <label for="inputInfoType" translate="ADD_SOURCE.SOURCE_TYPE"></label>
       <div class="controls">
-        <select id="inputInfoType" ng-model="source.infoType" class="form-control">
+        <select id="inputInfoType" ng-model="source.infoTypeID" class="form-control" ng-change="saveAttribute('linkInfoType', source.infoTypeID)">
           <option ng-repeat="type in infoTypes" value="{{ type.id }}">{{ type.name }}</option>
         </select>
       </div>
     </div>
     <div class="control-group">
-      <label for="inputParamType" translate="ADD_SOURCE.SOURCE_PARAM_TYPE"></label>
+      <label for="inputService" translate="ADD_SOURCE.SOURCE_SERVICE"></label>
       <div class="controls">
-        <select multiple id="inputParamType" ng-model="source.paramType" class="form-control">
+        <select id="inputService" ng-model="source.serviceID" class="form-control" ng-change="saveAttribute('linkService', source.serviceID)">
+          <option ng-repeat="service in services" value="{{ service.id }}">{{ service.name }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="setMethod" translate="ADD_SOURCE.SOURCE_METHOD"></label>
+      <div class="controls">
+        <input type="text" id="setMethod" placeholder="Method" ng-model="source.method" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setMethod', source.method)" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="addParamType" translate="ADD_SOURCE.SOURCE_PARAM_TYPE"></label>
+      <div class="controls">
+        <select id="addParamType" ng-model="source.paramTypeID" class="form-control" ng-change="saveAttribute('addParamType', source.paramTypeID)">
           <option ng-repeat="type in paramTypes" value="{{ type.id }}">{{ type.name }}</option>
         </select>
       </div>
     </div>
-    <input type="button" ng-click="save()" value="save" class="btn btn-success" />
   </form>
 </div>
 
