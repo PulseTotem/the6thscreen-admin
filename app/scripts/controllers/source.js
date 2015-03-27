@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('the6thscreenAdminApp')
-  .controller('SourceCtrl', ['$scope', 'backendSocket', 'callbackManager', function ($scope, backendSocket, callbackManager) {
+  .controller('SourceCtrl', ['$scope', 'backendSocket', 'callbackManager', function ($scope,  backendSocket, callbackManager) {
 
         backendSocket.userIsLogin(function() {
             backendSocket.on('AllSourceDescription', function(response) {
@@ -22,8 +22,24 @@ angular.module('the6thscreenAdminApp')
                 );
             });
 
+            backendSocket.on('deletedSource', function(response) {
+              callbackManager(response, function (idSource) {
+                  $scope.sources = $scope.sources.filter(function (object) {
+                    return (object.id != idSource);
+                  });
+
+                },
+                function (fail) {
+                  console.error(fail);
+                }
+              );
+            });
+
             backendSocket.emit('RetrieveAllSourceDescription');
         });
 
+        $scope.deleteSource = function (idSource) {
+          backendSocket.emit('DeleteSource', { "sourceId": idSource});
+        };
 
   }]);

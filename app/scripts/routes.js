@@ -36,6 +36,10 @@ angular
                 templateUrl: 'views/addsource.html',
                 controller: 'AddsourceCtrl'
             })
+            .when('/editsource/:sourceId', {
+              templateUrl: 'views/addsource.html',
+              controller: 'AddsourceCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });

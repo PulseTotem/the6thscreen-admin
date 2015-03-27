@@ -38,19 +38,26 @@
         "SOURCE_NAME" : "Nom",
         "SOURCE_SERVICE" : "Service",
         "SOURCE_DESCRIPTION" : "Description",
-        "SOURCE_HOST_PORT" : "Host:Port",
+        "SOURCE_METHOD" : "Method",
         "SOURCE_TYPE" : "Type d'information",
         "SOURCE_PARAM_TYPES" : "Types de param&egrave;tre",
         "SOURCE_PARAM_VALUES" : "Valeurs des param&egrave;tre",
-        "ADD_SOURCE" : "Ajouter une nouvelle Source"
+        "ADD_SOURCE" : "Ajouter une nouvelle Source",
+        "ISCOMPLETE" : "Complet",
+        "CONFIRM_DELETE_SOURCE" : "Êtes-vous sûr de vouloir supprimer cette source ?"
     },
     "ADD_SOURCE" : {
         "CREATE_SOURCE" : "Cr&eacute;er une nouvelle source",
         "SOURCE_NAME" : "Nom",
         "SOURCE_SERVICE" : "Service",
         "SOURCE_DESCRIPTION" : "Description",
-        "SOURCE_HOST_PORT" : "Host:Port",
+        "SOURCE_METHOD" : "Method",
         "SOURCE_TYPE" : "Type d'information",
         "SOURCE_PARAM_TYPE" : "Type de param&egrave;tre"
+    },
+    "ACTIONS" : {
+      "ACTION_ADD" : "Ajouter",
+      "ACTION_EDIT" : "Editer",
+      "ACTION_DELETE" : "Supprimer"
     }
 }
