@@ -44,6 +44,14 @@ angular
               templateUrl: 'views/calltype.html',
               controller: 'CalltypeCtrl'
             })
+            .when('/addcalltype', {
+              templateUrl: 'views/addcalltype.html',
+              controller: 'AddcalltypeCtrl'
+            })
+            .when('/editcalltype/:callTypeId', {
+              templateUrl: 'views/addcalltype.html',
+              controller: 'AddcalltypeCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });
