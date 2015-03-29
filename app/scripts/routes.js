@@ -40,6 +40,10 @@ angular
               templateUrl: 'views/addsource.html',
               controller: 'AddsourceCtrl'
             })
+            .when('/calltype', {
+              templateUrl: 'views/calltype.html',
+              controller: 'CalltypeCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });
