@@ -13,7 +13,6 @@ angular.module('the6thscreenAdminApp')
         backendSocket.userIsLogin(function() {
             backendSocket.on('AllSourceDescription', function(response) {
                 callbackManager(response, function (allSources) {
-                        console.log("Information : "+allSources);
                         $scope.sources = allSources;
                     },
                     function (fail) {
