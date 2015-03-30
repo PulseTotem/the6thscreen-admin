@@ -1,3 +1,16 @@
+<div class="modal fade" id="serviceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body" ng-include="modalService">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <h3 translate="ADD_SOURCE.CREATE_SOURCE"></h3>
 
 <div>
@@ -28,7 +41,9 @@
         <select id="inputService" ng-model="source.service" class="form-control" ng-change="saveAttribute('linkService', source.service)">
           <option ng-repeat="service in services" value="{{ service.id }}">{{ service.name }}</option>
         </select>
+        <button type="button" class="btn btn-primary" ng-click="openModalService()">Add service</button>
       </div>
+
     </div>
     <div class="control-group">
       <label for="setMethod" translate="ADD_SOURCE.SOURCE_METHOD"></label>

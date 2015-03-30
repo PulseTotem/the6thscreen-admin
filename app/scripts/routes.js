@@ -52,7 +52,19 @@ angular
               templateUrl: 'views/addcalltype.html',
               controller: 'AddcalltypeCtrl'
             })
-            .otherwise({
+            .when('/service', {
+              templateUrl: 'views/service.html',
+              controller: 'ServiceCtrl'
+            })
+            .when('/addservice', {
+              templateUrl: 'views/addservice.html',
+              controller: 'AddserviceCtrl'
+            })
+            .when('/editservice/:serviceId', {
+              templateUrl: 'views/addservice.html',
+              controller: 'AddserviceCtrl'
+            })
+          .otherwise({
                 redirectTo: '/'
             });
     });

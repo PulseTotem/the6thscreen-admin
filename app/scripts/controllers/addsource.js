@@ -10,82 +10,95 @@
 angular.module('the6thscreenAdminApp')
   .controller('AddsourceCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
 
-        backendSocket.userIsLogin(function() {
-            backendSocket.on('AllInfoTypeDescription', function(response) {
-                callbackManager(response, function (allInfoTypes) {
-                        $scope.infoTypes = allInfoTypes;
-                    },
-                    function (fail) {
-                        console.error(fail);
-                    }
-                );
-            });
+    var MODAL_SERVICE_CST = 'views/addservice.html';
 
-            backendSocket.emit('RetrieveAllInfoTypeDescription')
+    backendSocket.userIsLogin(function() {
+      $scope.source = {};
+      $scope.newService = false;
 
-            backendSocket.on('AllServiceDescription', function(response) {
-              callbackManager(response, function (allServices) {
-                  $scope.services = allServices;
-                },
-                function (fail) {
-                  console.error(fail);
-                }
-              );
-            });
+      backendSocket.on('AllInfoTypeDescription', function(response) {
+        callbackManager(response, function (allInfoTypes) {
+            $scope.infoTypes = allInfoTypes;
+          },
+          function (fail) {
+            console.error(fail);
+          }
+        );
+      });
 
-            backendSocket.emit('RetrieveAllServiceDescription');
+      backendSocket.emit('RetrieveAllInfoTypeDescription')
 
-            backendSocket.on('AllParamTypeDescription', function(response) {
-                callbackManager(response, function (allParamTypes) {
-                        $scope.paramTypes = allParamTypes;
-                        $scope.getParamTypes();
-                    },
-                    function (fail) {
-                        console.error(fail);
-                    }
-                );
-            });
+      backendSocket.on('AllServiceDescription', function(response) {
+        callbackManager(response, function (allServices) {
+            $scope.services = allServices;
+          },
+          function (fail) {
+            console.error(fail);
+          }
+        );
+      });
 
-            backendSocket.emit('RetrieveAllParamTypeDescription');
+      backendSocket.emit('RetrieveAllServiceDescription');
 
-            backendSocket.on('SourceDescription', function(response) {
-              callbackManager(response, function (source) {
-                  $scope.source = source;
-                  $scope.getParamTypes();
-                },
-                function (fail) {
-                  console.error(fail);
-                }
-              );
-            });
+      backendSocket.on('AllParamTypeDescription', function(response) {
+        callbackManager(response, function (allParamTypes) {
+            $scope.paramTypes = allParamTypes;
+            getParamTypes();
+          },
+          function (fail) {
+            console.error(fail);
+          }
+        );
+      });
 
-            if ($routeParams.sourceId) {
-              backendSocket.emit('RetrieveSourceDescriptionOnlyId', {'sourceId' : $routeParams.sourceId});
-            }
-        });
+      backendSocket.emit('RetrieveAllParamTypeDescription');
 
-        $scope.getParamTypes = function () {
-          $scope.selectedParamTypes = [];
+      backendSocket.on('SourceDescription', function(response) {
+        callbackManager(response, function (source) {
+            $scope.source = source;
+            getParamTypes();
+          },
+          function (fail) {
+            console.error(fail);
+          }
+        );
+      });
 
-          if ($scope.source.paramTypes && $scope.paramTypes) {
-            for (var i = 0; i < $scope.source.paramTypes.length; i++) {
-              var id = $scope.source.paramTypes[i];
-              for (var j = 0; j < $scope.paramTypes.length; j++) {
-                var paramType = $scope.paramTypes[j];
-                if (id == paramType.id) {
-                  $scope.selectedParamTypes.push(paramType);
-                }
-              }
+      if ($routeParams.sourceId) {
+        backendSocket.emit('RetrieveSourceDescriptionOnlyId', {'sourceId' : $routeParams.sourceId});
+      }
+
+      $scope.modalService = MODAL_SERVICE_CST;
+    });
+
+    var getParamTypes = function () {
+      $scope.selectedParamTypes = [];
+
+      if ($scope.source && $scope.source.paramTypes && $scope.paramTypes) {
+        for (var i = 0; i < $scope.source.paramTypes.length; i++) {
+          var id = $scope.source.paramTypes[i];
+          for (var j = 0; j < $scope.paramTypes.length; j++) {
+            var paramType = $scope.paramTypes[j];
+            if (id == paramType.id) {
+              $scope.selectedParamTypes.push(paramType);
             }
           }
-        };
+        }
+      }
+    };
 
-        $scope.saveAttribute = function (element, value) {
-          if (!$scope.source.id) {
-            backendSocket.emit('CreateSourceDescription', $scope.source);
-          } else {
-            var data = { "id" : $scope.source.id, "method": element, "value": value };
-            backendSocket.emit("UpdateSourceDescription", data);
-          }
-        };
+    $scope.saveAttribute = function (element, value) {
+      if (!$scope.source.id) {
+        backendSocket.emit('CreateSourceDescription', $scope.source);
+      } else {
+        var data = { "id" : $scope.source.id, "method": element, "value": value };
+        backendSocket.emit("UpdateSourceDescription", data);
+      }
+    };
+
+    $scope.openModalService = function () {
+      $scope.newService = !$scope.newService;
+      $('#serviceModal').modal('show');
+    }
+
   }]);

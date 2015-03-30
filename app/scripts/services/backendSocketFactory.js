@@ -95,6 +95,7 @@ angular.module('the6thscreenAdminApp')
 
         backendSocketFactory.on = function() {
             if(backendSocketFactory.backendSocket != null) {
+                backendSocketFactory.backendSocket.removeAllListeners(arguments[0]);
                 backendSocketFactory.backendSocket.on.apply(this,arguments);
             } else {
                 console.error("An error occurred : BackendSocket isn't initialized.");
@@ -103,6 +104,7 @@ angular.module('the6thscreenAdminApp')
 
         backendSocketFactory.addListener = function() {
             if(backendSocketFactory.backendSocket != null) {
+                backendSocketFactory.backendSocket.removeAllListeners(arguments[0]);
                 backendSocketFactory.backendSocket.addListener.apply(this,arguments);
             } else {
                 console.error("An error occurred : BackendSocket isn't initialized.");
