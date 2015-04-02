@@ -21,6 +21,16 @@ angular.module('the6thscreenAdminApp')
                 );
             });
 
+            backendSocket.on('deletedSDI', function (response) {
+              callbackManager(response, function (sdiId) {
+                $scope.listSDI = $scope.listSDI.filter(function (element) { return (element.id != sdiId); });
+              })
+            });
+
             backendSocket.emit('RetrieveUserDescription', {'userId' : $rootScope.user.id});
         });
+
+        $scope.deleteSDI = function (idSDI) {
+          backendSocket.emit('DeleteSDI', { "sdiId": idSDI});
+        };
     }]);
