@@ -80,6 +80,10 @@ angular
             templateUrl: 'views/addzone.html',
             controller: 'AddzoneCtrl'
           })
+          .when('/sdi/:sdiId/zone/:zoneId/calltype/', {
+            templateUrl: 'views/addcalltype.html',
+            controller: 'AddcalltypeCtrl'
+          })
           .otherwise({
                 redirectTo: '/'
             });

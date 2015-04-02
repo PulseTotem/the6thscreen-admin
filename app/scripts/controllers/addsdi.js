@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('the6thscreenAdminApp')
-  .controller('AddsdiCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
+  .controller('AddsdiCtrl', ['$scope','$rootScope','$routeParams','backendSocket', 'callbackManager', function ($scope, $rootScope, $routeParams, backendSocket, callbackManager) {
     backendSocket.userIsLogin(function() {
       $scope.sdi = {};
 
@@ -28,8 +28,14 @@ angular.module('the6thscreenAdminApp')
       }
     });
 
+
+
     var linkUser = function () {
-      var usersWithCurrentId = $scope.sdi.user.filter( function (element) { return (element.id == $rootScope.user.id); });
+      var usersWithCurrentId = [];
+
+      if ($scope.sdi.users.length > 0) {
+        usersWithCurrentId = $scope.sdi.users.filter( function (element) { return (element.id == $rootScope.user.id); });
+      }
       if (usersWithCurrentId.length == 0) {
         $scope.saveAttribute("addUser", $rootScope.user.id);
       }
@@ -43,4 +49,4 @@ angular.module('the6thscreenAdminApp')
         backendSocket.emit("UpdateSDIDescription", data);
       }
     };
-  });
+  }]);

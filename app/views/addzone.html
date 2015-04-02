@@ -5,13 +5,13 @@
     <div class="control-group">
       <label for="setName">Name</label>
       <div class="controls">
-        <input type="text" id="setName" placeholder="Nom" ng-model="sdi.name" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setName', zone.name)" />
+        <input type="text" id="setName" placeholder="Nom" ng-model="zone.name" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setName', zone.name)" />
       </div>
     </div>
     <div class="control-group">
       <label for="setDescription">Description</label>
       <div class="controls">
-        <textarea rows="3" id="setDescription" placeholder="Description" ng-model="sdi.description" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setDescription', zone.description)"></textarea>
+        <textarea rows="3" id="setDescription" placeholder="Description" ng-model="zone.description" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setDescription', zone.description)"></textarea>
       </div>
     </div>
     <div class="control-group">
@@ -23,19 +23,19 @@
     <div class="control-group">
       <label for="setHeight">Height</label>
       <div class="controls">
-        <input type="range" max="100" min="0" step="1" id="setHeight" ng-model="zone.width" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setHeight', zone.width)" />
+        <input type="range" max="100" min="0" step="1" id="setHeight" ng-model="zone.height" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setHeight', zone.height)" />
       </div>
     </div>
     <div class="control-group">
       <label for="setPositionFromTop">Position from top</label>
       <div class="controls">
-        <input type="range" max="100" min="0" step="1" id="setPositionFromTop" ng-model="zone.width" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setPositionFromTop', zone.positionFromTop)" />
+        <input type="range" max="100" min="0" step="1" id="setPositionFromTop" ng-model="zone.positionFromTop" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setPositionFromTop', zone.positionFromTop)" />
       </div>
     </div>
     <div class="control-group">
       <label for="setPositionFromLeft">Position from left</label>
       <div class="controls">
-        <input type="range" max="100" min="0" step="1" id="setPositionFromLeft" ng-model="zone.width" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setPositionFromLeft', zone.positionFromLeft)" />
+        <input type="range" max="100" min="0" step="1" id="setPositionFromLeft" ng-model="zone.positionFromLeft" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setPositionFromLeft', zone.positionFromLeft)" />
       </div>
     </div>
     <div class="control-group">
@@ -46,6 +46,6 @@
         </select>
       </div>
     </div>
-    <button ng-if="{{zone.id}}" type="button" class="btn btn-primary" ng-href="/{{sdiId}}/zone/{{ zone.id }}/callType">Create callType</button>
+    <a ng-if="zone.id" type="button" class="btn btn-primary" ng-href="/sdi/{{sdiId}}/zone/{{ zone.id }}/calltype">Create callType</a>
   </form>
 </div>

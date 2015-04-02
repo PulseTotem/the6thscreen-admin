@@ -89,3 +89,11 @@ body {
 .menuLangItem img {
     display: inline;
 }
+input[type="range"]:before {
+  left:0em;
+  content: attr(min);
+}
+input[type="range"]:after {
+  left:0em;
+  content: attr(max);
+}

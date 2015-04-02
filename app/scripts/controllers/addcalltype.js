@@ -9,6 +9,10 @@
  */
 angular.module('the6thscreenAdminApp')
   .controller('AddcalltypeCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
+
+    $scope.callType = {};
+    $scope.callType.zone = $routeParams.zoneId;
+
     backendSocket.userIsLogin(function() {
       backendSocket.on('AllSourceDescription', function(response) {
         callbackManager(response, function (allSources) {

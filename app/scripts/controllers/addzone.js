@@ -34,7 +34,7 @@ angular.module('the6thscreenAdminApp')
         );
       });
 
-      backendSocket.emit("RetrieveAllBehaviours");
+      backendSocket.emit("RetrieveAllBehaviourDescription");
 
       if ($routeParams.zoneId) {
         backendSocket.emit('RetrieveZoneDescriptionOnlyId', {'zoneId' : $routeParams.zoneId});
@@ -42,15 +42,16 @@ angular.module('the6thscreenAdminApp')
     });
 
     var linkSdi = function () {
-      $scope.saveAttribute("linkSDI", $scope.sdiId);
+      var data = { "id": $scope.sdiId, "method": "addZone", "value": $scope.zone.id};
+      backendSocket.emit("UpdateSDIDescription", data);
     };
 
     $scope.saveAttribute = function (element, value) {
       if (!$scope.zone.id) {
         backendSocket.emit('CreateZoneDescription', $scope.zone);
       } else {
-        var data = { "id" : $scope.sdi.id, "method": element, "value": value };
+        var data = { "id" : $scope.zone.id, "method": element, "value": value };
         backendSocket.emit("UpdateZoneDescription", data);
       }
     };
-  });
+  }]);

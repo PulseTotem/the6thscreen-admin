@@ -21,15 +21,17 @@
       </div>
     </div>
     <div class="control-group">
-      <ul ng-repeat="user in selectedUsers">
+      <label>User</label>
+      <ul ng-repeat="user in sdi.users">
         <li>{{user.username}}</li>
       </ul>
     </div>
     <div class="control-group">
-      <ul ng-repeat="zone in selectedZone">
+      <label>Zone</label>
+      <ul ng-repeat="zone in sdi.zones">
         <li>{{zone.name}}</li>
       </ul>
     </div>
-    <button ng-if="{{sdi.id}}" type="button" class="btn btn-primary" ng-href="/{{sdi.id}}/zone/">Create zone</button>
+    <a ng-if="sdi.id" class="btn btn-primary" ng-href="sdi/{{sdi.id}}/zone/">Create zone</a>
   </form>
 </div>
