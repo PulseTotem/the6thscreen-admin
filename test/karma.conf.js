@@ -35,7 +35,7 @@ module.exports = function(config) {
       'bower_components/angular-translate-handler-log/angular-translate-handler-log.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
-      'app/scripts/**/*.js',
+      '../app/configuration/**/*.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],
