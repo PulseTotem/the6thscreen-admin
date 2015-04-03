@@ -10,6 +10,8 @@
 angular.module('T6SConfiguration')
     .controller('T6SConfiguration.ListSDICtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', function ($rootScope, $scope, backendSocket, callbackManager) {
 
+        $scope.listSDI = [];
+
         backendSocket.userIsLogin(function() {
             backendSocket.on('UserDescription', function(response) {
                 callbackManager(response, function (userInfo) {
@@ -22,4 +24,8 @@ angular.module('T6SConfiguration')
             });
             backendSocket.emit('RetrieveUserDescription', {'userId' : $rootScope.user.id});
         });
+
+        $scope.reloadList = function (newList) {
+          $scope.listSDI = newList;
+        };
     }]);
