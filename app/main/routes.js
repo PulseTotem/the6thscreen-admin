@@ -29,11 +29,11 @@ angular
           })
           .when('/admin/source/add', {
             templateUrl: '../admin/views/source/addEdit.html',
-            controller: 'T6SAdmin.AddEditSourceCtrl'
+            controller: 'T6SAdmin.AddSourceCtrl'
           })
           .when('/admin/source/:sourceId/edit', {
             templateUrl: '../admin/views/source/addEdit.html',
-            controller: 'T6SAdmin.AddEditSourceCtrl'
+            controller: 'T6SAdmin.EditSourceCtrl'
           })
           .when('/admin/calltype', {
             templateUrl: '../admin/views/calltype/list.html',
@@ -41,11 +41,11 @@ angular
           })
           .when('/admin/calltype/add', {
             templateUrl: '../admin/views/calltype/addEdit.html',
-            controller: 'T6SAdmin.AddEditCallTypeCtrl'
+            controller: 'T6SAdmin.AddCallTypeCtrl'
           })
           .when('/admin/calltype/:callTypeId/edit', {
             templateUrl: '../admin/views/calltype/addEdit.html',
-            controller: 'T6SAdmin.AddEditCallTypeCtrl'
+            controller: 'T6SAdmin.EditCallTypeCtrl'
           })
           .when('/admin/service', {
             templateUrl: '../admin/views/service/list.html',
@@ -53,11 +53,11 @@ angular
           })
           .when('/admin/service/add', {
             templateUrl: '../admin/views/service/addEdit.html',
-            controller: 'T6SAdmin.AddEditServiceCtrl'
+            controller: 'T6SAdmin.AddServiceCtrl'
           })
           .when('/admin/service/:serviceId/edit', {
             templateUrl: '../admin/views/service/addEdit.html',
-            controller: 'T6SAdmin.AddEditServiceCtrl'
+            controller: 'T6SAdmin.EditServiceCtrl'
           })
 
           .when('/custom/', {
@@ -74,11 +74,11 @@ angular
           })
           .when('/config/sdi/add', {
             templateUrl: '../configuration/views/sdi/addEdit.html',
-            controller: 'T6SConfiguration.AddEditSDICtrl'
+            controller: 'T6SConfiguration.AddSDICtrl'
           })
           .when('/config/sdi/:sdiId/edit', {
             templateUrl: '../configuration/views/sdi/addEdit.html',
-            controller: 'T6SConfiguration.AddEditSDICtrl'
+            controller: 'T6SConfiguration.EditSDICtrl'
           })
           .when('/config/sdi/:sdiId', {
               templateUrl: '../configuration/views/sdi/show.html',
@@ -90,19 +90,19 @@ angular
           })
           .when('/config/sdi/:sdiId/zone/add', {
             templateUrl: '../configuration/views/zone/addEdit.html',
-            controller: 'T6SConfiguration.AddEditZoneCtrl'
+            controller: 'T6SConfiguration.AddZoneCtrl'
           })
           .when('/config/zone/:zoneId/edit', {
             templateUrl: '../configuration/views/zone/addEdit.html',
-            controller: 'T6SConfiguration.AddEditZoneCtrl'
+            controller: 'T6SConfiguration.EditZoneCtrl'
           })
           .when('/config/zone/:zoneId/calltype/add', {
             templateUrl: '../configuration/views/calltype/addEdit.html',
-            controller: 'T6SConfiguration.AddEditCallTypeCtrl'
+            controller: 'T6SConfiguration.AddCallTypeCtrl'
           })
           .when('/config/calltype/:callTypeId/edit', {
             templateUrl: '../configuration/views/calltype/addEdit.html',
-            controller: 'T6SConfiguration.AddEditCallTypeCtrl'
+            controller: 'T6SConfiguration.AddCallTypeCtrl'
           })
 
           // All other stuff

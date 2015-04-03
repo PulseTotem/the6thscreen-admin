@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SConfiguration')
-  .controller('T6SConfiguration.AddEditZoneCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
+  .controller('T6SConfiguration.AddZoneCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
     backendSocket.userIsLogin(function() {
       $scope.sdiId = $routeParams.sdiId;
       $scope.zone = {};
@@ -35,10 +35,6 @@ angular.module('T6SConfiguration')
       });
 
       backendSocket.emit("RetrieveAllBehaviourDescription");
-
-      if ($routeParams.zoneId) {
-        backendSocket.emit('RetrieveZoneDescriptionOnlyId', {'zoneId' : $routeParams.zoneId});
-      }
     });
 
     var linkSdi = function () {

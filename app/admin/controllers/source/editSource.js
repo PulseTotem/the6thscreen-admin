@@ -8,9 +8,9 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SAdmin')
-  .controller('T6SAdmin.AddEditSourceCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
+  .controller('T6SAdmin.EditSourceCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
 
-    var MODAL_SERVICE_CST = 'views/addservice.html';
+    var MODAL_SERVICE_CST = 'admin/views/service/addEdit.html';
 
     backendSocket.userIsLogin(function() {
       $scope.source = {};
@@ -63,10 +63,7 @@ angular.module('T6SAdmin')
           }
         );
       });
-
-      if ($routeParams.sourceId) {
-        backendSocket.emit('RetrieveSourceDescriptionOnlyId', {'sourceId' : $routeParams.sourceId});
-      }
+      backendSocket.emit('RetrieveSourceDescriptionOnlyId', {'sourceId' : $routeParams.sourceId});
 
       $scope.modalService = MODAL_SERVICE_CST;
     });
@@ -88,12 +85,8 @@ angular.module('T6SAdmin')
     };
 
     $scope.saveAttribute = function (element, value) {
-      if (!$scope.source.id) {
-        backendSocket.emit('CreateSourceDescription', $scope.source);
-      } else {
-        var data = { "id" : $scope.source.id, "method": element, "value": value };
-        backendSocket.emit("UpdateSourceDescription", data);
-      }
+      var data = { "id" : $scope.source.id, "method": element, "value": value };
+      backendSocket.emit("UpdateSourceDescription", data);
     };
 
     $scope.openModalService = function () {

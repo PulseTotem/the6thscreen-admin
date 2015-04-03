@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SAdmin')
-  .controller('T6SAdmin.AddEditServiceCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
+  .controller('T6SAdmin.EditServiceCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
     backendSocket.userIsLogin(function() {
       $scope.$watch('newService', function() {
           $scope.service = {};
@@ -44,18 +44,11 @@ angular.module('T6SAdmin')
           }
         );
       });
-
-      if ($routeParams.serviceId) {
-        backendSocket.emit('RetrieveServiceDescriptionOnlyId', {'serviceId' : $routeParams.serviceId});
-      }
+      backendSocket.emit('RetrieveServiceDescriptionOnlyId', {'serviceId' : $routeParams.serviceId});
     });
 
     $scope.saveAttribute = function (element, value) {
-      if (!$scope.service.id) {
-        backendSocket.emit('CreateServiceDescription', $scope.service);
-      } else {
-        var data = { "id" : $scope.service.id, "method": element, "value": value };
+      var data = { "id" : $scope.service.id, "method": element, "value": value };
         backendSocket.emit("UpdateServiceDescription", data);
-      }
     };
   }]);
