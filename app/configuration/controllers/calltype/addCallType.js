@@ -8,16 +8,17 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SConfiguration')
-  .controller('T6SConfiguration.AddEditCallTypeCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
+  .controller('T6SConfiguration.AddCallTypeCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
 
     $scope.callType = {};
-    $scope.callType.zone = $routeParams.zoneId;
+    $scope.zoneFixed = true;
 
     backendSocket.userIsLogin(function() {
       console.log("Celui de T6S Configuration !");
       backendSocket.on('AllSourceDescription', function(response) {
         callbackManager(response, function (allSources) {
             $scope.sources = allSources;
+            linkZone();
           },
           function (fail) {
             console.error(fail);
@@ -60,11 +61,13 @@ angular.module('T6SConfiguration')
           }
         );
       });
-
-      if ($routeParams.callTypeId) {
-        backendSocket.emit('RetrieveCallTypeDescriptionOnlyId', {'callTypeId' : $routeParams.callTypeId});
-      }
     });
+
+    var linkZone = function () {
+      if (!$scope.callType.zone) {
+        $scope.saveAttribute("linkZone", $routeParams.zoneId);
+      }
+    };
 
     $scope.saveAttribute = function (element, value) {
       if (!$scope.callType.id) {
