@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SConfiguration')
-    .controller('DashboardCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', function ($rootScope, $scope, backendSocket, callbackManager) {
+    .controller('ListSDICtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', function ($rootScope, $scope, backendSocket, callbackManager) {
 
         backendSocket.userIsLogin(function() {
             backendSocket.on('UserDescription', function(response) {
@@ -20,17 +20,6 @@ angular.module('T6SConfiguration')
                     }
                 );
             });
-
-            backendSocket.on('deletedSDI', function (response) {
-              callbackManager(response, function (sdiId) {
-                $scope.listSDI = $scope.listSDI.filter(function (element) { return (element.id != sdiId); });
-              })
-            });
-
             backendSocket.emit('RetrieveUserDescription', {'userId' : $rootScope.user.id});
         });
-
-        $scope.deleteSDI = function (idSDI) {
-          backendSocket.emit('DeleteSDI', { "sdiId": idSDI});
-        };
     }]);

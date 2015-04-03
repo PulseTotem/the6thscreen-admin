@@ -18,7 +18,9 @@ angular
     'ngTouch',
     'pascalprecht.translate',
     'btford.socket-io',
-    'T6SConfiguration'
+    'T6SConfiguration',
+    'T6SAdmin',
+    'T6SCustomization'
     ])
     .config(['$locationProvider', function($locationProvider) {
         $locationProvider.html5Mode(true).hashPrefix('!');
