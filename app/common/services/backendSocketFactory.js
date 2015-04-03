@@ -7,7 +7,7 @@
  * # backendSocket Factory
  * Factory of the the6thscreenAdminApp
  */
-angular.module('the6thscreenAdminApp')
+angular.module('T6SCommon')
     .factory('backendSocket', ['$rootScope', '$cookies', '$location', 'ADMIN_CONSTANTS', 'callbackManager', 'socketFactory', function ($rootScope, $cookies, $location, ADMIN_CONSTANTS, callbackManager, socketFactory) {
         var backendSocketFactory = {}
         backendSocketFactory.backendSocket = null;

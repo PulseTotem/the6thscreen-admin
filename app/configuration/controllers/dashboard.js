@@ -7,7 +7,7 @@
  * # DashboardCtrl
  * Controller of the the6thscreenAdminApp
  */
-angular.module('the6thscreenAdminApp')
+angular.module('T6SConfiguration')
     .controller('DashboardCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', function ($rootScope, $scope, backendSocket, callbackManager) {
 
         backendSocket.userIsLogin(function() {

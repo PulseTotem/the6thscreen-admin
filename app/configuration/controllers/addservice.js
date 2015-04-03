@@ -7,7 +7,7 @@
  * # AddserviceCtrl
  * Controller of the the6thscreenAdminApp
  */
-angular.module('the6thscreenAdminApp')
+angular.module('T6SConfiguration')
   .controller('AddserviceCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
     backendSocket.userIsLogin(function() {
       $scope.$watch('newService', function() {

@@ -7,7 +7,7 @@
  * # callbackManager
  * Factory in the the6thscreenAdminApp.
  */
-angular.module('the6thscreenAdminApp')
+angular.module('T6SCommon')
   .factory('callbackManager', function () {
 
     return function (backendMessage, successCallback, failCallback) {

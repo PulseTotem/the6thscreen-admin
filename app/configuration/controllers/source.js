@@ -7,7 +7,7 @@
  * # SourceCtrl
  * Controller of the the6thscreenAdminApp
  */
-angular.module('the6thscreenAdminApp')
+angular.module('T6SConfiguration')
   .controller('SourceCtrl', ['$scope', 'backendSocket', 'callbackManager', function ($scope,  backendSocket, callbackManager) {
 
         backendSocket.userIsLogin(function() {

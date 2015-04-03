@@ -6,7 +6,7 @@
  * @description
  * # confirmClick
  */
-angular.module('the6thscreenAdminApp')
+angular.module('T6SCommon')
   .directive('ngConfirmClick', [
   function(){
     return {

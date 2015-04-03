@@ -7,7 +7,7 @@
  * # CalltypeCtrl
  * Controller of the the6thscreenAdminApp
  */
-angular.module('the6thscreenAdminApp')
+angular.module('T6SConfiguration')
   .controller('CalltypeCtrl', ['$scope', 'backendSocket', 'callbackManager', function ($scope,  backendSocket, callbackManager) {
     backendSocket.userIsLogin(function() {
       backendSocket.on('AllCallTypeDescription', function(response) {

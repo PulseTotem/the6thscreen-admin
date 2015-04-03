@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the the6thscreenAdminApp
  */
-angular.module('the6thscreenAdminApp')
+angular.module('T6SConfiguration')
   .controller('MainCtrl', ['$rootScope', '$scope', '$http', '$location', 'ADMIN_CONSTANTS', 'backendSocket', function ($rootScope, $scope, $http, $location, ADMIN_CONSTANTS, backendSocket) {
 
         $rootScope.user = {};

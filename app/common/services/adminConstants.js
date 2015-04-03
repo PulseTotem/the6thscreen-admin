@@ -7,7 +7,7 @@
  * # backendSocket Factory
  * Factory of the the6thscreenAdminApp
  */
-angular.module('the6thscreenAdminApp')
+angular.module('T6SCommon')
     .constant('ADMIN_CONSTANTS', {
         backendUrl: 'http://localhost:4000/',
         adminBackendUrl: 'http://localhost:4000/admins',

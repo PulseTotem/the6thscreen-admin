@@ -34,7 +34,7 @@ module.exports = function (grunt) {
             tasks: ['wiredep']
         },
         js: {
-            files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+            files: ['<%= yeoman.app %>/{,*/}*.js'],
 //            tasks: ['newer:jshint:all'],
             options: {
               livereload: '<%= connect.options.livereload %>'
@@ -45,7 +45,7 @@ module.exports = function (grunt) {
             tasks: ['newer:jshint:test', 'karma']
         },
 //        jsWithoutJSHint: {
-//            files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+//            files: ['<%= yeoman.app %>/{,*/}*.js'],
 //            options: {
 //                livereload: '<%= connect.options.livereload %>'
 //            }
@@ -138,7 +138,7 @@ module.exports = function (grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= yeoman.app %>/{,*/}*.js'
         ]
       },
       test: {
@@ -207,7 +207,7 @@ module.exports = function (grunt) {
     filerev: {
       dist: {
         src: [
-          '<%= yeoman.dist %>/scripts/{,*/}*.js',
+          '<%= yeoman.dist %>/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
           '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
           '<%= yeoman.dist %>/styles/fonts/*'
@@ -263,8 +263,8 @@ module.exports = function (grunt) {
     // uglify: {
     //   dist: {
     //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
+    //       '<%= yeoman.dist %>/scripts.js': [
+    //         '<%= yeoman.dist %>/scripts.js'
     //       ]
     //     }
     //   }

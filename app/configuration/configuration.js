@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc overview
- * @name the6thscreenAdminApp
+ * @name configurationApp
  * @description
- * # the6thscreenAdminApp
+ * # configurationApp
  *
- * Main module of the application.
+ * Configuration module of the application.
  */
 angular
-  .module('T6SConfiguration', [ ]);
+  .module('T6SConfiguration', ['T6SCommon']);
