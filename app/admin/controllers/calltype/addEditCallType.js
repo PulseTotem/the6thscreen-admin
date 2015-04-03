@@ -7,8 +7,8 @@
  * # AddcalltypeCtrl
  * Controller of the the6thscreenAdminApp
  */
-angular.module('T6SConfiguration')
-  .controller('AddcalltypeCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
+angular.module('T6SAdmin')
+  .controller('AddEditCallTypeCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
 
     $scope.callType = {};
     $scope.callType.zone = $routeParams.zoneId;

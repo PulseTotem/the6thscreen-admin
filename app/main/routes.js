@@ -12,47 +12,49 @@ angular
     .module('the6thscreenAdminApp')
     .config(function ($routeProvider) {
         $routeProvider
+
+          // Routes for authentication
           .when('/', {
               templateUrl: '../common/views/login.html',
-              controller: 'LoginCtrl'
+              controller: 'T6SCommon.LoginCtrl'
           })
 
           // Routes for admin stuff
-          .when('/source', {
-            templateUrl: '../admin/views/source.html',
-            controller: 'SourceCtrl'
+          .when('/admin/source', {
+            templateUrl: '../admin/views/source/list.html',
+            controller: 'T6SAdmin.ListSourceCtrl'
           })
-          .when('/addsource', {
-            templateUrl: '../admin/views/addsource.html',
-            controller: 'AddsourceCtrl'
+          .when('/admin/source/add', {
+            templateUrl: '../admin/views/source/addEdit.html',
+            controller: 'T6SAdmin.AddEditSourceCtrl'
           })
-          .when('/editsource/:sourceId', {
-            templateUrl: '../admin/views/addsource.html',
-            controller: 'AddsourceCtrl'
+          .when('/admin/source/:sourceId/edit', {
+            templateUrl: '../admin/views/source/addEdit.html',
+            controller: 'T6SAdmin.AddEditSourceCtrl'
           })
-          .when('/calltype', {
-            templateUrl: '../admin/views/calltype.html',
-            controller: 'CalltypeCtrl'
+          .when('/admin/calltype', {
+            templateUrl: '../admin/views/calltype/list.html',
+            controller: 'T6SAdmin.ListCallTypeCtrl'
           })
-          .when('/addcalltype', {
-            templateUrl: '../admin/views/addcalltype.html',
-            controller: 'AddcalltypeCtrl'
+          .when('/admin/calltype/add', {
+            templateUrl: '../admin/views/calltype/addEdit.html',
+            controller: 'T6SAdmin.AddEditCallTypeCtrl'
           })
-          .when('/editcalltype/:callTypeId', {
-            templateUrl: '../admin/views/addcalltype.html',
-            controller: 'AddcalltypeCtrl'
+          .when('/admin/calltype/:callTypeId/edit', {
+            templateUrl: '../admin/views/calltype/addEdit.html',
+            controller: 'T6SAdmin.AddEditCallTypeCtrl'
           })
-          .when('/service', {
-            templateUrl: '../admin/views/service.html',
-            controller: 'ServiceCtrl'
+          .when('/admin/service', {
+            templateUrl: '../admin/views/service/list.html',
+            controller: 'T6SAdmin.ListServiceCtrl'
           })
-          .when('/addservice', {
-            templateUrl: '../admin/views/addservice.html',
-            controller: 'AddserviceCtrl'
+          .when('/admin/service/add', {
+            templateUrl: '../admin/views/service/addEdit.html',
+            controller: 'T6SAdmin.AddEditServiceCtrl'
           })
-          .when('/editservice/:serviceId', {
-            templateUrl: '../admin/views/addservice.html',
-            controller: 'AddserviceCtrl'
+          .when('/admin/service/:serviceId/edit', {
+            templateUrl: '../admin/views/service/addEdit.html',
+            controller: 'T6SAdmin.AddEditServiceCtrl'
           })
 
 
@@ -60,39 +62,39 @@ angular
           // Routes for configuration stuff
           .when('/config/sdi/', {
               templateUrl: '../configuration/views/sdi/list.html',
-              controller: 'ListSDICtrl'
+              controller: 'T6SConfiguration.ListSDICtrl'
           })
           .when('/config/sdi/add', {
             templateUrl: '../configuration/views/sdi/addEdit.html',
-            controller: 'AddEditSDICtrl'
+            controller: 'T6SConfiguration.AddEditSDICtrl'
           })
           .when('/config/sdi/:sdiId/edit', {
             templateUrl: '../configuration/views/sdi/addEdit.html',
-            controller: 'AddEditSDICtrl'
+            controller: 'T6SConfiguration.AddEditSDICtrl'
           })
           .when('/config/sdi/:sdiId', {
               templateUrl: '../configuration/views/sdi/show.html',
-              controller: 'ShowSDICtrl'
+              controller: 'T6SConfiguration.ShowSDICtrl'
           })
           .when('/config/zone/:zoneId', {
               templateUrl: '../configuration/views/zone/show.html',
-              controller: 'ShowZoneCtrl'
+              controller: 'T6SConfiguration.ShowZoneCtrl'
           })
           .when('/config/sdi/:sdiId/zone/add', {
             templateUrl: '../configuration/views/zone/addEdit.html',
-            controller: 'AddEditZoneCtrl'
+            controller: 'T6SConfiguration.AddEditZoneCtrl'
           })
           .when('/config/zone/:zoneId/edit', {
             templateUrl: '../configuration/views/zone/addEdit.html',
-            controller: 'AddEditZoneCtrl'
+            controller: 'T6SConfiguration.AddEditZoneCtrl'
           })
           .when('/config/zone/:zoneId/calltype/add', {
             templateUrl: '../configuration/views/calltype/addEdit.html',
-            controller: 'AddEditCallTypeCtrl'
+            controller: 'T6SConfiguration.AddEditCallTypeCtrl'
           })
           .when('/config/calltype/:callTypeId/edit', {
             templateUrl: '../configuration/views/calltype/addEdit.html',
-            controller: 'AddEditCallTypeCtrl'
+            controller: 'T6SConfiguration.AddEditCallTypeCtrl'
           })
 
           // All other stuff
