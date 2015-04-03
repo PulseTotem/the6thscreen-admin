@@ -34,14 +34,14 @@ module.exports = function (grunt) {
             tasks: ['wiredep']
         },
         js: {
-            files: ['<%= yeoman.app %>/{,*/}*.js'],
+            files: ['<%= yeoman.app %>/**/*.js'],
 //            tasks: ['newer:jshint:all'],
             options: {
               livereload: '<%= connect.options.livereload %>'
             }
         },
         jsTest: {
-            files: ['test/spec/{,*/}*.js'],
+            files: ['test/spec/**/*.js'],
             tasks: ['newer:jshint:test', 'karma']
         },
 //        jsWithoutJSHint: {
@@ -345,10 +345,10 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             '*.html',
-            'views/{,*/}*.html',
-            'images/{,*/}*.{webp}',
-            'locales/{,*/}*.json',
-            'styles/fonts/{,*/}*.*'
+            'views/**/*.html',
+            'images/**/*.{webp}',
+            'locales/**/*.json',
+            'styles/fonts/**/*.*'
           ]
         }, {
           expand: true,

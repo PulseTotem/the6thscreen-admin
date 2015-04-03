@@ -10,6 +10,7 @@
 angular.module('T6SAdmin')
   .controller('T6SAdmin.ListServiceCtrl', ['$scope', 'backendSocket', 'callbackManager', function ($scope,  backendSocket, callbackManager) {
     backendSocket.userIsLogin(function() {
+      console.log("T6SAdmin.ListServiceCtrl");
       backendSocket.on('AllServiceDescription', function(response) {
         callbackManager(response, function (allServices) {
             $scope.services = allServices;

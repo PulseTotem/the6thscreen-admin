@@ -12,7 +12,7 @@ angular.module('T6SConfiguration')
 
         backendSocket.userIsLogin(function() {
           backendSocket.refreshUser(function(){
-            $scope.listSDI = userInfo.sdis;
+            $scope.listSDI = $rootScope.user.sdis;
           });
         });
     }]);

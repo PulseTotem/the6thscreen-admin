@@ -47,6 +47,7 @@ angular.module('T6SCommon')
             },
             function (fail) {
               console.error(fail);
+              failCB("An error occurred during User authentication.");
             }
           );
         });
@@ -90,6 +91,9 @@ angular.module('T6SCommon')
         });
 
         backendSocketFactory.backendSocket = backendSocket;
+
+        backendSocketFactory.addFirstListeners();
+
       }
     };
 
@@ -143,9 +147,45 @@ angular.module('T6SCommon')
       }
     };
 
+    backendSocketFactory.onRefreshUserCB = null;
+
+    backendSocketFactory.addFirstListeners = function() {
+      backendSocketFactory.on('UserDescription', function(response) {
+        callbackManager(response, function (userDesc) {
+
+            backendSocketFactory.user = userDesc;
+            $rootScope.user = backendSocketFactory.user;
+
+            if(backendSocketFactory.onRefreshUserCB != null) {
+              backendSocketFactory.onRefreshUserCB();
+              backendSocketFactory.onRefreshUserCB = null;
+            }
+          },
+          function (fail) {
+            console.error(fail);
+          }
+        );
+      });
+    };
+
+    backendSocketFactory.refreshUser = function(onRefreshCB) {
+      if(backendSocketFactory.backendSocket != null && backendSocketFactory.user != null) {
+        if (onRefreshCB) {
+          backendSocketFactory.onRefreshUserCB = onRefreshCB;
+        }
+        backendSocketFactory.emit('RetrieveUserDescription', {'userId': backendSocketFactory.user.id});
+      }
+    };
+
     backendSocketFactory.userIsLogin = function(successCB, onLoginPage) {
       var fail = function(error) {
         console.error(error);
+
+        backendSocketFactory.backendSocket = null;
+        backendSocketFactory.token = null;
+        backendSocketFactory.user = null;
+        delete($cookies.sToken);
+
         if(typeof(onLoginPage) == "undefined" || !onLoginPage) {
           if (!$rootScope.$$phase) {
             $rootScope.$apply(function () {
@@ -158,7 +198,11 @@ angular.module('T6SCommon')
       };
 
       if(backendSocketFactory.backendSocket != null) {
-        successCB();
+        if(backendSocketFactory.user != null) {
+          successCB();
+        } else {
+          backendSocketFactory.refreshUser(successCB);
+        }
       } else {
         if(typeof($cookies.sToken) != "undefined") {
           backendSocketFactory.init($cookies.sToken, function() {
@@ -171,33 +215,6 @@ angular.module('T6SCommon')
           fail("User is not identified.");
         }
       }
-    };
-
-    backendSocketFactory.onRefreshUserCB = null;
-
-    backendSocketFactory.on('UserDescription', function(response) {
-      callbackManager(response, function (userInfo) {
-
-          //TODO: UPDATE USER.
-
-          if(backendSocketFactory.onRefreshUserCB != null) {
-            backendSocketFactory.onRefreshUserCB();
-            backendSocketFactory.onRefreshUserCB = null;
-          }
-        },
-        function (fail) {
-          console.error(fail);
-        }
-      );
-    });
-
-    backendSocketFactory.refreshUser = function(onRefreshCB) {
-      backendSocketFactory.userIsLogin(function() {
-        if(onRefreshCB) {
-          backendSocketFactory.onRefreshUserCB = onRefreshCB;
-        }
-        backendSocket.emit('RetrieveUserDescription', {'userId' : $rootScope.user.id});
-      });
     };
 
     return backendSocketFactory;

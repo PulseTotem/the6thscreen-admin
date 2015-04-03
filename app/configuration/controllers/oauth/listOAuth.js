@@ -11,8 +11,16 @@ angular.module('T6SConfiguration')
   .controller('T6SConfiguration.ListOAuthCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', function ($rootScope, $scope, backendSocket, callbackManager) {
 
     backendSocket.userIsLogin(function() {
-      backendSocket.refreshUser(function(){
-        $scope.listSDI = userInfo.sdis;
+      backendSocket.on('AllServiceDescription', function(response) {
+        callbackManager(response, function (allServices) {
+            $scope.services = allServices;
+          },
+          function (fail) {
+            console.error(fail);
+          }
+        );
       });
+
+      backendSocket.emit('RetrieveAllServiceDescription');
     });
   }]);
