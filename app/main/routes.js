@@ -20,6 +20,9 @@ angular
           })
 
           // Routes for admin stuff
+          .when('/admin/', {
+            redirectTo: '/admin/source'
+          })
           .when('/admin/source', {
             templateUrl: '../admin/views/source/list.html',
             controller: 'T6SAdmin.ListSourceCtrl'
@@ -57,9 +60,14 @@ angular
             controller: 'T6SAdmin.AddEditServiceCtrl'
           })
 
-
+          .when('/custom/', {
+            redirectTo: '/'
+          })
 
           // Routes for configuration stuff
+          .when('/config/', {
+            redirectTo: '/config/sdi'
+          })
           .when('/config/sdi/', {
               templateUrl: '../configuration/views/sdi/list.html',
               controller: 'T6SConfiguration.ListSDICtrl'

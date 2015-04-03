@@ -2,6 +2,9 @@
     "MENU" : {
         "ADMIN_PANEL" : "Panneau d'administration",
         "HOME" : "Accueil",
+        "CONFIG": "Configuration",
+        "CUSTOM": "Personnalisation",
+        "ADMIN": "Admin",
         "LANGUAGE" : "Langage",
         "ENGLISH" : "English",
         "FRENCH" : "Fran&ccedil;ais"

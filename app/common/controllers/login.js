@@ -23,10 +23,10 @@ angular.module('T6SCommon')
                     var successBackendInit = function() {
                         if (!$rootScope.$$phase) {
                             $rootScope.$apply(function () {
-                                $location.path('/config/sdi/');
+                                $location.path('/config/');
                             });
                         } else {
-                            $location.path('/config/sdi/');
+                            $location.path('/config/');
                         }
                     };
 
@@ -52,10 +52,10 @@ angular.module('T6SCommon')
         backendSocket.userIsLogin(function() {
             if (!$rootScope.$$phase) {
                 $rootScope.$apply(function () {
-                    $location.path('/config/sdi/');
+                    $location.path('/config/');
                 });
             } else {
-                $location.path('/config/sdi/');
+                $location.path('/config/');
             }
         }, true);
   }]);

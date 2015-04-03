@@ -52,39 +52,8 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="T6SCommon.MenuCtrl">
-        <div class="container-fluid">
-          <div class="navbar-header">
+    <div class="header" ng-include="'common/views/menu.html'">
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-
-            <a class="navbar-brand" href="#/" translate="MENU.ADMIN_PANEL"></a>
-          </div>
-
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="/" translate="MENU.HOME"></a></li>
-            </ul>
-
-              <ul class="nav navbar-nav navbar-right">
-                  <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> <span translate="MENU.LANGUAGE"></span> <span class="caret"></span></a>
-                      <ul class="dropdown-menu" role="menu">
-                          <li ng-click="changeLanguage('en')" class="menuLangItem"><img src="/images/flags/en.png" class="img-responsive" alt="{{ 'MENU.ENGLISH' | translate }}" /> <span translate="MENU.ENGLISH"></span></li>
-                          <li ng-click="changeLanguage('fr')" class="menuLangItem"><img src="/images/flags/fr.png" class="img-responsive" alt="{{ 'MENU.FRENCH' | translate }}" /> <span translate="MENU.FRENCH"></span></li>
-                      </ul>
-                  </li>
-              </ul>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="container-fluid">
