@@ -52,39 +52,8 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="MenuCtrl">
-        <div class="container-fluid">
-          <div class="navbar-header">
+    <div class="header" ng-include="'common/views/menu.html'">
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-
-            <a class="navbar-brand" href="#/" translate="MENU.ADMIN_PANEL"></a>
-          </div>
-
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="/" translate="MENU.HOME"></a></li>
-            </ul>
-
-              <ul class="nav navbar-nav navbar-right">
-                  <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> <span translate="MENU.LANGUAGE"></span> <span class="caret"></span></a>
-                      <ul class="dropdown-menu" role="menu">
-                          <li ng-click="changeLanguage('en')" class="menuLangItem"><img src="/images/flags/en.png" class="img-responsive" alt="{{ 'MENU.ENGLISH' | translate }}" /> <span translate="MENU.ENGLISH"></span></li>
-                          <li ng-click="changeLanguage('fr')" class="menuLangItem"><img src="/images/flags/fr.png" class="img-responsive" alt="{{ 'MENU.FRENCH' | translate }}" /> <span translate="MENU.FRENCH"></span></li>
-                      </ul>
-                  </li>
-              </ul>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="container-fluid">
@@ -129,26 +98,37 @@
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/translation.js"></script>
-    <script src="scripts/routes.js"></script>
-    <script src="scripts/services/adminConstants.js"></script>
-    <script src="scripts/services/backendSocketFactory.js"></script>
-    <script src="scripts/services/callbackmanager.js"></script>
-    <script src="scripts/controllers/menu.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/dashboard.js"></script>
-    <script src="scripts/controllers/sdi.js"></script>
-    <script src="scripts/controllers/zone.js"></script>
-    <script src="scripts/controllers/source.js"></script>
-    <script src="scripts/controllers/addsource.js"></script>
-    <script src="scripts/directives/confirmclick.js"></script>
-    <script src="scripts/controllers/calltype.js"></script>
-    <script src="scripts/controllers/addcalltype.js"></script>
-    <script src="scripts/controllers/service.js"></script>
-    <script src="scripts/controllers/addservice.js"></script>
-    <script src="scripts/controllers/addsdi.js"></script>
-    <script src="scripts/controllers/addzone.js"></script>
+    <script src="common/common.js"></script>
+    <script src="common/directives/confirmclick.js"></script>
+    <script src="common/services/adminConstants.js"></script>
+    <script src="common/services/backendSocketFactory.js"></script>
+    <script src="common/services/callbackmanager.js"></script>
+    <script src="common/controllers/menu.js"></script>
+    <script src="common/controllers/login.js"></script>
+
+    <script src="configuration/configuration.js"></script>
+    <script src="configuration/controllers/sdi/listSDI.js"></script>
+    <script src="configuration/controllers/sdi/deleteSDI.js"></script>
+    <script src="configuration/controllers/sdi/showSDI.js"></script>
+    <script src="configuration/controllers/zone/showZone.js"></script>
+    <script src="configuration/controllers/sdi/addEditSDI.js"></script>
+    <script src="configuration/controllers/zone/addEditZone.js"></script>
+    <script src="configuration/controllers/calltype/addEditCallType.js"></script>
+
+
+    <script src="customization/customization.js"></script>
+
+    <script src="admin/admin.js"></script>
+    <script src="admin/controllers/service/listService.js"></script>
+    <script src="admin/controllers/service/addEditService.js"></script>
+    <script src="admin/controllers/source/listSource.js"></script>
+    <script src="admin/controllers/source/addEditSource.js"></script>
+    <script src="admin/controllers/calltype/listCallType.js"></script>
+    <script src="admin/controllers/calltype/addEditCallType.js"></script>
+
+    <script src="main/app.js"></script>
+    <script src="main/translation.js"></script>
+    <script src="main/routes.js"></script>
     <!-- endbuild -->
 </body>
 </html>

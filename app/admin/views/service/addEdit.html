@@ -1,0 +1,26 @@
+<div ng-controller="T6SAdmin.AddEditServiceCtrl">
+  <h3>Add Service</h3>
+
+  <div>
+    <form>
+      <div class="control-group">
+        <label for="setName">Name</label>
+        <div class="controls">
+          <input type="text" id="setName" placeholder="Nom" ng-model="service.name" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setName', service.name)" />
+        </div>
+      </div>
+      <div class="control-group">
+        <label for="setDescription">Description</label>
+        <div class="controls">
+          <textarea rows="3" id="setDescription" placeholder="Description" ng-model="service.description" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setDescription', service.description)"></textarea>
+        </div>
+      </div>
+      <div class="control-group">
+        <label for="setHost">Host</label>
+        <div class="controls">
+          <input type="text" id="setHost" placeholder="Host" ng-model="service.host" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setHost', service.host)" />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
