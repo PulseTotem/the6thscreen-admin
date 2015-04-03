@@ -7,7 +7,7 @@
  * # AddsourceCtrl
  * Controller of the the6thscreenAdminApp
  */
-angular.module('T6SConfiguration')
+angular.module('T6SAdmin')
   .controller('AddsourceCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
 
     var MODAL_SERVICE_CST = 'views/addservice.html';

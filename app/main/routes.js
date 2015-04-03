@@ -13,8 +13,8 @@ angular
     .config(function ($routeProvider) {
         $routeProvider
           .when('/', {
-              templateUrl: '../configuration/views/main.html',
-              controller: 'MainCtrl'
+              templateUrl: '../common/views/login.html',
+              controller: 'LoginCtrl'
           })
           .when('/dashboard', {
               templateUrl: '../configuration/views/dashboard.html',
@@ -29,15 +29,15 @@ angular
               controller: 'ZoneCtrl'
           })
           .when('/source', {
-              templateUrl: '../configuration/views/source.html',
+              templateUrl: '../admin/views/source.html',
               controller: 'SourceCtrl'
           })
           .when('/addsource', {
-              templateUrl: '../configuration/views/addsource.html',
+              templateUrl: '../admin/views/addsource.html',
               controller: 'AddsourceCtrl'
           })
           .when('/editsource/:sourceId', {
-            templateUrl: '../configuration/views/addsource.html',
+            templateUrl: '../admin/views/addsource.html',
             controller: 'AddsourceCtrl'
           })
           .when('/calltype', {
@@ -53,15 +53,15 @@ angular
             controller: 'AddcalltypeCtrl'
           })
           .when('/service', {
-            templateUrl: '../configuration/views/service.html',
+            templateUrl: '../admin/views/service.html',
             controller: 'ServiceCtrl'
           })
           .when('/addservice', {
-            templateUrl: '../configuration/views/addservice.html',
+            templateUrl: '../admin/views/addservice.html',
             controller: 'AddserviceCtrl'
           })
           .when('/editservice/:serviceId', {
-            templateUrl: '../configuration/views/addservice.html',
+            templateUrl: '../admin/views/addservice.html',
             controller: 'AddserviceCtrl'
           })
           .when('/addsdi', {

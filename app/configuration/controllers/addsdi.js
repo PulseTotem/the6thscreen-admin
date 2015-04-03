@@ -33,6 +33,7 @@ angular.module('T6SConfiguration')
     var linkUser = function () {
       var usersWithCurrentId = [];
 
+      // TODO: check that condition
       if ($scope.sdi.users.length > 0) {
         usersWithCurrentId = $scope.sdi.users.filter( function (element) { return (element.id == $rootScope.user.id); });
       }

@@ -7,7 +7,7 @@
  * # MenuCtrl
  * Controller of the the6thscreenAdminApp
  */
-angular.module('T6SConfiguration')
+angular.module('T6SCommon')
     .controller('MenuCtrl', ['$rootScope', '$scope', '$translate', 'backendSocket', function ($rootScope, $scope, $translate, backendSocket) {
 
         $scope.changeLanguage = function (langKey) {
