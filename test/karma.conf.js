@@ -34,6 +34,7 @@ module.exports = function(config) {
       'bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
       'bower_components/angular-translate-handler-log/angular-translate-handler-log.js',
       'bower_components/angular-mocks/angular-mocks.js',
+      'bower_components/oauth-js/dist/oauth.min.js',
       // endbower
       '../app/configuration/**/*.js',
       'test/mock/**/*.js',

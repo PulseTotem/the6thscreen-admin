@@ -21,6 +21,18 @@
           <input type="text" id="setHost" placeholder="Host" ng-model="service.host" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setHost', service.host)" />
         </div>
       </div>
+        <div class="control-group">
+            <label for="setOAuth">OAuth</label>
+            <div class="controls">
+                <input type="checkbox" id="setOAuth" placeholder="OAuth" ng-model="service.oauth" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setOAuth', service.oauth)" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="setProvider">Provider</label>
+            <div class="controls">
+                <input type="text" id="setProvider" placeholder="Provider" ng-model="service.provider" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setProvider', service.provider)" />
+            </div>
+        </div>
     </form>
   </div>
 </div>

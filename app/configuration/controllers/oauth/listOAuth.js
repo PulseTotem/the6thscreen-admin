@@ -22,5 +22,39 @@ angular.module('T6SConfiguration')
       });
 
       backendSocket.emit('RetrieveAllServiceDescription');
+
+      $scope.userOAuthKeys = [];
+
+      $rootScope.user.oauthkeys.forEach(function(oauthKey) {
+        backendSocket.on('OAuthKeyDescription_' + oauthKey.id, function(response) {
+          callbackManager(response, function (OAuthKey) {
+              $scope.userOAuthKeys.push(OAuthKey);
+            },
+            function (fail) {
+              console.error(fail);
+            }
+          );
+        });
+
+        backendSocket.emit('RetrieveOAuthKeyDescription', {"oauthKeyId" : oauthKey.id});
+      });
     });
+
+    $scope.oauthOnly = function(element) {
+      return element.oauth;
+    };
+
+    $scope.oauthDone = function(serviceId) {
+      var done = false;
+      $scope.userOAuthKeys.forEach(function(oauthKey) {
+        if(oauthKey.service.id == serviceId) {
+          done = true;
+        }
+      });
+
+      return done;
+    };
+
+
+
   }]);

@@ -58,6 +58,9 @@
         "SOURCE_TYPE" : "Information Type",
         "SOURCE_PARAM_TYPE" : "Parameter Type"
     },
+    "OAUTH" : {
+        "LIST" : "Authorization list to available services"
+    },
     "ACTIONS" : {
       "ACTION_ADD" : "Add",
       "ACTION_EDIT" : "Edit",

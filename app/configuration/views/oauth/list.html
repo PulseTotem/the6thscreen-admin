@@ -1,6 +1,9 @@
-<h1>OAuth List</h1>
+<h1 translate="OAUTH.LIST"></h1>
 
-        <h2>Services list</h2>
 <ul>
-    <li ng-repeat="service in services">{{service.name}}</li>
+    <li ng-repeat="service in services | filter:oauthOnly">
+        {{service.name}}
+        <button class="btn btn-success ng-hide" ng-show="!oauthDone(service.id)" >SignIn</button>
+        <button class="btn btn-danger ng-hide" ng-show="oauthDone(service.id)" >SignOut</button>
+    </li>
 </ul>

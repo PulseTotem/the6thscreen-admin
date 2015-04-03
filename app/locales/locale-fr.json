@@ -58,6 +58,9 @@
         "SOURCE_TYPE" : "Type d'information",
         "SOURCE_PARAM_TYPE" : "Type de param&egrave;tre"
     },
+    "OAUTH" : {
+      "LIST" : "Liste des autorisations d'acc&eagrave;es aux services disponibles"
+    },
     "ACTIONS" : {
       "ACTION_ADD" : "Ajouter",
       "ACTION_EDIT" : "Editer",
