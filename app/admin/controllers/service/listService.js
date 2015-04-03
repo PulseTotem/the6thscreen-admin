@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SAdmin')
-  .controller('ListServiceCtrl', ['$scope', 'backendSocket', 'callbackManager', function ($scope,  backendSocket, callbackManager) {
+  .controller('T6SAdmin.ListServiceCtrl', ['$scope', 'backendSocket', 'callbackManager', function ($scope,  backendSocket, callbackManager) {
     backendSocket.userIsLogin(function() {
       backendSocket.on('AllServiceDescription', function(response) {
         callbackManager(response, function (allServices) {

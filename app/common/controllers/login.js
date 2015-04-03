@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SCommon')
-  .controller('LoginCtrl', ['$rootScope', '$scope', '$http', '$location', 'ADMIN_CONSTANTS', 'backendSocket', function ($rootScope, $scope, $http, $location, ADMIN_CONSTANTS, backendSocket) {
+  .controller('T6SCommon.LoginCtrl', ['$rootScope', '$scope', '$http', '$location', 'ADMIN_CONSTANTS', 'backendSocket', function ($rootScope, $scope, $http, $location, ADMIN_CONSTANTS, backendSocket) {
 
         $rootScope.user = {};
 

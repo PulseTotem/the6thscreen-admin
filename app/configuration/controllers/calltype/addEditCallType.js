@@ -8,12 +8,13 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SConfiguration')
-  .controller('AddEditCallTypeCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
+  .controller('T6SConfiguration.AddEditCallTypeCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
 
     $scope.callType = {};
     $scope.callType.zone = $routeParams.zoneId;
 
     backendSocket.userIsLogin(function() {
+      console.log("Celui de T6S Configuration !");
       backendSocket.on('AllSourceDescription', function(response) {
         callbackManager(response, function (allSources) {
             $scope.sources = allSources;
