@@ -18,7 +18,7 @@
     <td>{{ sdi.complete }}</td>
     <td>
       <a type="button" class="btn btn-default" ng-href="/config/sdi/{{ sdi.id }}/edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_EDIT' | translate }}</a>
-      <button ng-controller="DeleteSDICtrl" type="button" class="btn btn-danger" ng-click="deleteSDI(sdi.id)" ng-confirm-click="{{ 'SOURCE.CONFIRM_DELETE_SOURCE' | translate }} ({{ sdi.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_DELETE' | translate }}</button>
+      <button ng-controller="T6SConfiguration.DeleteSDICtrl" type="button" class="btn btn-danger" ng-click="deleteSDI(sdi.id)" ng-confirm-click="{{ 'SOURCE.CONFIRM_DELETE_SOURCE' | translate }} ({{ sdi.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_DELETE' | translate }}</button>
     </td>
   </tr>
 </table>

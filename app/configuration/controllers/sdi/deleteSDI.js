@@ -13,7 +13,8 @@ angular.module('T6SConfiguration')
     backendSocket.userIsLogin(function() {
       backendSocket.on('deletedSDI', function (response) {
         callbackManager(response, function (sdiId) {
-          $scope.$parent.listSDI = $scope.listSDI.filter(function (element) { return (element.id != sdiId); });
+          var newList = $scope.listSDI.filter(function (element) { return (element.id != sdiId); });
+          $scope.reloadList(newList);
         })
       });
     });

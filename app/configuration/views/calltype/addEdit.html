@@ -22,7 +22,7 @@
         </select>
       </div>
     </div>
-    <div class="control-group">
+    <div class="control-group" ng-if="zoneFixed">
       <label for="inputZone">Zone</label>
       <div class="controls">
         <select id="inputZone" ng-model="callType.zone" class="form-control" ng-change="saveAttribute('linkZone', callType.zone)">
