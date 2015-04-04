@@ -34,14 +34,14 @@ module.exports = function (grunt) {
             tasks: ['wiredep']
         },
         js: {
-            files: ['<%= yeoman.app %>/{,*/}*.js'],
+            files: ['<%= yeoman.app %>/**/*.js'],
 //            tasks: ['newer:jshint:all'],
             options: {
               livereload: '<%= connect.options.livereload %>'
             }
         },
         jsTest: {
-            files: ['test/spec/{,*/}*.js'],
+            files: ['test/spec/**/*.js'],
             tasks: ['newer:jshint:test', 'karma']
         },
 //        jsWithoutJSHint: {
@@ -55,7 +55,7 @@ module.exports = function (grunt) {
 //            tasks: ['karma']
 //        },
         styles: {
-            files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
+            files: ['<%= yeoman.app %>/styles/**/*.css'],
             tasks: ['newer:copy:styles', 'autoprefixer']
         },
         gruntfile: {
@@ -66,10 +66,10 @@ module.exports = function (grunt) {
               livereload: '<%= connect.options.livereload %>'
             },
             files: [
-              '<%= yeoman.app %>/{,*/}*.html',
+              '<%= yeoman.app %>/**/*.html',
               '.tmp/styles/{,*/}*.css',
-              '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-              '<%= yeoman.app %>/locales/{,*/}*.json'
+              '<%= yeoman.app %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
+              '<%= yeoman.app %>/locales/**/*.json'
             ]
         }
     },
@@ -236,7 +236,7 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html'],
+      html: ['<%= yeoman.dist %>/**/*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
         assetsDirs: [
@@ -307,7 +307,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.dist %>',
-          src: ['*.html', 'views/{,*/}*.html'],
+          src: ['**/*.html', 'views/**/*.html'],
           dest: '<%= yeoman.dist %>'
         }]
       }
@@ -329,7 +329,7 @@ module.exports = function (grunt) {
     // Replace Google CDN references
     cdnify: {
       dist: {
-        html: ['<%= yeoman.dist %>/*.html']
+        html: ['<%= yeoman.dist %>/**/*.html']
       }
     },
 
@@ -344,11 +344,11 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
-            '*.html',
-            'views/{,*/}*.html',
-            'images/{,*/}*.{webp}',
-            'locales/{,*/}*.json',
-            'styles/fonts/{,*/}*.*'
+            '**/*.html',
+            'views/**/*.html',
+            'images/**/*.{webp}',
+            'locales/**/*.json',
+            'styles/fonts/**/*.*'
           ]
         }, {
           expand: true,

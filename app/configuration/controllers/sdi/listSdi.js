@@ -11,15 +11,8 @@ angular.module('T6SConfiguration')
     .controller('T6SConfiguration.ListSDICtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', function ($rootScope, $scope, backendSocket, callbackManager) {
 
         backendSocket.userIsLogin(function() {
-            backendSocket.on('UserDescription', function(response) {
-                callbackManager(response, function (userInfo) {
-                        $scope.listSDI = userInfo.sdis;
-                    },
-                    function (fail) {
-                        console.error(fail);
-                    }
-                );
-            });
-            backendSocket.emit('RetrieveUserDescription', {'userId' : $rootScope.user.id});
+          backendSocket.refreshUser(function(){
+            $scope.listSDI = $rootScope.user.sdis;
+          });
         });
     }]);

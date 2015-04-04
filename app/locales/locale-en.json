@@ -58,6 +58,12 @@
         "SOURCE_TYPE" : "Information Type",
         "SOURCE_PARAM_TYPE" : "Parameter Type"
     },
+    "OAUTH" : {
+        "LIST" : "Authorization list to available services",
+        "SERVICE_SIGNIN" : "Sign in",
+        "SERVICE_SIGNOUT" : "Sign out",
+        "CONFIRM_DELETE_OAUTHKEY" : "Are you sure you want to sign out from this service ?"
+    },
     "ACTIONS" : {
       "ACTION_ADD" : "Add",
       "ACTION_EDIT" : "Edit",

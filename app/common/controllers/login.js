@@ -41,11 +41,7 @@ angular.module('T6SCommon')
                     // or server returns response with an error status.
 
                     //TODO: Manage error during post => display error message
-                    console.log("fail login");
-                    console.log(data);
-                    console.log(status);
-                    console.log(headers);
-                    console.log(config);
+                    console.log("fail login during POST");
                 });
         };
 
