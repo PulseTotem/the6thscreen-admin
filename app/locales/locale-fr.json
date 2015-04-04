@@ -59,7 +59,10 @@
         "SOURCE_PARAM_TYPE" : "Type de param&egrave;tre"
     },
     "OAUTH" : {
-      "LIST" : "Liste des autorisations d'acc&eagrave;es aux services disponibles"
+      "LIST" : "Liste des autorisations d'acc&eagrave;es aux services disponibles",
+      "SERVICE_SIGNIN" : "Se connecter",
+      "SERVICE_SIGNOUT" : "Supprimer l'acc&egrave;s",
+      "CONFIRM_DELETE_OAUTHKEY" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer l'acc&egrave;s &agrave; ce service ?"
     },
     "ACTIONS" : {
       "ACTION_ADD" : "Ajouter",

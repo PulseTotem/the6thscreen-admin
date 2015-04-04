@@ -3,7 +3,7 @@
 <ul>
     <li ng-repeat="service in services | filter:oauthOnly">
         {{service.name}}
-        <button class="btn btn-success ng-hide" ng-show="!oauthDone(service.id)" >SignIn</button>
-        <button class="btn btn-danger ng-hide" ng-show="oauthDone(service.id)" >SignOut</button>
+        <button class="btn btn-success ng-hide" ng-show="!oauthDone(service.id)" id="service_signin_{{service.id}}" ng-click="signIn(service)" translate="OAUTH.SERVICE_SIGNIN"></button>
+        <button class="btn btn-danger ng-hide" ng-show="oauthDone(service.id)" id="service_signout_{{service.id}}" ng-click="signOut(service)" ng-confirm-click="{{ 'OAUTH.CONFIRM_DELETE_OAUTHKEY' | translate }}" translate="OAUTH.SERVICE_SIGNOUT"></button>
     </li>
 </ul>
