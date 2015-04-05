@@ -84,6 +84,10 @@ angular
         templateUrl: '../customization/views/calltype/show.html',
         controller: 'T6SCustomization.ShowCallTypeCtrl'
       })
+      .when('/custom/calltype/:callTypeId/call/add', {
+        templateUrl: '../customization/views/call/addEdit.html',
+        controller: 'T6SCustomization.AddCallCtrl'
+      })
 
       // Routes for configuration stuff
       .when('/config/', {
