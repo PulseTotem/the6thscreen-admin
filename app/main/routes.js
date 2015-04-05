@@ -59,6 +59,10 @@ angular
         templateUrl: '../admin/views/service/addEdit.html',
         controller: 'T6SAdmin.EditServiceCtrl'
       })
+      .when('/admin/zone/', {
+        templateUrl: '../admin/views/zone/list.html',
+        controller: 'T6SAdmin.ListZoneCtrl'
+      })
 
       .when('/custom/', {
         redirectTo: '/'
