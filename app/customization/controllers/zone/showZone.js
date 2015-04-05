@@ -23,7 +23,6 @@ angular.module('T6SCustomization')
                 );
 
             });
-
             backendSocket.emit('RetrieveZoneDescription', {'zoneId' : $scope.zoneID});
         });
 

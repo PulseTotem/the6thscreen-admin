@@ -24,7 +24,19 @@ angular.module('T6SCustomization')
 
       });
 
+      backendSocket.on('deletedCall', function(response) {
+        callbackManager(response, function (idCall) {
+          $scope.callType.calls = $scope.callType.calls.filter(function (element) {
+            return (element.id != idCall);
+          });
+        });
+      });
+
       backendSocket.emit('RetrieveCallTypeDescription', {'callTypeId' : $scope.callTypeId});
     });
+
+    $scope.deleteCall = function (idCall) {
+      backendSocket.emit('DeleteCall', { "callId": idCall});
+    };
 
   }]);
