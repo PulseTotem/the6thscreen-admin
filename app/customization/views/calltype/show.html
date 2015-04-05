@@ -1,0 +1,20 @@
+<div>
+  <h3>{{callType.name }}</h3>
+  <h4>{{ callType.description }}</h4>
+</div>
+
+<h5>List des calls</h5>
+
+<table class="table table-striped">
+  <tr>
+    <th>#</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <tr ng-repeat="call in callType.calls">
+    <td><a ng-href="/custom/call/{{call.id}}">{{ call.id }}</a></td>
+    <td><a ng-href="/custom/call/{{call.id}}">{{ call.name }}</a></td>
+    <td><a ng-href="/custom/call/{{call.id}}">{{ call.description }}</a></td>
+  </tr>
+</table>
