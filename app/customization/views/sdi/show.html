@@ -1,0 +1,27 @@
+<div>
+  <h3>{{sdi.name }}</h3>
+  <h4>{{ sdi.description }}</h4>
+</div>
+
+<h5 translate="SDI.ZONES_LIST"></h5>
+<table class="table table-striped table-hover">
+  <tr>
+    <th>#</th>
+    <th translate="SDI.ZONE_NAME"></th>
+    <th translate="SDI.ZONE_DESCRIPTION"></th>
+    <th translate="SDI.ZONE_WIDTH"></th>
+    <th translate="SDI.ZONE_HEIGHT"></th>
+    <th translate="SDI.ZONE_POSITION_FROM_TOP"></th>
+    <th translate="SDI.ZONE_POSITION_FROM_LEFT"></th>
+  </tr>
+
+  <tr ng-repeat="zone in sdi.zones">
+    <td><a ng-href="/custom/zone/{{zone.id}}">{{ zone.id }}</a></td>
+    <td><a ng-href="/custom/zone/{{zone.id}}">{{ zone.name }}</a></td>
+    <td><a ng-href="/custom/zone/{{zone.id}}">{{ zone.description }}</a></td>
+    <td><a ng-href="/custom/zone/{{zone.id}}">{{ zone.width }}</a></td>
+    <td><a ng-href="/custom/zone/{{zone.id}}">{{ zone.height }}</a></td>
+    <td><a ng-href="/custom/zone/{{zone.id}}">{{ zone.positionFromTop }}</a></td>
+    <td><a ng-href="/custom/zone/{{zone.id}}">{{ zone.positionFromLeft }}</a></td>
+  </tr>
+</table>

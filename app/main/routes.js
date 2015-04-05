@@ -64,8 +64,37 @@ angular
         controller: 'T6SAdmin.ListZoneCtrl'
       })
 
+      // Routes for customization stuff
       .when('/custom/', {
-        redirectTo: '/'
+        redirectTo: '/custom/sdi'
+      })
+      .when('/custom/sdi/', {
+        templateUrl: '../customization/views/sdi/list.html',
+        controller: 'T6SCustomization.ListSDICtrl'
+      })
+      .when('/custom/sdi/:sdiId', {
+        templateUrl: '../customization/views/sdi/show.html',
+        controller: 'T6SCustomization.ShowSDICtrl'
+      })
+      .when('/custom/zone/:zoneId', {
+        templateUrl: '../customization/views/zone/show.html',
+        controller: 'T6SCustomization.ShowZoneCtrl'
+      })
+      .when('/custom/calltype/:callTypeId', {
+        templateUrl: '../customization/views/calltype/show.html',
+        controller: 'T6SCustomization.ShowCallTypeCtrl'
+      })
+      .when('/custom/calltype/:callTypeId/call/add', {
+        templateUrl: '../customization/views/call/addEdit.html',
+        controller: 'T6SCustomization.AddCallCtrl'
+      })
+      .when('/custom/calltype/:callTypeId/call/:callId', {
+        templateUrl: '../customization/views/call/addEdit.html',
+        controller: 'T6SCustomization.EditCallCtrl'
+      })
+      .when('/custom/call/:callId', {
+        templateUrl: '../customization/views/call/show.html',
+        controller: 'T6SCustomization.ShowCallCtrl'
       })
 
       // Routes for configuration stuff

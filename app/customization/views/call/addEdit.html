@@ -1,0 +1,18 @@
+<h3>Ajouter un Call</h3>
+<div>
+  <form>
+    <div class="control-group">
+      <label for="setName">Name</label>
+      <div class="controls">
+        <input type="text" id="setName" placeholder="Nom" ng-model="call.name" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setName', call.name)" />
+      </div>
+    </div>
+      <div class="control-group" ng-repeat="paramType in listParamType">
+        <label>{{ paramType.name }}</label>
+        <div class="controls" ng-switch="paramType.type.name">
+          <input ng-switch-when="String" type="text" id="{{ paramType.name }}" ng-model="value[paramType.id]" ng-model-options="{ updateOn: 'blur' }" ng-change="saveParamValue(paramType.id)" />
+          <input ng-switch-when="Entier" type="number" id="{{ paramType.name }}" ng-model="value[paramType.id]" ng-model-options="{ updateOn: 'blur' }" ng-change="saveParamValue(paramType.id)" />
+        </div>
+      </div>
+    </form>
+</div>
