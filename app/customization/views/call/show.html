@@ -1,0 +1,21 @@
+<div>
+  <h3>{{ call.name }} for {{call.callType.name }}</h3>
+</div>
+
+<h5>List des ParamValues</h5>
+
+<table class="table table-striped">
+  <tr>
+    <th>#</th>
+    <th>Nom</th>
+    <th>Description</th>
+    <th>Value</th>
+  </tr>
+
+  <tr ng-repeat="paramValue in listParamValues">
+    <td>{{ paramValue.id }}</td>
+    <td>{{ paramValue.paramType.name }}</td>
+    <td>{{ paramValue.paramType.description }}</td>
+    <td>{{ paramValue.value }}</td>
+  </tr>
+</table>
