@@ -8,13 +8,15 @@
 <table class="table table-striped">
   <tr>
     <th>#</th>
-    <th></th>
+    <th>Nom</th>
+    <th>Complete</th>
     <th></th>
   </tr>
 
   <tr ng-repeat="call in callType.calls">
     <td><a ng-href="/custom/call/{{call.id}}">{{ call.id }}</a></td>
     <td><a ng-href="/custom/call/{{call.id}}">{{ call.name }}</a></td>
-    <td><a ng-href="/custom/call/{{call.id}}">{{ call.description }}</a></td>
+    <td><a ng-href="/custom/call/{{call.id}}">{{ call.complete }}</a></td>
+    <td></td>
   </tr>
 </table>
