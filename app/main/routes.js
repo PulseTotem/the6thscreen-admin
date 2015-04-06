@@ -59,6 +59,18 @@ angular
         templateUrl: '../admin/views/service/addEdit.html',
         controller: 'T6SAdmin.EditServiceCtrl'
       })
+      .when('/admin/renderer', {
+        templateUrl: '../admin/views/renderer/list.html',
+        controller: 'T6SAdmin.ListRendererCtrl'
+      })
+      .when('/admin/renderer/add', {
+        templateUrl: '../admin/views/renderer/addEdit.html',
+        controller: 'T6SAdmin.AddRendererCtrl'
+      })
+      .when('/admin/renderer/:rendererId/edit', {
+        templateUrl: '../admin/views/renderer/addEdit.html',
+        controller: 'T6SAdmin.EditRendererCtrl'
+      })
       .when('/admin/zone/', {
         templateUrl: '../admin/views/zone/list.html',
         controller: 'T6SAdmin.ListZoneCtrl'

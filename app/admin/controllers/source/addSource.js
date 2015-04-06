@@ -26,7 +26,7 @@ angular.module('T6SAdmin')
         );
       });
 
-      backendSocket.emit('RetrieveAllInfoTypeDescription')
+      backendSocket.emit('RetrieveAllInfoTypeDescription');
 
       backendSocket.on('AllServiceDescription', function(response) {
         callbackManager(response, function (allServices) {
