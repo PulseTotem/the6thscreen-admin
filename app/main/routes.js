@@ -104,9 +104,13 @@ angular
         templateUrl: '../customization/views/call/addEdit.html',
         controller: 'T6SCustomization.EditCallCtrl'
       })
-      .when('/custom/call/:callId', {
+      .when('/custom/sdi/:sdiId/call/:callId', {
         templateUrl: '../customization/views/call/show.html',
         controller: 'T6SCustomization.ShowCallCtrl'
+      })
+      .when('/custom/sdi/:sdiId/profil/:profilId', {
+        templateUrl: '../customization/views/profil/show.html',
+        controller: 'T6SCustomization.ShowProfilCtrl'
       })
 
       // Routes for configuration stuff
