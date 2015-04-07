@@ -11,6 +11,7 @@ angular.module('T6SCustomization')
   .controller('T6SCustomization.EditCallCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
     backendSocket.userIsLogin(function() {
       $scope.callTypeId = $routeParams.callTypeId;
+      $scope.sdiId = $routeParams.sdiId;
       $scope.call = {};
       $scope.call.id = $routeParams.callId;
       $scope.listParamType = [];
@@ -20,6 +21,9 @@ angular.module('T6SCustomization')
       backendSocket.on('CallDescription', function(response) {
         callbackManager(response, function (call) {
             $scope.call = call;
+            if (call.profil) {
+              $scope.selectedProfilId = call.profil.id;
+            }
           },
           function (fail) {
             console.error(fail);
@@ -49,12 +53,18 @@ angular.module('T6SCustomization')
             console.error(fail);
           }
         );
+      });
 
+      backendSocket.on('SDIDescription', function (response) {
+        callbackManager(response, function(sdi) {
+          $scope.profilSDI = sdi.profils;
+        })
       });
 
       backendSocket.emit('RetrieveCallDescription', {'callId': $scope.call.id});
       backendSocket.emit('RetrieveParamTypesFromCallType', {'callTypeId': $scope.callTypeId});
       backendSocket.emit('RetrieveParamValuesFromCall', {'callId': $scope.call.id});
+      backendSocket.emit('RetrieveSDIDescription', {'sdiId': $scope.sdiId});
     });
 
     $scope.saveAttribute = function (element, value) {

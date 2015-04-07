@@ -88,25 +88,37 @@ angular
         templateUrl: '../customization/views/sdi/show.html',
         controller: 'T6SCustomization.ShowSDICtrl'
       })
-      .when('/custom/zone/:zoneId', {
+      .when('/custom/sdi/:sdiId/zone/:zoneId', {
         templateUrl: '../customization/views/zone/show.html',
         controller: 'T6SCustomization.ShowZoneCtrl'
       })
-      .when('/custom/calltype/:callTypeId', {
+      .when('/custom/sdi/:sdiId/calltype/:callTypeId', {
         templateUrl: '../customization/views/calltype/show.html',
         controller: 'T6SCustomization.ShowCallTypeCtrl'
       })
-      .when('/custom/calltype/:callTypeId/call/add', {
+      .when('/custom/sdi/:sdiId/calltype/:callTypeId/call/add', {
         templateUrl: '../customization/views/call/addEdit.html',
         controller: 'T6SCustomization.AddCallCtrl'
       })
-      .when('/custom/calltype/:callTypeId/call/:callId', {
+      .when('/custom/sdi/:sdiId/calltype/:callTypeId/call/:callId/edit', {
         templateUrl: '../customization/views/call/addEdit.html',
         controller: 'T6SCustomization.EditCallCtrl'
       })
-      .when('/custom/call/:callId', {
+      .when('/custom/sdi/:sdiId/call/:callId', {
         templateUrl: '../customization/views/call/show.html',
         controller: 'T6SCustomization.ShowCallCtrl'
+      })
+      .when('/custom/sdi/:sdiId/profil/add', {
+        templateUrl: '../customization/views/profil/addEdit.html',
+        controller: 'T6SCustomization.AddProfilCtrl'
+      })
+      .when('/custom/sdi/:sdiId/profil/:profilId', {
+        templateUrl: '../customization/views/profil/show.html',
+        controller: 'T6SCustomization.ShowProfilCtrl'
+      })
+      .when('/custom/sdi/:sdiId/profil/:profilId/edit', {
+        templateUrl: '../customization/views/profil/addEdit.html',
+        controller: 'T6SCustomization.EditProfilCtrl'
       })
 
       // Routes for configuration stuff

@@ -11,6 +11,7 @@ angular.module('T6SCustomization')
   .controller('T6SCustomization.AddCallCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
     backendSocket.userIsLogin(function() {
       $scope.callTypeId = $routeParams.callTypeId;
+      $scope.sdiId = $routeParams.sdiId;
       $scope.call = {};
       $scope.listParamType = [];
       $scope.value = {};
@@ -33,6 +34,12 @@ angular.module('T6SCustomization')
         })
       });
 
+      backendSocket.on('SDIDescription', function (response) {
+        callbackManager(response, function(sdi) {
+          $scope.profilSDI = sdi.profils;
+        })
+      });
+
       backendSocket.on('ParamValueCreationDescription', function (response) {
         callbackManager(response, function(data) {
           $scope.mapIdParamIdValue[data.paramTypeId] = data.paramValueId;
@@ -41,6 +48,7 @@ angular.module('T6SCustomization')
       });
 
       backendSocket.emit('RetrieveParamTypesFromCallType', {'callTypeId': $scope.callTypeId});
+      backendSocket.emit('RetrieveSDIDescription', {'sdiId': $scope.sdiId});
     });
 
     var linkCallType = function () {

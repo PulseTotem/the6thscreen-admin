@@ -11,6 +11,7 @@ angular.module('T6SCustomization')
   .controller('T6SCustomization.ShowCallCtrl', ['$scope', '$routeParams', 'backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
 
     $scope.callID = $routeParams.callId;
+    $scope.sdiId = $routeParams.sdiId;
     $scope.call = {};
     $scope.listParamValues = [];
 

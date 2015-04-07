@@ -1,5 +1,7 @@
 <div>
-  <h3>{{ call.name }} for {{call.callType.name }}</h3>
+  <h3>{{ call.name }}</h3>
+  <h4>Profil : {{ call.profil.name }}</h4>
+  <h4>CallType : {{call.callType.name }}</h4>
 </div>
 
 <h5>List des ParamValues</h5>
@@ -19,3 +21,6 @@
     <td>{{ paramValue.value }}</td>
   </tr>
 </table>
+<div style="float: right">
+  <a ng-href="/custom/sdi/{{sdiId}}/calltype/{{ call.callType.id }}/call/{{ call.id }}/edit" class="btn btn-primary" translate><i class="icon-plus icon-white"></i> Edit</a>
+</div>
