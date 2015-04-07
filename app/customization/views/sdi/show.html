@@ -16,12 +16,27 @@
   </tr>
 
   <tr ng-repeat="zone in sdi.zones">
-    <td><a ng-href="/custom/zone/{{zone.id}}">{{ zone.id }}</a></td>
-    <td><a ng-href="/custom/zone/{{zone.id}}">{{ zone.name }}</a></td>
-    <td><a ng-href="/custom/zone/{{zone.id}}">{{ zone.description }}</a></td>
-    <td><a ng-href="/custom/zone/{{zone.id}}">{{ zone.width }}</a></td>
-    <td><a ng-href="/custom/zone/{{zone.id}}">{{ zone.height }}</a></td>
-    <td><a ng-href="/custom/zone/{{zone.id}}">{{ zone.positionFromTop }}</a></td>
-    <td><a ng-href="/custom/zone/{{zone.id}}">{{ zone.positionFromLeft }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.id }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.name }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.description }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.width }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.height }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.positionFromTop }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.positionFromLeft }}</a></td>
+  </tr>
+</table>
+
+<h5>Profils</h5>
+<table class="table table-striped table-hover">
+  <tr>
+    <th>#</th>
+    <th>Nom</th>
+    <th>Description</th>
+  </tr>
+
+  <tr ng-repeat="profil in sdi.profils">
+    <td><a ng-href="/custom/profil/{{profil.id}}">{{ profil.id }}</a></td>
+    <td><a ng-href="/custom/profil/{{profil.id}}">{{ profil.name }}</a></td>
+    <td><a ng-href="/custom/profil/{{profil.id}}">{{ profil.description }}</a></td>
   </tr>
 </table>

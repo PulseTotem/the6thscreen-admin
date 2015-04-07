@@ -11,6 +11,7 @@ angular.module('T6SCustomization')
   .controller('T6SCustomization.ShowZoneCtrl', ['$scope', '$routeParams', 'backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
 
     $scope.zoneID = $routeParams.zoneId;
+    $scope.sdiId = $routeParams.sdiId;
 
         backendSocket.userIsLogin(function() {
             backendSocket.on('ZoneDescription', function(response) {

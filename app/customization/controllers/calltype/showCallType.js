@@ -11,6 +11,7 @@ angular.module('T6SCustomization')
   .controller('T6SCustomization.ShowCallTypeCtrl', ['$scope', '$routeParams', 'backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
 
     $scope.callTypeId = $routeParams.callTypeId;
+    $scope.sdiId = $routeParams.sdiId;
 
     backendSocket.userIsLogin(function() {
       backendSocket.on('CallTypeDescription', function(response) {

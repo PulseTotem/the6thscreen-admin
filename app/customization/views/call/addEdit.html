@@ -14,5 +14,13 @@
           <input ng-switch-when="Entier" type="number" id="{{ paramType.name }}" ng-model="value[paramType.id]" ng-model-options="{ updateOn: 'blur' }" ng-change="saveParamValue(paramType.id)" />
         </div>
       </div>
+    <div class="control-group">
+      <label for="linkProfil">Profil</label>
+      <div class="controls">
+        <select id="linkProfil" ng-model="selectedProfilId" ng-change="saveAttribute('linkProfil', selectedProfilId)">
+          <option ng-repeat="profil in profilSDI" value="{{ profil.id }}">{{ profil.name }}</option>
+        </select>
+      </div>
+    </div>
     </form>
 </div>
