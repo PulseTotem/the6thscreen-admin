@@ -32,11 +32,20 @@
     <th>#</th>
     <th>Nom</th>
     <th>Description</th>
+    <th></th>
   </tr>
 
   <tr ng-repeat="profil in sdi.profils">
     <td><a ng-href="/custom/sdi/{{sdi.id}}/profil/{{profil.id}}">{{ profil.id }}</a></td>
     <td><a ng-href="/custom/sdi/{{sdi.id}}/profil/{{profil.id}}">{{ profil.name }}</a></td>
     <td><a ng-href="/custom/sdi/{{sdi.id}}/profil/{{profil.id}}">{{ profil.description }}</a></td>
+    <td>
+      <a ng-href="/custom/sdi/{{sdi.id}}/profil/{{ profil.id }}/edit" class="btn btn-primary"><i class="icon-pencil icon-white"></i>Edit Profil</a>
+      <button type="button" class="btn btn-danger" ng-click="deleteProfil(profil.id)" ng-confirm-click="{{ 'SOURCE.CONFIRM_DELETE_SOURCE' | translate }} ({{ profil.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_DELETE' | translate }}</button>
+    </td>
   </tr>
 </table>
+
+<div style="float: right">
+  <a ng-href="/custom/sdi/{{sdi.id}}/profil/add" class="btn btn-primary" translate><i class="icon-plus icon-white"></i> Add Profil</a>
+</div>

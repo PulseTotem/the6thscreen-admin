@@ -100,7 +100,7 @@ angular
         templateUrl: '../customization/views/call/addEdit.html',
         controller: 'T6SCustomization.AddCallCtrl'
       })
-      .when('/custom/sdi/:sdiId/calltype/:callTypeId/call/:callId', {
+      .when('/custom/sdi/:sdiId/calltype/:callTypeId/call/:callId/edit', {
         templateUrl: '../customization/views/call/addEdit.html',
         controller: 'T6SCustomization.EditCallCtrl'
       })
@@ -108,9 +108,17 @@ angular
         templateUrl: '../customization/views/call/show.html',
         controller: 'T6SCustomization.ShowCallCtrl'
       })
+      .when('/custom/sdi/:sdiId/profil/add', {
+        templateUrl: '../customization/views/profil/addEdit.html',
+        controller: 'T6SCustomization.AddProfilCtrl'
+      })
       .when('/custom/sdi/:sdiId/profil/:profilId', {
         templateUrl: '../customization/views/profil/show.html',
         controller: 'T6SCustomization.ShowProfilCtrl'
+      })
+      .when('/custom/sdi/:sdiId/profil/:profilId/edit', {
+        templateUrl: '../customization/views/profil/addEdit.html',
+        controller: 'T6SCustomization.EditProfilCtrl'
       })
 
       // Routes for configuration stuff
