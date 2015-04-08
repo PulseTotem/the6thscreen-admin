@@ -38,5 +38,21 @@
         </select>
       </div>
     </div>
+    <div class="control-group">
+      <label for="inputRenderPolicy">RenderPolicy</label>
+      <div class="controls">
+        <select id="inputRenderPolicy" ng-model="callType.renderPolicy" class="form-control" ng-change="saveAttribute('linkRenderPolicy', callType.renderPolicy)">
+          <option ng-repeat="renderPolicy in renderPolicies" value="{{ renderPolicy.id }}">{{ renderPolicy.name }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="inputReceivePolicy">ReceivePolicy</label>
+      <div class="controls">
+        <select id="inputReceivePolicy" ng-model="callType.receivePolicy" class="form-control" ng-change="saveAttribute('linkReceivePolicy', callType.receivePolicy)">
+          <option ng-repeat="receivePolicy in receivePolicies" value="{{ receivePolicy.id }}">{{ receivePolicy.name }}</option>
+        </select>
+      </div>
+    </div>
   </form>
 </div>
