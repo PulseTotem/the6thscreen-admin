@@ -61,6 +61,32 @@ angular.module('T6SConfiguration')
         );
       });
 
+      backendSocket.emit('RetrieveAllRendererDescription');
+
+      backendSocket.on('AllRenderPolicyDescription', function(response) {
+        callbackManager(response, function (allRenderPolicies) {
+            $scope.renderPolicies = allRenderPolicies;
+          },
+          function (fail) {
+            console.error(fail);
+          }
+        );
+      });
+
+      backendSocket.emit('RetrieveAllRenderPolicyDescription');
+
+      backendSocket.on('AllReceivePolicyDescription', function(response) {
+        callbackManager(response, function (allReceivePolicies) {
+            $scope.receivePolicies = allReceivePolicies;
+          },
+          function (fail) {
+            console.error(fail);
+          }
+        );
+      });
+
+      backendSocket.emit('RetrieveAllReceivePolicyDescription');
+
       backendSocket.emit('RetrieveCallTypeDescriptionOnlyId', {'callTypeId' : $routeParams.callTypeId});
     });
 
