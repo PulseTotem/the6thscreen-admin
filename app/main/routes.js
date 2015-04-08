@@ -71,6 +71,18 @@ angular
         templateUrl: '../admin/views/renderer/addEdit.html',
         controller: 'T6SAdmin.EditRendererCtrl'
       })
+      .when('/admin/infotype', {
+        templateUrl: '../admin/views/infoType/list.html',
+        controller: 'T6SAdmin.ListInfoTypeCtrl'
+      })
+      .when('/admin/infotype/add', {
+        templateUrl: '../admin/views/infoType/addEdit.html',
+        controller: 'T6SAdmin.AddInfoTypeCtrl'
+      })
+      .when('/admin/infotype/:infoTypeId/edit', {
+        templateUrl: '../admin/views/infoType/addEdit.html',
+        controller: 'T6SAdmin.EditInfoTypeCtrl'
+      })
       .when('/admin/zone/', {
         templateUrl: '../admin/views/zone/list.html',
         controller: 'T6SAdmin.ListZoneCtrl'
