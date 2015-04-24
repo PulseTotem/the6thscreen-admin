@@ -1,0 +1,69 @@
+<div class="modal fade" id="serviceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body" ng-include="modalService">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h3 translate="ADD_SOURCE.CREATE_SOURCE"></h3>
+
+<div>
+  <form>
+    <div class="control-group">
+      <label for="setName" translate="ADD_SOURCE.SOURCE_NAME"></label>
+      <div class="controls">
+        <input type="text" id="setName" placeholder="Nom" ng-model="source.name" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setName', source.name)" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="setDescription" translate="ADD_SOURCE.SOURCE_DESCRIPTION"></label>
+      <div class="controls">
+        <textarea rows="3" id="setDescription" placeholder="Description" ng-model="source.description" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setDescription', source.description)"></textarea>
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="inputInfoType" translate="ADD_SOURCE.SOURCE_TYPE"></label>
+      <div class="controls">
+        <select id="inputInfoType" ng-model="source.infoType" class="form-control" ng-change="saveAttribute('linkInfoType', source.infoType)">
+          <option ng-repeat="type in infoTypes" value="{{ type.id }}">{{ type.name }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="inputService" translate="ADD_SOURCE.SOURCE_SERVICE"></label>
+      <div class="controls">
+        <select id="inputService" ng-model="source.service" class="form-control" ng-change="saveAttribute('linkService', source.service)">
+          <option ng-repeat="service in services" value="{{ service.id }}">{{ service.name }}</option>
+        </select>
+        <button type="button" class="btn btn-primary" ng-click="openModalService()">Add service</button>
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="setMethod" translate="ADD_SOURCE.SOURCE_METHOD"></label>
+      <div class="controls">
+        <input type="text" id="setMethod" placeholder="Method" ng-model="source.method" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setMethod', source.method)" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="addParamType" translate="ADD_SOURCE.SOURCE_PARAM_TYPE"></label>
+      <div class="controls">
+        <select id="addParamType" ng-model="source.paramType" class="form-control" ng-change="saveAttribute('addParamType', source.paramType)">
+          <option ng-repeat="type in paramTypes" value="{{ type.id }}">{{ type.name }}</option>
+        </select>
+        <ul ng-repeat="paramType in selectedParamTypes">
+          <li>{{paramType.name}} <button type="button" class="btn btn-danger" ng-click="saveAttribute('removeParamType', paramType.id)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_DELETE' | translate }}</button></li>
+        </ul>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div>
+  {{ source }}
+</div>

@@ -1,0 +1,37 @@
+<h3>Add SDI</h3>
+
+<div>
+  <form>
+    <div class="control-group">
+      <label for="setName">Name</label>
+      <div class="controls">
+        <input type="text" id="setName" placeholder="Nom" ng-model="sdi.name" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setName', sdi.name)" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="setDescription">Description</label>
+      <div class="controls">
+        <textarea rows="3" id="setDescription" placeholder="Description" ng-model="sdi.description" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setDescription', sdi.description)"></textarea>
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="setAllowedHost">Allowed Host</label>
+      <div class="controls">
+        <input type="text" id="setAllowedHost" placeholder="localhost:8080" ng-model="sdi.allowedHost" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setAllowedHost', sdi.allowedHost)" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label>User</label>
+      <ul ng-repeat="user in sdi.users">
+        <li>{{user.username}}</li>
+      </ul>
+    </div>
+    <div class="control-group">
+      <label>Zone</label>
+      <ul ng-repeat="zone in sdi.zones">
+        <li>{{zone.name}}</li>
+      </ul>
+    </div>
+    <a ng-if="sdi.id" class="btn btn-primary" ng-href="/config/sdi/{{sdi.id}}/zone/add">Create zone</a>
+  </form>
+</div>

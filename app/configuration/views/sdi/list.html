@@ -1,0 +1,28 @@
+<div class="row marketing">
+  <h3 translate="DASHBOARD.WELCOME" translate-value-username="{{ user.username }}"></h3>
+</div>
+
+<table class="table table-striped table-hover">
+  <tr>
+    <th>#</th>
+    <th translate="DASHBOARD.SDI_NAME"></th>
+    <th translate="DASHBOARD.SDI_DESCRIPTION"></th>
+    <th>Complete</th>
+    <th></th>
+  </tr>
+
+  <tr ng-repeat="sdi in listSDI">
+    <td><a ng-href="/config/sdi/{{sdi.id}}">{{ sdi.id }}</a></td>
+    <td><a ng-href="/config/sdi/{{sdi.id}}">{{ sdi.name }}</a></td>
+    <td><a ng-href="/config/sdi/{{sdi.id}}">{{ sdi.description }}</a></td>
+    <td>{{ sdi.complete }}</td>
+    <td>
+      <a type="button" class="btn btn-default" ng-href="/config/sdi/{{ sdi.id }}/edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_EDIT' | translate }}</a>
+      <button ng-controller="T6SConfiguration.DeleteSDICtrl" type="button" class="btn btn-danger" ng-click="deleteSDI(sdi.id)" ng-confirm-click="{{ 'SOURCE.CONFIRM_DELETE_SOURCE' | translate }} ({{ sdi.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_DELETE' | translate }}</button>
+    </td>
+  </tr>
+</table>
+
+<div style="float: right">
+  <a ng-href="/config/sdi/add" class="btn btn-primary" translate><i class="icon-plus icon-white"></i> Add SDI</a>
+</div>

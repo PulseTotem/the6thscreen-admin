@@ -1,0 +1,22 @@
+<div>
+  <h3>{{ profil.name }}</h3>
+  <h4>{{ profil.description }}</h4>
+</div>
+
+<h5>Liste des calls</h5>
+
+<table class="table table-striped">
+  <tr>
+    <th>#</th>
+    <th>Nom</th>
+    <th>Description</th>
+    <th></th>
+  </tr>
+
+  <tr ng-repeat="call in profil.calls">
+    <td><a ng-href="/custom/sdi/{{sdiId}}/call/{{call.id}}">{{ call.id }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdiId}}/call/{{call.id}}">{{ call.name }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdiId}}/call/{{call.id}}">{{ call.description }}</a></td>
+    <td><button type="button" class="btn btn-danger" ng-click="removeCall(call.id)" ng-confirm-click="Etes-vous sûr de vouloir enlever le call suivant du profil : {{ call.name }} ?"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Enlever du profil</button></td>
+  </tr>
+</table>

@@ -1,0 +1,51 @@
+<div>
+  <h3>{{sdi.name }}</h3>
+  <h4>{{ sdi.description }}</h4>
+</div>
+
+<h5 translate="SDI.ZONES_LIST"></h5>
+<table class="table table-striped table-hover">
+  <tr>
+    <th>#</th>
+    <th translate="SDI.ZONE_NAME"></th>
+    <th translate="SDI.ZONE_DESCRIPTION"></th>
+    <th translate="SDI.ZONE_WIDTH"></th>
+    <th translate="SDI.ZONE_HEIGHT"></th>
+    <th translate="SDI.ZONE_POSITION_FROM_TOP"></th>
+    <th translate="SDI.ZONE_POSITION_FROM_LEFT"></th>
+  </tr>
+
+  <tr ng-repeat="zone in sdi.zones">
+    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.id }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.name }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.description }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.width }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.height }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.positionFromTop }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.positionFromLeft }}</a></td>
+  </tr>
+</table>
+
+<h5>Profils</h5>
+<table class="table table-striped table-hover">
+  <tr>
+    <th>#</th>
+    <th>Nom</th>
+    <th>Description</th>
+    <th></th>
+  </tr>
+
+  <tr ng-repeat="profil in sdi.profils">
+    <td><a ng-href="/custom/sdi/{{sdi.id}}/profil/{{profil.id}}">{{ profil.id }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdi.id}}/profil/{{profil.id}}">{{ profil.name }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdi.id}}/profil/{{profil.id}}">{{ profil.description }}</a></td>
+    <td>
+      <a ng-href="/custom/sdi/{{sdi.id}}/profil/{{ profil.id }}/edit" class="btn btn-primary"><i class="icon-pencil icon-white"></i>Edit Profil</a>
+      <button type="button" class="btn btn-danger" ng-click="deleteProfil(profil.id)" ng-confirm-click="{{ 'SOURCE.CONFIRM_DELETE_SOURCE' | translate }} ({{ profil.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_DELETE' | translate }}</button>
+    </td>
+  </tr>
+</table>
+
+<div style="float: right">
+  <a ng-href="/custom/sdi/{{sdi.id}}/profil/add" class="btn btn-primary" translate><i class="icon-plus icon-white"></i> Add Profil</a>
+</div>

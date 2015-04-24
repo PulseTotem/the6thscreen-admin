@@ -1,0 +1,29 @@
+<div>
+  <h3>{{callType.name }}</h3>
+  <h4>{{ callType.description }}</h4>
+</div>
+
+<h5>List des calls</h5>
+
+<table class="table table-striped">
+  <tr>
+    <th>#</th>
+    <th>Nom</th>
+    <th>Complete</th>
+    <th></th>
+  </tr>
+
+  <tr ng-repeat="call in callType.calls">
+    <td><a ng-href="/custom/sdi/{{sdiId}}/call/{{call.id}}">{{ call.id }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdiId}}/call/{{call.id}}">{{ call.name }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdiId}}/call/{{call.id}}">{{ call.complete }}</a></td>
+    <td>
+      <a ng-href="/custom/sdi/{{sdiId}}/calltype/{{ callType.id }}/call/{{ call.id }}/edit" class="btn btn-primary"><i class="icon-pencil icon-white"></i>Edit Call</a>
+      <button type="button" class="btn btn-danger" ng-click="deleteCall(call.id)" ng-confirm-click="{{ 'SOURCE.CONFIRM_DELETE_SOURCE' | translate }} ({{ call.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_DELETE' | translate }}</button>
+    </td>
+  </tr>
+</table>
+
+<div style="float: right">
+  <a ng-href="/custom/sdi/{{sdiId}}/calltype/{{ callType.id }}/call/add" class="btn btn-primary" translate><i class="icon-plus icon-white"></i> Add Call</a>
+</div>
