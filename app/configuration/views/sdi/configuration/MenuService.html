@@ -5,8 +5,8 @@
         <div class="panel-body" id="list-icon">
           <div class="drop-container">
             <!--<div class="drop-div" ng-repeat="ss in services" ng-drag="true" ng-drag-data="ss" ng-drag-success="onDragSource($data,$event)">-->
-            <div class="drop-div" ng-repeat="ss in services">
-              <div>{{ ss.name }}</div>
+            <div class="drop-span" ng-repeat="ss in services">
+              <span class="label label-primary">{{ ss.name }}</span>
             </div>
           </div>
           <br style="clear: both" />
@@ -14,7 +14,7 @@
       </div>
       <div class="panel-heading" id="contenuHeading" data-toggle="collapse" data-parent="#accordion2" data-target="#collapseTwo">
         <h4 class="panel-title" >
-          Contenu
+          Services
         </h4>
       </div>
     </div>

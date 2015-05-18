@@ -3,5 +3,9 @@
 
   <div ng-include="'configuration/views/sdi/configuration/MenuService.html'"></div>
 
+  <div style="width: 90%; height: 800px; margin: auto auto auto auto; border: 1px solid lightgrey; background-color: white; cursor: crosshair; position: relative" ng-click="createZone($event)">
+    <div ng-repeat="zone in zones" style="width: {{ zone.width}}%; height: {{ zone.height}}%; position: absolute; top: {{ zone.positionFromTop}}%; left: {{ zone.positionFromLeft}}%; border: 1px solid red">{{ zone.id }}</div>
+  </div>
+
   SDI id : {{ sdi.id }}
 </div>
