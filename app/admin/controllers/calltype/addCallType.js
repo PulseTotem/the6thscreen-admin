@@ -13,80 +13,77 @@ angular.module('T6SAdmin')
     $scope.callType = {};
     $scope.zoneFixed = true;
 
-    backendSocket.userIsLogin(function() {
-      console.log("Celui de T6S Configuration !");
-      backendSocket.on('AllSourceDescription', function(response) {
-        callbackManager(response, function (allSources) {
-            $scope.sources = allSources;
-            linkZone();
-          },
-          function (fail) {
-            console.error(fail);
-          }
-        );
-      });
+    backendSocket.on('AllSourceDescription', function(response) {
+      callbackManager(response, function (allSources) {
+          $scope.sources = allSources;
+          linkZone();
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
 
-      backendSocket.emit('RetrieveAllSourceDescription');
+    backendSocket.emit('RetrieveAllSourceDescription');
 
-      backendSocket.on('AllZoneDescription', function(response) {
-        callbackManager(response, function (allZones) {
-            $scope.zones = allZones;
-          },
-          function (fail) {
-            console.error(fail);
-          }
-        );
-      });
+    backendSocket.on('AllZoneDescription', function(response) {
+      callbackManager(response, function (allZones) {
+          $scope.zones = allZones;
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
 
-      backendSocket.emit('RetrieveAllZoneDescription');
+    backendSocket.emit('RetrieveAllZoneDescription');
 
-      backendSocket.on('AllRendererDescription', function(response) {
-        callbackManager(response, function (allRenderers) {
-            $scope.renderers = allRenderers;
-          },
-          function (fail) {
-            console.error(fail);
-          }
-        );
-      });
+    backendSocket.on('AllRendererDescription', function(response) {
+      callbackManager(response, function (allRenderers) {
+          $scope.renderers = allRenderers;
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
 
-      backendSocket.emit('RetrieveAllRendererDescription');
+    backendSocket.emit('RetrieveAllRendererDescription');
 
-      backendSocket.emit('RetrieveAllRendererDescription');
+    backendSocket.emit('RetrieveAllRendererDescription');
 
-      backendSocket.on('AllRenderPolicyDescription', function(response) {
-        callbackManager(response, function (allRenderPolicies) {
-            $scope.renderPolicies = allRenderPolicies;
-          },
-          function (fail) {
-            console.error(fail);
-          }
-        );
-      });
+    backendSocket.on('AllRenderPolicyDescription', function(response) {
+      callbackManager(response, function (allRenderPolicies) {
+          $scope.renderPolicies = allRenderPolicies;
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
 
-      backendSocket.emit('RetrieveAllRenderPolicyDescription');
+    backendSocket.emit('RetrieveAllRenderPolicyDescription');
 
-      backendSocket.on('AllReceivePolicyDescription', function(response) {
-        callbackManager(response, function (allReceivePolicies) {
-            $scope.receivePolicies = allReceivePolicies;
-          },
-          function (fail) {
-            console.error(fail);
-          }
-        );
-      });
+    backendSocket.on('AllReceivePolicyDescription', function(response) {
+      callbackManager(response, function (allReceivePolicies) {
+          $scope.receivePolicies = allReceivePolicies;
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
 
-      backendSocket.emit('RetrieveAllReceivePolicyDescription');
+    backendSocket.emit('RetrieveAllReceivePolicyDescription');
 
-      backendSocket.on('CallTypeDescription', function(response) {
-        callbackManager(response, function (callType) {
-            $scope.callType = callType;
-          },
-          function (fail) {
-            console.error(fail);
-          }
-        );
-      });
+    backendSocket.on('CallTypeDescription', function(response) {
+      callbackManager(response, function (callType) {
+          $scope.callType = callType;
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
     });
 
     var linkZone = function () {

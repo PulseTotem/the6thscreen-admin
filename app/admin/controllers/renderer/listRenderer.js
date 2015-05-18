@@ -9,33 +9,30 @@
  */
 angular.module('T6SAdmin')
   .controller('T6SAdmin.ListRendererCtrl', ['$scope', 'backendSocket', 'callbackManager', function ($scope,  backendSocket, callbackManager) {
-    backendSocket.userIsLogin(function() {
-
-      backendSocket.on('AllRendererDescription', function(response) {
-        callbackManager(response, function (allRenderers) {
-            $scope.renderers = allRenderers;
-          },
-          function (fail) {
-            console.error(fail);
-          }
-        );
-      });
-
-      backendSocket.on('deletedRenderer', function(response) {
-        callbackManager(response, function (idRenderer) {
-            $scope.renderers = $scope.renderers.filter(function (object) {
-              return (object.id != idRenderer);
-            });
-
-          },
-          function (fail) {
-            console.error(fail);
-          }
-        );
-      });
-
-      backendSocket.emit('RetrieveAllRendererDescription');
+    backendSocket.on('AllRendererDescription', function(response) {
+      callbackManager(response, function (allRenderers) {
+          $scope.renderers = allRenderers;
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
     });
+
+    backendSocket.on('deletedRenderer', function(response) {
+      callbackManager(response, function (idRenderer) {
+          $scope.renderers = $scope.renderers.filter(function (object) {
+            return (object.id != idRenderer);
+          });
+
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
+
+    backendSocket.emit('RetrieveAllRendererDescription');
 
     $scope.deleteRenderer = function (idRenderer) {
       backendSocket.emit('DeleteRenderer', { "rendererId": idRenderer});

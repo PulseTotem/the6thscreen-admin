@@ -12,17 +12,14 @@ angular.module('T6SAdmin')
 
     $scope.infoType = {};
 
-    backendSocket.userIsLogin(function() {
-
-      backendSocket.on('InfoTypeDescription', function(response) {
-        callbackManager(response, function (infoType) {
-            $scope.infoType = infoType;
-          },
-          function (fail) {
-            console.error(fail);
-          }
-        );
-      });
+    backendSocket.on('InfoTypeDescription', function(response) {
+      callbackManager(response, function (infoType) {
+          $scope.infoType = infoType;
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
     });
 
     $scope.saveAttribute = function (element, value) {

@@ -25,98 +25,91 @@ angular
     .config(['$locationProvider', function($locationProvider) {
         $locationProvider.html5Mode(true).hashPrefix('!');
     }])
-    .run(['$rootScope', '$location', '$cookies', '$http', 'ADMIN_CONSTANTS', function($rootScope, $location, $cookies, $http, ADMIN_CONSTANTS) {
+    .run(['$rootScope', '$location', '$cookies', '$http', 'ADMIN_CONSTANTS', 'backendSocket', function($rootScope, $location, $cookies, $http, ADMIN_CONSTANTS, backendSocket) {
       $rootScope.header = "home";
 
       $rootScope.$on( "$routeChangeStart", function(event, next, current) {
         if(typeof($rootScope.user) == "undefined" || typeof($rootScope.user.id) == "undefined") {
-          var bguToken = null;
+          var adminT6SToken = null;
           var tmpToken = false;
-          if($cookies.bguToken) {
-            bguToken = $cookies.bguToken;
+          if($cookies.adminT6SToken) {
+            adminT6SToken = $cookies.adminT6SToken;
           } else {
-            if($cookies.tmpBguToken) {
-              bguToken = $cookies.tmpBguToken;
+            if($cookies.tmpAdminT6SToken) {
+              adminT6SToken = $cookies.tmpAdminT6SToken;
               tmpToken = true;
             }
           }
 
-          if(bguToken != null) {
-            /*
-            $http.post(BGU_CONSTANTS.backendUrl + BGU_CONSTANTS.loginFromTokenPath, {'token' : bguToken, 'tmp' : tmpToken})
+          if(adminT6SToken != null) {
+            $http.post(ADMIN_CONSTANTS.backendUrl + ADMIN_CONSTANTS.loginFromTokenBackendPath, {'token' : adminT6SToken, 'tmp' : tmpToken})
               .success(function(data, status, headers, config) {
-                $rootScope.user = data.user;
-
-                if(tmpToken) {
-                  $cookies.tmpBguToken = data.token;
-                } else {
-                  $cookies.bguToken = data.token;
-                }
-
-                $rootScope.header = "default";
-                if(next.templateUrl === "views/home.html") {
-                  if (!$rootScope.$$phase) {
-                    $rootScope.$apply(function () {
-                      $location.path('/dashboard');
-                    });
-                  } else {
-                    $location.path('/dashboard');
-                  }
-                } // else // it's ok!
-              })
-              .error(function(data, status, headers, config) {
-                delete($cookies.bguToken);
-                delete($cookies.tmpBguToken);
-                $rootScope.header = "home";
-                if(next.templateUrl != "views/home.html") {
-                  if (!$rootScope.$$phase) {
-                    $rootScope.$apply(function () {
-                      $location.path('/');
-                    });
-                  } else {
-                    $location.path('/');
-                  }
-                }
-              });
-              */
-            //TODO
-            $http.post(ADMIN_CONSTANTS.loginBackendUrl, {'usernameOrEmail' : user.usernameOrEmail, 'password' : encryptedPwd})
-              .success(function(data, status, headers, config) {
-                $scope.authToken = data.token;
-
+                console.log("POST SUCCESS!!!");
                 var successBackendInit = function() {
-                  if (!$rootScope.$$phase) {
-                    $rootScope.$apply(function () {
-                      $location.path('/config/');
-                    });
+                  console.log("BACKEND SUCCESS!!!");
+                  if(tmpToken) {
+                    delete($cookies.adminT6SToken);
+                    $cookies.tmpAdminT6SToken = data.token;
                   } else {
-                    $location.path('/config/');
+                    delete($cookies.tmpAdminT6SToken);
+                    $cookies.adminT6SToken = data.token;
+                  }
+
+                  $rootScope.header = "default";
+                  if(next.templateUrl === "../common/views/login.html") {
+                    if (!$rootScope.$$phase) {
+                      $rootScope.$apply(function () {
+                        $location.path(ADMIN_CONSTANTS.loginRoute);
+                      });
+                    } else {
+                      $location.path(ADMIN_CONSTANTS.loginRoute);
+                    }
                   }
                 };
 
                 var failBackendInit = function(errorDesc) {
                   console.error(errorDesc);
+                  delete($cookies.adminT6SToken);
+                  delete($cookies.tmpAdminT6SToken);
+                  $rootScope.header = "home";
+                  if(next.templateUrl != "../common/views/login.html") {
+                    if (!$rootScope.$$phase) {
+                      $rootScope.$apply(function () {
+                        $location.path(ADMIN_CONSTANTS.homeRoute);
+                      });
+                    } else {
+                      $location.path(ADMIN_CONSTANTS.homeRoute);
+                    }
+                  }
                 };
 
-                backendSocket.init($scope.authToken, successBackendInit, failBackendInit);
+                backendSocket.init(data.token, successBackendInit, failBackendInit);
+
               })
               .error(function(data, status, headers, config) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-
-                //TODO: Manage error during post => display error message
-                console.log("fail login during POST");
+                delete($cookies.adminT6SToken);
+                delete($cookies.tmpAdminT6SToken);
+                $rootScope.header = "home";
+                if(next.templateUrl != "../common/views/login.html") {
+                  if (!$rootScope.$$phase) {
+                    $rootScope.$apply(function () {
+                      $location.path(ADMIN_CONSTANTS.homeRoute);
+                    });
+                  } else {
+                    $location.path(ADMIN_CONSTANTS.homeRoute);
+                  }
+                }
               });
-            //TODO
+            console.log("Et oui ASYNC !!!");
           } else {
             $rootScope.header = "home";
             if(next.templateUrl != "../common/views/login.html") {
               if (!$rootScope.$$phase) {
                 $rootScope.$apply(function () {
-                  $location.path('/');
+                  $location.path(ADMIN_CONSTANTS.homeRoute);
                 });
               } else {
-                $location.path('/');
+                $location.path(ADMIN_CONSTANTS.homeRoute);
               }
             }
           }
@@ -126,10 +119,10 @@ angular
           if(next.templateUrl === "../common/views/login.html") {
             if (!$rootScope.$$phase) {
               $rootScope.$apply(function () {
-                $location.path('/config');
+                $location.path(ADMIN_CONSTANTS.loginRoute);
               });
             } else {
-              $location.path('/config');
+              $location.path(ADMIN_CONSTANTS.loginRoute);
             }
           }
         }

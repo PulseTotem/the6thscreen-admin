@@ -22,6 +22,12 @@
                                 </div>
                             </div>
 
+                            <div class="checkbox">
+                              <label>
+                                <input type="checkbox" ng-model="user.remember"> {{ 'MAIN.REMEMBER_ME' | translate }}
+                              </label>
+                            </div>
+
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <button class="btn btn-primary" ng-click="login(user)" translate="MAIN.LOGIN_BUTTON"></button>
