@@ -146,11 +146,11 @@ angular
           controller: 'T6SConfiguration.ListSDICtrl'
       })
       .when('/config/sdi/add', {
-        templateUrl: '../configuration/views/sdi/addEdit.html',
+        templateUrl: '../configuration/views/sdi/configuration/AddEdit.html',
         controller: 'T6SConfiguration.AddSDICtrl'
       })
       .when('/config/sdi/:sdiId/edit', {
-        templateUrl: '../configuration/views/sdi/addEdit.html',
+        templateUrl: '../configuration/views/sdi/configuration/AddEdit.html',
         controller: 'T6SConfiguration.EditSDICtrl'
       })
       .when('/config/sdi/:sdiId', {

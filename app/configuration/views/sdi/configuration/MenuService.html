@@ -1,0 +1,22 @@
+<div ng-controller="T6SConfiguration.ListServicesCtrl">
+  <div class="panel-group" id="accordion2">
+    <div class="panel panel-default">
+      <div id="collapseTwo" class="panel-collapse collapse">
+        <div class="panel-body" id="list-icon">
+          <div class="drop-container">
+            <!--<div class="drop-div" ng-repeat="ss in services" ng-drag="true" ng-drag-data="ss" ng-drag-success="onDragSource($data,$event)">-->
+            <div class="drop-div" ng-repeat="ss in services">
+              <div>{{ ss.name }}</div>
+            </div>
+          </div>
+          <br style="clear: both" />
+        </div>
+      </div>
+      <div class="panel-heading" id="contenuHeading" data-toggle="collapse" data-parent="#accordion2" data-target="#collapseTwo">
+        <h4 class="panel-title" >
+          Contenu
+        </h4>
+      </div>
+    </div>
+  </div>
+</div>
