@@ -26,7 +26,6 @@ angular.module('T6SCommon')
         });
 
       backendIOSocket.on("connect", function () {
-        console.info("Connected to Backend.");
         if(typeof($rootScope.user) == "undefined" || typeof($rootScope.user.id) == "undefined") {
           backendIOSocket.emit("RetrieveUserDescriptionFromToken", {'token' : token});
         }
@@ -34,7 +33,6 @@ angular.module('T6SCommon')
 
       backendIOSocket.on("UserDescriptionFromToken", function (response) {
         callbackManager(response, function (userDesc) {
-            console.info("UserDescriptionFromToken received.");
             $rootScope.user = userDesc;
             successCB();
           },
