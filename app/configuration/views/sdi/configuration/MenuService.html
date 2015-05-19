@@ -5,8 +5,8 @@
         <div class="panel-body" id="list-icon">
           <div class="drop-container">
             <!--<div class="drop-div" ng-repeat="ss in services" ng-drag="true" ng-drag-data="ss" ng-drag-success="onDragSource($data,$event)">-->
-            <div class="drop-span" ng-repeat="ss in services">
-              <span class="label label-primary">{{ ss.name }}</span>
+            <div class="drop-div" ng-repeat="ss in services">
+              <span class="label label-primary" ng-drag="true" ng-drag-data="ss.id">{{ ss.name }}</span>
             </div>
           </div>
           <br style="clear: both" />

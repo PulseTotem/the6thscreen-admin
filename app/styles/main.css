@@ -33,3 +33,35 @@ input[type="range"]:after {
   left:0em;
   content: attr(max);
 }
+
+div .zone_edit {
+  width: 90%;
+  height: 800px;
+  margin: auto auto auto auto;
+  border: 1px solid lightgrey;
+  background-color: white;
+  cursor: crosshair;
+  position: relative;
+}
+
+div .zone_edit .zone {
+  border: 1px solid red;
+}
+[ng-drag]{
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+[ng-drag]{
+  display: inline-block;
+  cursor: move;
+}
+[ng-drag].drag-over{
+  border:solid 1px red;
+}
+[ng-drag].dragging{
+  opacity: 0.5;
+}
+

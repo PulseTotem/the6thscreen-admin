@@ -16,6 +16,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'ngDraggable',
     'pascalprecht.translate',
     'btford.socket-io',
     'T6SConfiguration',

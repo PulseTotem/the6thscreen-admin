@@ -54,4 +54,10 @@ angular.module('T6SConfiguration')
 
       backendSocket.emit("CreateZone", zone);
     };
+
+
+
+    $scope.onDropCompleteOnZone = function (data, zone_id) {
+      console.log("Got the following data : "+data+" for zone : "+zone_id);
+    };
   }]);
