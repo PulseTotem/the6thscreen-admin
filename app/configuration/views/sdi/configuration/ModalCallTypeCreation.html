@@ -3,15 +3,22 @@
       <div class="modal-header">
         <h3>Création de CallType : {{ callType.id }}</h3>
       </div>
-      <div class="modal-body">
-        <div class="list-group" ng-repeat="source in sources">
-          <a href="#" class="list-group-item">
+      <div class="modal-body" ng-switch="step">
+        <div class="list-group" ng-repeat="source in sources" ng-switch-when="1">
+          <a href="#" class="list-group-item" ng-click="selectSource(source.id)">
             <h4 class="list-group-item-heading">{{ source.name }}</h4>
             <p class="list-group-item-text">{{ source.description }}</p>
           </a>
         </div>
+
+        <div class="list-group" ng-repeat="renderer in renderers" ng-switch-when="2">
+          <a href="#" class="list-group-item" ng-click="selectRenderer(renderer.id)">
+            <h4 class="list-group-item-heading">{{ renderer.name }}</h4>
+            <p class="list-group-item-text">{{ renderer.description }}</p>
+          </a>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+        <button type="button" class="btn btn-default" ng-click="nextStep()" ng-if="stepEnd">{{ action }}</button>
       </div>
     </div>
