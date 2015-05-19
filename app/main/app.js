@@ -17,6 +17,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'ngDraggable',
+    'ui.bootstrap',
     'pascalprecht.translate',
     'btford.socket-io',
     'T6SConfiguration',

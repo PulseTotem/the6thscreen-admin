@@ -1,0 +1,14 @@
+
+    <div class="modal-content" ng-controller="T6SConfiguration.AddCallTypeCtrl">
+      <div class="modal-body">
+        <div class="list-group" ng-repeat="source in sources">
+          <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">{{ source.name }}</h4>
+            <p class="list-group-item-text">{{ source.description }}</p>
+          </a>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+      </div>
+    </div>

@@ -35,6 +35,7 @@ module.exports = function(config) {
       'bower_components/angular-translate-handler-log/angular-translate-handler-log.js',
       'bower_components/oauth-js/dist/oauth.min.js',
       'bower_components/ngdraggable/ngDraggable.js',
+      'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       '../app/configuration/**/*.js',

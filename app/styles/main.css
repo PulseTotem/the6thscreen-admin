@@ -42,10 +42,15 @@ div .zone_edit {
   background-color: white;
   cursor: crosshair;
   position: relative;
+  z-index:0;
 }
 
 div .zone_edit .zone {
   border: 1px solid red;
+  z-index: 1;
+}
+div .zone_edit .drag-over {
+  cursor: not-allowed;
 }
 [ng-drag]{
   -moz-user-select: -moz-none;
@@ -57,11 +62,15 @@ div .zone_edit .zone {
 [ng-drag]{
   display: inline-block;
   cursor: move;
-}
-[ng-drag].drag-over{
-  border:solid 1px red;
+  z-index: 2;
+  position: relative;
 }
 [ng-drag].dragging{
   opacity: 0.5;
+  cursor: no-drop;
+}
+[ng-drag].drag-over{
+  border:solid 1px red;
+  cursor: copy;
 }
 
