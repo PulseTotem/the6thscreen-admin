@@ -3,28 +3,20 @@
   <h4>{{ sdi.description }}</h4>
 </div>
 
-<h5 translate="SDI.ZONES_LIST"></h5>
-<table class="table table-striped table-hover">
-  <tr>
-    <th>#</th>
-    <th translate="SDI.ZONE_NAME"></th>
-    <th translate="SDI.ZONE_DESCRIPTION"></th>
-    <th translate="SDI.ZONE_WIDTH"></th>
-    <th translate="SDI.ZONE_HEIGHT"></th>
-    <th translate="SDI.ZONE_POSITION_FROM_TOP"></th>
-    <th translate="SDI.ZONE_POSITION_FROM_LEFT"></th>
-  </tr>
-
-  <tr ng-repeat="zone in sdi.zones">
-    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.id }}</a></td>
-    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.name }}</a></td>
-    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.description }}</a></td>
-    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.width }}</a></td>
-    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.height }}</a></td>
-    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.positionFromTop }}</a></td>
-    <td><a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}">{{ zone.positionFromLeft }}</a></td>
-  </tr>
-</table>
+<div id="customization-sdi-preview">
+  <div class="customization-sdi-preview-zone" ng-repeat="zone in zones" style="top: {{ zone.positionFromTop }}%; left: {{ zone.positionFromLeft }}%; width: {{ zone.width }}%; height: {{ zone.height }}%">
+    <div id="customization-sdi-preview-zone-name">
+      {{zone.name}}
+    </div>
+    <div id="customization-sdi-preview-zone-services">
+      <div class="customization-sdi-preview-zone-service" ng-repeat="service in zone.services">
+        <button popover-template="'customization/views/sdi/callTypeList.html'" popover-title="CallTypes" popover-trigger="mouseenter" popover-placement="right" class="btn btn-default">
+          <img ng-src="{{service.logo}}" /> <span class="badge" >{{service.callTypes.length}}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <h5>Profils</h5>
 <table class="table table-striped table-hover">

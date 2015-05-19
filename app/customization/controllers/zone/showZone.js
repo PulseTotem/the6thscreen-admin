@@ -13,18 +13,16 @@ angular.module('T6SCustomization')
     $scope.zoneID = $routeParams.zoneId;
     $scope.sdiId = $routeParams.sdiId;
 
-        backendSocket.userIsLogin(function() {
-            backendSocket.on('ZoneDescription', function(response) {
-                callbackManager(response, function (zoneInfo) {
-                        $scope.zone = zoneInfo;
-                    },
-                    function (fail) {
-                        console.error(fail);
-                    }
-                );
+    backendSocket.on('ZoneDescription', function(response) {
+        callbackManager(response, function (zoneInfo) {
+                $scope.zone = zoneInfo;
+            },
+            function (fail) {
+                console.error(fail);
+            }
+        );
 
-            });
-            backendSocket.emit('RetrieveZoneDescription', {'zoneId' : $scope.zoneID});
-        });
+    });
+    backendSocket.emit('RetrieveZoneDescription', {'zoneId' : $scope.zoneID});
 
   }]);

@@ -13,28 +13,26 @@ angular.module('T6SCustomization')
     $scope.callTypeId = $routeParams.callTypeId;
     $scope.sdiId = $routeParams.sdiId;
 
-    backendSocket.userIsLogin(function() {
-      backendSocket.on('CallTypeDescription', function(response) {
-        callbackManager(response, function (callTypeInfo) {
-            $scope.callType = callTypeInfo;
-          },
-          function (fail) {
-            console.error(fail);
-          }
-        );
+    backendSocket.on('CallTypeDescription', function(response) {
+      callbackManager(response, function (callTypeInfo) {
+          $scope.callType = callTypeInfo;
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
 
-      });
+    });
 
-      backendSocket.on('deletedCall', function(response) {
-        callbackManager(response, function (idCall) {
-          $scope.callType.calls = $scope.callType.calls.filter(function (element) {
-            return (element.id != idCall);
-          });
+    backendSocket.on('deletedCall', function(response) {
+      callbackManager(response, function (idCall) {
+        $scope.callType.calls = $scope.callType.calls.filter(function (element) {
+          return (element.id != idCall);
         });
       });
-
-      backendSocket.emit('RetrieveCallTypeDescription', {'callTypeId' : $scope.callTypeId});
     });
+
+    backendSocket.emit('RetrieveCallTypeDescription', {'callTypeId' : $scope.callTypeId});
 
     $scope.deleteCall = function (idCall) {
       backendSocket.emit('DeleteCall', { "callId": idCall});
