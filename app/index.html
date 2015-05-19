@@ -52,11 +52,11 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header" ng-include="'common/views/menu.html'">
+    <div id="header" ng-include="'common/views/menu-' + header + '.html'" ng-controller="T6SCommon.MenuCtrl">
 
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid" id="t6s-main">
         <div ng-view=""></div>
     </div>
 

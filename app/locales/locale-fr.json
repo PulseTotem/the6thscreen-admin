@@ -17,10 +17,12 @@
     "MAIN" : {
         "ADMIN_PANEL" : "The 6th Screen : Panneau d'administration",
         "LOGIN" : "Connexion",
+        "LOGOUT" : "Se Déconnecter",
         "USERNAME_OR_EMAIL" : "Pseudo ou adresse mail",
         "PASSWORD" : "Mot de passe",
         "LOGIN_BUTTON" : "Se connecter",
-        "PASSWORD_LOST" : "Mot de passe perdu ?"
+        "PASSWORD_LOST" : "Mot de passe perdu ?",
+        "REMEMBER_ME" : "Se souvenir de moi"
     },
     "SDI" : {
         "ZONES_LIST" : "Liste des zones",

@@ -12,61 +12,59 @@ angular.module('T6SAdmin')
 
     var MODAL_SERVICE_CST = 'admin/views/service/addEdit.html';
 
-    backendSocket.userIsLogin(function() {
-      $scope.source = {};
-      $scope.newService = false;
+    $scope.source = {};
+    $scope.newService = false;
 
-      backendSocket.on('AllInfoTypeDescription', function(response) {
-        callbackManager(response, function (allInfoTypes) {
-            $scope.infoTypes = allInfoTypes;
-          },
-          function (fail) {
-            console.error(fail);
-          }
-        );
-      });
-
-      backendSocket.emit('RetrieveAllInfoTypeDescription')
-
-      backendSocket.on('AllServiceDescription', function(response) {
-        callbackManager(response, function (allServices) {
-            $scope.services = allServices;
-          },
-          function (fail) {
-            console.error(fail);
-          }
-        );
-      });
-
-      backendSocket.emit('RetrieveAllServiceDescription');
-
-      backendSocket.on('AllParamTypeDescription', function(response) {
-        callbackManager(response, function (allParamTypes) {
-            $scope.paramTypes = allParamTypes;
-            getParamTypes();
-          },
-          function (fail) {
-            console.error(fail);
-          }
-        );
-      });
-
-      backendSocket.emit('RetrieveAllParamTypeDescription');
-
-      backendSocket.on('SourceDescription', function(response) {
-        callbackManager(response, function (source) {
-            $scope.source = source;
-            getParamTypes();
-          },
-          function (fail) {
-            console.error(fail);
-          }
-        );
-      });
-      backendSocket.emit('RetrieveSourceDescriptionOnlyId', {'sourceId' : $routeParams.sourceId});
-
-      $scope.modalService = MODAL_SERVICE_CST;
+    backendSocket.on('AllInfoTypeDescription', function(response) {
+      callbackManager(response, function (allInfoTypes) {
+          $scope.infoTypes = allInfoTypes;
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
     });
+
+    backendSocket.emit('RetrieveAllInfoTypeDescription')
+
+    backendSocket.on('AllServiceDescription', function(response) {
+      callbackManager(response, function (allServices) {
+          $scope.services = allServices;
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
+
+    backendSocket.emit('RetrieveAllServiceDescription');
+
+    backendSocket.on('AllParamTypeDescription', function(response) {
+      callbackManager(response, function (allParamTypes) {
+          $scope.paramTypes = allParamTypes;
+          getParamTypes();
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
+
+    backendSocket.emit('RetrieveAllParamTypeDescription');
+
+    backendSocket.on('SourceDescription', function(response) {
+      callbackManager(response, function (source) {
+          $scope.source = source;
+          getParamTypes();
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
+    backendSocket.emit('RetrieveSourceDescriptionOnlyId', {'sourceId' : $routeParams.sourceId});
+
+    $scope.modalService = MODAL_SERVICE_CST;
 
     var getParamTypes = function () {
       $scope.selectedParamTypes = [];
