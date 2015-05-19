@@ -74,6 +74,10 @@ angular
                     $cookies.adminT6SToken = data.token;
                   }
 
+                  if(ADMIN_CONSTANTS.backendUrl.indexOf("localhost") <= -1) {
+                    alert("/!\\ UTILISATION DU HOST DISTANT !!! /!\\");
+                  }
+
                   $route.reload();
                 };
 
