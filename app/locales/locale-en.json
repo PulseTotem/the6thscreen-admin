@@ -12,10 +12,12 @@
     "MAIN" : {
         "ADMIN_PANEL" : "The 6th Screen : Administration Panel",
         "LOGIN" : "Log In",
+        "LOGOUT" : "Log Out",
         "USERNAME_OR_EMAIL" : "Username or Email",
         "PASSWORD" : "Password",
         "LOGIN_BUTTON" : "Log In",
-        "PASSWORD_LOST" : "Password lost ?"
+        "PASSWORD_LOST" : "Password lost ?",
+        "REMEMBER_ME" : "Remember me"
     },
     "DASHBOARD" : {
         "WELCOME" : "Welcome {{username}}, here are Digital Signages you can edit.",

@@ -9,29 +9,26 @@
  */
 angular.module('T6SAdmin')
   .controller('T6SAdmin.AddRendererCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
-    backendSocket.userIsLogin(function() {
+    backendSocket.on('AllInfoTypeDescription', function(response) {
+      callbackManager(response, function (allInfoTypes) {
+          $scope.infoTypes = allInfoTypes;
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
 
-      backendSocket.on('AllInfoTypeDescription', function(response) {
-        callbackManager(response, function (allInfoTypes) {
-            $scope.infoTypes = allInfoTypes;
-          },
-          function (fail) {
-            console.error(fail);
-          }
-        );
-      });
+    backendSocket.emit('RetrieveAllInfoTypeDescription');
 
-      backendSocket.emit('RetrieveAllInfoTypeDescription');
-
-      backendSocket.on('RendererDescription', function(response) {
-        callbackManager(response, function (renderer) {
-            $scope.renderer = renderer;
-          },
-          function (fail) {
-            console.error(fail);
-          }
-        );
-      });
+    backendSocket.on('RendererDescription', function(response) {
+      callbackManager(response, function (renderer) {
+          $scope.renderer = renderer;
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
     });
 
     $scope.saveAttribute = function (element, value) {
