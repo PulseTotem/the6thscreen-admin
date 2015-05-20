@@ -17,6 +17,24 @@ angular.module('T6SConfiguration')
     $scope.current_service = null;
     $scope.current_calltype = null;
 
+    backendSocket.on('CallTypesDescriptionFromZone', function (response) {
+      callbackManager(response, function (infoCT) {
+        var index = -1;
+        for (var i = 0; i < $scope.zones.length; i++) {
+          if ($scope.zones[i].id == infoCT.id) {
+            index = i;
+          }
+        }
+        if (index !== -1) {
+          $scope.zones.splice(index,1);
+        }
+        $scope.zones.push(infoCT);
+        //console.log(infoCT);
+      }, function (fail) {
+        console.error(fail);
+      });
+    });
+
     backendSocket.on('SDIDescription', function(response) {
       callbackManager(response, function (sdi) {
           $scope.sdi = sdi;
@@ -76,28 +94,7 @@ angular.module('T6SConfiguration')
       });
 
       modalInstance.result.then(function (callType) {
-        $scope.zones.forEach( function (elem) {
-          /*if (elem.id == $scope.current_zone.id) {
-            if (elem.services === undefined) {
-              elem.services = [];
-            }
-            var service = elem.services.forEach( function (ser) {
-              if (ser.id === $scope.current_service.id) {
-                return ser;
-              }
-            });
-
-            if (service === undefined) {
-              var index = elem.services.push($scope.current_service);
-              service = elem.services[index-1];
-            }
-
-            if (service.callTypes === undefined) {
-              service.callTypes = [];
-            }
-            service.callTypes.push(callType);
-          }
-        });*/
+        backendSocket.emit('RetrieveCallTypesFromZoneId', {'zoneId': $scope.current_zone.id});
         $scope.current_zone = null;
         $scope.current_service = null;
         $scope.current_calltype = null;
