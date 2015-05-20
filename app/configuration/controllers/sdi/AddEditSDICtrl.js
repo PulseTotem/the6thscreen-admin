@@ -8,9 +8,14 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SConfiguration')
-  .controller('T6SConfiguration.AddEditSDICtrl', ['$scope','$rootScope','$routeParams','backendSocket', 'callbackManager', 'saveAttribute', function ($scope, $rootScope, $routeParams, backendSocket, callbackManager, saveAttribute) {
+  .controller('T6SConfiguration.AddEditSDICtrl', ['$scope','$rootScope','$routeParams','backendSocket', 'callbackManager', 'saveAttribute', '$modal', function ($scope, $rootScope, $routeParams, backendSocket, callbackManager, saveAttribute, $modal) {
+
+    var CONSTANT_MODAL_CALLTYPE_CREATION_URL = "configuration/views/sdi/configuration/ModalCallTypeCreation.html";
 
     $scope.zones = [];
+    $scope.current_zone = null;
+    $scope.current_service = null;
+    $scope.current_calltype = null;
 
     backendSocket.on('SDIDescription', function(response) {
       callbackManager(response, function (sdi) {
@@ -59,5 +64,47 @@ angular.module('T6SConfiguration')
 
     $scope.onDropCompleteOnZone = function (data, zone_id) {
       console.log("Got the following data : "+data+" for zone : "+zone_id);
+      $scope.current_zone = zone_id;
+      $scope.current_service = data;
+
+      var modalInstance = $modal.open({
+        animation: true,
+        templateUrl: CONSTANT_MODAL_CALLTYPE_CREATION_URL,
+        scope: $scope,
+        backdrop: 'static',
+        keyboard: false
+      });
+
+      modalInstance.result.then(function (callType) {
+        $scope.zones.forEach( function (elem) {
+          /*if (elem.id == $scope.current_zone.id) {
+            if (elem.services === undefined) {
+              elem.services = [];
+            }
+            var service = elem.services.forEach( function (ser) {
+              if (ser.id === $scope.current_service.id) {
+                return ser;
+              }
+            });
+
+            if (service === undefined) {
+              var index = elem.services.push($scope.current_service);
+              service = elem.services[index-1];
+            }
+
+            if (service.callTypes === undefined) {
+              service.callTypes = [];
+            }
+            service.callTypes.push(callType);
+          }
+        });*/
+        $scope.current_zone = null;
+        $scope.current_service = null;
+        $scope.current_calltype = null;
+      }, function () {
+        $scope.current_zone = null;
+        $scope.current_service = null;
+        $scope.current_calltype = null;
+      });
     };
   }]);
