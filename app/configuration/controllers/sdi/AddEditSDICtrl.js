@@ -70,7 +70,9 @@ angular.module('T6SConfiguration')
       var modalInstance = $modal.open({
         animation: true,
         templateUrl: CONSTANT_MODAL_CALLTYPE_CREATION_URL,
-        scope: $scope
+        scope: $scope,
+        backdrop: 'static',
+        keyboard: false
       });
 
       /*modalInstance.result.then(function (selectedItem) {

@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SConfiguration')
-  .controller('T6SConfiguration.AddCallTypeCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', 'saveAttribute', function ($scope, $routeParams, backendSocket, callbackManager, saveAttribute, $modalInstance) {
+  .controller('T6SConfiguration.AddCallTypeCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', 'saveAttribute', function ($scope, $routeParams, backendSocket, callbackManager, saveAttribute) {
     $scope.sources = [];
     $scope.renderers = [];
     $scope.policies = [];
@@ -69,7 +69,7 @@ angular.module('T6SConfiguration')
     backendSocket.on('AnswerCreateCallType', function(response) {
       callbackManager(response, function (callType) {
           $scope.callType = callType;
-          saveAttribute("UpdateCallType", $scope.callType.id, "linkZone", $scope.current_zone);
+          saveAttribute("UpdateCallType", $scope.callType.id, "linkZone", $scope.current_zone.id);
         },
         function (fail) {
           console.error(fail);
@@ -77,7 +77,7 @@ angular.module('T6SConfiguration')
       );
     });
 
-    backendSocket.emit("RetrieveSourcesFromServiceId", {"serviceId": $scope.current_service});
+    backendSocket.emit("RetrieveSourcesFromServiceId", {"serviceId": $scope.current_service.id});
     backendSocket.emit("CreateCallType", {});
 
     $scope.selectSource = function (sourceId) {
@@ -95,5 +95,16 @@ angular.module('T6SConfiguration')
 
     $scope.selectPolicy = function (policyId) {
       saveAttribute("UpdateCallType", $scope.callType.id, "linkPolicy", policyId);
+    };
+
+    $scope.destroyCallType = function () {
+      if ($scope.callType.id) {
+        backendSocket.emit("DeleteCallType", {"callTypeId": $scope.callType.id});
+      }
+      $scope.$dismiss('cancel');
+    };
+
+    $scope.close = function () {
+      $scope.$close($scope.callType);
     };
   }]);

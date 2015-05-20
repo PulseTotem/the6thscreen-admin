@@ -1,7 +1,7 @@
 
     <div class="modal-content" ng-controller="T6SConfiguration.AddCallTypeCtrl">
       <div class="modal-header">
-        <h3>Création de CallType : {{ callType.id }}</h3>
+        <h3>Création d'un appel pour le service {{ current_service.name }}</h3>
       </div>
       <div class="modal-body" ng-switch="step">
         <accordion close-others="true">
@@ -39,7 +39,8 @@
         </accordion>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="destroyCallType()">Annuler</button>
-        <button type="button" class="btn btn-primary" ng-click="validate()" ng-if="callType.complete">Valider</button>
+        <button type="button" class="btn btn-default" ng-click="destroyCallType()" ng-if="!callType.complete">Annuler</button>
+        <button type="button" class="btn btn-danger" ng-click="destroyCallType()" ng-if="callType.complete" ng-confirm-click="Etes vous sur de vouloir supprimer ce callType ?">Supprimer</button>
+        <button type="button" class="btn btn-primary" ng-click="close()" ng-if="callType.complete">Fermer</button>
       </div>
     </div>
