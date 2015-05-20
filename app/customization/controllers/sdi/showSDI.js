@@ -15,7 +15,7 @@ angular.module('T6SCustomization')
     $scope.zones = [];
     var zones = [];
 
-    var zoneIndex = null;
+    /*var zoneIndex = null;
     var manageZone = function() {
       if(zoneIndex == null) {
         zoneIndex = 0;
@@ -101,7 +101,7 @@ angular.module('T6SCustomization')
           manageZone();
         }
       }
-    };
+    }; */
 
     backendSocket.on('ZoneDescription', function(response) {
       callbackManager(response, function (zoneInfo) {
@@ -119,12 +119,22 @@ angular.module('T6SCustomization')
 
     });
 
+    backendSocket.on('CallTypesDescriptionFromZone', function (response) {
+      callbackManager(response, function (infoCT) {
+        $scope.zones.push(infoCT);
+        //console.log(infoCT);
+      }, function (fail) {
+        console.error(fail);
+      });
+    });
+
     backendSocket.on('SDIDescription', function(response) {
       callbackManager(response, function (sdiInfo) {
               $scope.sdi = sdiInfo;
 
               $scope.sdi.zones.forEach(function(zone) {
-                backendSocket.emit('RetrieveZoneDescription', {'zoneId' : zone.id});
+                backendSocket.emit('RetrieveCallTypesFromZoneId', {'zoneId': zone.id});
+                //backendSocket.emit('RetrieveZoneDescription', {'zoneId' : zone.id});
               });
           },
           function (fail) {

@@ -76,6 +76,28 @@ angular.module('T6SConfiguration')
       });
 
       modalInstance.result.then(function (callType) {
+        $scope.zones.forEach( function (elem) {
+          /*if (elem.id == $scope.current_zone.id) {
+            if (elem.services === undefined) {
+              elem.services = [];
+            }
+            var service = elem.services.forEach( function (ser) {
+              if (ser.id === $scope.current_service.id) {
+                return ser;
+              }
+            });
+
+            if (service === undefined) {
+              var index = elem.services.push($scope.current_service);
+              service = elem.services[index-1];
+            }
+
+            if (service.callTypes === undefined) {
+              service.callTypes = [];
+            }
+            service.callTypes.push(callType);
+          }
+        });*/
         $scope.current_zone = null;
         $scope.current_service = null;
         $scope.current_calltype = null;
