@@ -75,10 +75,14 @@ angular.module('T6SConfiguration')
         keyboard: false
       });
 
-      /*modalInstance.result.then(function (selectedItem) {
-        $scope.selected = selectedItem;
+      modalInstance.result.then(function (callType) {
+        $scope.current_zone = null;
+        $scope.current_service = null;
+        $scope.current_calltype = null;
       }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
-      });*/
+        $scope.current_zone = null;
+        $scope.current_service = null;
+        $scope.current_calltype = null;
+      });
     };
   }]);
