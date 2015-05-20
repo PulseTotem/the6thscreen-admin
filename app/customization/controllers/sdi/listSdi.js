@@ -12,10 +12,8 @@ angular.module('T6SCustomization')
 
         $scope.listSDI = [];
 
-        backendSocket.userIsLogin(function() {
-          backendSocket.refreshUser(function(){
-            $scope.listSDI = $rootScope.user.sdis;
-          });
+        backendSocket.refreshUser(function(){
+          $scope.listSDI = $rootScope.user.sdis;
         });
 
         $scope.reloadList = function (newList) {
