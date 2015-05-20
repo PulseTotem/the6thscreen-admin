@@ -4,21 +4,42 @@
         <h3>Création de CallType : {{ callType.id }}</h3>
       </div>
       <div class="modal-body" ng-switch="step">
-        <div class="list-group" ng-repeat="source in sources" ng-switch-when="1">
-          <a href="#" class="list-group-item" ng-click="selectSource(source.id)">
-            <h4 class="list-group-item-heading">{{ source.name }}</h4>
-            <p class="list-group-item-text">{{ source.description }}</p>
-          </a>
-        </div>
-
-        <div class="list-group" ng-repeat="renderer in renderers" ng-switch-when="2">
-          <a href="#" class="list-group-item" ng-click="selectRenderer(renderer.id)">
-            <h4 class="list-group-item-heading">{{ renderer.name }}</h4>
-            <p class="list-group-item-text">{{ renderer.description }}</p>
-          </a>
-        </div>
+        <accordion close-others="true">
+          <accordion-group heading="Source d'information" is-open="isFirstStep">
+            <h4>Choisissez une source d'information : </h4>
+            <div class="list-group" ng-repeat="source in sources">
+              <a href="#" class="list-group-item" ng-click="selectSource(source.id)">
+                <h4 class="list-group-item-heading">{{ source.name }}</h4>
+                <p class="list-group-item-text">{{ source.description }}</p>
+              </a>
+            </div>
+          </accordion-group>
+          <accordion-group heading="Composant d'affichage" is-open="isSecondStep" is-disabled="!callType.source">
+            <h3>Choisissez un mode d'affichage : </h3>
+            <div class="list-group" ng-repeat="renderer in renderers">
+              <a href="#" class="list-group-item" ng-click="selectRenderer(renderer.id)">
+                <h4 class="list-group-item-heading">{{ renderer.name }}</h4>
+                <p class="list-group-item-text">{{ renderer.description }}</p>
+              </a>
+            </div>
+          </accordion-group>
+          <accordion-group heading="Nommez l'appel" is-open="isFinalStep" is-disabled="!callType.renderer">
+            <h3>Donnez un nom à votre appel : </h3>
+            <input type="text" class="form-control" ng-model="callType.name" placeholder="Name" ng-model-options="{ updateOn: 'blur' }" ng-change="saveName()" />
+          </accordion-group>
+          <accordion-group heading="Options avancées" is-disabled="!callType.renderer">
+            <h3>Choisissez une politique : </h3>
+            <div class="list-group" ng-repeat="policy in policies">
+              <a href="#" class="list-group-item" ng-click="selectPolicy(policy.id)">
+                <h4 class="list-group-item-heading">{{ policy.name }}</h4>
+                <p class="list-group-item-text">{{ policy.description }}</p>
+              </a>
+            </div>
+          </accordion-group>
+        </accordion>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="nextStep()" ng-if="stepEnd">{{ action }}</button>
+        <button type="button" class="btn btn-default" ng-click="destroyCallType()">Annuler</button>
+        <button type="button" class="btn btn-primary" ng-click="validate()" ng-if="callType.complete">Valider</button>
       </div>
     </div>

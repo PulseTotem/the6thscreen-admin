@@ -11,10 +11,21 @@ angular.module('T6SConfiguration')
   .controller('T6SConfiguration.AddCallTypeCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', 'saveAttribute', function ($scope, $routeParams, backendSocket, callbackManager, saveAttribute, $modalInstance) {
     $scope.sources = [];
     $scope.renderers = [];
+    $scope.policies = [];
     $scope.callType = null;
-    $scope.step = 1;
-    $scope.stepEnd = false;
-    $scope.action = "Next";
+    $scope.isFirstStep = true;
+    $scope.isSecondStep = false;
+    $scope.isFinalStep = false;
+
+    backendSocket.on('AllPolicyDescription', function(response) {
+      callbackManager(response, function (policies) {
+          $scope.policies = policies;
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
 
     backendSocket.on('SourcesDescriptionFromService', function(response) {
       callbackManager(response, function (sources) {
@@ -39,6 +50,15 @@ angular.module('T6SConfiguration')
     backendSocket.on('AnswerUpdateCallType', function(response) {
       callbackManager(response, function (callType) {
           $scope.callType = callType;
+
+          if (callType.source) {
+            backendSocket.emit("RetrieveRenderersFromSourceId", {"sourceId": callType.source});
+            $scope.isSecondStep = true;
+          }
+          if (callType.renderer) {
+            backendSocket.emit("RetrieveAllPolicyDescription");
+            $scope.isFinalStep = true;
+          }
         },
         function (fail) {
           console.error(fail);
@@ -62,12 +82,18 @@ angular.module('T6SConfiguration')
 
     $scope.selectSource = function (sourceId) {
       saveAttribute("UpdateCallType", $scope.callType.id, "linkSource", sourceId);
-      backendSocket.emit("RetrieveRenderersFromSourceId", {"sourceId": sourceId});
-      $scope.step = 2;
+
     };
 
     $scope.selectRenderer = function (rendererId) {
       saveAttribute("UpdateCallType", $scope.callType.id, "linkRenderer", rendererId);
-      $scope.step = 3;
+    };
+
+    $scope.saveName = function () {
+      saveAttribute("UpdateCallType", $scope.callType.id, "setName", $scope.callType.name);
+    };
+
+    $scope.selectPolicy = function (policyId) {
+      saveAttribute("UpdateCallType", $scope.callType.id, "linkPolicy", policyId);
     };
   }]);
