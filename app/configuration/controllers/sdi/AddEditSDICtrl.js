@@ -76,6 +76,8 @@ angular.module('T6SConfiguration')
       };
 
       backendSocket.emit("CreateZone", zone);
+      event.stopPropagation();
+      event.preventDefault();
     };
 
 
@@ -103,5 +105,10 @@ angular.module('T6SConfiguration')
         $scope.current_service = null;
         $scope.current_calltype = null;
       });
+    };
+
+    $scope.editCallType = function (callTypeId, event) {
+      event.stopPropagation();
+      event.preventDefault();
     };
   }]);
