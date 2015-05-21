@@ -17,6 +17,30 @@ angular.module('T6SConfiguration')
     $scope.current_service = null;
     $scope.current_calltype = null;
 
+    $scope.barres = {
+      "barreH1": {
+        "visible": false,
+        "width": 100,
+        "height": 50
+      },
+      "barreV1": {
+        "visible": false,
+        "width": 50,
+        "height": 100
+      },
+      "barreH2": {
+        "visible": false,
+        "width": 100,
+        "height": 50
+      },
+      "barreV2": {
+        "visible": false,
+        "width": 50,
+        "height": 100
+      }
+    };
+
+
     backendSocket.on('CallTypesDescriptionFromZone', function (response) {
       callbackManager(response, function (infoCT) {
         var index = -1;

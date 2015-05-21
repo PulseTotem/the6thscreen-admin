@@ -115,7 +115,6 @@ div .zone_edit .drag-over {
   width:50%;
   border-right:1px solid blue;
   height:100%;
-  visibility: hidden;
 }
 .ligne_verticale2
 {
@@ -123,7 +122,6 @@ div .zone_edit .drag-over {
   width:50%;
   border-right:1px solid blue;
   height:100%;
-  visibility: hidden;
 }
 
 .ligne_horizontale1
@@ -132,7 +130,6 @@ div .zone_edit .drag-over {
   width:100%;
   border-bottom:1px solid blue;
   height:50%;
-  visibility: hidden;
 }
 .ligne_horizontale2
 {
@@ -140,7 +137,6 @@ div .zone_edit .drag-over {
   width:100%;
   border-bottom:1px solid blue;
   height:50%;
-  visibility: hidden;
 }
 
 

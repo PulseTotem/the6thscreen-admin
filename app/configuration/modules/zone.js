@@ -75,191 +75,158 @@ angular.module('zone', [])
     };
   })
     .directive('drag', function ($document, $window, zoneUtil, ancres, magnetisme, magnetismeMarge) {
-        return function ($scope, $element) {
+      return {
+        scope: false,
+        link: function ($scope, $element) {
+          console.log($scope.barreV1_width);
 
-            function aidePlacement(zone, point, cote) {
-                var barreV1 = $document[0].body.getElementsByClassName('barre_verticale1');
-                var barreV2 = $document[0].body.getElementsByClassName('barre_verticale2');
-                var barreH1 = $document[0].body.getElementsByClassName('barre_horizontale1');
-                var barreH2 = $document[0].body.getElementsByClassName('barre_horizontale2');
-                var res = point;
-                for (var i = 0; i < ancres.length; i++) {
-                    if ((point > ancres[i] - magnetismeMarge) && (point < ancres[i] + magnetismeMarge)) {
-                        res = ancres[i];
-                    }
-                }
-                if (res !== point) {
-                    if (cote === 0) {
-                        angular.element(barreV1).css({
-                            position: 'absolute',
-                            visibility: 'visible',
-                            width: res + '%',
-                            height: 100 + '%',
-                            borderRightColor: '#0000FF',
-                            borderRightWidth: '1px',
-                            borderRightStyle: 'Solid'
-                        });
-                    } else if (cote === 1) {
-                        angular.element(barreH1).css({
-                            position: 'absolute',
-                            visibility: 'visible',
-                            height: res + '%',
-                            width: 100 + '%',
-                            borderBottomColor: '#0000FF',
-                            borderBottomWidth: '1px',
-                            borderBottomStyle: 'Solid'
-                        });
-                    } else if (cote === 2) {
-                        angular.element(barreV2).css({
-                            position: 'absolute',
-                            visibility: 'visible',
-                            width: res + '%',
-                            height: 100 + '%',
-                            borderRightColor: '#0000FF',
-                            borderRightWidth: '1px',
-                            borderRightStyle: 'Solid'
-                        });
-                    } else {
-                        angular.element(barreH2).css({
-                            position: 'absolute',
-                            visibility: 'visible',
-                            height: res + '%',
-                            width: 100 + '%',
-                            borderBottomColor: '#0000FF',
-                            borderBottomWidth: '1px',
-                            borderBottomStyle: 'Solid'
-                        });
-                    }
-                }
-                else {
-                    if (cote === 0) {
-                        angular.element(barreV1).css({
-                            visibility: 'hidden'
-                        });
-                    } else if (cote === 1) {
-                        angular.element(barreH1).css({
-                            visibility: 'hidden'
-                        });
-                    } else if (cote === 2) {
-                        angular.element(barreV2).css({
-                            visibility: 'hidden'
-                        });
-                    } else {
-                        angular.element(barreH2).css({
-                            visibility: 'hidden'
-                        });
-                    }
-                }
-                return res;
+          function aidePlacement(zone, point, cote) {
+            var res = point;
+            for (var i = 0; i < ancres.length; i++) {
+              if ((point > ancres[i] - magnetismeMarge) && (point < ancres[i] + magnetismeMarge)) {
+                res = ancres[i];
+              }
+            }
+            if (res !== point) {
+              if (cote === 0) {
+                $scope.barreV1_visible = true;
+                $scope.barreV1_width = res;
+                $scope.barreV1_height = 100;
+              } else if (cote === 1) {
+                console.log("Visible !")
+                $scope.barreH1_visible = true;
+                $scope.barreH1_width = 100;
+                $scope.barreH1_height = res;
+              } else if (cote === 2) {
+                $scope.barreV2_visible = true;
+                $scope.barreV2_width = res;
+                $scope.barreV2_height = 100;
+              } else {
+                $scope.barreH2_visible = true;
+                $scope.barreH2_width = 100;
+                $scope.barreH2_height = res;
+              }
+            }
+            else {
+              if (cote === 0) {
+                $scope.barreV1_visible = false;
+              } else if (cote === 1) {
+                $scope.barreH1_visible = false;
+              } else if (cote === 2) {
+                $scope.barreV2_visible = false;
+              } else {
+                $scope.barreH2_visible = false;
+              }
+            }
+            return res;
+          }
+
+          function deplaceZone(zone, top, left) {
+            var oldPcLeft = parseFloat(zone[0].style.left);
+            var oldPcTop = parseFloat(zone[0].style.top);
+            var pcTop = (top / $('#zone_edit').innerHeight()) * 100,
+              pcLeft = (left / $('#zone_edit').innerWidth()) * 100;
+
+            if (pcTop < 0) {
+              pcTop = 0;
+            }
+            else if (pcTop + parseFloat(zone[0].style.height) > 100) {
+              pcTop = 100 - parseFloat(zone[0].style.height);
+            }
+            if (pcLeft < 0) {
+              pcLeft = 0;
+            }
+            else if (pcLeft + parseFloat(zone[0].style.width) > 100) {
+              pcLeft = 100 - parseFloat(zone[0].style.width);
+            }
+            var aide = false;
+            if (aide) {
+              var pcRight = (pcLeft + parseFloat(zone[0].style.width)),
+                pcBottom = (pcTop + parseFloat(zone[0].style.height));
+              pcRight = aidePlacement(zone, pcRight, 2);
+              pcBottom = aidePlacement(zone, pcBottom, 3);
+              pcLeft = pcRight - parseFloat(zone[0].style.width);
+              pcTop = pcBottom - parseFloat(zone[0].style.height);
+              pcLeft = aidePlacement(zone, pcLeft, 0);
+              pcTop = aidePlacement(zone, pcTop, 1);
+            }
+            var tmpZone = zoneUtil.get($scope.zones, zone.attr('numero'));
+            console.log(tmpZone);
+            tmpZone.positionFromLeft = pcLeft;
+            tmpZone.positionFromTop = pcTop;
+            console.log("pcLeft " + pcLeft);
+            console.log("pcTop " + pcTop);
+
+            var colision = zoneUtil.colision($scope.zones, zone.attr('numero'));
+            if (magnetisme === false || colision === false) {
+              zoneUtil.update($scope.zones, tmpZone);
+              zone.css({
+                position: 'absolute',
+                top: pcTop + '%',
+                left: pcLeft + '%'
+              });
+            } else if (calculMarge(magnetismeMarge, oldPcLeft, oldPcTop, pcLeft, pcTop) === false) {
+              tmpZone.positionFromLeft = oldPcLeft;
+              tmpZone.positionFromTop = oldPcTop;
+            }
+          }
+
+          function calculMarge(magnetisme, oldPcLeft, oldPcTop, pcLeft, pcTop) {
+            if ((between(pcLeft, oldPcLeft, magnetisme)) ||
+              (between(pcTop, oldPcTop, magnetisme))) {
+              return true;
+            } else {
+              return false;
             }
 
-            function deplaceZone(zone, divWidth, divHeight, top, left) {
-                var oldPcLeft = parseFloat(zone[0].style.left);
-                var oldPcTop = parseFloat(zone[0].style.top);
-                var pcTop = (top / divHeight) * 100,
-                    pcLeft = (left / divWidth) * 100;
-                if (pcTop < 0) {
-                    pcTop = 0;
-                }
-                else if (pcTop + parseFloat(zone[0].style.height) > 100) {
-                    pcTop = 100 - parseFloat(zone[0].style.height);
-                }
-                if (pcLeft < 0) {
-                    pcLeft = 0;
-                }
-                else if (pcLeft + parseFloat(zone[0].style.width) > 100) {
-                    pcLeft = 100 - parseFloat(zone[0].style.width);
-                }
-                var aide = true;
-                if (aide) {
-                    var pcRight = (pcLeft + parseFloat(zone[0].style.width)),
-                        pcBottom = (pcTop + parseFloat(zone[0].style.height));
-                    pcRight = aidePlacement(zone, pcRight, 2);
-                    pcBottom = aidePlacement(zone, pcBottom, 3);
-                    pcLeft = pcRight - parseFloat(zone[0].style.width);
-                    pcTop = pcBottom - parseFloat(zone[0].style.height);
-                    pcLeft = aidePlacement(zone, pcLeft, 0);
-                    pcTop = aidePlacement(zone, pcTop, 1);
-                }
-                var tmpZone = zoneUtil.get($scope.zones, zone.attr('numero'));
-                tmpZone.positionFromLeft = pcLeft;
-                tmpZone.positionFromTop = pcTop;
-                var colision = zoneUtil.colision($scope.zones, zone.attr('numero'));
-                if (magnetisme === false || colision === false) {
-                    zoneUtil.update($scope.zones, tmpZone);
-                    zone.css({
-                        position: 'absolute',
-                        top: pcTop + '%',
-                        left: pcLeft + '%'
-                    });
-                } else if (calculMarge(magnetismeMarge, oldPcLeft, oldPcTop, pcLeft, pcTop) === false) {
-                    tmpZone.positionFromLeft = oldPcLeft;
-                    tmpZone.positionFromTop = oldPcTop;
-                }
+          }
+
+          function between(x, x1, delta) {
+            if ((x > x1 - delta) && (x < x1 + delta)) {
+              return true;
+            } else {
+              return false;
             }
+          }
 
-            function calculMarge(magnetisme, oldPcLeft, oldPcTop, pcLeft, pcTop) {
-                if ((between(pcLeft, oldPcLeft, magnetisme)) ||
-                    (between(pcTop, oldPcTop, magnetisme))) {
-                    return true;
-                } else {
-                    return false;
-                }
+          function mup($event) {
+            //$event.preventDefault();
+            $event.stopPropagation();
+            $document.off('mousemove', mmove);
+            $document.off('mouseup', mup);
+            var zone_JSON = JSON.stringify($scope.zones);
+            //console.log(zone_JSON);
+          }
 
+          function mmove($event) {
+            //$event.preventDefault();
+            $event.stopPropagation();
+
+
+            deplaceZone($element, $event.pageY - Y, $event.pageX - X);
+          }
+
+          var X = 0, Y = 0;
+          var newElement = angular.element('<div class="draggable"></div>');
+          $element.append(newElement);
+          newElement.on('mouseclick', function ($event) {
+            $event.stopPropagation();
+          });
+          newElement.on('mousedown', function ($event) {
+            //$event.preventDefault();
+            $event.stopPropagation();
+
+            if ($element.attr('drag') === 'true') {
+              $document.on('mouseup', mup);
+              $document.on('mousemove', mmove);
+              X = $event.pageX - $element[0].offsetLeft;
+              Y = $event.pageY - $element[0].offsetTop;
+              $scope.showTooltip = true;
             }
-
-            function between(x, x1, delta) {
-                if ((x > x1 - delta) && (x < x1 + delta)) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-
-            function mup() {
-                $document.off('mousemove', mmove);
-                $document.off('mouseup', mup);
-                var zone_JSON = JSON.stringify($scope.zones);
-                //console.log(zone_JSON);
-            }
-
-            function mmove($event) {
-                $event.preventDefault();
-                $event.stopPropagation();
-                var div = $event.target;
-
-                var divWidth = div.offsetWidth;
-                var divHeight = div.offsetHeight;
-
-                var positionXInDiv = $event.offsetX;
-                var positionYInDiv = $event.offsetY;
-                deplaceZone($element, divWidth, divHeight, positionYInDiv - Y, positionXInDiv - X);
-            }
-
-            var X = 0, Y = 0;
-            var newElement = angular.element('<div class="draggable"></div>');
-            $element.append(newElement);
-            newElement.on('mousedown', function ($event) {
-                $event.preventDefault();
-                $event.stopPropagation();
-                var div = $event.target;
-
-                var divWidth = div.offsetWidth;
-                var divHeight = div.offsetHeight;
-
-                var positionXInDiv = $event.offsetX;
-                var positionYInDiv = $event.offsetY;
-                if ($element.attr('drag') === 'true') {
-                    $document.on('mouseup', mup);
-                    $document.on('mousemove', mmove);
-                    X = positionXInDiv - $element[0].offsetLeft;
-                    Y = positionYInDiv - $element[0].offsetTop;
-                    $scope.showTooltip = true;
-                }
-            });
-        };
+          });
+        }
+      }
     })
-
     .directive('resize', function ($document, $window, zoneUtil, ancres, magnetisme, magnetismeMarge) {
         return function ($scope, $element) {
             function aidePlacement(zone, point, cote) {
@@ -316,9 +283,9 @@ angular.module('zone', [])
                     wtest = $element[0].offsetLeft + $element[0].offsetWidth - marginW,
                     left = $event.pageX > wtest ? wtest : $event.pageX,
                     width = $element[0].offsetLeft - left + $element[0].offsetWidth,
-                    pcWidth = (width / $window.innerWidth) * 100,
-                    pcHeight = (height / $window.innerHeight) * 100,
-                    pcLeft = (left / $window.innerWidth) * 100;
+                    pcWidth = (width / $('#zone_edit').innerWidth()) * 100,
+                    pcHeight = (height / $('#zone_edit').innerHeight()) * 100,
+                    pcLeft = (left / $('#zone_edit').innerWidth()) * 100;
                 var pcTop = parseFloat($element[0].style.top);
                 var oldPcLeft = parseFloat($element[0].style.left);
                 var oldPcWidth = parseFloat($element[0].style.width);
