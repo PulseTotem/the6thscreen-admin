@@ -4,7 +4,11 @@
   <div ng-include="'configuration/views/sdi/configuration/MenuService.html'"></div>
 
   <div class="zone_edit" ng-click="createZone($event)">
-    <div ng-repeat="zone in zones" class="zone" style="width: {{ zone.width}}%; height: {{ zone.height}}%; position: absolute; top: {{ zone.positionFromTop}}%; left: {{ zone.positionFromLeft}}%;" ng-drop="true" ng-drop-success="onDropCompleteOnZone($data,zone)">
+    <div class="barre_horizontale1"></div>
+    <div class="barre_horizontale2"></div>
+    <div class="barre_verticale1"></div>
+    <div class="barre_verticale2"></div>
+    <div ng-repeat="zone in zones" resize="true" drag="true" delete lock="false" class="zone" numero="{{zone.id}}" style="width: {{ zone.width}}%; height: {{ zone.height}}%; position: absolute; top: {{ zone.positionFromTop}}%; left: {{ zone.positionFromLeft}}%;" ng-drop="true" ng-drop-success="onDropCompleteOnZone($data,zone)">
       {{ zone.id }}
       <div class="customization-sdi-preview-zone-service" ng-repeat="service in zone.services">
         <div class="btn-group" dropdown>
