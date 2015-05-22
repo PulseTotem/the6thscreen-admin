@@ -78,7 +78,6 @@ angular.module('zone', [])
       return {
         scope: false,
         link: function ($scope, $element) {
-          console.log($scope.barreV1_width);
 
           function aidePlacement(zone, point, cote) {
             var res = point;
@@ -139,7 +138,7 @@ angular.module('zone', [])
             else if (pcLeft + parseFloat(zone[0].style.width) > 100) {
               pcLeft = 100 - parseFloat(zone[0].style.width);
             }
-            var aide = false;
+            var aide = true;
             if (aide) {
               var pcRight = (pcLeft + parseFloat(zone[0].style.width)),
                 pcBottom = (pcTop + parseFloat(zone[0].style.height));
@@ -151,11 +150,8 @@ angular.module('zone', [])
               pcTop = aidePlacement(zone, pcTop, 1);
             }
             var tmpZone = zoneUtil.get($scope.zones, zone.attr('numero'));
-            console.log(tmpZone);
             tmpZone.positionFromLeft = pcLeft;
             tmpZone.positionFromTop = pcTop;
-            console.log("pcLeft " + pcLeft);
-            console.log("pcTop " + pcTop);
 
             var colision = zoneUtil.colision($scope.zones, zone.attr('numero'));
             if (magnetisme === false || colision === false) {
@@ -228,136 +224,74 @@ angular.module('zone', [])
       }
     })
     .directive('resize', function ($document, $window, zoneUtil, ancres, magnetisme, magnetismeMarge) {
-        return function ($scope, $element) {
-            function aidePlacement(zone, point, cote) {
-                var barreV1 = $document[0].body.getElementsByClassName('barre_verticale1');
-                var barreH2 = $document[0].body.getElementsByClassName('barre_horizontale2');
-                var res = point;
-                for (var i = 0; i < ancres.length; i++) {
-                    if ((point > ancres[i] - magnetismeMarge) && (point < ancres[i] + magnetismeMarge)) {
-                        res = ancres[i];
-                    }
-                }
-                if (res !== point) {
-                    if (cote === 0) {
-                        angular.element(barreV1).css({
-                            position: 'absolute',
-                            visibility: 'visible',
-                            width: res + '%',
-                            height: 100 + '%',
-                            borderRightColor: '#0000FF',
-                            borderRightWidth: '1px',
-                            borderRightStyle: 'Solid'
-                        });
-                    } else {
-                        angular.element(barreH2).css({
-                            position: 'absolute',
-                            visibility: 'visible',
-                            height: res + '%',
-                            width: 100 + '%',
-                            borderBottomColor: '#0000FF',
-                            borderBottomWidth: '1px',
-                            borderBottomStyle: 'Solid'
-                        });
-                    }
-                }
-                else {
-                    if (cote === 0) {
-                        angular.element(barreV1).css({
-                            visibility: 'hidden'
-                        });
-                    } else {
-                        angular.element(barreH2).css({
-                            visibility: 'hidden'
-                        });
-                    }
-                }
-                return res;
-            }
+    return function ($scope, $element) {
 
-            function resize($element, $event) {
-                var marginH = 50,
-                    marginW = 100,
-                    htest = $element[0].offsetTop + marginH,
-                    height = $event.pageY > htest ? $event.pageY - $element[0].offsetTop : marginH,
-                    wtest = $element[0].offsetLeft + $element[0].offsetWidth - marginW,
-                    left = $event.pageX > wtest ? wtest : $event.pageX,
-                    width = $element[0].offsetLeft - left + $element[0].offsetWidth,
-                    pcWidth = (width / $('#zone_edit').innerWidth()) * 100,
-                    pcHeight = (height / $('#zone_edit').innerHeight()) * 100,
-                    pcLeft = (left / $('#zone_edit').innerWidth()) * 100;
-                var pcTop = parseFloat($element[0].style.top);
-                var oldPcLeft = parseFloat($element[0].style.left);
-                var oldPcWidth = parseFloat($element[0].style.width);
-                var oldPcHeight = parseFloat($element[0].style.height);
-                if (magnetisme) {
-                    pcLeft = aidePlacement($element, pcLeft, 0);
-                    pcHeight = (aidePlacement($element, pcTop + pcHeight, 1)) - pcTop;
-                }
-                var colision = zoneUtil.colision($scope.zones, $element.attr('numero'));
-                var tmpZone = zoneUtil.get($scope.zones, $element.attr('numero'));
-                tmpZone.positionFromLeft = pcLeft;
-                tmpZone.width = pcWidth;
-                tmpZone.height = pcHeight;
-                if (magnetisme === false || colision === false) {
-                    zoneUtil.update($scope.zones, tmpZone);
-                    $element.css({
-                        height: pcHeight + '%',
-                        left: pcLeft + '%',
-                        width: pcWidth + '%'
-                    });
-                } else if (calculMarge(magnetismeMarge, oldPcLeft, oldPcWidth, oldPcHeight, pcLeft, pcWidth, pcHeight) === false) {
-                    tmpZone.positionFromLeft = oldPcLeft;
-                    tmpZone.width = oldPcWidth;
-                    tmpZone.height = oldPcHeight;
-                }
-            }
+      function resize($element, $event) {
+        var id = $element.attr('numero');
+        var marginH = 50;
+        var marginW = 50;
+        var elOffsetTop = $element[0].getBoundingClientRect().top;
+        var elOffsetLeft = $element[0].getBoundingClientRect().left;
+        var elOffsetWidth = $element[0].getBoundingClientRect().width;
+        var elOffsetHeight = $element[0].getBoundingClientRect().height;
+        console.log("Div width:"+elOffsetWidth+" | div height : "+elOffsetHeight);
 
-            function calculMarge(magnetisme, oldPcLeft, oldPcWidth, oldPcHeight, pcLeft, pcWidth, pcHeight) {
-                if ((between(pcLeft, oldPcLeft, magnetisme)) ||
-                    (between(pcWidth, oldPcWidth, magnetisme)) ||
-                    (between(pcHeight, oldPcHeight, magnetisme))) {
-                    return true;
-                } else {
-                    return false;
-                }
+        var htest = elOffsetTop + marginH,
+          height = $event.pageY > htest ? $event.pageY - elOffsetTop : marginH,
+          wtest = elOffsetLeft + elOffsetWidth - marginW,
+          left = $event.pageX > wtest ? wtest : $event.pageX,
+          width = elOffsetLeft - left + elOffsetWidth,
+          pcWidth = (width / $('#zone_edit').innerWidth()) * 100,
+          pcHeight = (height / $('#zone_edit').innerHeight()) * 100,
+          pcLeft = (left / $('#zone_edit').innerWidth()) * 100;
+        console.log("Htest : "+htest+" | height : "+height+" | pcHeight : "+pcHeight+" | pageY : "+$event.pageY+" | offsetTop : "+$element[0].offsetTop);
+        console.log($element[0].getBoundingClientRect().top);
+        var pcTop = parseFloat($element[0].style.top);
+        /*if (defaultValue.magnetisme === true) {
+          var respcLeft = $rootScope.aidePlacementVerticale($element, id, pcLeft, 0);
+          pcLeft = respcLeft[0];
+          var respcHeight = ($rootScope.aidePlacementHorizontale($element, id, pcTop + pcHeight, 0));
+          pcHeight = respcHeight[0] - pcTop;
+        }*/
+        var tmpZone = zoneUtil.get($scope.zones, id);
+        tmpZone.positionFromLeft = pcLeft;
+        tmpZone.width = pcWidth;
+        tmpZone.height = pcHeight;
+        var pcRight = (pcLeft + pcWidth),
+          pcBottom = (pcTop + pcHeight);
+        //$rootScope.addAncreH(id, pcTop, pcBottom);
+        //$rootScope.addAncreV(id, pcRight, pcLeft);
+        zoneUtil.update($scope.zones, tmpZone);
+        $scope.$apply();
+      }
 
-            }
+      function mmove($event) {
+        $event.preventDefault();
 
-            function between(x, x1, delta) {
-                if ((x > x1 - delta) && (x < x1 + delta)) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
+        resize($element, $event);
 
-            function mmove($event) {
-                $event.preventDefault();
+      }
 
-                resize($element, $event);
+      function mup() {
 
-            }
+        $document.off('mousemove', mmove);
+        $document.off('mouseup', mup);
+        //var zone_JSON = JSON.stringify($scope.zones);
+        //ole.log(zone_JSON);
+        $scope.showTooltip = true;
+        //$rootScope.cacherAncre();
+      }
 
-            function mup() {
-
-                $document.off('mousemove', mmove);
-                $document.off('mouseup', mup);
-                var zone_JSON = JSON.stringify($scope.zones);
-                //ole.log(zone_JSON);
-            }
-
-            var newElement = angular.element('<div class="resizable"></div>');
-            $element.append(newElement);
-            newElement.on('mousedown', function (event) {
-                event.preventDefault();
-                if ($element.attr('resize') === 'true') {
-                    $document.on('mouseup', mup);
-                    $document.on('mousemove', mmove);
-                    $scope.showTooltip = true;
-                }
-            });
-        };
+      var newElement = angular.element('<div class="resizable"></div>');
+      $element.append(newElement);
+      newElement.on('mousedown', function (event) {
+        event.preventDefault();
+        if ($element.attr('resize') === 'true') {
+          $document.on('mouseup', mup);
+          $document.on('mousemove', mmove);
+        }
+      });
+    };
     })
     .directive('lock', function ($document) {
         return function ($scope, $element) {

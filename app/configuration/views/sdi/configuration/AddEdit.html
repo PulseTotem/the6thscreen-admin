@@ -8,7 +8,7 @@
     <div class="barre_horizontale2" ng-show="barres.barreH2.visible" style="width: {{ barres.barreH2.width }}%; height: {{ barres.barreH2.height }}%;"></div>
     <div class="barre_verticale1" ng-show="barres.barreV1.visible" style="width: {{ barres.barreV1.width }}%; height: {{ barres.barreV1.height }}%;"></div>
     <div class="barre_verticale2" ng-show="barres.barreV2.visible" style="width: {{ barres.barreV2.width }}%; height: {{ barres.barreV2.height }}%;"></div>
-    <div ng-repeat="zone in zones" resize="true" drag="true" delete lock="false" class="zone" numero="{{zone.id}}" style="width: {{ zone.width}}%; height: {{ zone.height}}%; position: absolute; top: {{ zone.positionFromTop}}%; left: {{ zone.positionFromLeft}}%;" ng-drop="true" ng-drop-success="onDropCompleteOnZone($data,zone)">
+    <div ng-repeat="zone in zones" ng-click="$event.stopPropagation()" resize="true" drag="true" delete lock="false" class="zone" numero="{{zone.id}}" style="width: {{ zone.width}}%; height: {{ zone.height}}%; position: absolute; top: {{ zone.positionFromTop}}%; left: {{ zone.positionFromLeft}}%;" ng-drop="true" ng-drop-success="onDropCompleteOnZone($data,zone)">
       {{ zone.id }}
       <div class="customization-sdi-preview-zone-service" ng-repeat="service in zone.services">
         <div class="btn-group" dropdown>
