@@ -4,16 +4,27 @@
 </div>
 
 <div id="customization-sdi-preview">
-  <div class="customization-sdi-preview-zone" ng-repeat="zone in zones" style="top: {{ zone.positionFromTop }}%; left: {{ zone.positionFromLeft }}%; width: {{ zone.width }}%; height: {{ zone.height }}%">
-    <div id="customization-sdi-preview-zone-name">
+  <div class="customization-sdi-preview-zone" ng-repeat="zone in zones" style="top: {{ zone.positionFromTop }}%; left: {{ zone.positionFromLeft }}%; width: {{ zone.width }}%; height: {{ zone.height }}%" ng-mouseover="showConfig=true" ng-init="showConfig=false" ng-mouseleave="showConfig=false">
+    <div class="customization-sdi-preview-zone-name">
       {{zone.name}}
     </div>
-    <div id="customization-sdi-preview-zone-services">
+    <div class="customization-sdi-preview-zone-services">
       <div class="customization-sdi-preview-zone-service" ng-repeat="service in zone.services">
-        <button popover-template="'customization/views/sdi/callTypeList.html'" popover-title="CallTypes" popover-trigger="mouseenter" popover-placement="right" class="btn btn-default">
+        <button popover-template="'customization/views/sdi/callTypeList.html'" popover-title="{{ 'CUSTOMIZATION.SDI_SHOW.CALLTYPES_FOR_SERVICES' | translate:{ servicename: service.name } }}" popover-trigger="mouseenter" popover-placement="right" class="btn btn-default">
           <img ng-src="{{service.logo}}" /> <span class="badge" >{{service.callTypes.length}}</span>
         </button>
       </div>
+    </div>
+    <div class="customization-sdi-preview-zone-config">
+      <div class="customization-sdi-preview-zone-config-timelines pull-left">
+        <span class="badge">{{zone.zoneContents.length}}</span> {{ 'CUSTOMIZATION.SDI_SHOW.TIMELINES' | translate }}
+      </div>
+      <div class="customization-sdi-preview-zone-config-managetimelines pull-right" ng-show="showConfig">
+        <a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}" class="btn btn-primary" popover="{{ 'CUSTOMIZATION.SDI_SHOW.MANAGE_TIMELINES' | translate }}" popover-trigger="mouseenter" popover-placement="right">
+          <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="clearfix">&nbsp;</div>
     </div>
   </div>
 </div>

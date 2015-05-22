@@ -122,7 +122,6 @@ angular.module('T6SCustomization')
     backendSocket.on('CallTypesDescriptionFromZone', function (response) {
       callbackManager(response, function (infoCT) {
         $scope.zones.push(infoCT);
-        //console.log(infoCT);
       }, function (fail) {
         console.error(fail);
       });
@@ -133,7 +132,7 @@ angular.module('T6SCustomization')
               $scope.sdi = sdiInfo;
 
               $scope.sdi.zones.forEach(function(zone) {
-                backendSocket.emit('RetrieveCallTypesFromZoneId', {'zoneId': zone.id});
+                backendSocket.emit('RetrieveCallTypesFromZoneIdComplete', {'zoneId': zone.id});
                 //backendSocket.emit('RetrieveZoneDescription', {'zoneId' : zone.id});
               });
           },

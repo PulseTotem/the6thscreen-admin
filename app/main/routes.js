@@ -104,6 +104,9 @@ angular
         templateUrl: '../customization/views/zone/show.html',
         controller: 'T6SCustomization.ShowZoneCtrl'
       })
+
+      //TODO: Need yet ?
+
       .when('/custom/sdi/:sdiId/calltype/:callTypeId', {
         templateUrl: '../customization/views/calltype/show.html',
         controller: 'T6SCustomization.ShowCallTypeCtrl'

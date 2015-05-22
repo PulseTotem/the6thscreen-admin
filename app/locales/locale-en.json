@@ -24,6 +24,13 @@
         "SDI_NAME" : "Name",
         "SDI_DESCRIPTION" : "Description"
     },
+    "CUSTOMIZATION" : {
+      "SDI_SHOW" : {
+        "CALLTYPES_FOR_SERVICES" : "CallTypes for Service {{servicename}}",
+        "TIMELINES" : "timelines",
+        "MANAGE_TIMELINES" : "Manage timelines"
+      }
+    },
     "SDI" : {
         "ZONES_LIST" : "Zones List",
         "ZONE_NAME" : "Name",

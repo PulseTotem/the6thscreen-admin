@@ -14,6 +14,13 @@
         "SDI_NAME" : "Nom",
         "SDI_DESCRIPTION" : "Description"
     },
+    "CUSTOMIZATION" : {
+      "SDI_SHOW" : {
+        "CALLTYPES_FOR_SERVICES" : "CallTypes pour le service {{servicename}}",
+        "TIMELINES" : "timelines",
+        "MANAGE_TIMELINES" : "Gérer les timelines"
+      }
+    },
     "MAIN" : {
         "ADMIN_PANEL" : "The 6th Screen : Panneau d'administration",
         "LOGIN" : "Connexion",
