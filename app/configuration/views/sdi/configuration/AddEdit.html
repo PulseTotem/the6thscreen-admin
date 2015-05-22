@@ -4,11 +4,28 @@
   <div ng-include="'configuration/views/sdi/configuration/MenuService.html'"></div>
 
   <div id="zone_edit" class="zone_edit" ng-click="createZone($event)">
-    <div class="barre_horizontale1" ng-show="barres.barreH1.visible" style="width: {{ barres.barreH1.width }}%; height: {{ barres.barreH1.height }}%;"></div>
-    <div class="barre_horizontale2" ng-show="barres.barreH2.visible" style="width: {{ barres.barreH2.width }}%; height: {{ barres.barreH2.height }}%;"></div>
-    <div class="barre_verticale1" ng-show="barres.barreV1.visible" style="width: {{ barres.barreV1.width }}%; height: {{ barres.barreV1.height }}%;"></div>
-    <div class="barre_verticale2" ng-show="barres.barreV2.visible" style="width: {{ barres.barreV2.width }}%; height: {{ barres.barreV2.height }}%;"></div>
-    <div ng-repeat="zone in zones" ng-click="$event.stopPropagation()" resize="true" drag="true" delete lock="false" class="zone" numero="{{zone.id}}" style="width: {{ zone.width}}%; height: {{ zone.height}}%; position: absolute; top: {{ zone.positionFromTop}}%; left: {{ zone.positionFromLeft}}%;" ng-drop="true" ng-drop-success="onDropCompleteOnZone($data,zone)">
+    <div class="barre_horizontale1" ></div>
+    <div class="barre_horizontale2"  ></div>
+    <div class="barre_verticale1"  ></div>
+    <div class="barre_verticale2"  ></div>
+    <div ng-repeat="zone in zones" ng-click="$event.stopPropagation()" resize="true" resizesw resizese resizenw resizene drag="true" delete lock="false" class="zone" numero="{{zone.id}}" style="width: {{ zone.width}}%; height: {{ zone.height}}%; position: absolute; top: {{ zone.positionFromTop}}%; left: {{ zone.positionFromLeft}}%;" ng-drop="true" ng-drop-success="onDropCompleteOnZone($data,zone)" ng-mouseover="showTooltip = true" ng-mouseleave="showTooltip = false">
+      <div style="position: relative;">
+        <div class="myTooltip myTooltip-top" ng-show="showTooltip">X : {{zone.positionFromLeft |
+          number:2}}%
+        </div>
+        <div class="myTooltip myTooltip-bottom" ng-show="showTooltip"
+             style="bottom: -{{getSize.heightPrctToPx(zone.height) + 19}}px;">Width : {{zone.width |
+          number:2}}%
+        </div>
+        <div class="myTooltip myTooltip-left" ng-show="showTooltip"
+             style="bottom: -{{getSize.heightPrctToPx(zone.height) / 2}}px;">Y : {{zone.positionFromTop |
+          number:2}}%
+        </div>
+        <div class="myTooltip myTooltip-right" ng-show="showTooltip"
+             style="bottom: -{{getSize.heightPrctToPx(zone.height) / 2}}px;">Height : {{zone.height |
+          number:2}}%
+        </div>
+      </div>
       {{ zone.id }}
       <div class="customization-sdi-preview-zone-service" ng-repeat="service in zone.services">
         <div class="btn-group" dropdown>

@@ -138,5 +138,70 @@ div .zone_edit .drag-over {
   border-bottom:1px solid blue;
   height:50%;
 }
+.myTooltip {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 
+.myTooltip-top {
+  top: -22px;
+  left: 40%;
+}
+
+.myTooltip-bottom {
+  left: 35%;
+}
+
+.myTooltip-right {
+  right: -65px;
+  -moz-transform:rotate(90deg);
+  -webkit-transform:rotate(90deg);
+  -o-transform:rotate(90deg);
+  -ms-transform:rotate(90deg);
+}
+
+.myTooltip-left {
+  left: -49px;
+  -moz-transform:rotate(270deg);
+  -webkit-transform:rotate(270deg);
+  -o-transform:rotate(270deg);
+  -ms-transform:rotate(270deg);
+}
+
+.resizableSW {
+  background-color: lightgray;
+  cursor: sw-resize;
+  position: absolute;
+  top: calc(100% - 5px);
+  left: -4px;
+  width: 8px;
+  height: 8px;
+}
+.resizableSE {
+  background-color: lightgray;
+  cursor: se-resize;
+  position: absolute;
+  top: calc(100% - 5px);
+  left: calc(100% - 4px);
+  width: 8px;
+  height: 8px;
+}
+.resizableNW {
+  background-color: lightgray;
+  cursor: nw-resize;
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+}
+.resizableNE {
+  background-color: lightgray;
+  cursor: ne-resize;
+  position: absolute;
+  top: -4px;
+  left: calc(100% - 4px);
+  width: 8px;
+  height: 8px;
+}
 
