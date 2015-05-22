@@ -3,7 +3,29 @@
   <h4>{{ zone.description }}</h4>
 </div>
 
-<fieldset class="searchBox" width="100%">
+<h3>Relative Timelines</h3>
+<div ng-repeat="relTimeline in relativeTimelines">
+  {{relTimeline.name}}
+
+
+  <div class="customization-zone-timeline-preview slideable {{'preview_relative'}}" duration="0.3s">
+    <table width="90%" class="preview">
+      <tr>
+        <td ng-class="{'empty': event.data.empty}" class="preview timeline event"
+            ng-repeat="event in relTimeline.relativeEvents"
+            width="{{(event.duration / relTimeline.duration)*100}}%">
+          <div>
+            {{event.call.name}}
+            <br>
+            {{event.call.callType.name}}
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- fieldset class="searchBox" width="100%">
   <table width="100%" class="thin">
     <tr>
       <td>
@@ -375,4 +397,4 @@
     </td>
   </tr>
   </tbody>
-</table>
+</table -->
