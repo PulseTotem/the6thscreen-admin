@@ -29,6 +29,11 @@
         "CALLTYPES_FOR_SERVICES" : "CallTypes for Service {{servicename}}",
         "TIMELINES" : "timelines",
         "MANAGE_TIMELINES" : "Manage timelines"
+      },
+      "ZONE_SHOW" : {
+        "RELATIVE_TIMELINES" : "Relative Timelines",
+        "ABSOLUTE_TIMELINES" : "Absolute Timelines",
+        "CONFIRM_DELETE_TIMELINE" : "Are you sure you want to delete this timeline ?"
       }
     },
     "SDI" : {

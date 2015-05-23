@@ -1,3 +1,35 @@
-.customization-zone-timeline-preview {
+.customization-zone-timeline-description, .customization-zone-timeline-description div {
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.1em;
+}
 
+.customization-zone-timeline-description .row div:first-child {
+  background-color: #b3d4fc;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.customization-zone-timeline-odd {
+  background-color: lightgray;
+}
+
+.customization-zone-timeline-even {
+  background-color: linen;
+}
+
+.customization-zone-timeline-preview {
+  text-align: center;
+}
+
+.customization-zone-timeline-preview-event {
+  padding:0;
+  margin:1px 0 0 0;
+  overflow: hidden;
+  border: 1px solid black;
+  height: 100px;
+}
+
+.customization-zone-timeline-preview-event div {
+  line-height: 50px;
 }

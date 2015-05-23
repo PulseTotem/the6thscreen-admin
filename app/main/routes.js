@@ -104,6 +104,10 @@ angular
         templateUrl: '../customization/views/zone/show.html',
         controller: 'T6SCustomization.ShowZoneCtrl'
       })
+      .when('/custom/sdi/:sdiId/zone/:zoneId/relative/:timelineId', {
+        templateUrl: '../customization/views/relativeTimeline/AddEdit/AddEdit.html',
+        controller: 'T6SCustomization.EditRelativeTimelineCtrl'
+      })
 
       //TODO: Need yet ?
 
