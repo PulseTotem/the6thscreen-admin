@@ -16,6 +16,37 @@ angular.module('T6SCustomization')
     $scope.relativeTimelines = [];
     $scope.absoluteTimelines = [];
 
+    backendSocket.on('CompleteAbsoluteTimelineDescription', function(response) {
+      callbackManager(response, function (absTimelineInfo) {
+
+          var absoluteEvents = absTimelineInfo.absoluteEvents;
+
+          absTimelineInfo.absoluteEvents = [];
+
+          absoluteEvents.forEach(function(absEvent) {
+
+            var timelineDuration = 0;
+            absEvent.relativeTimeline.relativeEvents.forEach(function(relEvent) {
+              timelineDuration += relEvent.duration;
+            });
+            absEvent.relativeTimeline["duration"] = timelineDuration;
+
+            var td = new Date(timelineDuration*1000);
+
+            absEvent.relativeTimeline["durationString"] = td.toString("HH") + "h " + td.toString("mm") + "m " + td.toString("ss") + "s";
+
+            absTimelineInfo.absoluteEvents.push(absEvent);
+
+          });
+
+          $scope.absoluteTimelines.push(absTimelineInfo);
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
+
     backendSocket.on('CompleteRelativeTimelineDescription', function(response) {
       callbackManager(response, function (timelineInfo) {
 
@@ -46,7 +77,7 @@ angular.module('T6SCustomization')
     backendSocket.on('ZoneContentDescription', function(response) {
       callbackManager(response, function (zoneContentInfo) {
           if(zoneContentInfo.absoluteTimeline != null) {
-            //TODO
+            backendSocket.emit('RetrieveCompleteAbsoluteTimeline', {'timelineId' : zoneContentInfo.absoluteTimeline.id});
           } else if(zoneContentInfo.relativeTimeline != null) {
             backendSocket.emit('RetrieveCompleteRelativeTimeline', {'timelineId' : zoneContentInfo.relativeTimeline.id});
           }
