@@ -1,1 +1,42 @@
-Hello !
+<div class="container-fluid" ng-controller="T6SCustomization.AddEditRelativeTimelineCtrl">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{timeline.name}}</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div>
+        <button ng-repeat="service in zone.services" class="customization-timeline-service pull-left" ng-click="showServiceId!={{service.id}}?updateShowServiceId({{service.id}}):updateShowServiceId(-1)" ng-class="{'customization-timeline-service-active' : showServiceId == {{service.id}} }">
+          <img ng-src="{{service.logo}}" /> <span class="badge">{{service.callTypes.length}}</span>
+        </button>
+        <div class="clearfix">&nbsp;</div>
+      </div>
+      <div class="well well-lg" ng-repeat="service in zone.services" ng-show="showServiceId=={{service.id}}">
+        <ul class="customization-timeline-calltypes">
+          <li ng-repeat="callType in service.callTypes" class="customization-timeline-calltype pull-left">
+            Source : {{callType.source.name}}
+            Renderer : {{callType.renderer.name}}
+          </li>
+          <li class="clearfix">&nbsp;</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="customization-timeline-representation">
+        <span ng-show="timeline.relativeEvents.length == 0" translate="CUSTOMIZATION.TIMELINE_ADDEDIT.DROP_SOMETHING"></span>
+        <div class="customization-timeline-event pull-left" ng-repeat="event in timeline.relativeEvents" style="width: {{(event.duration / timelineDuration)*100}}%">
+          <div class="customization-timeline-event-description">
+            {{event.name}}
+          </div>
+          <div class="customization-timeline-event-time">
+
+          </div>
+        </div>
+      </div>
+      <div class="clearfix">&nbsp;</div>
+    </div>
+  </div>
+</div>

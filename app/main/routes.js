@@ -93,15 +93,15 @@ angular
         redirectTo: '/custom/sdi'
       })
       .when('/custom/sdi/', {
-        templateUrl: '../customization/views/sdi/list.html',
+        templateUrl: '../customization/views/sdi/List.html',
         controller: 'T6SCustomization.ListSDICtrl'
       })
       .when('/custom/sdi/:sdiId', {
-        templateUrl: '../customization/views/sdi/show.html',
+        templateUrl: '../customization/views/sdi/Show.html',
         controller: 'T6SCustomization.ShowSDICtrl'
       })
       .when('/custom/sdi/:sdiId/zone/:zoneId', {
-        templateUrl: '../customization/views/zone/show.html',
+        templateUrl: '../customization/views/zone/Show.html',
         controller: 'T6SCustomization.ShowZoneCtrl'
       })
       .when('/custom/sdi/:sdiId/zone/:zoneId/relative/:timelineId', {

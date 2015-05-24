@@ -10,7 +10,7 @@
     </div>
     <div class="customization-sdi-preview-zone-services">
       <div class="customization-sdi-preview-zone-service" ng-repeat="service in zone.services">
-        <button popover-template="'customization/views/sdi/callTypeList.html'" popover-title="{{ 'CUSTOMIZATION.SDI_SHOW.CALLTYPES_FOR_SERVICES' | translate:{ servicename: service.name } }}" popover-trigger="mouseenter" popover-placement="right" class="btn btn-default">
+        <button popover-template="'customization/views/sdi/CallTypeList.html'" popover-title="{{ 'CUSTOMIZATION.SDI_SHOW.CALLTYPES_FOR_SERVICES' | translate:{ servicename: service.name } }}" popover-trigger="mouseenter" popover-placement="right" class="btn btn-default">
           <img ng-src="{{service.logo}}" /> <span class="badge" >{{service.callTypes.length}}</span>
         </button>
       </div>

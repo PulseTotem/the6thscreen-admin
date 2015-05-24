@@ -34,6 +34,9 @@
         "RELATIVE_TIMELINES" : "Relative Timelines",
         "ABSOLUTE_TIMELINES" : "Absolute Timelines",
         "CONFIRM_DELETE_TIMELINE" : "Are you sure you want to delete this timeline ?"
+      },
+      "TIMELINE_ADDEDIT" : {
+        "DROP_SOMETHING" : "Drop a Call on Timeline to begin and add an Event"
       }
     },
     "SDI" : {
