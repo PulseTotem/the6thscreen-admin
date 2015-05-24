@@ -31,9 +31,9 @@ angular.module('T6SCustomization')
             });
             absEvent.relativeTimeline["duration"] = timelineDuration;
 
-            var td = new Date(timelineDuration*1000);
+            var td = moment(timelineDuration*1000);
 
-            absEvent.relativeTimeline["durationString"] = td.toString("HH") + "h " + td.toString("mm") + "m " + td.toString("ss") + "s";
+            absEvent.relativeTimeline["durationString"] = td.utc().format("HH[h] mm[m] ss[s]");
 
             absTimelineInfo.absoluteEvents.push(absEvent);
 
@@ -56,15 +56,15 @@ angular.module('T6SCustomization')
           });
           timelineInfo["duration"] = timelineDuration;
 
-          var td = new Date(timelineDuration*1000);
+          var td = moment(timelineDuration*1000);
 
-          timelineInfo["durationString"] = td.toString("HH") + "h " + td.toString("mm") + "m " + td.toString("ss") + "s";
+          timelineInfo["durationString"] = td.utc().format("HH[h] mm[m] ss[s]");
 
-          var dCreatedAt = new Date(timelineInfo.createdAt);
-          timelineInfo["createdAtString"] = dCreatedAt.toString("dd/MM/yyyy HH:mm:ss");
+          var dCreatedAt = moment(timelineInfo.createdAt);
+          timelineInfo["createdAtString"] = dCreatedAt.format("DD/MM/YYYY HH:mm:ss");
 
-          var dUpdatedAt = new Date(timelineInfo.updatedAt);
-          timelineInfo["updatedAtString"] = dUpdatedAt.toString("dd/MM/yyyy HH:mm:ss");
+          var dUpdatedAt = moment(timelineInfo.updatedAt);
+          timelineInfo["updatedAtString"] = dUpdatedAt.format("DD/MM/YYYY HH:mm:ss");
 
           $scope.relativeTimelines.push(timelineInfo);
         },

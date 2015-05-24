@@ -55,6 +55,14 @@
   height: 90px;
   background-color: whitesmoke;
   border-right: 1px solid black;
+  line-height: 90px;
+  display: block;
+  overflow: hidden;
+}
+
+.customization-timeline-event-description img {
+  width: 30px;
+  height: 30px;
 }
 
 .customization-timeline-event:last-child .customization-timeline-event-description {
@@ -64,4 +72,13 @@
 .customization-timeline-event-time {
   border-top: 1px solid black;
   height: 19px;
+  line-height: 19px;
+}
+
+.customization-timeline-event-time-enddate {
+  margin-right: -45px;
+}
+
+.customization-timeline-event:last-child .customization-timeline-event-time .customization-timeline-event-time-enddate {
+  margin-right: 0px;
 }

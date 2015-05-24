@@ -37,7 +37,7 @@ module.exports = function(config) {
       'bower_components/ngdraggable/ngDraggable.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/venturocket-angular-slider/build/angular-slider.js',
-      'bower_components/datejs/build/production/date.min.js',
+      'bower_components/moment/moment.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       '../app/configuration/**/*.js',
