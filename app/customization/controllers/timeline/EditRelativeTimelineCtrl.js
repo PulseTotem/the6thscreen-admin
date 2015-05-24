@@ -14,10 +14,12 @@ angular.module('T6SCustomization')
     $scope.sdiId = $routeParams.sdiId;
 
     $scope.timeline = {};
+    $scope.timelineName = "";
 
     backendSocket.on('CompleteRelativeTimelineDescription', function(response) {
       callbackManager(response, function (timelineInfo) {
           $scope.timeline = timelineInfo;
+          $scope.timelineName = timelineInfo.name;
         },
         function (fail) {
           console.error(fail);

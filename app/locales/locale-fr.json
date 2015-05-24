@@ -9,6 +9,18 @@
         "ENGLISH" : "English",
         "FRENCH" : "Fran&ccedil;ais"
     },
+    "MAIN" : {
+      "ADMIN_PANEL" : "The 6th Screen : Panneau d'administration",
+      "LOGIN" : "Connexion",
+      "LOGOUT" : "Se Déconnecter",
+      "USERNAME_OR_EMAIL" : "Pseudo ou adresse mail",
+      "PASSWORD" : "Mot de passe",
+      "LOGIN_BUTTON" : "Se connecter",
+      "PASSWORD_LOST" : "Mot de passe perdu ?",
+      "REMEMBER_ME" : "Se souvenir de moi",
+      "EDIT" : "Modifier",
+      "EMPTY" : "Sans nom"
+    },
     "DASHBOARD" : {
         "WELCOME" : "Bienvenue {{username}}, voici les SDI auxquels vous avez acc&egrave;s.",
         "SDI_NAME" : "Nom",
@@ -28,16 +40,6 @@
       "TIMELINE_ADDEDIT" : {
         "DROP_SOMETHING" : "Glissez et déposez un appel sur la Timeline pour commencer et ajouter un événement"
       }
-    },
-    "MAIN" : {
-        "ADMIN_PANEL" : "The 6th Screen : Panneau d'administration",
-        "LOGIN" : "Connexion",
-        "LOGOUT" : "Se Déconnecter",
-        "USERNAME_OR_EMAIL" : "Pseudo ou adresse mail",
-        "PASSWORD" : "Mot de passe",
-        "LOGIN_BUTTON" : "Se connecter",
-        "PASSWORD_LOST" : "Mot de passe perdu ?",
-        "REMEMBER_ME" : "Se souvenir de moi"
     },
     "SDI" : {
         "ZONES_LIST" : "Liste des zones",

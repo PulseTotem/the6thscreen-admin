@@ -19,6 +19,7 @@ angular.module('T6SCustomization')
     backendSocket.on('CompleteRelativeTimelineDescription', function(response) {
       callbackManager(response, function (timelineInfo) {
           $scope.timeline = timelineInfo;
+          $scope.timelineName = timelineInfo.name;
         },
         function (fail) {
           console.error(fail);
@@ -65,6 +66,24 @@ angular.module('T6SCustomization')
         return $scope.timeline;
       }, calculTimelineDuration, true);
     }
+
+    $scope.$watch(function () {
+      return $scope.timelineName;
+    }, function() {
+      if(typeof($scope.timeline.id) != "undefined") {
+        backendSocket.on('AnswerUpdateRelativeTimeline', function (response) {
+          callbackManager(response, function (relTimeline) {
+              //OK! : Nothing to do
+            },
+            function (fail) {
+              console.error(fail);
+            }
+          );
+        });
+
+        saveAttribute("UpdateRelativeTimeline", $scope.timeline.id, "setName", $scope.timelineName);
+      }
+    }, true);
 
     $scope.updateShowServiceId = function(serviceId) {
       $scope.showServiceId = serviceId;

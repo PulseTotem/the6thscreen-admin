@@ -17,7 +17,9 @@
         "PASSWORD" : "Password",
         "LOGIN_BUTTON" : "Log In",
         "PASSWORD_LOST" : "Password lost ?",
-        "REMEMBER_ME" : "Remember me"
+        "REMEMBER_ME" : "Remember me",
+        "EDIT" : "Edit",
+        "EMPTY" : "Empty name"
     },
     "DASHBOARD" : {
         "WELCOME" : "Welcome {{username}}, here are Digital Signages you can edit.",

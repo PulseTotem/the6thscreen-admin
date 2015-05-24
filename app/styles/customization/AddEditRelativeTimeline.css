@@ -1,3 +1,13 @@
+.customization-timeline-name h2, .customization-timeline-name button {
+  float: left;
+  margin-left: 10px;
+  margin-top: auto;
+}
+
+.customization-timeline-services {
+  margin-bottom: 10px;
+}
+
 .customization-timeline-service {
   position: relative;
   display: block;
@@ -11,6 +21,10 @@
 .customization-timeline-service img {
   width: 30px;
   height: 30px;
+}
+
+.customization-timeline-services .drag-enter {
+  background-color: lightblue;
 }
 
 .customization-timeline-service:hover, .customization-timeline-service-active {
