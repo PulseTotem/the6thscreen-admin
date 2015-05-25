@@ -9,5 +9,9 @@
  */
 angular.module('T6SCustomization')
   .controller('T6SCustomization.AddEditCallCtrl', ['$scope', 'backendSocket', 'callbackManager', 'saveAttribute', function ($scope, backendSocket, callbackManager, saveAttribute) {
-
+    $scope.$watch(function () {
+      return $scope.call;
+    }, function() {
+      console.log("changement call: " + $scope.call.id);
+    }, true);
   }]);

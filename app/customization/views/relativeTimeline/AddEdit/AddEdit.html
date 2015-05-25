@@ -39,11 +39,8 @@
           <div class="customization-timeline-event-description"
                ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)"
                ng-drag="true" ng-drag-data="event" ng-center-anchor="true"
-               ng-click="updateCall(event.call)">
+               ng-click="$parent.updateCall(event.call)">
             <img ng-src="{{callTypes[event.call.callType.id].logo}}" /> {{event.name}}
-<span>
-  call: {{call.id}}
-</span>
           </div>
           <div class="customization-timeline-event-time">
             <span class="pull-left" ng-show="$index==0">00h 00m 00s</span>
@@ -54,7 +51,7 @@
       <div class="clearfix">&nbsp;</div>
     </div>
   </div>
-{{call}}
+
   <div class="row">
     <div class="col-md-6">
       <div class="customization-timeline-event-update" ng-include="'customization/views/call/AddEdit.html'" ng-controller="T6SCustomization.AddEditCallCtrl">
@@ -62,4 +59,5 @@
       </div>
     </div>
   </div>
+  
 </div>

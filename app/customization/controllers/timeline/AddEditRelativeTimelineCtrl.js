@@ -226,16 +226,10 @@ angular.module('T6SCustomization')
         }
 
       });
+    };
 
-      $scope.updateCall = function(call) {
-        console.log("update call");
-        $scope.call = call;
-      };
+    $scope.updateCall = function(call) {
+      $scope.call = call;
+    };
 
-      $scope.$watch(function () {
-        return $scope.call;
-      }, function() {
-        console.log("changement call" + $scope.call.name);
-      }, true);
-    }
 }]);
