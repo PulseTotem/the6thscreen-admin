@@ -9,4 +9,4 @@
  * Configuration module of the application.
  */
 angular
-  .module('T6SConfiguration', ['T6SCommon']);
+  .module('T6SConfiguration', ['T6SCommon','zone']);

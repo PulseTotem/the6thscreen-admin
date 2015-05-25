@@ -1,15 +1,41 @@
 <div ng-controller="T6SConfiguration.AddEditSDICtrl">
-  <h2>TESTEEEEEEUH</h2>
+  <h2>Création d'un nouveau SDI</h2>
 
   <div ng-include="'configuration/views/sdi/configuration/MenuService.html'"></div>
 
-  <div class="zone_edit" ng-click="createZone($event)">
-    <div ng-repeat="zone in zones" class="zone" style="width: {{ zone.width}}%; height: {{ zone.height}}%; position: absolute; top: {{ zone.positionFromTop}}%; left: {{ zone.positionFromLeft}}%;" ng-drop="true" ng-drop-success="onDropCompleteOnZone($data,zone)">
+  <div id="zone_edit" class="zone_edit" ng-click="createZone($event)">
+    <div class="barre_horizontale1" ></div>
+    <div class="barre_horizontale2"  ></div>
+    <div class="barre_verticale1"  ></div>
+    <div class="barre_verticale2"  ></div>
+    <div ng-repeat="zone in zones" ng-click="$event.stopPropagation()" resize="true" resizesw resizese resizenw resizene drag="true" delete lock="false" class="zone" numero="{{zone.id}}" style="width: {{ zone.width}}%; height: {{ zone.height}}%; position: absolute; top: {{ zone.positionFromTop}}%; left: {{ zone.positionFromLeft}}%;" ng-drop="true" ng-drop-success="onDropCompleteOnZone($data,zone)" ng-mouseover="showTooltip = true" ng-mouseleave="showTooltip = false">
+      <div style="position: relative;">
+        <div class="myTooltip myTooltip-top" ng-show="showTooltip">X : {{zone.positionFromLeft |
+          number:2}}%
+        </div>
+        <div class="myTooltip myTooltip-bottom" ng-show="showTooltip"
+             style="bottom: -{{getSize.heightPrctToPx(zone.height) + 19}}px;">Width : {{zone.width |
+          number:2}}%
+        </div>
+        <div class="myTooltip myTooltip-left" ng-show="showTooltip"
+             style="bottom: -{{getSize.heightPrctToPx(zone.height) / 2}}px;">Y : {{zone.positionFromTop |
+          number:2}}%
+        </div>
+        <div class="myTooltip myTooltip-right" ng-show="showTooltip"
+             style="bottom: -{{getSize.heightPrctToPx(zone.height) / 2}}px;">Height : {{zone.height |
+          number:2}}%
+        </div>
+      </div>
       {{ zone.id }}
       <div class="customization-sdi-preview-zone-service" ng-repeat="service in zone.services">
-        <button popover-template="'customization/views/sdi/callTypeList.html'" popover-title="CallTypes" popover-trigger="mouseenter" popover-placement="right" class="btn btn-default">
-          <img ng-src="{{service.logo}}" /> <span class="badge" >{{service.callTypes.length}}</span>
-        </button>
+        <div class="btn-group" dropdown>
+          <button class="btn btn-default dropdown-toggle" dropdown-toggle ng-click="$event.stopPropagation()">
+            <img ng-src="{{service.logo}}" /> <span class="badge" >{{service.callTypes.length}}</span>
+          </button>
+          <ul class="dropdown-menu" role="menu" ng-repeat="callType in service.callTypes" ng-click="$event.stopPropagation()">
+            <li><a ng-click="editCallType(callType.id, event)">Edit "{{ callType.name }}"</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
