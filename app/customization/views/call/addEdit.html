@@ -1,30 +1,33 @@
-<h2 editable-text="eventName" e-form="eventNameForm">
-  {{ eventName || ('MAIN.EMPTY' | translate) }}
-</h2>
-<button class="btn btn-default" ng-click="eventNameForm.$show()" ng-hide="eventNameForm.$visible" translate="MAIN.EDIT">
-</button>
-<div>
-  <form>
-    <div class="control-group">
-      <label for="setName">Name</label>
-      <div class="controls">
-        <input type="text" id="setName" placeholder="Nom" ng-model="call.name" ng-model-options="{ updateOn: 'blur' }" ng-change="saveAttribute('setName', call.name)" />
+<div class="row" ng-controller="T6SCustomization.AddEditCallCtrl">
+  <div class="col-md-12">
+
+    <div class="row">
+      <div class="col-md-12 customization-call-name">
+        <h2 editable-text="eventName" e-form="eventNameForm">
+          {{ eventName || ('MAIN.EMPTY' | translate) }}
+        </h2>
+        <button class="btn btn-default" ng-click="eventNameForm.$show()" ng-hide="eventNameForm.$visible" translate="MAIN.EDIT">
+        </button>
       </div>
     </div>
-      <div class="control-group" ng-repeat="paramType in listParamType">
-        <label>{{ paramType.name }}</label>
-        <div class="controls" ng-switch="paramType.type.name">
-          <input ng-switch-when="String" type="text" id="{{ paramType.name }}" ng-model="value[paramType.id]" ng-model-options="{ updateOn: 'blur' }" ng-change="saveParamValue(paramType.id)" />
-          <input ng-switch-when="Entier" type="number" id="{{ paramType.name }}" ng-model="value[paramType.id]" ng-model-options="{ updateOn: 'blur' }" ng-change="saveParamValue(paramType.id)" />
+
+    <div class="row">
+      <div class="col-md-12">
+        {{callType}}
+      </div>
+    </div>
+
+    <div>
+      <form>
         </div>
-      </div>
-    <div class="control-group">
-      <label for="linkProfil">Profil</label>
-      <div class="controls">
-        <select id="linkProfil" ng-model="selectedProfilId" ng-change="saveAttribute('linkProfil', selectedProfilId)">
-          <option ng-repeat="profil in profilSDI" value="{{ profil.id }}">{{ profil.name }}</option>
-        </select>
-      </div>
+          <div class="control-group" ng-repeat="paramType in listParamType">
+            <label>{{ paramType.name }}</label>
+            <div class="controls" ng-switch="paramType.type.name">
+              <input ng-switch-when="String" type="text" id="{{ paramType.name }}" ng-model="value[paramType.id]" ng-model-options="{ updateOn: 'blur' }" ng-change="saveParamValue(paramType.id)" />
+              <input ng-switch-when="Entier" type="number" id="{{ paramType.name }}" ng-model="value[paramType.id]" ng-model-options="{ updateOn: 'blur' }" ng-change="saveParamValue(paramType.id)" />
+            </div>
+          </div>
+        </form>
     </div>
-    </form>
+  </div>
 </div>

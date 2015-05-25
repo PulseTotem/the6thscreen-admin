@@ -10,7 +10,6 @@
 angular.module('T6SCustomization')
   .controller('T6SCustomization.AddEditCallCtrl', ['$scope', 'backendSocket', 'callbackManager', 'saveAttribute', function ($scope, backendSocket, callbackManager, saveAttribute) {
     $scope.callType = {};
-    $scope.eventName = "";
 
     $scope.$watch(function () {
       return $scope.call;
@@ -18,13 +17,25 @@ angular.module('T6SCustomization')
       if(typeof($scope.event.name) != "undefined") {
         $scope.eventName = $scope.event.name;
       }
-      console.log($scope.call.callType);
+      if(typeof($scope.call.callType) != "undefined" && $scope.call.callType.id != -1) {
+
+        backendSocket.on('CompleteCallTypeDescription', function(response) {
+          callbackManager(response, function (cTInfo) {
+              $scope.callType = cTInfo;
+            },
+            function (fail) {
+              console.error(fail);
+            }
+          );
+        });
+
+        backendSocket.emit('RetrieveCompleteCallType', {'callTypeId': $scope.call.callType.id});
+      }
     }, true);
 
     $scope.$watch(function () {
       return $scope.eventName;
     }, function() {
-      console.log("EventName changed");
       if(typeof($scope.event.id) != "undefined" && $scope.event.id != -1) {
         backendSocket.on('AnswerUpdateRelativeEvent', function (response) {
           callbackManager(response, function (relEvent) {

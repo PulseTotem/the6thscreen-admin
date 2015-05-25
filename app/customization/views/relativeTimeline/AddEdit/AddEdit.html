@@ -53,11 +53,8 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-6">
-      <div class="customization-timeline-event-update" ng-include="'customization/views/call/AddEdit.html'" ng-controller="T6SCustomization.AddEditCallCtrl" ng-show="call.id != -1">
-
-      </div>
+  <div class="row" ng-show="call.id != -1">
+    <div class="col-md-6 customization-timeline-event-update" ng-include="'customization/views/call/AddEdit.html'">
     </div>
   </div>
 
