@@ -15,7 +15,15 @@ angular.module('T6SCustomization')
     $scope.timelineDuration = 0;
     $scope.events = [];
     $scope.callTypes = [];
-    $scope.call = {};
+    $scope.neutralCall = {
+      "id" : -1,
+      "callType" : {
+        "id" : -1
+      }
+    };
+    $scope.call = $scope.neutralCall;
+    $scope.hovercall = $scope.neutralCall;
+    $scope.event = {};
 
     backendSocket.on('CompleteRelativeTimelineDescription', function(response) {
       callbackManager(response, function (timelineInfo) {
@@ -228,8 +236,21 @@ angular.module('T6SCustomization')
       });
     };
 
-    $scope.updateCall = function(call) {
-      $scope.call = call;
+    $scope.refreshRelativeTimeline = function() {
+      backendSocket.emit('RetrieveCompleteRelativeTimeline', {'timelineId' : $scope.timelineId});
+    };
+
+    $scope.updateEvent = function(event) {
+      $scope.event = event;
+      $scope.call = event.call;
+    };
+
+    $scope.updateHoverCall = function(call) {
+      $scope.hovercall = call;
+    };
+
+    $scope.resetHoverCall = function() {
+      $scope.hovercall = $scope.neutralCall;
     };
 
 }]);

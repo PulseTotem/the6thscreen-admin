@@ -1,10 +1,10 @@
 <div class="container-fluid" ng-controller="T6SCustomization.AddEditRelativeTimelineCtrl">
   <div class="row">
     <div class="col-md-12 customization-timeline-name">
-      <h2 editable-text="timelineName" e-form="textBtnForm">
+      <h2 editable-text="timelineName" e-form="timelineNameForm">
         {{ timelineName || ('MAIN.EMPTY' | translate) }}
       </h2>
-      <button class="btn btn-default" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible" translate="MAIN.EDIT">
+      <button class="btn btn-default" ng-click="timelineNameForm.$show()" ng-hide="timelineNameForm.$visible" translate="MAIN.EDIT">
       </button>
     </div>
   </div>
@@ -36,10 +36,11 @@
         <span ng-show="timeline.relativeEvents.length == 0" translate="CUSTOMIZATION.TIMELINE_ADDEDIT.DROP_SOMETHING"
               ng-drop="true" ng-drop-success="onDropComplete(-1, $data,$event)"></span>
         <div class="customization-timeline-event pull-left" ng-repeat="event in timeline.relativeEvents" style="width: {{(event.duration / timelineDuration)*100}}%">
-          <div class="customization-timeline-event-description"
+          <div class="customization-timeline-event-description" ng-class="{'customization-timeline-event-active' : $parent.call.id == {{event.call.id}}, 'customization-timeline-event-samecalltype' : $parent.call.callType.id == {{event.call.callType.id}}, 'customization-timeline-event-samehovercalltype'  : $parent.hovercall.callType.id == {{event.call.callType.id}} }"
                ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)"
                ng-drag="true" ng-drag-data="event" ng-center-anchor="true"
-               ng-click="$parent.updateCall(event.call)">
+               ng-click="$parent.updateEvent(event)"
+               ng-mouseover="$parent.updateHoverCall(event.call)" ng-mouseleave="$parent.resetHoverCall()">
             <img ng-src="{{callTypes[event.call.callType.id].logo}}" /> {{event.name}}
           </div>
           <div class="customization-timeline-event-time">
@@ -54,7 +55,7 @@
 
   <div class="row">
     <div class="col-md-6">
-      <div class="customization-timeline-event-update" ng-include="'customization/views/call/AddEdit.html'" ng-controller="T6SCustomization.AddEditCallCtrl">
+      <div class="customization-timeline-event-update" ng-include="'customization/views/call/AddEdit.html'" ng-controller="T6SCustomization.AddEditCallCtrl" ng-show="call.id != -1">
 
       </div>
     </div>

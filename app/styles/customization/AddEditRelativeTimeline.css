@@ -104,3 +104,29 @@
 .customization-timeline-event-update {
 
 }
+
+.customization-timeline-event-samecalltype {
+  background: repeating-linear-gradient(
+    -55deg,
+    lightgoldenrodyellow,
+    lightgoldenrodyellow 10px,
+    whitesmoke 10px,
+    whitesmoke 20px
+  ) !important;
+}
+
+.customization-timeline-event-samehovercalltype {
+  background: repeating-linear-gradient(
+    -55deg,
+    lightgrey,
+    lightgrey 10px,
+    whitesmoke 10px,
+    whitesmoke 20px
+  )
+}
+
+.customization-timeline-event-active {
+  background: none !important;
+  background-color: lightgoldenrodyellow !important;
+  border: 2px solid black;
+}

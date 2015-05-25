@@ -1,4 +1,8 @@
-<h3>Ajouter un Call</h3>
+<h2 editable-text="eventName" e-form="eventNameForm">
+  {{ eventName || ('MAIN.EMPTY' | translate) }}
+</h2>
+<button class="btn btn-default" ng-click="eventNameForm.$show()" ng-hide="eventNameForm.$visible" translate="MAIN.EDIT">
+</button>
 <div>
   <form>
     <div class="control-group">
