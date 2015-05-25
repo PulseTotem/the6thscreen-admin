@@ -4,7 +4,7 @@
 </div>
 
 <div id="customization-sdi-preview">
-  <div class="customization-sdi-preview-zone" ng-repeat="zone in zones" style="top: {{ zone.positionFromTop }}%; left: {{ zone.positionFromLeft }}%; width: {{ zone.width }}%; height: {{ zone.height }}%" ng-mouseover="showConfig=true" ng-init="showConfig=false" ng-mouseleave="showConfig=false">
+  <div class="customization-sdi-preview-zone" ng-repeat="zone in zones" ng-mouseover="showConfig=true" ng-init="showConfig=false" ng-mouseleave="showConfig=false">
     <div class="customization-sdi-preview-zone-name">
       {{zone.name}}
     </div>

@@ -27,7 +27,7 @@ angular.module('T6SCustomization')
               $scope.sdi = sdiInfo;
 
               $scope.sdi.zones.forEach(function(zone) {
-                backendSocket.emit('RetrieveCallTypesFromZoneIdComplete', {'zoneId': zone.id});
+                backendSocket.emit('RetrieveCallTypesFromZoneId', {'zoneId': zone.id});
               });
           },
           function (fail) {

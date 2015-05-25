@@ -120,7 +120,7 @@ angular
         controller: 'T6SCustomization.AddCallCtrl'
       })
       .when('/custom/sdi/:sdiId/calltype/:callTypeId/call/:callId/edit', {
-        templateUrl: '../customization/views/call/addEdit.html',
+        templateUrl: '../customization/views/call/AddEdit.html',
         controller: 'T6SCustomization.EditCallCtrl'
       })
       .when('/custom/sdi/:sdiId/call/:callId', {

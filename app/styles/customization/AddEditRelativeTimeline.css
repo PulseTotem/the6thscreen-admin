@@ -96,3 +96,11 @@
 .customization-timeline-event:last-child .customization-timeline-event-time .customization-timeline-event-time-enddate {
   margin-right: 0px;
 }
+
+[ng-drop].drag-enter {
+  border: 3px green solid !important;
+}
+
+.customization-timeline-event-update {
+
+}

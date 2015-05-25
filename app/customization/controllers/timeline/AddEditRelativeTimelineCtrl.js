@@ -15,6 +15,7 @@ angular.module('T6SCustomization')
     $scope.timelineDuration = 0;
     $scope.events = [];
     $scope.callTypes = [];
+    $scope.call = {};
 
     backendSocket.on('CompleteRelativeTimelineDescription', function(response) {
       callbackManager(response, function (timelineInfo) {
@@ -40,7 +41,7 @@ angular.module('T6SCustomization')
       });
     });
 
-    backendSocket.emit('RetrieveCallTypesFromZoneIdComplete', {'zoneId': $scope.zoneId});
+    backendSocket.emit('RetrieveCallTypesFromZoneId', {'zoneId': $scope.zoneId});
 
     var calculTimelineDuration = function() {
       if(typeof($scope.timeline.id) != "undefined") {
@@ -185,7 +186,7 @@ angular.module('T6SCustomization')
           nbUpdates = (newIndex - oldIndex) + 1;
         }
       } else {
-        nbUpdates = $scope.timeline.relativeEvents.length - newIndex - 1;
+          nbUpdates = $scope.timeline.relativeEvents.length - newIndex;
       }
 
       var newEvents = [];
@@ -214,16 +215,27 @@ angular.module('T6SCustomization')
           if (oldIndex < newIndex && oldIndex < relEvent.position && relEvent.position <= newIndex) {
             saveAttribute("UpdateRelativeEvent", relEvent.id, "setPosition", relEvent.position - 1);
           }
+
+          if(relEvent.position == oldIndex) {
+            saveAttribute("UpdateRelativeEvent", relEvent.id, "setPosition", newIndex);
+          }
         } else {
-          if(relEvent.position >= newIndex) {
+          if (relEvent.position >= newIndex) {
             saveAttribute("UpdateRelativeEvent", relEvent.id, "setPosition", relEvent.position + 1);
           }
         }
 
-        if(relEvent.position == oldIndex) {
-          saveAttribute("UpdateRelativeEvent", relEvent.id, "setPosition", newIndex);
-        }
-
       });
+
+      $scope.updateCall = function(call) {
+        console.log("update call");
+        $scope.call = call;
+      };
+
+      $scope.$watch(function () {
+        return $scope.call;
+      }, function() {
+        console.log("changement call" + $scope.call.name);
+      }, true);
     }
 }]);
