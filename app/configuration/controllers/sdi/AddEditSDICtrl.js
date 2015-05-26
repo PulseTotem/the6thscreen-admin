@@ -12,47 +12,53 @@ angular.module('T6SConfiguration')
 
     var CONSTANT_MODAL_CALLTYPE_CREATION_URL = "configuration/views/sdi/configuration/ModalCallTypeCreation.html";
 
-    $scope.zones = [];
     $scope.current_zone = null;
     $scope.current_service = null;
     $scope.current_calltype = null;
 
-    $scope.barres = {
-      "barreH1": {
-        "visible": false,
-        "width": 100,
-        "height": 50
-      },
-      "barreV1": {
-        "visible": false,
-        "width": 50,
-        "height": 100
-      },
-      "barreH2": {
-        "visible": false,
-        "width": 100,
-        "height": 50
-      },
-      "barreV2": {
-        "visible": false,
-        "width": 50,
-        "height": 100
+    $scope.refreshZoneInformations = function(zoneJSON) {
+      var index = -1;
+      for (var i = 0; i < $scope.sdi.zones.length; i++) {
+        if ($scope.sdi.zones[i].id == zone.id) {
+          index = i;
+        }
       }
+
+      if (index != -1) {
+        zone = $scope.zone[index];
+        zone.positionFromLeft = zoneJSON.positionFromLeft;
+        zone.positionFromTop = zoneJSON.positionFromTop;
+        zone.width = zoneJSON.width;
+        zone.height = zoneJSON.height;
+        zone.name = zoneJSON.name;
+      } else {
+        $scope.sdi.zones.push(zoneJSON);
+      }
+
     };
+
+    backendSocket.on('AnswerUpdateZone', function (response) {
+      callbackManager(response, function (zone) {
+
+         $scope.refreshZoneInformations(zone);
+      }, function (fail) {
+        console.error(fail);
+      });
+    });
 
 
     backendSocket.on('CallTypesDescriptionFromZone', function (response) {
       callbackManager(response, function (infoCT) {
         var index = -1;
-        for (var i = 0; i < $scope.zones.length; i++) {
-          if ($scope.zones[i].id == infoCT.id) {
+        for (var i = 0; i < $scope.sdi.zones.length; i++) {
+          if ($scope.sdi.zones[i].id == infoCT.id) {
             index = i;
           }
         }
         if (index !== -1) {
-          $scope.zones.splice(index,1);
+          $scope.sdi.zones.splice(index,1);
         }
-        $scope.zones.push(infoCT);
+        $scope.sdi.zones.push(infoCT);
         //console.log(infoCT);
       }, function (fail) {
         console.error(fail);
@@ -62,6 +68,10 @@ angular.module('T6SConfiguration')
     backendSocket.on('SDIDescription', function(response) {
       callbackManager(response, function (sdi) {
           $scope.sdi = sdi;
+
+          for (var i = 0; i < sdi.zones.length; i++) {
+            backendSocket.emit('RetrieveCallTypesFromZoneId', {'zoneId': sdi.zones[i].id});
+          }
         },
         function (fail) {
           console.error(fail);
@@ -71,7 +81,7 @@ angular.module('T6SConfiguration')
 
     backendSocket.on('AnswerCreateZone', function(response) {
       callbackManager(response, function (zone) {
-          $scope.zones.push(zone);
+          $scope.sdi.zones.push(zone);
           saveAttribute("UpdateSDI", $scope.sdi.id, "addZone", zone.id);
         },
         function (fail) {
@@ -137,9 +147,6 @@ angular.module('T6SConfiguration')
     };
 
     $scope.updateZonePosition = function (zone) {
-      saveAttribute("UpdateZone", zone.id, "setPositionFromLeft", zone.positionFromLeft);
-      saveAttribute("UpdateZone", zone.id, "setPositionFromTop", zone.positionFromTop);
-      saveAttribute("UpdateZone", zone.id, "setWidth", zone.width);
-      saveAttribute("UpdateZone", zone.id, "setHeight", zone.height);
+      backendSocket.emit("UpdateZonePosition",zone);
     }
   }]);

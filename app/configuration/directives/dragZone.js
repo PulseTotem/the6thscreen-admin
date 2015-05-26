@@ -76,6 +76,8 @@ angular.module('T6SConfiguration')
             //console.log(zone_JSON);
             scope.showTooltip = true;
             zoneUtil.cacherAncre();
+            var tmpZone = zoneUtil.get(scope.zones, id);
+            $scope.updateZonePosition(tmpZone);
           }
 
           function mmove($event) {
@@ -83,7 +85,7 @@ angular.module('T6SConfiguration')
             deplaceZone(element, $event,clicX, clicY, elLeft, elTop);
           }
           var clicX = 0, clicY = 0, elLeft= 0, elTop=0;
-          var newElement = angular.element('<div class="draggable"></div>');
+          var newElement = angular.element('<div class="draggable glyphicon glyphicon-move"></div>');
           element.append(newElement);
           newElement.on('mousedown', function ($event) {
             $event.preventDefault();

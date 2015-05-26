@@ -9,7 +9,11 @@
  */
 angular.module('T6SConfiguration')
   .controller('T6SConfiguration.AddSDICtrl', ['$scope','$rootScope','$routeParams','backendSocket', 'callbackManager', 'saveAttribute', function ($scope, $rootScope, $routeParams, backendSocket, callbackManager, saveAttribute) {
-    $scope.sdi = {};
+    var now = new Date();
+    var tmpName = "SDI "+now.toLocaleDateString()+" "+now.toLocaleTimeString();
+    $scope.sdi = {
+      "name": tmpName
+    };
 
     backendSocket.on('AnswerUpdateSDI', function(response) {
       callbackManager(response, function (sdi) {

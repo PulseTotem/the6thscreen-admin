@@ -1,5 +1,5 @@
 <div ng-controller="T6SConfiguration.AddEditSDICtrl">
-  <h2>Création d'un nouveau SDI</h2>
+  <h2>{{sdi.name}}</h2>
 
   <div ng-include="'configuration/views/sdi/configuration/MenuService.html'"></div>
 
@@ -8,7 +8,7 @@
     <div class="barre_horizontale2" id="barreH2"  ></div>
     <div class="barre_verticale1" id="barreV1" ></div>
     <div class="barre_verticale2" id="barreV2" ></div>
-    <div ng-repeat="zone in zones" ng-click="$event.stopPropagation()" ng-resize-zone="true" ng-drag-zone="true" delete lock="false" class="zone" numero="{{zone.id}}" style="width: {{ zone.width}}%; height: {{ zone.height}}%; position: absolute; top: {{ zone.positionFromTop}}%; left: {{ zone.positionFromLeft}}%;" ng-drop="true" ng-drop-success="onDropCompleteOnZone($data,zone)" ng-mouseover="showTooltip = true" ng-mouseleave="showTooltip = false">
+    <div ng-repeat="zone in sdi.zones" ng-click="$event.stopPropagation()" ng-resize-zone="true" ng-drag-zone="true" delete lock="false" class="zone" numero="{{zone.id}}" style="width: {{ zone.width}}%; height: {{ zone.height}}%; position: absolute; top: {{ zone.positionFromTop}}%; left: {{ zone.positionFromLeft}}%;" ng-drop="true" ng-drop-success="onDropCompleteOnZone($data,zone)" ng-mouseover="showTooltip = true" ng-mouseleave="showTooltip = false">
       <div style="position: relative;">
         <div class="myTooltip myTooltip-top" ng-show="showTooltip">X : {{zone.positionFromLeft |
           number:2}}%
@@ -26,7 +26,7 @@
           number:2}}%
         </div>
       </div>
-      {{ zone.id }}
+      <div class="zone-name">{{ zone.name }}</div>
       <div class="customization-sdi-preview-zone-service" ng-repeat="service in zone.services">
         <div class="btn-group" dropdown>
           <button class="btn btn-default dropdown-toggle" dropdown-toggle ng-click="$event.stopPropagation()">
