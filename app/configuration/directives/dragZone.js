@@ -58,12 +58,12 @@ angular.module('T6SConfiguration')
               var respcTop = zoneUtil.aidePlacementHorizontale(element, id, pcTop, 0);
               pcTop = respcTop[0];
             }
-            var tmpZone = zoneUtil.get(scope.zones, id);
+            var tmpZone = zoneUtil.get(scope.sdi.zones, id);
             tmpZone.positionFromLeft = pcLeft;
             tmpZone.positionFromTop = pcTop;
             zoneUtil.addAncreH(id, pcTop, pcBottom);
             zoneUtil.addAncreV(id, pcLeft, pcRight);
-            zoneUtil.update(scope.zones, tmpZone);
+            zoneUtil.update(scope.sdi.zones, tmpZone);
             scope.$apply();
           }
 
@@ -72,11 +72,11 @@ angular.module('T6SConfiguration')
             $document.off('mouseup',mup);
             //$document.off('mousemove', mmove);
             //$document.off('mouseup', mup);
-            //var zone_JSON = JSON.stringify(scope.zones);
+            //var zone_JSON = JSON.stringify(scope.sdi.zones);
             //console.log(zone_JSON);
             scope.showTooltip = true;
             zoneUtil.cacherAncre();
-            var tmpZone = zoneUtil.get(scope.zones, id);
+            var tmpZone = zoneUtil.get(scope.sdi.zones, id);
             $scope.updateZonePosition(tmpZone);
           }
 

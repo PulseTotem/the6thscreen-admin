@@ -18,9 +18,9 @@ angular
     'ngTouch',
     'ngDraggable',
     'ui.bootstrap',
+    'xeditable',
     'pascalprecht.translate',
     'btford.socket-io',
-    'ui.bootstrap',
     'T6SConfiguration',
     'T6SAdmin',
     'T6SCustomization'

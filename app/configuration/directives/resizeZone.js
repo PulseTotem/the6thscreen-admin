@@ -126,7 +126,7 @@ angular.module('T6SConfiguration')
             }
           }
 
-          var tmpZone = zoneUtil.get(scope.zones, id);
+          var tmpZone = zoneUtil.get(scope.sdi.zones, id);
           tmpZone.positionFromLeft = pcLeft;
           tmpZone.positionFromTop = pcTop;
 
@@ -134,7 +134,7 @@ angular.module('T6SConfiguration')
           tmpZone.width = pcWidth;
           zoneUtil.addAncreH(id, pcTop, pcBottom);
           zoneUtil.addAncreV(id, pcRight, pcLeft);
-          zoneUtil.update(scope.zones, tmpZone);
+          zoneUtil.update(scope.sdi.zones, tmpZone);
           scope.$apply();
         }
 
@@ -160,12 +160,12 @@ angular.module('T6SConfiguration')
               var mouseup = function () {
                 $document.off('mousemove', mousemove);
                 $document.off('mouseup', mouseup);
-                //zone_JSON = JSON.stringify(scope.zones);
+                //zone_JSON = JSON.stringify(scope.sdi.zones);
                 //ole.log(zone_JSON);
                 scope.showTooltip = true;
                 zoneUtil.cacherAncre();
 
-                var tmpZone = zoneUtil.get(scope.zones, attrs.numero);
+                var tmpZone = zoneUtil.get(scope.sdi.zones, attrs.numero);
                 scope.updateZonePosition(tmpZone);
               };
 

@@ -1,5 +1,5 @@
 <div ng-controller="T6SConfiguration.AddEditSDICtrl">
-  <h2>{{sdi.name}}</h2>
+  <h2><a editable-text="sdi.name" onaftersave="updateSDIName()">{{ sdi.name || 'Choose a name' }}</a></h2>
 
   <div ng-include="'configuration/views/sdi/configuration/MenuService.html'"></div>
 
@@ -9,31 +9,14 @@
     <div class="barre_verticale1" id="barreV1" ></div>
     <div class="barre_verticale2" id="barreV2" ></div>
     <div ng-repeat="zone in sdi.zones" ng-click="$event.stopPropagation()" ng-resize-zone="true" ng-drag-zone="true" delete lock="false" class="zone" numero="{{zone.id}}" style="width: {{ zone.width}}%; height: {{ zone.height}}%; position: absolute; top: {{ zone.positionFromTop}}%; left: {{ zone.positionFromLeft}}%;" ng-drop="true" ng-drop-success="onDropCompleteOnZone($data,zone)" ng-mouseover="showTooltip = true" ng-mouseleave="showTooltip = false">
-      <div style="position: relative;">
-        <div class="myTooltip myTooltip-top" ng-show="showTooltip">X : {{zone.positionFromLeft |
-          number:2}}%
-        </div>
-        <div class="myTooltip myTooltip-bottom" ng-show="showTooltip"
-             style="bottom: -{{getSize.heightPrctToPx(zone.height) + 19}}px;">Width : {{zone.width |
-          number:2}}%
-        </div>
-        <div class="myTooltip myTooltip-left" ng-show="showTooltip"
-             style="bottom: -{{getSize.heightPrctToPx(zone.height) / 2}}px;">Y : {{zone.positionFromTop |
-          number:2}}%
-        </div>
-        <div class="myTooltip myTooltip-right" ng-show="showTooltip"
-             style="bottom: -{{getSize.heightPrctToPx(zone.height) / 2}}px;">Height : {{zone.height |
-          number:2}}%
-        </div>
-      </div>
-      <div class="zone-name">{{ zone.name }}</div>
+      <div class="zone-name"><a href="#" editable-text="zone.name" onaftersave="updateZoneName(zone)">{{ zone.name || 'Choose a name' }}</a></div>
       <div class="customization-sdi-preview-zone-service" ng-repeat="service in zone.services">
         <div class="btn-group" dropdown>
           <button class="btn btn-default dropdown-toggle" dropdown-toggle ng-click="$event.stopPropagation()">
             <img ng-src="{{service.logo}}" /> <span class="badge" >{{service.callTypes.length}}</span>
           </button>
-          <ul class="dropdown-menu" role="menu" ng-repeat="callType in service.callTypes" ng-click="$event.stopPropagation()">
-            <li><a ng-click="editCallType(callType.id, event)">Edit "{{ callType.name }}"</a></li>
+          <ul class="dropdown-menu" role="menu" ng-repeat="callType in service.callTypes">
+            <li><a ng-click="editCallType(callType.id, event)" class="editCTMenu">Edit "{{ callType.name }}"</a></li>
           </ul>
         </div>
       </div>

@@ -19,13 +19,13 @@ angular.module('T6SConfiguration')
     $scope.refreshZoneInformations = function(zoneJSON) {
       var index = -1;
       for (var i = 0; i < $scope.sdi.zones.length; i++) {
-        if ($scope.sdi.zones[i].id == zone.id) {
+        if ($scope.sdi.zones[i].id == zoneJSON.id) {
           index = i;
         }
       }
 
       if (index != -1) {
-        zone = $scope.zone[index];
+        var zone = $scope.sdi.zones[index];
         zone.positionFromLeft = zoneJSON.positionFromLeft;
         zone.positionFromTop = zoneJSON.positionFromTop;
         zone.width = zoneJSON.width;
@@ -142,11 +142,18 @@ angular.module('T6SConfiguration')
     };
 
     $scope.editCallType = function (callTypeId, event) {
-      event.stopPropagation();
-      event.preventDefault();
+      console.log("toto");
     };
 
     $scope.updateZonePosition = function (zone) {
       backendSocket.emit("UpdateZonePosition",zone);
-    }
+    };
+
+    $scope.updateSDIName = function () {
+      saveAttribute("UpdateSDI", $scope.sdi.id, "setName", $scope.sdi.name);
+    };
+
+    $scope.updateZoneName = function (zone) {
+      saveAttribute("UpdateZone", zone.id, "setName", zone.name);
+    };
   }]);
