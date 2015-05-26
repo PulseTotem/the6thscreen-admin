@@ -124,6 +124,7 @@ angular.module('T6SConfiguration')
       var modalInstance = $modal.open({
         animation: true,
         templateUrl: CONSTANT_MODAL_CALLTYPE_CREATION_URL,
+        controller: 'T6SConfiguration.AddCallTypeCtrl',
         scope: $scope,
         backdrop: 'static',
         keyboard: false
@@ -141,8 +142,33 @@ angular.module('T6SConfiguration')
       });
     };
 
-    $scope.editCallType = function (callTypeId, event) {
-      console.log("toto");
+    $scope.editCallType = function (service, zone, callType, $event) {
+      $event.stopPropagation();
+      $event.preventDefault();
+
+      $scope.current_zone = zone;
+      $scope.current_service = service;
+      $scope.current_calltype = callType;
+
+      var modalInstance = $modal.open({
+        animation: true,
+        templateUrl: CONSTANT_MODAL_CALLTYPE_CREATION_URL,
+        controller: 'T6SConfiguration.EditCallTypeCtrl',
+        scope: $scope,
+        backdrop: 'static',
+        keyboard: false
+      });
+
+      modalInstance.result.then(function (callType) {
+        backendSocket.emit('RetrieveCallTypesFromZoneId', {'zoneId': $scope.current_zone.id});
+        $scope.current_zone = null;
+        $scope.current_service = null;
+        $scope.current_calltype = null;
+      }, function () {
+        $scope.current_zone = null;
+        $scope.current_service = null;
+        $scope.current_calltype = null;
+      });
     };
 
     $scope.updateZonePosition = function (zone) {

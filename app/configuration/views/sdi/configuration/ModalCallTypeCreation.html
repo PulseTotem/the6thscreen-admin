@@ -1,5 +1,5 @@
 
-    <div class="modal-content" ng-controller="T6SConfiguration.AddCallTypeCtrl">
+    <div class="modal-content" ng-controller="T6SConfiguration.AddEditCallTypeCtrl">
       <div class="modal-header">
         <h3>Création d'un appel pour le service {{ current_service.name }}</h3>
       </div>
@@ -8,7 +8,7 @@
           <accordion-group heading="Source d'information" is-open="isFirstStep">
             <h4>Choisissez une source d'information : </h4>
             <div class="list-group" ng-repeat="source in sources">
-              <a href="#" class="list-group-item" ng-click="selectSource(source.id)">
+              <a href="#" class="list-group-item" ng-class="{active: isSourceSelected(source.id)}" ng-click="selectSource(source)">
                 <h4 class="list-group-item-heading">{{ source.name }}</h4>
                 <p class="list-group-item-text">{{ source.description }}</p>
               </a>
@@ -17,7 +17,7 @@
           <accordion-group heading="Composant d'affichage" is-open="isSecondStep" is-disabled="!callType.source">
             <h3>Choisissez un mode d'affichage : </h3>
             <div class="list-group" ng-repeat="renderer in renderers">
-              <a href="#" class="list-group-item" ng-click="selectRenderer(renderer.id)">
+              <a href="#" class="list-group-item" ng-class="{active: isRendererSelected(renderer.id)}" ng-click="selectRenderer(renderer)">
                 <h4 class="list-group-item-heading">{{ renderer.name }}</h4>
                 <p class="list-group-item-text">{{ renderer.description }}</p>
               </a>
@@ -30,7 +30,7 @@
           <accordion-group heading="Options avancées" is-disabled="!callType.renderer">
             <h3>Choisissez une politique : </h3>
             <div class="list-group" ng-repeat="policy in policies">
-              <a href="#" class="list-group-item" ng-click="selectPolicy(policy.id)">
+              <a href="#" class="list-group-item" ng-class="{active: isPolicySelected(policy.id)}" ng-click="selectPolicy(policy)">
                 <h4 class="list-group-item-heading">{{ policy.name }}</h4>
                 <p class="list-group-item-text">{{ policy.description }}</p>
               </a>
