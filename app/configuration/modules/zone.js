@@ -19,8 +19,8 @@ app.value('defaultValue', {
   ancresZV: [],
   magnetisme: true,
   magnetismeMarge: 0.75,
-  marginH: 50,
-  marginW: 100
+  heightMin: 5,
+  widthMin: 5
 });
 
 app.factory('getSize', function ($window) {
@@ -274,7 +274,7 @@ app.run(function($rootScope, $document,$window,defaultValue){
 
 app.directive('drag', function ($document,$rootScope, $window, zoneUtil, defaultValue) {
   return function ($scope, $element) {
-    function deplaceZone($element, $event,curseurClicX, curseurClicY) {
+    function deplaceZone($element, $event,clicX, clicY, elLeft,elTop) {
       var id = $element.attr('numero');
       var zone = $element[0];
       var fenetreEdition = document.getElementById("zone_edit");
@@ -282,37 +282,39 @@ app.directive('drag', function ($document,$rootScope, $window, zoneUtil, default
       var fenetreEditionLeft = fenetreEdition.getBoundingClientRect().left;
       var fenetreEditionHeight = fenetreEdition.getBoundingClientRect().height;
       var fenetreEditionTop = fenetreEdition.getBoundingClientRect().top;
-      var elOffSetWidth=zone.getBoundingClientRect().width;
-      var elOffSetHeight=zone.getBoundingClientRect().height;
-      var cursorXPosition = ($event.pageX - fenetreEditionLeft);
-      var cursorYPosition = ($event.pageY - fenetreEditionTop);
-      var top = cursorYPosition- curseurClicY;
-      var left = cursorXPosition - curseurClicX;
+      var elWidth=zone.getBoundingClientRect().width;
+      var elHeight=zone.getBoundingClientRect().height;
+      var newClicX = ($event.pageX - fenetreEditionLeft);
+      var newClicY = ($event.pageY - fenetreEditionTop);
+      var varX=newClicX - clicX;
+      var varY=newClicY- clicY;
+      var top = varY+elTop;
+      var left = varX+elLeft;
       var pcTop = (top / fenetreEditionHeight) * 100,
         pcLeft = (left / fenetreEditionWidth) * 100;
-      var elOffSetHeightPourcentage=(elOffSetHeight / fenetreEditionHeight) * 100;
-      var elOffSetWidthPourcentage=(elOffSetWidth / fenetreEditionWidth) * 100;
+      var elHeightPourcentage=(elHeight / fenetreEditionHeight) * 100;
+      var elWidthPourcentage=(elWidth / fenetreEditionWidth) * 100;
       if (pcTop < 0) {
         pcTop = 0;
       }
-      else if (pcTop + elOffSetHeightPourcentage > 100) {
-        pcTop = 100 - elOffSetHeightPourcentage;
+      else if (pcTop + elHeightPourcentage > 100) {
+        pcTop = 100 - elHeightPourcentage;
       }
       if (pcLeft < 0) {
         pcLeft = 0;
       }
-      else if (pcLeft + elOffSetWidthPourcentage > 100) {
-        pcLeft = 100 - elOffSetWidthPourcentage;
+      else if (pcLeft + elWidthPourcentage > 100) {
+        pcLeft = 100 - elWidthPourcentage;
       }
-      var pcRight = (pcLeft + elOffSetWidthPourcentage),
-        pcBottom = (pcTop +elOffSetHeightPourcentage);
+      var pcRight = (pcLeft + elWidthPourcentage),
+        pcBottom = (pcTop +elHeightPourcentage);
       if (defaultValue.magnetisme === true) {
         var respcRight = $rootScope.aidePlacementVerticale($element, id, pcRight, 1);
         pcRight = respcRight[0];
         var respcBottom = $rootScope.aidePlacementHorizontale($element, id, pcBottom, 1);
         pcBottom = respcBottom[0];
-        pcLeft = pcRight - elOffSetWidthPourcentage;
-        pcTop = pcBottom - elOffSetHeightPourcentage;
+        pcLeft = pcRight - elWidthPourcentage;
+        pcTop = pcBottom - elHeightPourcentage;
         var respcLeft = $rootScope.aidePlacementVerticale($element, id, pcLeft, 0);
         pcLeft = respcLeft[0];
         var respcTop = $rootScope.aidePlacementHorizontale($element, id, pcTop, 0);
@@ -338,9 +340,9 @@ app.directive('drag', function ($document,$rootScope, $window, zoneUtil, default
 
     function mmove($event) {
       $event.preventDefault();
-      deplaceZone($element, $event,curseurClicX, curseurClicY);
+      deplaceZone($element, $event,clicX, clicY, elLeft, elTop);
     }
-    var curseurClicX = 0, curseurClicY = 0;
+    var clicX = 0, clicY = 0, elLeft= 0, elTop=0;
     var newElement = angular.element('<div class="draggable"></div>');
     $element.append(newElement);
     newElement.on('mousedown', function ($event) {
@@ -351,11 +353,10 @@ app.directive('drag', function ($document,$rootScope, $window, zoneUtil, default
         var fenetreEdition = document.getElementById("zone_edit");
         var fenetreEditionLeft = fenetreEdition.getBoundingClientRect().left;
         var fenetreEditionTop = fenetreEdition.getBoundingClientRect().top;
-        var zone = $element[0];
-        var elOffSetTop=zone.getBoundingClientRect().top;
-        var elOffSetLeft=zone.getBoundingClientRect().left;
-        curseurClicX = ($event.pageX - fenetreEditionLeft)-elOffSetLeft;
-        curseurClicY = ($event.pageY - fenetreEditionTop)-elOffSetTop;
+        clicX = ($event.pageX - fenetreEditionLeft);
+        clicY = ($event.pageY - fenetreEditionTop);
+        elLeft=$element[0].getBoundingClientRect().left-fenetreEditionLeft;
+        elTop=$element[0].getBoundingClientRect().top-fenetreEditionTop;
       }
     });
   };
@@ -364,37 +365,44 @@ app.directive('drag', function ($document,$rootScope, $window, zoneUtil, default
 app.directive('resizesw', function ($document,$rootScope, $window, zoneUtil, defaultValue) {
   return function ($scope, $element) {
 
-    function resize($element, $event) {
+    function resize($element, $event,clicX,clicY,elLeft,elTop,elWidth,elHeight) {
       var id = $element.attr('numero');
-      var zone = $element[0];
       var fenetreEdition = document.getElementById("zone_edit");
       var fenetreEditionWidth = fenetreEdition.getBoundingClientRect().width;
       var fenetreEditionLeft = fenetreEdition.getBoundingClientRect().left;
       var fenetreEditionHeight = fenetreEdition.getBoundingClientRect().height;
       var fenetreEditionTop = fenetreEdition.getBoundingClientRect().top;
-      var elOffSetTop=zone.getBoundingClientRect().top;
-      var elOffSetWidth=zone.getBoundingClientRect().width;
-      var elOffSetLeft=zone.getBoundingClientRect().left;
-      var elOffSetHeight=zone.getBoundingClientRect().height;
-      var cursorXPosition = ($event.pageX - fenetreEditionLeft);
-      var cursorYPosition = ($event.pageY - fenetreEditionTop);
-      var htest = elOffSetTop + defaultValue.marginH,//divY+minHeightZone
-        height = cursorYPosition > htest ? cursorYPosition - elOffSetTop : defaultValue.marginH,
-        wtest = elOffSetLeft + elOffSetWidth - defaultValue.marginW,//divX+minWidth
-        left = cursorXPosition > wtest ? wtest : cursorXPosition;
-      if (left<0){
-        left=0;
-      }
-      var width = elOffSetLeft - left + elOffSetWidth,
-        pcWidth = (width / fenetreEditionWidth) * 100, //convertir px en %
+      var newClicX = ($event.pageX - fenetreEditionLeft);
+      var newClicY = ($event.pageY - fenetreEditionTop);
+      var varX=newClicX - clicX;
+      var varY=newClicY- clicY;
+      var left = elLeft+varX;
+      var width = elWidth-varX;
+      var height = (elHeight+varY);
+
+      var pcWidth = (width / fenetreEditionWidth) * 100, //convertir px en %
         pcHeight = (height / fenetreEditionHeight) * 100,//convertir px en %
-        pcLeft = (left / fenetreEditionWidth) * 100;//convertir px en %
-      var pcTop = (elOffSetTop / fenetreEditionHeight) * 100;
+        pcLeft = (left / fenetreEditionWidth) * 100,//convertir px en %
+        pcTop = (elTop / fenetreEditionHeight) * 100;
+      var widthMinVal = (((elLeft+elWidth)/ fenetreEditionWidth) * 100)-defaultValue.widthMin;//divY+minHeightZone
+      if (pcLeft<0){
+        pcLeft=0;
+        pcWidth = (((elLeft+elWidth)) / fenetreEditionWidth) * 100;
+      }
+      if (pcWidth<defaultValue.widthMin){
+        pcLeft=widthMinVal;
+        pcWidth=defaultValue.widthMin;
+      }
+      if (pcHeight<defaultValue.heightMin){
+        pcHeight=defaultValue.heightMin;
+      }
       var pcBottom=pcTop+pcHeight;
-      var pcRight=pcLeft+pcWidth;
-      if ((pcHeight+pcTop)>100){
+      if (pcBottom>100){
+        pcBottom=100;
         pcHeight=100-pcTop;
       }
+
+      var pcRight=pcLeft+pcWidth;
       if (defaultValue.magnetisme === true) {
         var respcLeft = $rootScope.aidePlacementVerticale($element, id, pcLeft, 0);
         pcLeft = respcLeft[0];
@@ -403,8 +411,8 @@ app.directive('resizesw', function ($document,$rootScope, $window, zoneUtil, def
       }
       var tmpZone = zoneUtil.get($scope.zones, id);
       tmpZone.positionFromLeft = pcLeft;
-      tmpZone.width = pcWidth;
       tmpZone.height = pcHeight;
+      tmpZone.width = pcWidth;
       $rootScope.addAncreH(id, pcTop, pcBottom);
       $rootScope.addAncreV(id, pcRight, pcLeft);
       zoneUtil.update($scope.zones, tmpZone);
@@ -414,7 +422,7 @@ app.directive('resizesw', function ($document,$rootScope, $window, zoneUtil, def
     function mmove($event) {
       $event.preventDefault();
 
-      resize($element, $event);
+      resize($element, $event,clicX,clicY,elLeft,elTop,elWidth,elHeight);
 
     }
 
@@ -427,14 +435,23 @@ app.directive('resizesw', function ($document,$rootScope, $window, zoneUtil, def
       $scope.showTooltip = true;
       $rootScope.cacherAncre();
     }
-
+    var clicX = 0,clicY = 0,elLeft= 0,elTop= 0,elWidth= 0,elHeight=0;
     var newElement = angular.element('<div class="resizableSW"></div>');
     $element.append(newElement);
-    newElement.on('mousedown', function (event) {
+    newElement.on('mousedown', function ($event) {
       event.preventDefault();
       if ($element.attr('resize') === 'true') {
         $document.on('mouseup', mup);
         $document.on('mousemove', mmove);
+        var fenetreEdition = document.getElementById("zone_edit");
+        var fenetreEditionLeft = fenetreEdition.getBoundingClientRect().left;
+        var fenetreEditionTop = fenetreEdition.getBoundingClientRect().top;
+        clicX = ($event.pageX - fenetreEditionLeft);
+        clicY = ($event.pageY - fenetreEditionTop);
+        elLeft=$element[0].getBoundingClientRect().left-fenetreEditionLeft;
+        elTop=$element[0].getBoundingClientRect().top-fenetreEditionTop;
+        elWidth=$element[0].getBoundingClientRect().width;
+        elHeight=$element[0].getBoundingClientRect().height;
       }
     });
   };
@@ -443,30 +460,32 @@ app.directive('resizesw', function ($document,$rootScope, $window, zoneUtil, def
 app.directive('resizese', function ($document,$rootScope, $window, zoneUtil, defaultValue) {
   return function ($scope, $element) {
 
-    function resize($element, $event) {
+    function resize($element, $event,clicX,clicY,elLeft,elTop,elWidth,elHeight) {
       var id = $element.attr('numero');
-      var zone = $element[0];
       var fenetreEdition = document.getElementById("zone_edit");
       var fenetreEditionWidth = fenetreEdition.getBoundingClientRect().width;
       var fenetreEditionLeft = fenetreEdition.getBoundingClientRect().left;
       var fenetreEditionHeight = fenetreEdition.getBoundingClientRect().height;
       var fenetreEditionTop = fenetreEdition.getBoundingClientRect().top;
-      var elOffSetTop=zone.getBoundingClientRect().top;
-      var elOffSetWidth=zone.getBoundingClientRect().width;
-      var elOffSetLeft=zone.getBoundingClientRect().left;
-      var elOffSetHeight=zone.getBoundingClientRect().height;
-      var cursorXPosition = ($event.pageX - fenetreEditionLeft);
-      var cursorYPosition = ($event.pageY - fenetreEditionTop);
-      var htest = elOffSetTop + defaultValue.marginH,
-        height = cursorYPosition > htest ? cursorYPosition - elOffSetTop : defaultValue.marginH,
-        width = (cursorXPosition - elOffSetLeft) > defaultValue.marginW ? (cursorXPosition - elOffSetLeft) : defaultValue.marginW,
-        pcWidth = (width / fenetreEditionWidth) * 100,
-        pcTop = (elOffSetTop / fenetreEditionHeight) * 100,
+      var newClicX = ($event.pageX - fenetreEditionLeft);
+      var newClicY = ($event.pageY - fenetreEditionTop);
+      var varX=newClicX - clicX;
+      var varY=newClicY- clicY;
+      var width = elWidth+varX;
+      var height = (elHeight+varY);
+      var pcWidth = (width / fenetreEditionWidth) * 100,
+        pcTop = (elTop / fenetreEditionHeight) * 100,
+        pcLeft = (elLeft / fenetreEditionWidth) * 100,
         pcHeight = (height / fenetreEditionHeight) * 100;
+      if (pcWidth<defaultValue.widthMin){
+        pcWidth=defaultValue.widthMin;
+      }
+      if (pcHeight<defaultValue.heightMin){
+        pcHeight=defaultValue.heightMin;
+      }
       if (pcHeight+pcTop>100){
         pcHeight=100-pcTop;
       }
-      var pcLeft = (elOffSetLeft / fenetreEditionWidth) * 100;
       if (pcWidth+pcLeft>100){
         pcWidth=100-pcLeft;
       }
@@ -480,8 +499,8 @@ app.directive('resizese', function ($document,$rootScope, $window, zoneUtil, def
         pcHeight = respcHeight[0] - pcTop;
       }
       var tmpZone = zoneUtil.get($scope.zones, id);
-      tmpZone.width = pcWidth;
       tmpZone.height = pcHeight;
+      tmpZone.width = pcWidth;
       var pcBottom = (pcTop + pcHeight);
       $rootScope.addAncreH(id, pcTop, pcBottom);
       $rootScope.addAncreV(id, pcRight, pcLeft);
@@ -491,7 +510,7 @@ app.directive('resizese', function ($document,$rootScope, $window, zoneUtil, def
 
     function mmove($event) {
       $event.preventDefault();
-      resize($element, $event);
+      resize($element, $event,clicX,clicY,elLeft,elTop,elWidth,elHeight);
     }
 
     function mup() {
@@ -503,14 +522,23 @@ app.directive('resizese', function ($document,$rootScope, $window, zoneUtil, def
       $scope.showTooltip = true;
       $rootScope.cacherAncre();
     }
-
+    var clicX = 0,clicY = 0,elLeft= 0,elTop= 0,elWidth= 0,elHeight=0;
     var newElement = angular.element('<div class="resizableSE"></div>');
     $element.append(newElement);
-    newElement.on('mousedown', function (event) {
+    newElement.on('mousedown', function ($event) {
       event.preventDefault();
       if ($element.attr('resize') === 'true') {
         $document.on('mouseup', mup);
         $document.on('mousemove', mmove);
+        var fenetreEdition = document.getElementById("zone_edit");
+        var fenetreEditionLeft = fenetreEdition.getBoundingClientRect().left;
+        var fenetreEditionTop = fenetreEdition.getBoundingClientRect().top;
+        clicX = ($event.pageX - fenetreEditionLeft);
+        clicY = ($event.pageY - fenetreEditionTop);
+        elLeft=$element[0].getBoundingClientRect().left-fenetreEditionLeft;
+        elTop=$element[0].getBoundingClientRect().top-fenetreEditionTop;
+        elWidth=$element[0].getBoundingClientRect().width;
+        elHeight=$element[0].getBoundingClientRect().height;
       }
     });
   };
@@ -519,33 +547,43 @@ app.directive('resizese', function ($document,$rootScope, $window, zoneUtil, def
 app.directive('resizene', function ($document,$rootScope, $window, zoneUtil, defaultValue) {
   return function ($scope, $element) {
 
-    function resize($element, $event) {
+    function resize($element, $event,clicX,clicY,elLeft,elTop,elWidth,elHeight) {
       var id = $element.attr('numero');
-      var zone = $element[0];
       var fenetreEdition = document.getElementById("zone_edit");
       var fenetreEditionWidth = fenetreEdition.getBoundingClientRect().width;
       var fenetreEditionLeft = fenetreEdition.getBoundingClientRect().left;
       var fenetreEditionHeight = fenetreEdition.getBoundingClientRect().height;
       var fenetreEditionTop = fenetreEdition.getBoundingClientRect().top;
-      var elOffSetTop=zone.getBoundingClientRect().top;
-      var elOffSetLeft=zone.getBoundingClientRect().left;
-      var elOffSetHeight=zone.getBoundingClientRect().height;
-      var cursorXPosition = ($event.pageX - fenetreEditionLeft);
-      var cursorYPosition = ($event.pageY - fenetreEditionTop);
-      var pcBottom = (elOffSetTop + elOffSetHeight),
-        top = (pcBottom - cursorYPosition) > defaultValue.marginH ? cursorYPosition : (pcBottom - defaultValue.marginH);
-      if (top<0){
-        top=0;
-      }
-      var left = elOffSetLeft,
-        width = (cursorXPosition - left) > defaultValue.marginW ? (cursorXPosition - left) : defaultValue.marginW,
-        pcWidth = (width / fenetreEditionWidth) * 100,
+      var newClicX = ($event.pageX - fenetreEditionLeft);
+      var newClicY = ($event.pageY - fenetreEditionTop);
+      var varX=newClicX - clicX;
+      var varY=newClicY- clicY;
+      var top = elTop+varY;
+      var left = elLeft;
+      var width = elWidth+varX;
+      var height = (elHeight-varY);
+
+      var pcWidth = (width / fenetreEditionWidth) * 100,
         pcLeft = (left / fenetreEditionWidth) * 100,
-        height = elOffSetHeight + (elOffSetTop - top),
         pcHeight = (height / fenetreEditionHeight) * 100,
         pcTop = (top / fenetreEditionHeight) * 100;
       if(pcWidth+pcLeft>100){
         pcWidth=100-pcLeft;
+      }
+      if(pcTop<0){
+        pcTop=0;
+        pcHeight= (((elTop+elHeight)) / fenetreEditionHeight) * 100;
+      }
+      if(pcTop<0){
+        pcTop=0;
+        pcHeight= (((elTop+elHeight)) / fenetreEditionHeight) * 100;
+      }
+      if(pcWidth<defaultValue.widthMin){
+        pcWidth=defaultValue.widthMin;
+      }
+      if(pcHeight<defaultValue.heightMin){
+        pcHeight=defaultValue.heightMin;
+        pcTop=((((elTop+elHeight)) / fenetreEditionHeight) * 100)-defaultValue.heightMin;
       }
       if (defaultValue.magnetisme === true) {
         var respcTop = $rootScope.aidePlacementHorizontale($element, id, pcTop, 0);
@@ -555,10 +593,10 @@ app.directive('resizene', function ($document,$rootScope, $window, zoneUtil, def
       }
       var tmpZone = zoneUtil.get($scope.zones, id);
       tmpZone.positionFromTop = pcTop;
-      tmpZone.width = pcWidth;
       tmpZone.height = pcHeight;
+      tmpZone.width = pcWidth;
       var pcRight = (pcLeft + pcWidth);
-      pcBottom = (pcTop + pcHeight);
+      var pcBottom = (pcTop + pcHeight);
       $rootScope.addAncreH(id, pcTop, pcBottom);
       $rootScope.addAncreV(id, pcRight, pcLeft);
       zoneUtil.update($scope.zones, tmpZone);
@@ -568,7 +606,7 @@ app.directive('resizene', function ($document,$rootScope, $window, zoneUtil, def
     function mmove($event) {
       $event.preventDefault();
 
-      resize($element, $event);
+      resize($element, $event,clicX,clicY,elLeft,elTop,elWidth,elHeight);
 
     }
 
@@ -582,13 +620,23 @@ app.directive('resizene', function ($document,$rootScope, $window, zoneUtil, def
       $rootScope.cacherAncre();
     }
 
+    var clicX = 0,clicY = 0,elLeft= 0,elTop= 0,elWidth= 0,elHeight=0;
     var newElement = angular.element('<div class="resizableNE"></div>');
     $element.append(newElement);
-    newElement.on('mousedown', function (event) {
+    newElement.on('mousedown', function ($event) {
       event.preventDefault();
       if ($element.attr('resize') === 'true') {
         $document.on('mouseup', mup);
         $document.on('mousemove', mmove);
+        var fenetreEdition = document.getElementById("zone_edit");
+        var fenetreEditionLeft = fenetreEdition.getBoundingClientRect().left;
+        var fenetreEditionTop = fenetreEdition.getBoundingClientRect().top;
+        clicX = ($event.pageX - fenetreEditionLeft);
+        clicY = ($event.pageY - fenetreEditionTop);
+        elLeft=$element[0].getBoundingClientRect().left-fenetreEditionLeft;
+        elTop=$element[0].getBoundingClientRect().top-fenetreEditionTop;
+        elWidth=$element[0].getBoundingClientRect().width;
+        elHeight=$element[0].getBoundingClientRect().height;
       }
     });
   };
@@ -597,40 +645,41 @@ app.directive('resizene', function ($document,$rootScope, $window, zoneUtil, def
 app.directive('resizenw', function ($document,$rootScope, $window, zoneUtil, defaultValue) {
   return function ($scope, $element) {
 
-    function resize($element, $event) {
+    function resize($element, $event,clicX,clicY,elLeft,elTop,elWidth,elHeight) {
       var id = $element.attr('numero');
-      var zone = $element[0];
       var fenetreEdition = document.getElementById("zone_edit");
       var fenetreEditionWidth = fenetreEdition.getBoundingClientRect().width;
       var fenetreEditionLeft = fenetreEdition.getBoundingClientRect().left;
       var fenetreEditionHeight = fenetreEdition.getBoundingClientRect().height;
       var fenetreEditionTop = fenetreEdition.getBoundingClientRect().top;
-      var elOffSetTop=zone.getBoundingClientRect().top;
-      var elOffSetWidth=zone.getBoundingClientRect().width;
-      var elOffSetLeft=zone.getBoundingClientRect().left;
-      var elOffSetHeight=zone.getBoundingClientRect().height;
-      var cursorXPosition = ($event.pageX - fenetreEditionLeft);
-      var cursorYPosition = ($event.pageY - fenetreEditionTop);
-      var pcBottom = (elOffSetTop + elOffSetHeight),
-        top = (pcBottom - cursorYPosition) > defaultValue.marginH ? cursorYPosition : (pcBottom - defaultValue.marginH);
-      if (top<0){
-        top=0;
-      }
-      var wtest = elOffSetLeft + elOffSetWidth - defaultValue.marginW,
-        left = cursorXPosition > wtest ? wtest : cursorXPosition;
-      if (left<0){
-        left=0;
-      }
-      var width = elOffSetWidth + (elOffSetLeft - left),
-        pcWidth = (width / fenetreEditionWidth) * 100,
-        height = elOffSetHeight + (elOffSetTop - top),
+      var newClicX = ($event.pageX - fenetreEditionLeft);
+      var newClicY = ($event.pageY - fenetreEditionTop);
+      var varX=newClicX - clicX;
+      var varY=newClicY- clicY;
+      var top = elTop+varY;
+      var left = elLeft+varX;
+      var width = elWidth-varX;
+      var height = (elHeight-varY);
+
+      var pcWidth = (width / fenetreEditionWidth) * 100,
         pcHeight = (height / fenetreEditionHeight) * 100,
         pcLeft = (left / fenetreEditionWidth) * 100,
         pcTop = (top / fenetreEditionHeight) * 100;
-      if (pcHeight<0){
-        pcHeight=0;
-      }else if (pcHeight>100){
-        pcHeight=100;
+      if(pcWidth<defaultValue.widthMin){
+        pcWidth=defaultValue.widthMin;
+        pcLeft=((((elLeft+elWidth)) / fenetreEditionWidth) * 100)-defaultValue.widthMin;
+      }
+      if(pcLeft<0){
+        pcLeft=0;
+        pcWidth= (((elLeft+elWidth)) / fenetreEditionWidth) * 100;
+      }
+      if(pcTop<0){
+        pcTop=0;
+        pcHeight= (((elTop+elHeight)) / fenetreEditionHeight) * 100;
+      }
+      if(pcHeight<defaultValue.heightMin){
+        pcHeight=defaultValue.heightMin;
+        pcTop=((((elTop+elHeight)) / fenetreEditionHeight) * 100)-defaultValue.heightMin;
       }
       if (defaultValue.magnetisme === true) {
         var respcLeft = $rootScope.aidePlacementVerticale($element, id, pcLeft, 0);
@@ -640,11 +689,11 @@ app.directive('resizenw', function ($document,$rootScope, $window, zoneUtil, def
       }
       var tmpZone = zoneUtil.get($scope.zones, id);
       tmpZone.positionFromLeft = pcLeft;
-      tmpZone.width = pcWidth;
-      tmpZone.positionFromTop = pcTop;
       tmpZone.height = pcHeight;
+      tmpZone.positionFromTop = pcTop;
+      tmpZone.width = pcWidth;
       var pcRight = (pcLeft + pcWidth);
-      pcBottom = (pcTop + pcHeight);
+      var pcBottom = (pcTop + pcHeight);
       $rootScope.addAncreH(id, pcTop, pcBottom);
       $rootScope.addAncreV(id, pcRight, pcLeft);
       zoneUtil.update($scope.zones, tmpZone);
@@ -653,7 +702,7 @@ app.directive('resizenw', function ($document,$rootScope, $window, zoneUtil, def
 
     function mmove($event) {
       $event.preventDefault();
-      resize($element, $event);
+      resize($element, $event,clicX,clicY,elLeft,elTop,elWidth,elHeight);
     }
 
     function mup() {
@@ -665,13 +714,23 @@ app.directive('resizenw', function ($document,$rootScope, $window, zoneUtil, def
       $rootScope.cacherAncre();
     }
 
+    var clicX = 0,clicY = 0,elLeft= 0,elTop= 0,elWidth= 0,elHeight=0;
     var newElement = angular.element('<div class="resizableNW"></div>');
     $element.append(newElement);
-    newElement.on('mousedown', function (event) {
+    newElement.on('mousedown', function ($event) {
       event.preventDefault();
       if ($element.attr('resize') === 'true') {
         $document.on('mouseup', mup);
         $document.on('mousemove', mmove);
+        var fenetreEdition = document.getElementById("zone_edit");
+        var fenetreEditionLeft = fenetreEdition.getBoundingClientRect().left;
+        var fenetreEditionTop = fenetreEdition.getBoundingClientRect().top;
+        clicX = ($event.pageX - fenetreEditionLeft);
+        clicY = ($event.pageY - fenetreEditionTop);
+        elLeft=$element[0].getBoundingClientRect().left-fenetreEditionLeft;
+        elTop=$element[0].getBoundingClientRect().top-fenetreEditionTop;
+        elWidth=$element[0].getBoundingClientRect().width;
+        elHeight=$element[0].getBoundingClientRect().height;
       }
     });
   };
