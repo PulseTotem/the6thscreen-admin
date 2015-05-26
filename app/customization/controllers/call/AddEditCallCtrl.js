@@ -11,7 +11,10 @@ angular.module('T6SCustomization')
   .controller('T6SCustomization.AddEditCallCtrl', ['$scope', 'backendSocket', 'callbackManager', 'saveAttribute', function ($scope, backendSocket, callbackManager, saveAttribute) {
     $scope.callType = null;
     $scope.callDesc = null;
+    $scope.infoDurationParamValue = null;
+    $scope.limitParamValue = null;
     $scope.paramValues = [];
+    $scope.advancedParamValues = [];
 
     //Manage retrieve CallType description and Call description
     backendSocket.on('CompleteCallTypeDescription', function(response) {
@@ -41,7 +44,10 @@ angular.module('T6SCustomization')
     }, function() {
       $scope.callType = null;
       $scope.callDesc = null;
+      $scope.infoDurationParamValue = null;
+      $scope.limitParamValue = null;
       $scope.paramValues = [];
+      $scope.advancedParamValues = [];
 
       if(typeof($scope.event.name) != "undefined") {
         $scope.eventName = $scope.event.name;
@@ -95,9 +101,12 @@ angular.module('T6SCustomization')
     var manageParamValues = function() {
       if($scope.callType != null && $scope.callDesc != null) {
 
-        if($scope.callType.source.paramTypes.length == $scope.callDesc.paramValues.length) {
-          $scope.paramValues = [];
-          var paramValuesIndex = 2;
+        $scope.infoDurationParamValue = null;
+        $scope.limitParamValue = null;
+        $scope.paramValues = [];
+        $scope.advancedParamValues = [];
+
+        if(($scope.callType.source.paramTypes.length - $scope.callType.source.paramValues.length) == $scope.callDesc.paramValues.length) {
 
           $scope.callType.source.paramTypes.forEach(function(paramType) {
             var pv = retrieveParamValue(paramType.id);
@@ -105,19 +114,24 @@ angular.module('T6SCustomization')
             if(pv == null) {
               console.log("Error ! A CallType has not ParamValue");
             } else {
+              pv["paramType"] = paramType;
+
               if(paramType.name == "InfoDuration") {
-                $scope.paramValues[0] = pv;
+                $scope.infoDurationParamValue = pv;
               } else if(paramType.name == "Limit") {
-                $scope.paramValues[1] = pv;
+                $scope.limitParamValue = pv;
               } else {
-                $scope.paramValues[paramValuesIndex] = pv;
-                paramValuesIndex++;
+                if(paramType.defaultValue != null) {
+                  $scope.advancedParamValues.push(pv);
+                } else {
+                  $scope.paramValues.push(pv);
+                }
               }
             }
           });
         } else {
 
-          var numberOfNewPV = $scope.callType.source.paramTypes.length - $scope.callDesc.paramValues.length;
+          var numberOfNewPV = $scope.callType.source.paramTypes.length - $scope.callType.source.paramValues.length - $scope.callDesc.paramValues.length;
 
           var newParamValues = [];
 
@@ -148,7 +162,11 @@ angular.module('T6SCustomization')
             var pv = retrieveParamValue(paramType.id);
 
             if(pv == null) {
-              backendSocket.emit("CreateEmptyParamValueForParamTypeId", {"paramTypeId" : paramType.id});
+              pv = retrieveDefaultParamValue(paramType.id);
+
+              if(pv == null) {
+                backendSocket.emit("CreateEmptyParamValueForParamTypeId", {"paramTypeId": paramType.id});
+              }
             }
           });
         }
@@ -159,6 +177,20 @@ angular.module('T6SCustomization')
       if($scope.callDesc.paramValues.length > 0) {
         for(var iPV in $scope.callDesc.paramValues) {
           var pv = $scope.callDesc.paramValues[iPV];
+          if(pv.paramType.id == paramTypeId) {
+            return pv;
+          }
+        }
+        return null;
+      } else {
+        return null;
+      }
+    };
+
+    var retrieveDefaultParamValue = function(paramTypeId) {
+      if($scope.callType.source.paramValues.length > 0) {
+        for(var iPV in $scope.callType.source.paramValues) {
+          var pv = $scope.callType.source.paramValues[iPV];
           if(pv.paramType.id == paramTypeId) {
             return pv;
           }
