@@ -135,4 +135,11 @@ angular.module('T6SConfiguration')
       event.stopPropagation();
       event.preventDefault();
     };
+
+    $scope.updateZonePosition = function (zone) {
+      saveAttribute("UpdateZone", zone.id, "setPositionFromLeft", zone.positionFromLeft);
+      saveAttribute("UpdateZone", zone.id, "setPositionFromTop", zone.positionFromTop);
+      saveAttribute("UpdateZone", zone.id, "setWidth", zone.width);
+      saveAttribute("UpdateZone", zone.id, "setHeight", zone.height);
+    }
   }]);

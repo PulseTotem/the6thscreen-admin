@@ -164,6 +164,9 @@ angular.module('T6SConfiguration')
                 //ole.log(zone_JSON);
                 scope.showTooltip = true;
                 zoneUtil.cacherAncre();
+
+                var tmpZone = zoneUtil.get(scope.zones, attrs.numero);
+                scope.updateZonePosition(tmpZone);
               };
 
               $document.on('mouseup', mouseup);
