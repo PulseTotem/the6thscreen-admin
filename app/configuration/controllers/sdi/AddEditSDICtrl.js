@@ -11,6 +11,7 @@ angular.module('T6SConfiguration')
   .controller('T6SConfiguration.AddEditSDICtrl', ['$scope','$rootScope','$routeParams','backendSocket', 'callbackManager', 'saveAttribute', '$modal', function ($scope, $rootScope, $routeParams, backendSocket, callbackManager, saveAttribute, $modal) {
 
     var CONSTANT_MODAL_CALLTYPE_CREATION_URL = "configuration/views/sdi/configuration/ModalCallTypeCreation.html";
+    var CONSTANT_MODAL_CONFIRM_DELETE_ZONE = "configuration/views/sdi/configuration/ModalConfirmDeleteZone.html"
 
     $scope.current_zone = null;
     $scope.current_service = null;
@@ -36,6 +37,17 @@ angular.module('T6SConfiguration')
       }
 
     };
+
+    backendSocket.on('deletedZone', function (response) {
+      callbackManager(response, function (zoneId) {
+        for (var indexZone in $scope.sdi.zones) {
+          var zone = $scope.sdi.zones[indexZone];
+          if (zone.id == zoneId) {
+            $scope.sdi.zones.splice(indexZone, 1);
+          }
+        }
+      })
+    });
 
     backendSocket.on('deletedCallType', function (response) {
       callbackManager(response, function (callTypeid) {
@@ -207,4 +219,20 @@ angular.module('T6SConfiguration')
     $scope.updateZoneName = function (zone) {
       saveAttribute("UpdateZone", zone.id, "setName", zone.name);
     };
+
+    $scope.confirmDeleteZone = function (zone) {
+      $scope.current_zone = zone;
+
+      var modalInstance = $modal.open({
+        animation: true,
+        templateUrl: CONSTANT_MODAL_CONFIRM_DELETE_ZONE,
+        scope: $scope
+      });
+
+      modalInstance.result.then(function () {
+        $scope.current_zone = null;
+      }, function () {
+        $scope.current_zone = null;
+      });
+    }
   }]);
