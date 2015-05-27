@@ -37,6 +37,23 @@ angular.module('T6SConfiguration')
 
     };
 
+    backendSocket.on('DeletedCallType', function (response) {
+      callbackManager(response, function (callTypeid) {
+        for (var indexZone in $scope.sdi.zones) {
+          var zone = $scope.sdi.zones[index];
+          for (var indexCallType in zone.callTypes) {
+            var ct = zone.callTypes[indexCallType];
+            if (ct.id == callTypeid) {
+              zone.callTypes.splice(indexCallType,1);
+              return;
+            }
+          }
+        }
+      }, function (fail) {
+        console.error(fail);
+      })
+    });
+
     backendSocket.on('AnswerUpdateZone', function (response) {
       callbackManager(response, function (zone) {
 
