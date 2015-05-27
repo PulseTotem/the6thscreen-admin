@@ -12,18 +12,20 @@ angular.module('T6SConfiguration')
     $scope.sources = [];
     $scope.renderers = [];
     $scope.policies = [];
-    $scope.callType = {};
+    //$scope.callType = {};
     $scope.isFirstStep = true;
     $scope.isSecondStep = false;
     $scope.isFinalStep = false;
 
+    backendSocket.emit("RetrieveSourcesFromServiceId", {"serviceId": $scope.current_service.id});
+
     $scope.refreshCallType = function (callType) {
       $scope.callType.complete = callType.complete;
-      if (callType.source) {
-        backendSocket.emit("RetrieveRenderersFromSourceId", {"sourceId": callType.source.id});
+      if ($scope.callType.source) {
+        backendSocket.emit("RetrieveRenderersFromSourceId", {"sourceId": $scope.callType.source.id});
         $scope.isSecondStep = true;
       }
-      if (callType.renderer) {
+      if ($scope.callType.renderer) {
         backendSocket.emit("RetrieveAllPolicyDescription");
         $scope.isFinalStep = true;
       }
@@ -49,8 +51,6 @@ angular.module('T6SConfiguration')
         }
       );
     });
-
-    backendSocket.emit("RetrieveSourcesFromServiceId", {"serviceId": $scope.current_service.id});
 
     backendSocket.on('AllPolicyDescription', function(response) {
       callbackManager(response, function (policies) {
@@ -86,7 +86,6 @@ angular.module('T6SConfiguration')
     $scope.selectSource = function (source) {
       $scope.callType.source = source;
       saveAttribute("UpdateCallType", $scope.callType.id, "linkSource", source.id);
-
     };
 
     $scope.selectRenderer = function (renderer) {

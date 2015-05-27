@@ -9,7 +9,7 @@
  */
 angular.module('T6SConfiguration')
   .controller('T6SConfiguration.AddCallTypeCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', 'saveAttribute', function ($scope, $routeParams, backendSocket, callbackManager, saveAttribute) {
-    $scope.callType = null;
+    $scope.callType = {};
 
     backendSocket.on('AnswerCreateCallType', function(response) {
       callbackManager(response, function (callType) {

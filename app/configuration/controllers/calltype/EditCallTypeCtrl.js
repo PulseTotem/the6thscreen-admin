@@ -9,6 +9,7 @@
  */
 angular.module('T6SConfiguration')
   .controller('T6SConfiguration.EditCallTypeCtrl', ['$scope','$routeParams','backendSocket', function ($scope, $routeParams, backendSocket) {
+    $scope.callType = {};
 
     backendSocket.emit("RetrieveCallTypeDescription", {"callTypeId": $scope.current_calltype.id});
   }]);
