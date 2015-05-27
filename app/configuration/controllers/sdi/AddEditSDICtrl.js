@@ -11,7 +11,8 @@ angular.module('T6SConfiguration')
   .controller('T6SConfiguration.AddEditSDICtrl', ['$scope','$rootScope','$routeParams','backendSocket', 'callbackManager', 'saveAttribute', '$modal', function ($scope, $rootScope, $routeParams, backendSocket, callbackManager, saveAttribute, $modal) {
 
     var CONSTANT_MODAL_CALLTYPE_CREATION_URL = "configuration/views/sdi/configuration/ModalCallTypeCreation.html";
-    var CONSTANT_MODAL_CONFIRM_DELETE_ZONE = "configuration/views/sdi/configuration/ModalConfirmDeleteZone.html"
+    var CONSTANT_MODAL_CONFIRM_DELETE_ZONE = "configuration/views/sdi/configuration/ModalConfirmDeleteZone.html";
+    var CONSTANT_MODAL_SELECT_BEHAVIOUR = "configuration/views/sdi/configuration/ModalSelectBehaviour.html";
 
     $scope.current_zone = null;
     $scope.current_service = null;
@@ -198,13 +199,9 @@ angular.module('T6SConfiguration')
 
       modalInstance.result.then(function (callType) {
         backendSocket.emit('RetrieveCallTypesFromZoneId', {'zoneId': $scope.current_zone.id});
-        $scope.current_zone = null;
-        $scope.current_service = null;
-        $scope.current_calltype = null;
+        $scope.reset_current();
       }, function () {
-        $scope.current_zone = null;
-        $scope.current_service = null;
-        $scope.current_calltype = null;
+        $scope.reset_current();
       });
     };
 
@@ -220,6 +217,12 @@ angular.module('T6SConfiguration')
       saveAttribute("UpdateZone", zone.id, "setName", zone.name);
     };
 
+    $scope.reset_current = function () {
+      $scope.current_zone = null;
+      $scope.current_service = null;
+      $scope.current_calltype = null;
+    };
+
     $scope.confirmDeleteZone = function (zone) {
       $scope.current_zone = zone;
 
@@ -230,9 +233,25 @@ angular.module('T6SConfiguration')
       });
 
       modalInstance.result.then(function () {
-        $scope.current_zone = null;
+        $scope.reset_current();
       }, function () {
-        $scope.current_zone = null;
+        $scope.reset_current();
       });
-    }
+    };
+
+    $scope.selectBehaviour = function (zone) {
+      $scope.current_zone = zone;
+
+      var modalInstance = $modal.open({
+        animation: true,
+        templateUrl: CONSTANT_MODAL_SELECT_BEHAVIOUR,
+        scope: $scope
+      });
+
+      modalInstance.result.then(function () {
+        $scope.reset_current();
+      }, function () {
+        $scope.reset_current();
+      });
+    };
   }]);

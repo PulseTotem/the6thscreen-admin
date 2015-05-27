@@ -2,7 +2,7 @@
   <div class="modal-header">
     <h3>Confirmation de suppression de la zone : {{ current_zone.name }}</h3>
   </div>
-  <div class="modal-body" ng-switch="step">
+  <div class="modal-body">
     Si vous choisissez de continuer, la zone {{ current_zone.name }} et les appels suivants seront irrémédiablement supprimés :
     <ul>
       <li ng-repeat="service in current_zone.services">Pour le service {{ service.name }} :
