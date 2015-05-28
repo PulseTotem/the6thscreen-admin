@@ -104,6 +104,10 @@ angular
         templateUrl: '../customization/views/zone/Show.html',
         controller: 'T6SCustomization.ShowZoneCtrl'
       })
+      .when('/custom/sdi/:sdiId/zone/:zoneId/relative/new', {
+        templateUrl: '../customization/views/relativeTimeline/AddEdit/AddEdit.html',
+        controller: 'T6SCustomization.AddRelativeTimelineCtrl'
+      })
       .when('/custom/sdi/:sdiId/zone/:zoneId/relative/:timelineId', {
         templateUrl: '../customization/views/relativeTimeline/AddEdit/AddEdit.html',
         controller: 'T6SCustomization.EditRelativeTimelineCtrl'

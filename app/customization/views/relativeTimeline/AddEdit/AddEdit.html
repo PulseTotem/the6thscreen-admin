@@ -42,6 +42,12 @@
                ng-drag="true" ng-drag-data="event" ng-center-anchor="true"
                ng-click="$parent.updateEvent(event)"
                ng-mouseover="$parent.updateHoverCall(event.call)" ng-mouseleave="$parent.resetHoverCall()">
+            <div  class="customization-timeline-event-delete">
+              <button class="btn btn-danger" ng-click="$parent.deleteEvent(event)" ng-confirm-click="{{ 'CUSTOMIZATION.TIMELINE_ADDEDIT.CONFIRM_DELETE_EVENT' | translate }} ({{ event.name }})">
+                <span class="glyphicon glyphicon-remove">
+                </span>
+              </button>
+            </div>
             <img ng-src="{{callTypes[event.call.callType.id].logo}}" /> {{event.name}}
           </div>
           <div class="customization-timeline-event-time">

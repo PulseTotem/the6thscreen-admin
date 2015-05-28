@@ -8,16 +8,23 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SCustomization')
-  .controller('T6SCustomization.DeleteRelativeTimelineCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', function ($rootScope, $scope, backendSocket, callbackManager) {
+  .controller('T6SCustomization.DeleteRelativeTimelineCtrl', ['$scope', 'backendSocket', 'callbackManager', function ($scope, backendSocket, callbackManager) {
 
-    backendSocket.on('deletedSDI', function (response) {
-      callbackManager(response, function (sdiId) {
-        var newList = $scope.listSDI.filter(function (element) { return (element.id != sdiId); });
-        $scope.reloadList(newList);
-      })
+    backendSocket.on('AnswerDeleteZoneContent', function(response) {
+      callbackManager(response, function (zoneContentId) {
+          backendSocket.emit('RetrieveZoneDescription', {'zoneId' : $scope.zoneId});
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
     });
 
-    $scope.deleteSDI = function (idSDI) {
-      backendSocket.emit('DeleteSDI', { "sdiId": idSDI});
+    $scope.deleteRelativeTimeline = function(relativeTimelineId) {
+      $scope.zone.zoneContents.forEach(function(zc) {
+        if(zc.relativeTimeline != null && zc.relativeTimeline.id == relativeTimelineId) {
+          backendSocket.emit('DeleteZoneContent', {'zoneContentId' : zc.id});
+        }
+      });
     };
   }]);

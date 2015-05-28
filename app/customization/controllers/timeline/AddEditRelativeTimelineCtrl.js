@@ -113,7 +113,7 @@ angular.module('T6SCustomization')
       var relEvent = {};
       relEvent.name = "New";
       relEvent.position = -1;
-      relEvent.duration = 30;
+      relEvent.duration = 300;
       relEvent.call = {};
       relEvent.call.name = "New";
       relEvent.call.callType = data;
@@ -259,6 +259,20 @@ angular.module('T6SCustomization')
       $scope.eventDuration = newEventDuration;
 
       $scope.call = event.call;
+    };
+
+    backendSocket.on('AnswerDeleteRelativeEvent', function(response) {
+      callbackManager(response, function (relEventId) {
+          backendSocket.emit('RetrieveCompleteRelativeTimeline', {'timelineId' : $scope.timelineId});
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
+
+    $scope.deleteEvent = function(event) {
+      backendSocket.emit('DeleteRelativeEvent', {'relativeEventId' : event.id});
     };
 
     $scope.saveEventDuration = function(id, newValue) {

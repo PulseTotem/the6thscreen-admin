@@ -76,6 +76,7 @@ angular.module('T6SCustomization')
 
     backendSocket.on('ZoneContentDescription', function(response) {
       callbackManager(response, function (zoneContentInfo) {
+          insertInZoneDescription(zoneContentInfo);
           if(zoneContentInfo.absoluteTimeline != null) {
             backendSocket.emit('RetrieveCompleteAbsoluteTimeline', {'timelineId' : zoneContentInfo.absoluteTimeline.id});
           } else if(zoneContentInfo.relativeTimeline != null) {
@@ -91,6 +92,8 @@ angular.module('T6SCustomization')
     backendSocket.on('ZoneDescription', function(response) {
         callbackManager(response, function (zoneInfo) {
                 $scope.zone = zoneInfo;
+                $scope.relativeTimelines = [];
+                $scope.absoluteTimelines = [];
 
                 $scope.zone.zoneContents.forEach(function(zc) {
                   backendSocket.emit('RetrieveZoneContentDescription', {'zoneContentId' : zc.id});
@@ -104,5 +107,14 @@ angular.module('T6SCustomization')
     });
 
     backendSocket.emit('RetrieveZoneDescription', {'zoneId' : $scope.zoneId});
+
+    var insertInZoneDescription = function(zoneContentInfo) {
+      for(var iZoneContent in $scope.zone.zoneContents) {
+        var zc = $scope.zone.zoneContents[iZoneContent];
+        if(zc.id == zoneContentInfo.id) {
+          $scope.zone.zoneContents[iZoneContent] = zoneContentInfo;
+        }
+      }
+    };
 
   }]);

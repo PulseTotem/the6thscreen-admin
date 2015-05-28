@@ -3,28 +3,44 @@
   <h4>{{ zone.description }}</h4>
 </div>
 
-<h3 translate="CUSTOMIZATION.ZONE_SHOW.RELATIVE_TIMELINES"></h3>
-<div ng-repeat="relTimeline in relativeTimelines">
-  <div class="customization-zone-timeline-description container-fluid" ng-class-odd="'customization-zone-timeline-odd'" ng-class-even="'customization-zone-timeline-even'">
+<div class="row">
+  <div class="col-md-12">
+    <h3 translate="CUSTOMIZATION.ZONE_SHOW.RELATIVE_TIMELINES"></h3>
+
     <div class="row">
-      <div class="col-md-2" ng-click="showPreview=!showPreview" ng-init="showPreview=false">
-        <span class="glyphicon" aria-hidden="true" ng-class="showPreview?'glyphicon-collapse-up':'glyphicon-collapse-down'"> </span> {{relTimeline.name}}
+      <div class="col-md-12">
+        <div ng-repeat="relTimeline in relativeTimelines">
+          <div class="customization-zone-timeline-description container-fluid" ng-class-odd="'customization-zone-timeline-odd'" ng-class-even="'customization-zone-timeline-even'">
+            <div class="row">
+              <div class="col-md-2" ng-click="showPreview=!showPreview" ng-init="showPreview=false">
+                <span class="glyphicon" aria-hidden="true" ng-class="showPreview?'glyphicon-collapse-up':'glyphicon-collapse-down'"> </span> {{relTimeline.name}}
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span> {{relTimeline.durationString}}
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> {{relTimeline.createdAtString}}
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span> {{relTimeline.updatedAtString}}
+              </div>
+              <div class="col-md-offset-3 col-md-1">
+                <a class="btn btn-primary" ng-href="/custom/sdi/{{sdiId}}/zone/{{zoneId}}/relative/{{relTimeline.id}}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+                <button ng-controller="T6SCustomization.DeleteRelativeTimelineCtrl" class="btn btn-danger" ng-click="deleteRelativeTimeline(relTimeline.id)" ng-confirm-click="{{ 'CUSTOMIZATION.ZONE_SHOW.CONFIRM_DELETE_TIMELINE' | translate }} ({{ relTimeline.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-2">
-        <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span> {{relTimeline.durationString}}
-      </div>
-      <div class="col-md-2">
-        <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> {{relTimeline.createdAtString}}
-      </div>
-      <div class="col-md-2">
-        <span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span> {{relTimeline.updatedAtString}}
-      </div>
-      <div class="col-md-offset-3 col-md-1">
-        <a class="btn btn-primary" ng-href="/custom/sdi/{{sdiId}}/zone/{{zoneId}}/relative/{{relTimeline.id}}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
-        <button class="btn btn-danger" ng-click="deleteRelativeTimeline(relTimeline.id)" ng-confirm-click="{{ 'CUSTOMIZATION.ZONE_SHOW.CONFIRM_DELETE_TIMELINE' | translate }} ({{ relTimeline.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <a class="btn btn-success" ng-href="/custom/sdi/{{sdiId}}/zone/{{zoneId}}/relative/new">{{ 'CUSTOMIZATION.ZONE_SHOW.ADD_RELATIVE_TIMELINE' | translate }}</a>
       </div>
     </div>
   </div>
+</div>
 
   <div class="customization-zone-timeline-preview" ng-show="showPreview">
         <div class="customization-zone-timeline-preview-event pull-left"
