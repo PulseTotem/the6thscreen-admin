@@ -15,6 +15,10 @@
 
     <div class="row">
       <div class="col-md-12">
+          <t6s-input param-value="eventDuration" save-param-value="saveEventDuration" ng-if="eventDuration.id != -1">
+
+          </t6s-input>
+
           <t6s-input param-value="infoDurationParamValue" save-param-value="saveParamValue" ng-if="infoDurationParamValue != null">
 
           </t6s-input>
@@ -25,23 +29,21 @@
           <t6s-input ng-repeat="paramValue in paramValues" save-param-value="saveParamValue" param-value="paramValue">
           </t6s-input>
 
-        <div class="row" ng-show="advancedParamValues.length > 0">
-          <div class="col-md-12">
-            <div class="row">
-              <div class="col-md-12">
-                <button class="btn btn-primary" ng-click="advancedParamValuesIsCollapsed = !advancedParamValuesIsCollapsed">
-                  <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
-                </button>
+          <div class="panel-group" role="tablist" ng-show="advancedParamValues.length > 0">
+            <div class="panel panel-default">
+              <div class="panel-heading customization-call-advancedparameters-heading" role="tab" ng-click="advancedParamValuesIsCollapsed=!advancedParamValuesIsCollapsed" ng-init="advancedParamValuesIsCollapsed = false">
+                <h4 class="panel-title">
+                    {{ 'CUSTOMIZATION.CALL_ADDEDIT.ADVANCED_PARAMETERS' | translate}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': advancedParamValuesIsCollapsed, 'glyphicon-chevron-right': !advancedParamValuesIsCollapsed}"></i>
+                </h4>
               </div>
-            </div>
-            <div class="row" collapse="advancedParamValuesIsCollapsed">
-              <div class="col-md-12">
-                <t6-input ng-repeat="advancedParamValue in advancedParamValues" save-param-value="saveParamValue" param-value="advancedParamValue">
-                </t6-input>
+              <div class="panel-collapse collapse" role="tabpanel" ng-class="{'in' : advancedParamValuesIsCollapsed}">
+                <div class="panel-body">
+                  <t6s-input ng-repeat="advancedParamValue in advancedParamValues" save-param-value="saveParamValue" param-value="advancedParamValue">
+                  </t6s-input>
+                </div>
               </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   </div>

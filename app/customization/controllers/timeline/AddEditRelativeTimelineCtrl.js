@@ -24,6 +24,17 @@ angular.module('T6SCustomization')
     $scope.call = $scope.neutralCall;
     $scope.hovercall = $scope.neutralCall;
     $scope.event = {};
+    $scope.neutralEventDuration = {
+      "id" : -1,
+      "paramType" : {
+        "name" : "EventDuration",
+        "type" : {
+          "name" : "Duration"
+        }
+      },
+      "value" : ""
+    };
+    $scope.eventDuration = $scope.neutralEventDuration;
 
     backendSocket.on('CompleteRelativeTimelineDescription', function(response) {
       callbackManager(response, function (timelineInfo) {
@@ -242,7 +253,18 @@ angular.module('T6SCustomization')
 
     $scope.updateEvent = function(event) {
       $scope.event = event;
+      var newEventDuration = $scope.neutralEventDuration;
+      newEventDuration.id = $scope.event.id;
+      newEventDuration.value = $scope.event.duration.toString();
+      $scope.eventDuration = newEventDuration;
+
       $scope.call = event.call;
+    };
+
+    $scope.saveEventDuration = function(id, newValue) {
+      if(typeof(id) != "undefined" && id != -1) {
+        saveAttribute("UpdateRelativeEvent", id, "setDuration", parseInt(newValue));
+      }
     };
 
     $scope.updateHoverCall = function(call) {

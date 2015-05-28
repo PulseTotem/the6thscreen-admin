@@ -11,9 +11,15 @@ angular.module('T6SCommon')
   .controller('T6SCommon.T6SINPUTS.StringCtrl', ['$scope', function ($scope) {
     $scope.value = $scope.paramValue.value;
 
-    $scope.t6sInputValid = false;
-    $scope.t6sInputInvalid = false;
-    $scope.errors = [];
+    $scope.$watch(function () {
+      return $scope.paramValue;
+    }, function() {
+      $scope.t6sInputValid = false;
+      $scope.t6sInputInvalid = false;
+      $scope.errors = [];
+    }, true);
+
+
     var timeout = null;
 
     $scope.checkValue = function() {

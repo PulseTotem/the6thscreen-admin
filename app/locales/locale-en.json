@@ -52,6 +52,9 @@
       },
       "TIMELINE_ADDEDIT" : {
         "DROP_SOMETHING" : "Drop a Call on Timeline to begin and add an Event"
+      },
+      "CALL_ADDEDIT" : {
+        "ADVANCED_PARAMETERS" : "Advanced parameters"
       }
     },
     "SDI" : {

@@ -11,13 +11,19 @@ angular.module('T6SCommon')
   .controller('T6SCommon.T6SINPUTS.EntierCtrl', ['$scope', function ($scope) {
     $scope.value = 0;
 
-    if($scope.paramValue.value != "" && !isNaN($scope.paramValue.value)) {
-      $scope.value = parseInt($scope.paramValue.value);
-    }
+    $scope.$watch(function () {
+      return $scope.paramValue;
+    }, function() {
+      if($scope.paramValue.value != "" && !isNaN($scope.paramValue.value)) {
+        $scope.value = parseInt($scope.paramValue.value);
+      }
 
-    $scope.t6sInputValid = false;
-    $scope.t6sInputInvalid = false;
-    $scope.errors = [];
+      $scope.t6sInputValid = false;
+      $scope.t6sInputInvalid = false;
+      $scope.errors = [];
+    }, true);
+
+
     var timeout = null;
 
     $scope.checkValue = function() {

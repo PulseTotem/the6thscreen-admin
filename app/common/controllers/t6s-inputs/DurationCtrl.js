@@ -13,21 +13,27 @@ angular.module('T6SCommon')
     $scope.minutes = 0;
     $scope.seconds = 0;
 
-    if($scope.paramValue.value != "" && !isNaN($scope.paramValue.value)) {
-      $scope.value = parseInt($scope.paramValue.value);
+    $scope.$watch(function () {
+      return $scope.paramValue;
+    }, function() {
+      if($scope.paramValue.value != "" && !isNaN($scope.paramValue.value)) {
+        $scope.value = parseInt($scope.paramValue.value);
 
-      var durationDate = moment($scope.value*1000);
+        var durationDate = moment($scope.value*1000);
 
-      $scope.hours = durationDate.utc().hours();
-      $scope.minutes = durationDate.utc().minutes();
-      $scope.seconds = durationDate.utc().seconds();
+        $scope.hours = durationDate.utc().hours();
+        $scope.minutes = durationDate.utc().minutes();
+        $scope.seconds = durationDate.utc().seconds();
 
-    }
+      }
 
-    $scope.t6sInputValid = false;
-    $scope.t6sInputInvalid = false;
-    $scope.errors = [];
+      $scope.t6sInputValid = false;
+      $scope.t6sInputInvalid = false;
+      $scope.errors = [];
+    }, true);
+
     var timeout = null;
+
 
     $scope.checkValue = function() {
       $scope.errors = [];
