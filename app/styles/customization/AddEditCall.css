@@ -1,3 +1,8 @@
+.customization-call-name .clearfix {
+  border-bottom: dashed 1px lightgray;
+  margin-bottom: 10px;
+}
+
 .customization-call-name h2, .customization-call-name button {
   float: left;
   margin-left: 10px;

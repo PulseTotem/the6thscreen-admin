@@ -25,6 +25,32 @@ body {
 .menuLangItem img {
     display: inline;
 }
+
+.paramValueForm {
+
+}
+
+.paramValueForm label:first-child {
+  text-align: right !important;
+}
+
+.paramValueForm label:first-child::after {
+  content: ' :';
+}
+
+.paramValueForm label {
+  padding-left: 0px;
+  text-align: left !important;
+}
+
+.t6sInputs_errors {
+  margin-top: 10px;
+}
+
+.t6sInputs_errors p {
+  padding: 10px;
+}
+
 input[type="range"]:before {
   left:0em;
   content: attr(min);

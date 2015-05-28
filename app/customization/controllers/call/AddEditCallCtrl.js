@@ -200,4 +200,9 @@ angular.module('T6SCustomization')
         return null;
       }
     };
+
+
+    $scope.saveParamValue = function(id, newValue) {
+      saveAttribute("UpdateParamValue", id, "setValue", newValue);
+    };
   }]);

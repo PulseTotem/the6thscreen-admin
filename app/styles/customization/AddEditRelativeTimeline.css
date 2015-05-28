@@ -102,7 +102,9 @@
 }
 
 .customization-timeline-event-update {
-
+  border: 2px solid lightgray;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .customization-timeline-event-samecalltype {

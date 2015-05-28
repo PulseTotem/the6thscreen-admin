@@ -21,6 +21,19 @@
       "EDIT" : "Modifier",
       "EMPTY" : "Sans nom"
     },
+    "T6SINPUTS" :
+    {
+      "PARAMTYPES" : {
+
+      },
+      "ERRORS" : {
+        "REQUIRED" : "Ce champs est requis.",
+        "URL" : "La valeur renseignée n'est pas une URL valide.",
+        "NAN" : "La valeur renseignée doit être un nombre.",
+        "POSITIVE" : "La valeur renseignée doit être positive.",
+        "DURATION" : "La durée doit être au moins égale à 1 seconde."
+      }
+    },
     "DASHBOARD" : {
         "WELCOME" : "Bienvenue {{username}}, voici les SDI auxquels vous avez acc&egrave;s.",
         "SDI_NAME" : "Nom",

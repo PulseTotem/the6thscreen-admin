@@ -21,6 +21,19 @@
         "EDIT" : "Edit",
         "EMPTY" : "Empty name"
     },
+    "T6SINPUTS" :
+    {
+      "PARAMTYPES" : {
+
+      },
+      "ERRORS" : {
+        "REQUIRED" : "This field is required.",
+        "NAN" : "Value needs to be a number.",
+        "URL" : "This is not a well formatted URL.",
+        "POSITIVE" : "Value needs to be positive.",
+        "DURATION" : "Duration needs to be almost equals to 1 second."
+      }
+    },
     "DASHBOARD" : {
         "WELCOME" : "Welcome {{username}}, here are Digital Signages you can edit.",
         "SDI_NAME" : "Name",
