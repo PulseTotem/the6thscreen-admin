@@ -15,8 +15,8 @@
         </button>
         <ul class="dropdown-menu">
           <li style="cursor: pointer;"><a dropdown-toggle ng-click="selectBehaviour(zone)">Edit Behaviour</a></li>
-          <li class="divider"></li>
-          <li style="cursor: pointer;"><a dropdown-toggle ng-click="confirmDeleteZone(zone)" style="background: red">Delete zone</a></li>
+          <li class="divider" ng-if="enableButtonDeleteZone(zone)"></li>
+          <li style="cursor: pointer;" ng-if="enableButtonDeleteZone(zone)"><a dropdown-toggle ng-click="confirmDeleteZone(zone)" style="background: red">Delete zone</a></li>
         </ul>
       </span>
 

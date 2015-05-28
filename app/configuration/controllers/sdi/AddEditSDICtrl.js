@@ -239,6 +239,10 @@ angular.module('T6SConfiguration')
       });
     };
 
+    $scope.enableButtonDeleteZone = function (zone) {
+      return (!zone.zoneContents || zone.zoneContents.length === 0);
+    };
+
     $scope.selectBehaviour = function (zone) {
       $scope.current_zone = zone;
 
