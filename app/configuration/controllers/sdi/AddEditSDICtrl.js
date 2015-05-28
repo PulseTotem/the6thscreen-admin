@@ -13,6 +13,7 @@ angular.module('T6SConfiguration')
     var CONSTANT_MODAL_CALLTYPE_CREATION_URL = "configuration/views/sdi/configuration/ModalCallTypeCreation.html";
     var CONSTANT_MODAL_CONFIRM_DELETE_ZONE = "configuration/views/sdi/configuration/ModalConfirmDeleteZone.html";
     var CONSTANT_MODAL_SELECT_BEHAVIOUR = "configuration/views/sdi/configuration/ModalSelectBehaviour.html";
+    var CONSTANT_MODAL_ZONE_THEME = "configuration/views/sdi/configuration/ModalZoneTheme.html";
 
     $scope.current_zone = null;
     $scope.current_service = null;
@@ -217,26 +218,30 @@ angular.module('T6SConfiguration')
       saveAttribute("UpdateZone", zone.id, "setName", zone.name);
     };
 
-    $scope.reset_current = function () {
+    var reset_current = function () {
       $scope.current_zone = null;
       $scope.current_service = null;
       $scope.current_calltype = null;
     };
 
-    $scope.confirmDeleteZone = function (zone) {
+    var displayModal = function (modalTemplateUrl, zone) {
       $scope.current_zone = zone;
 
       var modalInstance = $modal.open({
         animation: true,
-        templateUrl: CONSTANT_MODAL_CONFIRM_DELETE_ZONE,
+        templateUrl: modalTemplateUrl,
         scope: $scope
       });
 
       modalInstance.result.then(function () {
-        $scope.reset_current();
+        reset_current();
       }, function () {
-        $scope.reset_current();
+        reset_current();
       });
+    };
+
+    $scope.confirmDeleteZone = function (zone) {
+      displayModal(CONSTANT_MODAL_CONFIRM_DELETE_ZONE, zone);
     };
 
     $scope.enableButtonDeleteZone = function (zone) {
@@ -244,18 +249,10 @@ angular.module('T6SConfiguration')
     };
 
     $scope.selectBehaviour = function (zone) {
-      $scope.current_zone = zone;
+      displayModal(CONSTANT_MODAL_SELECT_BEHAVIOUR, zone);
+    };
 
-      var modalInstance = $modal.open({
-        animation: true,
-        templateUrl: CONSTANT_MODAL_SELECT_BEHAVIOUR,
-        scope: $scope
-      });
-
-      modalInstance.result.then(function () {
-        $scope.reset_current();
-      }, function () {
-        $scope.reset_current();
-      });
+    $scope.selectTheme = function (zone) {
+      displayModal(CONSTANT_MODAL_ZONE_THEME, zone);
     };
   }]);

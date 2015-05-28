@@ -1,0 +1,21 @@
+<div class="modal-content" ng-controller="T6SConfiguration.SelectEditThemeZoneCtrl">
+  <div class="modal-header">
+    <h3>Sélection d'un thème pour la zone {{ current_zone.name }}</h3>
+  </div>
+  <div class="modal-body">
+    <accordion close-others="true">
+      <accordion-group heading="Thèmes disponibles" is-open="true">
+        <h4>Choisissez un thème : </h4>
+        <div class="list-group" ng-repeat="theme in themes">
+          <a href="#" class="list-group-item" ng-class="{active: isThemeSelected(theme.id)}" ng-click="selectTheme(theme)">
+            <h4 class="list-group-item-heading">{{ theme.name }}</h4>
+            <p class="list-group-item-text">{{ theme.description }}</p>
+          </a>
+        </div>
+      </accordion-group>
+    </accordion>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="close()">Fermer</button>
+  </div>
+</div>
