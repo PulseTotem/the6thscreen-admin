@@ -15,16 +15,6 @@ angular.module('T6SConfiguration')
       "name": tmpName
     };
 
-    backendSocket.on('AnswerUpdateSDI', function(response) {
-      callbackManager(response, function (sdi) {
-          $scope.sdi = sdi;
-        },
-        function (fail) {
-          console.error(fail);
-        }
-      );
-    });
-
     backendSocket.on('AnswerCreateSDI', function(response) {
 
       callbackManager(response, function (sdi) {

@@ -68,6 +68,7 @@ angular.module('T6SConfiguration')
           }
 
           function mup() {
+            var id = attrs.numero;
             $document.off('mousemove', mmove);
             $document.off('mouseup',mup);
             //$document.off('mousemove', mmove);
@@ -77,17 +78,20 @@ angular.module('T6SConfiguration')
             scope.showTooltip = true;
             zoneUtil.cacherAncre();
             var tmpZone = zoneUtil.get(scope.sdi.zones, id);
-            $scope.updateZonePosition(tmpZone);
+            scope.updateZonePosition(tmpZone);
+            scope.authorize_zone_creation = true;
           }
 
           function mmove($event) {
             $event.preventDefault();
             deplaceZone(element, $event,clicX, clicY, elLeft, elTop);
           }
+
           var clicX = 0, clicY = 0, elLeft= 0, elTop=0;
           var newElement = angular.element('<div class="draggable glyphicon glyphicon-move"></div>');
           element.append(newElement);
           newElement.on('mousedown', function ($event) {
+            scope.authorize_zone_creation = false;
             $event.preventDefault();
             if (attrs.ngDragZone === 'true') {
               $document.on('mouseup', mup);

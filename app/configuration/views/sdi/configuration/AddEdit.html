@@ -1,6 +1,7 @@
 <div ng-controller="T6SConfiguration.AddEditSDICtrl">
   <h2><a editable-text="sdi.name" onaftersave="updateSDIName()">{{ sdi.name || 'Choose a name' }}</a></h2>
 
+  <div ng-include="'configuration/views/sdi/configuration/MenuSDITheme.html'"></div>
   <div ng-include="'configuration/views/sdi/configuration/MenuService.html'"></div>
 
   <div id="zone_edit" class="zone_edit" ng-click="createZone($event)">
