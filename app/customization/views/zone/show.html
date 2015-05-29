@@ -9,7 +9,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <div ng-repeat="relTimeline in relativeTimelines">
+        <div ng-repeat="relTimeline in relativeTimelines" class="customization-zone-timeline-row">
           <div class="customization-zone-timeline-description container-fluid" ng-class-odd="'customization-zone-timeline-odd'" ng-class-even="'customization-zone-timeline-even'">
             <div class="row">
               <div class="col-md-2" ng-click="showPreview=!showPreview" ng-init="showPreview=false">
@@ -30,6 +30,20 @@
               </div>
             </div>
           </div>
+
+          <div class="customization-zone-timeline-preview" ng-show="showPreview">
+            <div class="customization-zone-timeline-preview-event pull-left"
+                 ng-repeat="event in relTimeline.relativeEvents"
+                 style="width: {{(event.duration / relTimeline.duration)*100}}%">
+              <div>
+                {{event.call.name}}
+              </div>
+              <div>
+                {{event.call.callType.name}}
+              </div>
+            </div>
+            <div class="clearfix">&nbsp;</div>
+          </div>
         </div>
       </div>
     </div>
@@ -42,56 +56,53 @@
   </div>
 </div>
 
-  <div class="customization-zone-timeline-preview" ng-show="showPreview">
-        <div class="customization-zone-timeline-preview-event pull-left"
-            ng-repeat="event in relTimeline.relativeEvents"
-            style="width: {{(event.duration / relTimeline.duration)*100}}%">
-          <div>
-            {{event.call.name}}
+
+
+<div class="row">
+  <div class="col-md-12">
+    <h3 translate="CUSTOMIZATION.ZONE_SHOW.ABSOLUTE_TIMELINES"></h3>
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <div ng-repeat="absTimeline in absoluteTimelines"  class="customization-zone-timeline-row">
+          <div class="customization-zone-timeline-description container-fluid" ng-class-odd="'customization-zone-timeline-odd'" ng-class-even="'customization-zone-timeline-even'">
+            <div class="row">
+              <div class="col-md-2" ng-click="showPreview=!showPreview" ng-init="showPreview=false">
+                <span class="glyphicon" aria-hidden="true" ng-class="showPreview?'glyphicon-collapse-up':'glyphicon-collapse-down'"></span> {{absTimeline.name}}
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span> {{absTimeline.durationString}}
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> {{absTimeline.createdAtString}}
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span> {{absTimeline.updatedAtString}}
+              </div>
+              <div class="col-md-offset-3 col-md-1">
+                <a class="btn btn-primary" ng-href="/custom/sdi/{{sdiId}}/zone/{{zoneId}}/absolute/{{absTimeline.id}}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+                <button class="btn btn-danger" ng-click="deleteAbsoluteTimeline(absTimeline.id)" ng-confirm-click="{{ 'CUSTOMIZATION.ZONE_SHOW.CONFIRM_DELETE_TIMELINE' | translate }} ({{ absTimeline.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+              </div>
+            </div>
           </div>
-          <div>
-            {{event.call.callType.name}}
+
+          <div class="customization-zone-timeline-preview" ng-show="showPreview">
+            <div class="customization-zone-timeline-preview-event pull-left"
+                 ng-repeat="event in absTimeline.absoluteEvents"
+                 style="width: {{(event.duration / absTimeline.duration)*100}}%">
+              <div>
+                {{event.relativeTimeline.name}}
+              </div>
+              <div>
+                {{event.relativeTimeline.durationString}}
+              </div>
+            </div>
+            <div class="clearfix">&nbsp;</div>
           </div>
         </div>
-    <div class="clearfix">&nbsp;</div>
-  </div>
-</div>
-
-<h3 translate="CUSTOMIZATION.ZONE_SHOW.ABSOLUTE_TIMELINES"></h3>
-<div ng-repeat="absTimeline in absoluteTimelines">
-  <div class="customization-zone-timeline-description container-fluid" ng-class-odd="'customization-zone-timeline-odd'" ng-class-even="'customization-zone-timeline-even'">
-    <div class="row">
-      <div class="col-md-2" ng-click="showPreview=!showPreview" ng-init="showPreview=false">
-        <span class="glyphicon" aria-hidden="true" ng-class="showPreview?'glyphicon-collapse-up':'glyphicon-collapse-down'"></span> {{absTimeline.name}}
-      </div>
-      <div class="col-md-2">
-        <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span> {{absTimeline.durationString}}
-      </div>
-      <div class="col-md-2">
-        <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> {{absTimeline.createdAtString}}
-      </div>
-      <div class="col-md-2">
-        <span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span> {{absTimeline.updatedAtString}}
-      </div>
-      <div class="col-md-offset-3 col-md-1">
-        <a class="btn btn-primary" ng-href="/custom/sdi/{{sdiId}}/zone/{{zoneId}}/absolute/{{absTimeline.id}}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
-        <button class="btn btn-danger" ng-click="deleteAbsoluteTimeline(absTimeline.id)" ng-confirm-click="{{ 'CUSTOMIZATION.ZONE_SHOW.CONFIRM_DELETE_TIMELINE' | translate }} ({{ absTimeline.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
       </div>
     </div>
-  </div>
-
-  <div class="customization-zone-timeline-preview" ng-show="showPreview">
-    <div class="customization-zone-timeline-preview-event pull-left"
-         ng-repeat="event in absTimeline.absoluteEvents"
-         style="width: {{(event.duration / absTimeline.duration)*100}}%">
-      <div>
-        {{event.relativeTimeline.name}}
-      </div>
-      <div>
-        {{event.relativeTimeline.durationString}}
-      </div>
-    </div>
-    <div class="clearfix">&nbsp;</div>
   </div>
 </div>
 

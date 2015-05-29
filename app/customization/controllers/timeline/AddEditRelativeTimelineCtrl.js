@@ -134,7 +134,7 @@ angular.module('T6SCustomization')
         backendSocket.on('AnswerUpdateRelativeTimeline', function(response) {
           callbackManager(response, function (relTimeline) {
               if(index == -1) {
-                backendSocket.emit('RetrieveCompleteRelativeTimeline', {'timelineId' : $scope.timelineId});
+                $scope.refreshRelativeTimeline();
               } else {
                 updateRelativeEventsPositions(-1, index);
               }
@@ -215,7 +215,7 @@ angular.module('T6SCustomization')
             newEvents.push(relEvent);
 
             if(newEvents.length == nbUpdates) {
-              backendSocket.emit('RetrieveCompleteRelativeTimeline', {'timelineId' : $scope.timelineId});
+              $scope.refreshRelativeTimeline();
             }
           },
           function (fail) {
@@ -252,18 +252,26 @@ angular.module('T6SCustomization')
     };
 
     $scope.updateEvent = function(event) {
-      $scope.event = event;
-      var newEventDuration = $scope.neutralEventDuration;
-      newEventDuration.id = $scope.event.id;
-      newEventDuration.value = $scope.event.duration.toString();
-      $scope.eventDuration = newEventDuration;
+      if(event != null) {
+        $scope.event = event;
+        var newEventDuration = $scope.neutralEventDuration;
+        newEventDuration.id = $scope.event.id;
+        newEventDuration.value = $scope.event.duration.toString();
+        $scope.eventDuration = newEventDuration;
 
-      $scope.call = event.call;
+        $scope.call = event.call;
+      } else {
+        $scope.call = $scope.neutralCall;
+        $scope.hovercall = $scope.neutralCall;
+        $scope.event = {};
+        $scope.eventDuration = $scope.neutralEventDuration;
+      }
     };
 
     backendSocket.on('AnswerDeleteRelativeEvent', function(response) {
       callbackManager(response, function (relEventId) {
-          backendSocket.emit('RetrieveCompleteRelativeTimeline', {'timelineId' : $scope.timelineId});
+          $scope.refreshRelativeTimeline();
+          $scope.updateEvent(null);
         },
         function (fail) {
           console.error(fail);
@@ -277,6 +285,16 @@ angular.module('T6SCustomization')
 
     $scope.saveEventDuration = function(id, newValue) {
       if(typeof(id) != "undefined" && id != -1) {
+        backendSocket.on('AnswerUpdateRelativeEvent', function(response) {
+          callbackManager(response, function (relEvent) {
+              $scope.refreshRelativeTimeline();
+            },
+            function (fail) {
+              console.error(fail);
+            }
+          );
+        });
+
         saveAttribute("UpdateRelativeEvent", id, "setDuration", parseInt(newValue));
       }
     };

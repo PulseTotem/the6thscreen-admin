@@ -34,7 +34,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="customization-timeline-representation">
-        <span ng-show="timeline.relativeEvents.length == 0" translate="CUSTOMIZATION.TIMELINE_ADDEDIT.DROP_SOMETHING"
+        <span class="customization-timeline-empty" ng-show="timeline.relativeEvents.length == 0" translate="CUSTOMIZATION.TIMELINE_ADDEDIT.DROP_SOMETHING"
               ng-drop="true" ng-drop-success="onDropComplete(-1, $data,$event)"></span>
         <div class="customization-timeline-event pull-left" ng-repeat="event in timeline.relativeEvents" style="width: {{(event.duration / timelineDuration)*100}}%">
           <div class="customization-timeline-event-description" ng-class="{'customization-timeline-event-active' : $parent.call.id == {{event.call.id}}, 'customization-timeline-event-samecalltype' : $parent.call.callType.id == {{event.call.callType.id}}, 'customization-timeline-event-samehovercalltype'  : $parent.hovercall.callType.id == {{event.call.callType.id}} }"

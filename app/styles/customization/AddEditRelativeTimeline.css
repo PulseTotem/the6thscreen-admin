@@ -61,6 +61,12 @@
   text-align: center;
 }
 
+.customization-timeline-empty {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 .customization-timeline-event {
 
 }

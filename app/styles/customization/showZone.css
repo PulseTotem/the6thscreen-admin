@@ -1,3 +1,6 @@
+.customization-zone-timeline-row {
+  margin-bottom: 5px;
+}
 .customization-zone-timeline-description, .customization-zone-timeline-description div {
   height: 50px;
   line-height: 50px;
@@ -16,6 +19,10 @@
 
 .customization-zone-timeline-even {
   background-color: linen;
+}
+
+.customization-zone-timeline-even .row div:first-child {
+  background-color: aliceblue;
 }
 
 .customization-zone-timeline-preview {
