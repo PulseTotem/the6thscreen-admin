@@ -68,6 +68,7 @@ angular.module('T6SConfiguration')
           }
 
           function mup() {
+            var id = attrs.numero;
             $document.off('mousemove', mmove);
             $document.off('mouseup',mup);
             //$document.off('mousemove', mmove);
@@ -77,7 +78,7 @@ angular.module('T6SConfiguration')
             scope.showTooltip = true;
             zoneUtil.cacherAncre();
             var tmpZone = zoneUtil.get(scope.sdi.zones, id);
-            $scope.updateZonePosition(tmpZone);
+            scope.updateZonePosition(tmpZone);
           }
 
           function mmove($event) {
