@@ -10,13 +10,13 @@
 angular.module('T6SConfiguration')
   .controller('T6SConfiguration.SelectEditThemeZoneCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', 'saveAttribute', function ($scope, $routeParams, backendSocket, callbackManager, saveAttribute) {
 
-    $scope.themes = [];
+    $scope.themesZone = [];
 
     backendSocket.emit("RetrieveAllThemeZoneDescription");
 
     backendSocket.on('AllThemeZoneDescription', function(response) {
       callbackManager(response, function (themes) {
-          $scope.themes = themes;
+          $scope.themesZone = themes;
         },
         function (fail) {
           console.error(fail);
@@ -24,12 +24,20 @@ angular.module('T6SConfiguration')
       );
     });
 
-    $scope.selectTheme = function (theme) {
+    $scope.isThemeZoneSelected = function (theme) {
+      return (theme.id == $scope.current_zone.theme.id);
+    };
+
+    $scope.selectThemeZone = function (theme) {
       saveAttribute("UpdateZone", $scope.current_zone.id, "linkTheme", theme.id);
       $scope.$close();
     };
 
-    $scope.cancel = function () {
+    $scope.unlink = function () {
+      saveAttribute("UpdateZone", $scope.current_zone.id, "unlinkTheme", $scope.current_zone.theme.id);
+    };
+
+    $scope.close = function () {
       $scope.$dismiss();
     };
   }]);

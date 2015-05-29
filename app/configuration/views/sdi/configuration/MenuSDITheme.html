@@ -1,0 +1,12 @@
+<div ng-controller="T6SConfiguration.SelectEditThemeSDICtrl">
+  <accordion>
+    <accordion-group heading="Sélectionner un thème">
+      <div class="list-group" ng-repeat="theme in themesSDI">
+        <a href="#" class="list-group-item" ng-class="{active: isThemeSDISelected(theme)}" ng-click="selectThemeSDI(theme)">
+          <h4 class="list-group-item-heading">{{ theme.name }}</h4>
+          <p class="list-group-item-text">{{ theme.description }}</p>
+        </a>
+      </div>
+    </accordion-group>
+  </accordion>
+</div>

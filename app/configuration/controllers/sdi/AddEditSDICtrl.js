@@ -18,6 +18,7 @@ angular.module('T6SConfiguration')
     $scope.current_zone = null;
     $scope.current_service = null;
     $scope.current_calltype = null;
+    $scope.authorize_zone_creation = true;
 
     $scope.refreshZoneInformations = function(zoneJSON) {
       var index = -1;
@@ -130,27 +131,29 @@ angular.module('T6SConfiguration')
     });
 
     $scope.createZone = function (event) {
-      var div = event.target;
+      if ($scope.authorize_zone_creation) {
+        var div = event.target;
 
-      var divWidth = div.offsetWidth;
-      var divHeight = div.offsetHeight;
+        var divWidth = div.offsetWidth;
+        var divHeight = div.offsetHeight;
 
-      var positionXInDiv = event.offsetX;
-      var positionYInDiv = event.offsetY;
+        var positionXInDiv = event.offsetX;
+        var positionYInDiv = event.offsetY;
 
-      var relativeX = (positionXInDiv / divWidth) * 100;
-      var relativeY = (positionYInDiv / divHeight) * 100;
+        var relativeX = (positionXInDiv / divWidth) * 100;
+        var relativeY = (positionYInDiv / divHeight) * 100;
 
-      var zone = {
-        width: 10,
-        height: 10,
-        positionFromTop: relativeY,
-        positionFromLeft: relativeX
-      };
+        var zone = {
+          width: 10,
+          height: 10,
+          positionFromTop: relativeY,
+          positionFromLeft: relativeX
+        };
 
-      backendSocket.emit("CreateZone", zone);
-      event.stopPropagation();
-      event.preventDefault();
+        backendSocket.emit("CreateZone", zone);
+        event.stopPropagation();
+        event.preventDefault();
+      }
     };
 
 

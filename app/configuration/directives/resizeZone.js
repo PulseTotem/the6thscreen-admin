@@ -140,6 +140,7 @@ angular.module('T6SConfiguration')
 
         function bindResizeWithElement(newElement, sens) {
           newElement.on('mousedown', function ($event) {
+            scope.authorize_zone_creation = false;
             $event.preventDefault();
             if (attrs.ngResizeZone === 'true') {
 
@@ -167,6 +168,7 @@ angular.module('T6SConfiguration')
 
                 var tmpZone = zoneUtil.get(scope.sdi.zones, attrs.numero);
                 scope.updateZonePosition(tmpZone);
+                scope.authorize_zone_creation = true;
               };
 
               $document.on('mouseup', mouseup);
