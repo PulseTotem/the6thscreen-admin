@@ -14,10 +14,23 @@ angular.module('T6SCustomization')
     $scope.sdiId = $routeParams.sdiId;
     $scope.sdi = {};
     $scope.zones = [];
+    $scope.selectedTimelines = [];
 
     backendSocket.on('CompleteProfilDescription', function(response) {
       callbackManager(response, function (profil) {
           $scope.profil = profil;
+
+          $scope.profil.zoneContents.forEach(function(zc) {
+            if(zc.absoluteTimeline != null) {
+              $scope.selectedTimelines[zc.zone.id] = zc.absoluteTimeline;
+            } else {
+              if(zc.relativeTimeline != null) {
+                $scope.selectedTimelines[zc.zone.id] = zc.relativeTimeline;
+              }
+            }
+
+          });
+
         },
         function (fail) {
           console.error(fail);
@@ -25,11 +38,14 @@ angular.module('T6SCustomization')
       );
     });
 
-    backendSocket.emit('RetrieveCompleteProfilDescription', {'profilId' : $scope.profilId});
-
     backendSocket.on('CallTypesDescriptionFromZone', function (response) {
       callbackManager(response, function (infoCT) {
         $scope.zones.push(infoCT);
+
+        if($scope.zones.length == $scope.sdi.zones.length) {
+          backendSocket.emit('RetrieveCompleteProfilDescription', {'profilId' : $scope.profilId});
+        }
+
       }, function (fail) {
         console.error(fail);
       });

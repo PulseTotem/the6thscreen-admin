@@ -1,6 +1,12 @@
-<div>
-  <h3>{{ profil.name }}</h3>
-  <h4>{{ profil.description }}</h4>
+<div class="row">
+  <div class="col-md-12">
+    <h3>
+      {{ profil.name }}
+      <span class="label label-success" ng-show="profil.complete"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>
+      <span class="label label-danger" ng-show="!profil.complete"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span>
+    </h3>
+    <h4>{{ profil.description }}</h4>
+  </div>
 </div>
 
 <div class="row">
@@ -11,11 +17,7 @@
           {{zone.name}}
         </div>
         <div class="profil-sdi-preview-zone-timelines">
-          <ul>
-            <li ng-repeat="zc in zone.zoneContents">
-              {{zc.id}}
-            </li>
-          </ul>
+          {{selectedTimelines[zone.id].name}}
         </div>
       </div>
     </div>
