@@ -1,0 +1,23 @@
+<div>
+  <h3>{{ profil.name }}</h3>
+  <h4>{{ profil.description }}</h4>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div id="profil-sdi-preview">
+      <div class="profil-sdi-preview-zone" style="top: {{ zone.positionFromTop }}%; left: {{ zone.positionFromLeft }}%; width: {{ zone.width }}%; height: {{ zone.height }}%" ng-repeat="zone in zones">
+        <div class="profil-sdi-preview-zone-name">
+          {{zone.name}}
+        </div>
+        <div class="profil-sdi-preview-zone-timelines">
+          <ul>
+            <li ng-repeat="zc in zone.zoneContents">
+              {{zc.id}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

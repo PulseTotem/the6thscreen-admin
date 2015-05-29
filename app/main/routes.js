@@ -112,6 +112,18 @@ angular
         templateUrl: '../customization/views/relativeTimeline/AddEdit/AddEdit.html',
         controller: 'T6SCustomization.EditRelativeTimelineCtrl'
       })
+      .when('/custom/sdi/:sdiId/profil/new', {
+        templateUrl: '../customization/views/profil/AddEdit.html',
+        controller: 'T6SCustomization.AddProfilCtrl'
+      })
+      .when('/custom/sdi/:sdiId/profil/:profilId', {
+        templateUrl: '../customization/views/profil/Show.html',
+        controller: 'T6SCustomization.ShowProfilCtrl'
+      })
+      .when('/custom/sdi/:sdiId/profil/:profilId/edit', {
+        templateUrl: '../customization/views/profil/AddEdit.html',
+        controller: 'T6SCustomization.EditProfilCtrl'
+      })
 
       //TODO: Need yet ?
 
@@ -131,18 +143,7 @@ angular
         templateUrl: '../customization/views/call/show.html',
         controller: 'T6SCustomization.ShowCallCtrl'
       })
-      .when('/custom/sdi/:sdiId/profil/add', {
-        templateUrl: '../customization/views/profil/addEdit.html',
-        controller: 'T6SCustomization.AddProfilCtrl'
-      })
-      .when('/custom/sdi/:sdiId/profil/:profilId', {
-        templateUrl: '../customization/views/profil/show.html',
-        controller: 'T6SCustomization.ShowProfilCtrl'
-      })
-      .when('/custom/sdi/:sdiId/profil/:profilId/edit', {
-        templateUrl: '../customization/views/profil/addEdit.html',
-        controller: 'T6SCustomization.EditProfilCtrl'
-      })
+
 
       // Routes for configuration stuff
       .when('/config/', {

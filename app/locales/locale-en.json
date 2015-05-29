@@ -43,7 +43,9 @@
       "SDI_SHOW" : {
         "CALLTYPES_FOR_SERVICES" : "CallTypes for Service {{servicename}}",
         "TIMELINES" : "timelines",
-        "MANAGE_TIMELINES" : "Manage timelines"
+        "MANAGE_TIMELINES" : "Manage timelines",
+        "CONFIRM_DELETE_PROFIL" : "Are you sure you want to delete this profil ?",
+        "ADD_PROFIL" : "Add new Profil"
       },
       "ZONE_SHOW" : {
         "RELATIVE_TIMELINES" : "Relative Timelines",
