@@ -40,6 +40,7 @@
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/customization/ShowSDI.css">
+        <link rel="stylesheet" href="styles/configuration/addEditSDI.css">
         <link rel="stylesheet" href="styles/customization/ShowZone.css">
         <link rel="stylesheet" href="styles/customization/AddEditRelativeTimeline.css">
         <link rel="stylesheet" href="styles/customization/AddEditCall.css">
@@ -124,12 +125,19 @@
     <script src="common/controllers/t6s-inputs/DurationCtrl.js"></script>
 
     <script src="configuration/configuration.js"></script>
-    <script src="configuration/modules/zone.js"></script>
+    <script src="configuration/services/zoneUtil.js"></script>
+    <script src="configuration/directives/dragZone.js"></script>
+    <script src="configuration/directives/resizeZone.js"></script>
     <script src="configuration/controllers/sdi/ListSDICtrl.js"></script>
     <script src="configuration/controllers/sdi/EditSDICtrl.js"></script>
     <script src="configuration/controllers/sdi/AddSDICtrl.js"></script>
     <script src="configuration/controllers/sdi/AddEditSDICtrl.js"></script>
     <script src="configuration/controllers/calltype/AddCallTypeCtrl.js"></script>
+    <script src="configuration/controllers/calltype/AddEditCallTypeCtrl.js"></script>
+    <script src="configuration/controllers/calltype/EditCallTypeCtrl.js"></script>
+    <script src="configuration/controllers/zone/ConfirmDeleteZoneCtrl.js"></script>
+    <script src="configuration/controllers/zone/ZoneSelectBehaviourCtrl.js"></script>
+    <script src="configuration/controllers/zone/SelectEditThemeZoneCtrl.js"></script>
 
     <script src="configuration/controllers/services/ListServicesCtrl.js"></script>
 
@@ -138,7 +146,6 @@
     <script src="configuration/controllers/sdi/showSDI.js"></script>
     <script src="configuration/controllers/zone/showZone.js"></script>
     <script src="configuration/controllers/zone/editZone.js"></script>
-    <script src="configuration/controllers/calltype/editCallType.js"></script>
     <script src="configuration/controllers/zone/addZone.js"></script>
 
 
