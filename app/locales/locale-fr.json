@@ -59,7 +59,8 @@
         "CHOOSE_USER_TRIGGER" : "Choisiseez un User Trigger"
       },
       "CALL_ADDEDIT" : {
-        "ADVANCED_PARAMETERS" : "Paramètres avancés"
+        "ADVANCED_PARAMETERS" : "Paramètres avancés",
+        "NEEDS_OAUTHKEY" : "Vous devez vous connecter au service {{servicename}}."
       }
     },
     "SDI" : {

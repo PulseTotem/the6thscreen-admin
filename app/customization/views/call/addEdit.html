@@ -15,6 +15,9 @@
 
     <div class="row">
       <div class="col-md-12">
+          <div ng-show="needsOauth && oauthkeys.length == 0">
+            <p class="bg-danger" translate="CUSTOMIZATION.CALL_ADDEDIT.NEEDS_OAUTHKEY" translate-value-servicename="{{ callType.source.service.name }}"></p>
+          </div>
           <t6s-input param-value="eventDuration" save-param-value="saveEventDuration" ng-if="eventDuration.id != -1">
 
           </t6s-input>

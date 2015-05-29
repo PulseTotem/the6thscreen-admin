@@ -8,19 +8,56 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SCustomization')
-  .controller('T6SCustomization.AddEditCallCtrl', ['$scope', 'backendSocket', 'callbackManager', 'saveAttribute', function ($scope, backendSocket, callbackManager, saveAttribute) {
+  .controller('T6SCustomization.AddEditCallCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', 'saveAttribute', function ($rootScope, $scope, backendSocket, callbackManager, saveAttribute) {
     $scope.callType = null;
     $scope.callDesc = null;
     $scope.infoDurationParamValue = null;
     $scope.limitParamValue = null;
     $scope.paramValues = [];
     $scope.advancedParamValues = [];
+    $scope.needsOauth = false;
+    $scope.oauthkeys = [];
 
     //Manage retrieve CallType description and Call description
+    backendSocket.on('OAuthKeysFromServiceAndUser', function(response) {
+      callbackManager(response, function (oauthkeysList) {
+          $scope.oauthkeys = oauthkeysList;
+
+          if($scope.oauthkeys.length > 0) {
+            var firstOAuthKey = $scope.oauthkeys[0];
+
+            backendSocket.on('AnswerUpdateCall', function (response) {
+              callbackManager(response, function (call) {
+                  $scope.needsOauth = true;
+                  manageParamValues();
+                },
+                function (fail) {
+                  console.error(fail);
+                }
+              );
+            });
+
+            saveAttribute("UpdateCall", $scope.call.id, "linkOAuthKey", firstOAuthKey.id);
+          } else {
+            $scope.needsOauth = true;
+            manageParamValues();
+          }
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
+
     backendSocket.on('CompleteCallTypeDescription', function(response) {
       callbackManager(response, function (cTInfo) {
           $scope.callType = cTInfo;
-          manageParamValues();
+
+          if($scope.callType.source.service.oauth) {
+            backendSocket.emit('RetrieveOAuthKeysFromServiceAndUser', {'userId': $rootScope.user.id, 'serviceId': $scope.callType.source.service.id});
+          } else {
+            manageParamValues();
+          }
         },
         function (fail) {
           console.error(fail);
@@ -48,6 +85,8 @@ angular.module('T6SCustomization')
       $scope.limitParamValue = null;
       $scope.paramValues = [];
       $scope.advancedParamValues = [];
+      $scope.needsOauth = false;
+      $scope.oauthkeys = [];
 
       if(typeof($scope.event.name) != "undefined") {
         $scope.eventName = $scope.event.name;
