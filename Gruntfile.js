@@ -55,8 +55,8 @@ module.exports = function (grunt) {
 //            tasks: ['karma']
 //        },
         styles: {
-            files: ['<%= yeoman.app %>/styles/**/*.css'],
-            tasks: ['newer:copy:styles', 'autoprefixer']
+            files: ['<%= yeoman.app %>/styles/**/*.css']
+            //tasks: ['newer:copy:styles', 'autoprefixer']
         },
         gruntfile: {
             files: ['Gruntfile.js']
@@ -67,7 +67,7 @@ module.exports = function (grunt) {
             },
             files: [
               '<%= yeoman.app %>/**/*.html',
-              '.tmp/styles/**/*.css',
+              '<%= yeoman.app %>/styles/**/*.css', //'.tmp/styles/**/*.css',
               '<%= yeoman.app %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
               '<%= yeoman.app %>/locales/**/*.json'
             ]
@@ -89,7 +89,7 @@ module.exports = function (grunt) {
               var optBase = (typeof options.base === 'string') ? [options.base] : options.base;
               return [require('connect-modrewrite')(['!(\\..+)$ / [L]'])].concat(
                   optBase.map(function(path){ return connect.static(path); })).concat([
-                      connect.static('.tmp'),
+                      //connect.static('.tmp'),
                       connect().use(
                           '/bower_components',
                           connect.static('./bower_components')

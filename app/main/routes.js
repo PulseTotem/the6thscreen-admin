@@ -93,17 +93,40 @@ angular
         redirectTo: '/custom/sdi'
       })
       .when('/custom/sdi/', {
-        templateUrl: '../customization/views/sdi/list.html',
+        templateUrl: '../customization/views/sdi/List.html',
         controller: 'T6SCustomization.ListSDICtrl'
       })
       .when('/custom/sdi/:sdiId', {
-        templateUrl: '../customization/views/sdi/show.html',
+        templateUrl: '../customization/views/sdi/Show.html',
         controller: 'T6SCustomization.ShowSDICtrl'
       })
       .when('/custom/sdi/:sdiId/zone/:zoneId', {
-        templateUrl: '../customization/views/zone/show.html',
+        templateUrl: '../customization/views/zone/Show.html',
         controller: 'T6SCustomization.ShowZoneCtrl'
       })
+      .when('/custom/sdi/:sdiId/zone/:zoneId/relative/new', {
+        templateUrl: '../customization/views/relativeTimeline/AddEdit/AddEdit.html',
+        controller: 'T6SCustomization.AddRelativeTimelineCtrl'
+      })
+      .when('/custom/sdi/:sdiId/zone/:zoneId/relative/:timelineId', {
+        templateUrl: '../customization/views/relativeTimeline/AddEdit/AddEdit.html',
+        controller: 'T6SCustomization.EditRelativeTimelineCtrl'
+      })
+      .when('/custom/sdi/:sdiId/profil/new', {
+        templateUrl: '../customization/views/profil/AddEdit.html',
+        controller: 'T6SCustomization.AddProfilCtrl'
+      })
+      .when('/custom/sdi/:sdiId/profil/:profilId', {
+        templateUrl: '../customization/views/profil/Show.html',
+        controller: 'T6SCustomization.ShowProfilCtrl'
+      })
+      .when('/custom/sdi/:sdiId/profil/:profilId/edit', {
+        templateUrl: '../customization/views/profil/AddEdit.html',
+        controller: 'T6SCustomization.EditProfilCtrl'
+      })
+
+      //TODO: Need yet ?
+
       .when('/custom/sdi/:sdiId/calltype/:callTypeId', {
         templateUrl: '../customization/views/calltype/show.html',
         controller: 'T6SCustomization.ShowCallTypeCtrl'
@@ -113,25 +136,14 @@ angular
         controller: 'T6SCustomization.AddCallCtrl'
       })
       .when('/custom/sdi/:sdiId/calltype/:callTypeId/call/:callId/edit', {
-        templateUrl: '../customization/views/call/addEdit.html',
+        templateUrl: '../customization/views/call/AddEdit.html',
         controller: 'T6SCustomization.EditCallCtrl'
       })
       .when('/custom/sdi/:sdiId/call/:callId', {
         templateUrl: '../customization/views/call/show.html',
         controller: 'T6SCustomization.ShowCallCtrl'
       })
-      .when('/custom/sdi/:sdiId/profil/add', {
-        templateUrl: '../customization/views/profil/addEdit.html',
-        controller: 'T6SCustomization.AddProfilCtrl'
-      })
-      .when('/custom/sdi/:sdiId/profil/:profilId', {
-        templateUrl: '../customization/views/profil/show.html',
-        controller: 'T6SCustomization.ShowProfilCtrl'
-      })
-      .when('/custom/sdi/:sdiId/profil/:profilId/edit', {
-        templateUrl: '../customization/views/profil/addEdit.html',
-        controller: 'T6SCustomization.EditProfilCtrl'
-      })
+
 
       // Routes for configuration stuff
       .when('/config/', {
@@ -146,11 +158,11 @@ angular
           controller: 'T6SConfiguration.ListSDICtrl'
       })
       .when('/config/sdi/add', {
-        templateUrl: '../configuration/views/sdi/addEdit.html',
+        templateUrl: '../configuration/views/sdi/configuration/AddEdit.html',
         controller: 'T6SConfiguration.AddSDICtrl'
       })
       .when('/config/sdi/:sdiId/edit', {
-        templateUrl: '../configuration/views/sdi/addEdit.html',
+        templateUrl: '../configuration/views/sdi/configuration/AddEdit.html',
         controller: 'T6SConfiguration.EditSDICtrl'
       })
       .when('/config/sdi/:sdiId', {

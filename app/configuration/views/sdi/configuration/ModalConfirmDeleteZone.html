@@ -1,0 +1,22 @@
+<div class="modal-content" ng-controller="T6SConfiguration.ConfirmDeleteZoneCtrl">
+  <div class="modal-header">
+    <h3>Confirmation de suppression de la zone : {{ current_zone.name }}</h3>
+  </div>
+  <div class="modal-body">
+    Si vous choisissez de continuer, la zone {{ current_zone.name }} et les appels suivants seront irrémédiablement supprimés :
+    <ul>
+      <li ng-repeat="service in current_zone.services">Pour le service {{ service.name }} :
+        <span ng-repeat="callType in service.callTypes">{{ callType.name }} </span>
+      </li>
+    </ul>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model="confirmation"> Je confirme la suppression de cette zone.
+      </label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">Annuler</button>
+    <button type="button" class="btn btn-danger" ng-click="deleteZone(current_zone)" ng-disabled="!confirmation">Supprimer</button>
+  </div>
+</div>

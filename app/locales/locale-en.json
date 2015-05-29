@@ -17,12 +17,56 @@
         "PASSWORD" : "Password",
         "LOGIN_BUTTON" : "Log In",
         "PASSWORD_LOST" : "Password lost ?",
-        "REMEMBER_ME" : "Remember me"
+        "REMEMBER_ME" : "Remember me",
+        "EDIT" : "Edit",
+        "EMPTY" : "Empty name"
+    },
+    "T6SINPUTS" :
+    {
+      "PARAMTYPES" : {
+
+      },
+      "ERRORS" : {
+        "REQUIRED" : "This field is required.",
+        "NAN" : "Value needs to be a number.",
+        "URL" : "This is not a well formatted URL.",
+        "POSITIVE" : "Value needs to be positive.",
+        "DURATION" : "Duration needs to be almost equals to 1 second."
+      }
     },
     "DASHBOARD" : {
         "WELCOME" : "Welcome {{username}}, here are Digital Signages you can edit.",
         "SDI_NAME" : "Name",
         "SDI_DESCRIPTION" : "Description"
+    },
+    "CUSTOMIZATION" : {
+      "SDI_SHOW" : {
+        "CALLTYPES_FOR_SERVICES" : "CallTypes for Service {{servicename}}",
+        "TIMELINES" : "timelines",
+        "MANAGE_TIMELINES" : "Manage timelines",
+        "CONFIRM_DELETE_PROFIL" : "Are you sure you want to delete this profil ?",
+        "ADD_PROFIL" : "Add new Profil"
+      },
+      "ZONE_SHOW" : {
+        "RELATIVE_TIMELINES" : "Relative Timelines",
+        "ABSOLUTE_TIMELINES" : "Absolute Timelines",
+        "CONFIRM_DELETE_TIMELINE" : "Are you sure you want to delete this timeline ?",
+        "ADD_RELATIVE_TIMELINE" : "Add new Relative Timeline"
+      },
+      "TIMELINE_ADDEDIT" : {
+        "DROP_SOMETHING" : "Drop a Call on Timeline to begin and add an Event",
+        "CONFIRM_DELETE_EVENT" : "Are you sure you want to delete this event ?",
+        "CHOOSE_TIMELINE_RUNNER" : "Choose a Timeline Runner",
+        "CHOOSE_SYSTEM_TRIGGER" : "Choose a System Trigger",
+        "CHOOSE_USER_TRIGGER" : "Choose a User Trigger"
+      },
+      "CALL_ADDEDIT" : {
+        "ADVANCED_PARAMETERS" : "Advanced parameters",
+        "NEEDS_OAUTHKEY" : "You need to log in to service {{servicename}}."
+      },
+      "PROFIL_ADDEDIT" : {
+        "SELECT_TIMELINE" : "Select a timeline for this zone."
+      }
     },
     "SDI" : {
         "ZONES_LIST" : "Zones List",

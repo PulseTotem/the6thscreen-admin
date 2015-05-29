@@ -9,20 +9,64 @@
         "ENGLISH" : "English",
         "FRENCH" : "Fran&ccedil;ais"
     },
+    "MAIN" : {
+      "ADMIN_PANEL" : "The 6th Screen : Panneau d'administration",
+      "LOGIN" : "Connexion",
+      "LOGOUT" : "Se Déconnecter",
+      "USERNAME_OR_EMAIL" : "Pseudo ou adresse mail",
+      "PASSWORD" : "Mot de passe",
+      "LOGIN_BUTTON" : "Se connecter",
+      "PASSWORD_LOST" : "Mot de passe perdu ?",
+      "REMEMBER_ME" : "Se souvenir de moi",
+      "EDIT" : "Modifier",
+      "EMPTY" : "Sans nom"
+    },
+    "T6SINPUTS" :
+    {
+      "PARAMTYPES" : {
+
+      },
+      "ERRORS" : {
+        "REQUIRED" : "Ce champs est requis.",
+        "URL" : "La valeur renseignée n'est pas une URL valide.",
+        "NAN" : "La valeur renseignée doit être un nombre.",
+        "POSITIVE" : "La valeur renseignée doit être positive.",
+        "DURATION" : "La durée doit être au moins égale à 1 seconde."
+      }
+    },
     "DASHBOARD" : {
         "WELCOME" : "Bienvenue {{username}}, voici les SDI auxquels vous avez acc&egrave;s.",
         "SDI_NAME" : "Nom",
         "SDI_DESCRIPTION" : "Description"
     },
-    "MAIN" : {
-        "ADMIN_PANEL" : "The 6th Screen : Panneau d'administration",
-        "LOGIN" : "Connexion",
-        "LOGOUT" : "Se Déconnecter",
-        "USERNAME_OR_EMAIL" : "Pseudo ou adresse mail",
-        "PASSWORD" : "Mot de passe",
-        "LOGIN_BUTTON" : "Se connecter",
-        "PASSWORD_LOST" : "Mot de passe perdu ?",
-        "REMEMBER_ME" : "Se souvenir de moi"
+    "CUSTOMIZATION" : {
+      "SDI_SHOW" : {
+        "CALLTYPES_FOR_SERVICES" : "CallTypes pour le service {{servicename}}",
+        "TIMELINES" : "timelines",
+        "MANAGE_TIMELINES" : "Gérer les timelines",
+        "CONFIRM_DELETE_PROFIL" : "Êtes-vous sûr de vouloir supprimer ce profil ?",
+        "ADD_PROFIL" : "Ajouter un nouveau Profil"
+      },
+      "ZONE_SHOW" : {
+        "RELATIVE_TIMELINES" : "Timelines Relatives",
+        "ABSOLUTE_TIMELINES" : "Absolute Timelines",
+        "CONFIRM_DELETE_TIMELINE" : "Êtes-vous sûr de vouloir supprimer cette timeline ?",
+        "ADD_RELATIVE_TIMELINE" : "Ajouter une nouvelle Timeline Relative"
+      },
+      "TIMELINE_ADDEDIT" : {
+        "DROP_SOMETHING" : "Glissez et déposez un appel sur la Timeline pour commencer et ajouter un événement",
+        "CONFIRM_DELETE_EVENT" : "Êtes-vous sûr de vouloir supprimer cet événement ?",
+        "CHOOSE_TIMELINE_RUNNER" : "Choisiseez un Timeline Runner",
+        "CHOOSE_SYSTEM_TRIGGER" : "Choisiseez un System Trigger",
+        "CHOOSE_USER_TRIGGER" : "Choisiseez un User Trigger"
+      },
+      "CALL_ADDEDIT" : {
+        "ADVANCED_PARAMETERS" : "Paramètres avancés",
+        "NEEDS_OAUTHKEY" : "Vous devez vous connecter au service {{servicename}}."
+      },
+      "PROFIL_ADDEDIT" : {
+        "SELECT_TIMELINE" : "Sélectionnez une Timeline pour cette zone."
+      }
     },
     "SDI" : {
         "ZONES_LIST" : "Liste des zones",

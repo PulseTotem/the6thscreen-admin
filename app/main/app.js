@@ -16,14 +16,21 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'ngDraggable',
+    'ui.bootstrap',
+    'vr.directives.slider',
     'pascalprecht.translate',
     'btford.socket-io',
+    'xeditable',
     'T6SConfiguration',
     'T6SAdmin',
     'T6SCustomization'
     ])
     .config(['$locationProvider', function($locationProvider) {
         $locationProvider.html5Mode(true).hashPrefix('!');
+    }])
+    .run(['editableOptions', function(editableOptions) {
+      editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
     }])
     .run(['$rootScope', '$location', '$cookies', '$http', 'ADMIN_CONSTANTS', 'backendSocket', '$route', function($rootScope, $location, $cookies, $http, ADMIN_CONSTANTS, backendSocket, $route) {
       $rootScope.header = "home";

@@ -1,0 +1,107 @@
+<div class="container-fluid" ng-controller="T6SCustomization.AddEditRelativeTimelineCtrl">
+  <div class="row">
+    <div class="col-md-12 customization-timeline-name">
+      <h2 editable-text="timelineName" e-form="timelineNameForm">
+        {{ timelineName || ('MAIN.EMPTY' | translate) }}
+      </h2>
+      <button class="btn btn-default" ng-click="timelineNameForm.$show()" ng-hide="timelineNameForm.$visible">
+        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="row customization-timeline-services">
+    <div class="col-md-12">
+      <div>
+        <button ng-repeat="service in zone.services" class="customization-timeline-service pull-left" ng-click="showServiceId!={{service.id}}?updateShowServiceId({{service.id}}):updateShowServiceId(-1)" ng-class="{'customization-timeline-service-active' : showServiceId == {{service.id}} }">
+          <img ng-src="{{service.logo}}" /> <span class="badge">{{service.callTypes.length}}</span>
+        </button>
+        <div class="clearfix">&nbsp;</div>
+      </div>
+      <div class="well well-lg" ng-repeat="service in zone.services" ng-show="showServiceId=={{service.id}}">
+        <ul class="customization-timeline-calltypes">
+          <li ng-repeat="callType in service.callTypes" class="customization-timeline-calltype pull-left"
+              ng-drag="true" ng-drag-data="callType" ng-center-anchor="true" ng-drag-success="onDragComplete($data,$event)">
+            Source : {{callType.source.name}}
+            Renderer : {{callType.renderer.name}}
+          </li>
+          <li class="clearfix">&nbsp;</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="customization-timeline-representation">
+        <span class="customization-timeline-empty" ng-show="timeline.relativeEvents.length == 0" translate="CUSTOMIZATION.TIMELINE_ADDEDIT.DROP_SOMETHING"
+              ng-drop="true" ng-drop-success="onDropComplete(-1, $data,$event)"></span>
+        <div class="customization-timeline-event pull-left" ng-repeat="event in timeline.relativeEvents" style="width: {{(event.duration / timelineDuration)*100}}%">
+          <div class="customization-timeline-event-description" ng-class="{'customization-timeline-event-active' : $parent.call.id == {{event.call.id}}, 'customization-timeline-event-samecalltype' : $parent.call.callType.id == {{event.call.callType.id}}, 'customization-timeline-event-samehovercalltype'  : $parent.hovercall.callType.id == {{event.call.callType.id}} }"
+               ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)"
+               ng-drag="true" ng-drag-data="event" ng-center-anchor="true"
+               ng-click="$parent.updateEvent(event)"
+               ng-mouseover="$parent.updateHoverCall(event.call)" ng-mouseleave="$parent.resetHoverCall()">
+            <div  class="customization-timeline-event-delete">
+              <button class="btn btn-danger" ng-click="$parent.deleteEvent(event)" ng-confirm-click="{{ 'CUSTOMIZATION.TIMELINE_ADDEDIT.CONFIRM_DELETE_EVENT' | translate }} ({{ event.name }})">
+                <span class="glyphicon glyphicon-remove">
+                </span>
+              </button>
+            </div>
+            <img ng-src="{{callTypes[event.call.callType.id].logo}}" /> {{event.name}}
+          </div>
+          <div class="customization-timeline-event-time">
+            <span class="pull-left" ng-show="$index==0">00h 00m 00s</span>
+            <span class="pull-right customization-timeline-event-time-enddate">{{events[event.id]}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix">&nbsp;</div>
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-6 customization-timeline-triggers">
+
+      <div class="row">
+        <div class="col-md-12">
+          <h4>{{ 'CUSTOMIZATION.TIMELINE_ADDEDIT.CHOOSE_TIMELINE_RUNNER' | translate }}</h4>
+          <div class="list-group" ng-repeat="tlRunner in timelineRunners">
+            <a class="btn list-group-item" ng-class="{'active' : timelineRunner.id == tlRunner.id}" ng-click="saveTimelineRunner(tlRunner)">
+              <h4 class="list-group-item-heading">{{ tlRunner.name }}</h4>
+              <p class="list-group-item-text">{{ tlRunner.description }}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <h4>{{ 'CUSTOMIZATION.TIMELINE_ADDEDIT.CHOOSE_SYSTEM_TRIGGER' | translate }}</h4>
+          <div class="list-group" ng-repeat="sTrigger in systemTriggers">
+            <a class="btn list-group-item" ng-class="{'active' : systemTrigger.id == sTrigger.id }" ng-click="saveSystemTrigger(sTrigger)">
+              <h4 class="list-group-item-heading">{{ sTrigger.name }}</h4>
+              <p class="list-group-item-text">{{ sTrigger.description }}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <h4>{{ 'CUSTOMIZATION.TIMELINE_ADDEDIT.CHOOSE_USER_TRIGGER' | translate }}</h4>
+          <div class="list-group" ng-repeat="uTrigger in userTriggers">
+            <a class="btn list-group-item" ng-class="{'active' : userTrigger.id == uTrigger.id }" ng-click="saveUserTrigger(uTrigger)">
+              <h4 class="list-group-item-heading">{{ uTrigger.name }}</h4>
+              <p class="list-group-item-text">{{ uTrigger.description }}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6 customization-timeline-event-update" ng-include="'customization/views/call/AddEdit.html'" ng-show="call.id != -1">
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,151 @@
+.customization-timeline-name h2, .customization-timeline-name button {
+  float: left;
+  margin-left: 10px;
+  margin-top: auto;
+}
+
+.customization-timeline-services {
+  margin-bottom: 10px;
+}
+
+.customization-timeline-service {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  background-color: whitesmoke;
+  margin-left: 2px;
+}
+
+.customization-timeline-service img {
+  width: 30px;
+  height: 30px;
+}
+
+.customization-timeline-services .drag-enter {
+  background-color: lightblue;
+}
+
+.customization-timeline-service:hover, .customization-timeline-service-active {
+  color: #fff;
+  background-color: #337ab7;
+  cursor: pointer;
+}
+
+.customization-timeline-service:focus {
+  outline: none;
+}
+
+.customization-timeline-calltypes {
+  list-style-type: none;
+}
+
+.customization-timeline-calltype {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border: 1px black solid;
+  border-radius: 10px;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.customization-timeline-representation {
+  width: 100%;
+  height: 110px;
+  background-color: lightgray;
+  border: 1px solid black;
+  vertical-align: middle;
+  line-height: 110px;
+  text-align: center;
+}
+
+.customization-timeline-empty {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.customization-timeline-event {
+
+}
+
+.customization-timeline-event-description {
+  height: 90px;
+  background-color: whitesmoke;
+  border-right: 1px solid black;
+  line-height: 90px;
+  display: block;
+  overflow: hidden;
+}
+
+.customization-timeline-event-description img {
+  width: 30px;
+  height: 30px;
+}
+
+.customization-timeline-event:last-child .customization-timeline-event-description {
+  border: 0px;
+}
+
+.customization-timeline-event-delete {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  line-height: 30px;
+}
+
+.customization-timeline-event-time {
+  border-top: 1px solid black;
+  height: 19px;
+  line-height: 19px;
+}
+
+.customization-timeline-event-time-enddate {
+  margin-right: -45px;
+}
+
+.customization-timeline-event:last-child .customization-timeline-event-time .customization-timeline-event-time-enddate {
+  margin-right: 0px;
+}
+
+[ng-drop].drag-enter {
+  border: 3px green solid !important;
+}
+
+.customization-timeline-event-update {
+  border: 2px solid lightgray;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.customization-timeline-event-samecalltype {
+  background: repeating-linear-gradient(
+    -55deg,
+    lightgoldenrodyellow,
+    lightgoldenrodyellow 10px,
+    whitesmoke 10px,
+    whitesmoke 20px
+  ) !important;
+}
+
+.customization-timeline-event-samehovercalltype {
+  background: repeating-linear-gradient(
+    -55deg,
+    lightgrey,
+    lightgrey 10px,
+    whitesmoke 10px,
+    whitesmoke 20px
+  )
+}
+
+.customization-timeline-event-active {
+  background: none !important;
+  background-color: lightgoldenrodyellow !important;
+  border: 2px solid black;
+}
+
+.customization-timeline-triggers {
+
+}
