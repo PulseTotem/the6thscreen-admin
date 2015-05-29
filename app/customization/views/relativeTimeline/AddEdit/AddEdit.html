@@ -65,18 +65,12 @@
 
       <div class="row">
         <div class="col-md-12">
-          {{timelineRunner}}
-          <hr>
-          {{systemTrigger}}
-          <hr>
-          {{userTrigger}}
-          <hr>
           <h4>{{ 'CUSTOMIZATION.TIMELINE_ADDEDIT.CHOOSE_TIMELINE_RUNNER' | translate }}</h4>
           <div class="list-group" ng-repeat="tlRunner in timelineRunners">
-            <button class="list-group-item" ng-class="{'active' : timelineRunner.id == tlRunner.id}" ng-click="saveTimelineRunner(tlRunner)">
+            <a class="btn list-group-item" ng-class="{'active' : timelineRunner.id == tlRunner.id}" ng-click="saveTimelineRunner(tlRunner)">
               <h4 class="list-group-item-heading">{{ tlRunner.name }}</h4>
               <p class="list-group-item-text">{{ tlRunner.description }}</p>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -85,10 +79,10 @@
         <div class="col-md-12">
           <h4>{{ 'CUSTOMIZATION.TIMELINE_ADDEDIT.CHOOSE_SYSTEM_TRIGGER' | translate }}</h4>
           <div class="list-group" ng-repeat="sTrigger in systemTriggers">
-            <button class="list-group-item" ng-class="{'active' : systemTrigger.id == sTrigger.id }" ng-click="saveSystemTrigger(sTrigger)">
+            <a class="btn list-group-item" ng-class="{'active' : systemTrigger.id == sTrigger.id }" ng-click="saveSystemTrigger(sTrigger)">
               <h4 class="list-group-item-heading">{{ sTrigger.name }}</h4>
               <p class="list-group-item-text">{{ sTrigger.description }}</p>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -97,10 +91,10 @@
         <div class="col-md-12">
           <h4>{{ 'CUSTOMIZATION.TIMELINE_ADDEDIT.CHOOSE_USER_TRIGGER' | translate }}</h4>
           <div class="list-group" ng-repeat="uTrigger in userTriggers">
-            <button class="list-group-item" ng-class="{'active' : userTrigger.id == uTrigger.id }" ng-click="saveUserTrigger(uTrigger)">
+            <a class="btn list-group-item" ng-class="{'active' : userTrigger.id == uTrigger.id }" ng-click="saveUserTrigger(uTrigger)">
               <h4 class="list-group-item-heading">{{ uTrigger.name }}</h4>
               <p class="list-group-item-text">{{ uTrigger.description }}</p>
-            </button>
+            </a>
           </div>
         </div>
       </div>

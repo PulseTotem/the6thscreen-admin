@@ -369,7 +369,7 @@ angular.module('T6SCustomization')
       $scope.hovercall = $scope.neutralCall;
     };
 
-    $scope.updateTimelineRunner = function(runner) {
+    $scope.saveTimelineRunner = function(runner) {
       if (typeof($scope.timeline.id) != "undefined") {
         backendSocket.on('AnswerUpdateRelativeTimeline', function (response) {
           callbackManager(response, function (relTimeline) {
@@ -385,7 +385,7 @@ angular.module('T6SCustomization')
       }
     };
 
-    $scope.updateSystemTrigger = function(trigger) {
+    $scope.saveSystemTrigger = function(trigger) {
       if (typeof($scope.timeline.id) != "undefined") {
         backendSocket.on('AnswerUpdateRelativeTimeline', function (response) {
           callbackManager(response, function (relTimeline) {
@@ -401,7 +401,7 @@ angular.module('T6SCustomization')
       }
     };
 
-    $scope.updateUserTrigger = function(trigger) {
+    $scope.saveUserTrigger = function(trigger) {
       if (typeof($scope.timeline.id) != "undefined") {
         backendSocket.on('AnswerUpdateRelativeTimeline', function (response) {
           callbackManager(response, function (relTimeline) {
