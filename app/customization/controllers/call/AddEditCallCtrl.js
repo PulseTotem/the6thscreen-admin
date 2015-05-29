@@ -54,7 +54,12 @@ angular.module('T6SCustomization')
           $scope.callType = cTInfo;
 
           if($scope.callType.source.service.oauth) {
-            backendSocket.emit('RetrieveOAuthKeysFromServiceAndUser', {'userId': $rootScope.user.id, 'serviceId': $scope.callType.source.service.id});
+            if($scope.callDesc.oAuthKey == null) {
+              backendSocket.emit('RetrieveOAuthKeysFromServiceAndUser', {'userId': $rootScope.user.id, 'serviceId': $scope.callType.source.service.id});
+            } else {
+              $scope.needsOauth = false;
+              manageParamValues();
+            }
           } else {
             manageParamValues();
           }
@@ -68,7 +73,12 @@ angular.module('T6SCustomization')
     backendSocket.on('CompleteCallDescription', function(response) {
       callbackManager(response, function (cInfo) {
           $scope.callDesc = cInfo;
-          manageParamValues();
+
+          if($scope.callType == null && typeof($scope.call.callType) != "undefined" && $scope.call.callType.id != -1) {
+            backendSocket.emit('RetrieveCompleteCallType', {'callTypeId': $scope.call.callType.id});
+          } else {
+            manageParamValues();
+          }
         },
         function (fail) {
           console.error(fail);
@@ -90,10 +100,6 @@ angular.module('T6SCustomization')
 
       if(typeof($scope.event.name) != "undefined") {
         $scope.eventName = $scope.event.name;
-      }
-
-      if(typeof($scope.call.callType) != "undefined" && $scope.call.callType.id != -1) {
-        backendSocket.emit('RetrieveCompleteCallType', {'callTypeId': $scope.call.callType.id});
       }
 
       if(typeof($scope.call) != "undefined" && $scope.call.id != -1) {
@@ -168,6 +174,7 @@ angular.module('T6SCustomization')
               }
             }
           });
+
         } else {
 
           var numberOfNewPV = $scope.callType.source.paramTypes.length - $scope.callType.source.paramValues.length - $scope.callDesc.paramValues.length;
