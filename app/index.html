@@ -34,10 +34,13 @@
         <!-- build:css(.) styles/vendor.css -->
         <!-- bower:css -->
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/customization/showSDI.css">
+        <link rel="stylesheet" href="styles/configuration/addEditSDI.css">
         <!-- endbuild -->
 
         <!-- SocketIO -->
@@ -95,6 +98,9 @@
     <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
     <script src="bower_components/angular-translate-handler-log/angular-translate-handler-log.js"></script>
     <script src="bower_components/oauth-js/dist/oauth.min.js"></script>
+    <script src="bower_components/ngdraggable/ngDraggable.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -105,25 +111,39 @@
     <script src="common/services/backendSocketFactory.js"></script>
     <script src="common/services/callbackmanager.js"></script>
     <script src="common/services/oauthdManager.js"></script>
+    <script src="common/services/saveAttribute.js"></script>
     <script src="common/controllers/menu.js"></script>
     <script src="common/controllers/login.js"></script>
 
     <script src="configuration/configuration.js"></script>
+    <script src="configuration/services/zoneUtil.js"></script>
+    <script src="configuration/directives/dragZone.js"></script>
+    <script src="configuration/directives/resizeZone.js"></script>
+    <script src="configuration/controllers/sdi/ListSDICtrl.js"></script>
+    <script src="configuration/controllers/sdi/EditSDICtrl.js"></script>
+    <script src="configuration/controllers/sdi/AddSDICtrl.js"></script>
+    <script src="configuration/controllers/sdi/AddEditSDICtrl.js"></script>
+    <script src="configuration/controllers/calltype/AddCallTypeCtrl.js"></script>
+    <script src="configuration/controllers/calltype/AddEditCallTypeCtrl.js"></script>
+    <script src="configuration/controllers/calltype/EditCallTypeCtrl.js"></script>
+    <script src="configuration/controllers/zone/ConfirmDeleteZoneCtrl.js"></script>
+    <script src="configuration/controllers/zone/ZoneSelectBehaviourCtrl.js"></script>
+    <script src="configuration/controllers/zone/SelectEditThemeZoneCtrl.js"></script>
+    <script src="configuration/controllers/sdi/SelectEditThemeSDICtrl.js"></script>
+
+    <script src="configuration/controllers/services/ListServicesCtrl.js"></script>
+
     <script src="configuration/controllers/oauth/listOAuth.js"></script>
-    <script src="configuration/controllers/sdi/listSDI.js"></script>
     <script src="configuration/controllers/sdi/deleteSDI.js"></script>
     <script src="configuration/controllers/sdi/showSDI.js"></script>
     <script src="configuration/controllers/zone/showZone.js"></script>
-    <script src="configuration/controllers/sdi/editSDI.js"></script>
     <script src="configuration/controllers/zone/editZone.js"></script>
-    <script src="configuration/controllers/calltype/editCallType.js"></script>
-    <script src="configuration/controllers/sdi/addSDI.js"></script>
     <script src="configuration/controllers/zone/addZone.js"></script>
-    <script src="configuration/controllers/calltype/addCallType.js"></script>
+
 
 
     <script src="customization/customization.js"></script>
-    <script src="customization/controllers/sdi/listSDI.js"></script>
+    <script src="customization/controllers/sdi/listSdi.js"></script>
     <script src="customization/controllers/sdi/showSDI.js"></script>
     <script src="customization/controllers/zone/showZone.js"></script>
     <script src="customization/controllers/calltype/showCallType.js"></script>

@@ -1,0 +1,16 @@
+<div class="modal-content" ng-controller="T6SConfiguration.ZoneSelectBehaviourCtrl">
+  <div class="modal-header">
+    <h3>Sélection d'une transition pour la zone {{ current_zone.name }}</h3>
+  </div>
+  <div class="modal-body">
+    <div class="list-group" ng-repeat="behaviour in behaviours">
+      <a href="#" class="list-group-item" ng-class="{active: isBehaviourSelected(behaviour.id)}" ng-click="selectBehaviour(behaviour.id)">
+        <h4 class="list-group-item-heading">{{ behaviour.name }}</h4>
+        <p class="list-group-item-text">{{ behaviour.description }}</p>
+      </a>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">Fermer</button>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+#customization-sdi-preview {
+  width: 480px;
+  height: 270px;
+  position: relative;
+  border: solid 1px black;
+}
+
+.customization-sdi-preview-zone {
+  position: absolute;
+  border: solid 1px black;
+}
+
+#customization-sdi-preview-zone-name {
+  text-align: center;
+  border-bottom: dotted 1px black;
+}
+
+#customization-sdi-preview-zone-services {
+
+}
+
+.customization-sdi-preview-zone-service img {
+  width: 30px;
+  height: 30px;
+}
+
+.customization-sdi-preview-zone-service-calltype {
+  
+}

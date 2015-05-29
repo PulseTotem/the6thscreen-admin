@@ -1,0 +1,9 @@
+<div ng-controller="T6SConfiguration.ListServicesCtrl">
+  <accordion>
+    <accordion-group heading="Service" is-open="true">
+      <div class="drop-div" ng-repeat="ss in services" style="display: inline">
+        <div class="btn btn-primary" ng-drag="true" ng-drag-data="ss" >{{ ss.name }} &nbsp; <img ng-src="{{ ss.logo }}" style="width: 20px; height: 20px" /></div>
+      </div>
+    </accordion-group>
+  </accordion>
+</div>

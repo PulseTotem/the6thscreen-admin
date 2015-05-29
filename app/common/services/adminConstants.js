@@ -15,5 +15,5 @@ angular.module('T6SCommon')
         loginBackendPath: 'login',
         loginFromTokenBackendPath: 'loginFromToken',
         homeRoute: '/',
-        loginRoute: '/admin'
+        loginRoute: '/custom'
     });
