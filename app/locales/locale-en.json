@@ -63,6 +63,9 @@
       "CALL_ADDEDIT" : {
         "ADVANCED_PARAMETERS" : "Advanced parameters",
         "NEEDS_OAUTHKEY" : "You need to log in to service {{servicename}}."
+      },
+      "PROFIL_ADDEDIT" : {
+        "SELECT_TIMELINE" : "Select a timeline for this zone."
       }
     },
     "SDI" : {
