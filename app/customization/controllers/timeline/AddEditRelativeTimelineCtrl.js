@@ -35,6 +35,12 @@ angular.module('T6SCustomization')
       "value" : ""
     };
     $scope.eventDuration = $scope.neutralEventDuration;
+    $scope.neutralTrigger = {
+      "id" : -1
+    };
+    $scope.timelineRunner = $scope.neutralTrigger;
+    $scope.systemTrigger = $scope.neutralTrigger;
+    $scope.userTrigger = $scope.neutralTrigger;
 
     backendSocket.on('CompleteRelativeTimelineDescription', function(response) {
       callbackManager(response, function (timelineInfo) {
@@ -62,6 +68,37 @@ angular.module('T6SCustomization')
 
     backendSocket.emit('RetrieveCallTypesFromZoneId', {'zoneId': $scope.zoneId});
 
+    backendSocket.on('AllTimelineRunnerDescription', function (response) {
+      callbackManager(response, function (allTimelineRunners) {
+        $scope.timelineRunners = allTimelineRunners;
+      }, function (fail) {
+        console.error(fail);
+      });
+    });
+
+    backendSocket.emit('RetrieveAllTimelineRunnerDescription');
+
+    backendSocket.on('AllSystemTriggerDescription', function (response) {
+      callbackManager(response, function (allSystemTriggers) {
+        $scope.systemTriggers = allSystemTriggers;
+      }, function (fail) {
+        console.error(fail);
+      });
+    });
+
+    backendSocket.emit('RetrieveAllSystemTriggerDescription');
+
+    backendSocket.on('AllUserTriggerDescription', function (response) {
+      callbackManager(response, function (allUserTriggers) {
+        $scope.userTriggers = allUserTriggers;
+      }, function (fail) {
+        console.error(fail);
+      });
+    });
+
+    backendSocket.emit('RetrieveAllUserTriggerDescription');
+
+
     var calculTimelineDuration = function() {
       if(typeof($scope.timeline.id) != "undefined") {
         $scope.events = [];
@@ -79,12 +116,37 @@ angular.module('T6SCustomization')
       }
     };
 
-    if(typeof($scope.timeline) != "undefined" && typeof($scope.timeline.id) != "undefined") {
+    var updateTimelineTriggers = function() {
+      $scope.timelineRunner = $scope.neutralTrigger;
+      $scope.systemTrigger = $scope.neutralTrigger;
+      $scope.userTrigger = $scope.neutralTrigger;
+
+      if(typeof($scope.timeline.id) != "undefined") {
+        if(typeof($scope.timeline.timelineRunner) != "undefined" && $scope.timeline.timelineRunner != null) {
+          $scope.timelineRunner = $scope.timeline.timelineRunner;
+        }
+
+        if(typeof($scope.timeline.systemTrigger) != "undefined" && $scope.timeline.systemTrigger != null) {
+          $scope.systemTrigger = $scope.timeline.systemTrigger;
+        }
+
+        if(typeof($scope.timeline.userTrigger) != "undefined" && $scope.timeline.userTrigger != null) {
+          $scope.userTrigger = $scope.timeline.userTrigger;
+        }
+      }
+    };
+
+    var manageTimelineChanged = function() {
       calculTimelineDuration();
+      updateTimelineTriggers();
+    }
+
+    if(typeof($scope.timeline) != "undefined" && typeof($scope.timeline.id) != "undefined") {
+      manageTimelineChanged();
     } else {
       $scope.$watch(function () {
         return $scope.timeline;
-      }, calculTimelineDuration, true);
+      }, manageTimelineChanged, true);
     }
 
     $scope.$watch(function () {
@@ -305,6 +367,54 @@ angular.module('T6SCustomization')
 
     $scope.resetHoverCall = function() {
       $scope.hovercall = $scope.neutralCall;
+    };
+
+    $scope.updateTimelineRunner = function(runner) {
+      if (typeof($scope.timeline.id) != "undefined") {
+        backendSocket.on('AnswerUpdateRelativeTimeline', function (response) {
+          callbackManager(response, function (relTimeline) {
+              $scope.timelineRunner = runner;
+            },
+            function (fail) {
+              console.error(fail);
+            }
+          );
+        });
+
+        saveAttribute("UpdateRelativeTimeline", $scope.timeline.id, "linkTimelineRunner", runner.id);
+      }
+    };
+
+    $scope.updateSystemTrigger = function(trigger) {
+      if (typeof($scope.timeline.id) != "undefined") {
+        backendSocket.on('AnswerUpdateRelativeTimeline', function (response) {
+          callbackManager(response, function (relTimeline) {
+              $scope.systemTrigger = trigger;
+            },
+            function (fail) {
+              console.error(fail);
+            }
+          );
+        });
+
+        saveAttribute("UpdateRelativeTimeline", $scope.timeline.id, "linkSystemTrigger", trigger.id);
+      }
+    };
+
+    $scope.updateUserTrigger = function(trigger) {
+      if (typeof($scope.timeline.id) != "undefined") {
+        backendSocket.on('AnswerUpdateRelativeTimeline', function (response) {
+          callbackManager(response, function (relTimeline) {
+              $scope.userTrigger = trigger;
+            },
+            function (fail) {
+              console.error(fail);
+            }
+          );
+        });
+
+        saveAttribute("UpdateRelativeTimeline", $scope.timeline.id, "linkUserTrigger", trigger.id);
+      }
     };
 
 }]);

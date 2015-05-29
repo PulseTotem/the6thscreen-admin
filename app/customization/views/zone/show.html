@@ -24,7 +24,7 @@
               <div class="col-md-2">
                 <span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span> {{relTimeline.updatedAtString}}
               </div>
-              <div class="col-md-offset-3 col-md-1">
+              <div class="col-md-offset-2 col-md-2">
                 <a class="btn btn-primary" ng-href="/custom/sdi/{{sdiId}}/zone/{{zoneId}}/relative/{{relTimeline.id}}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
                 <button ng-controller="T6SCustomization.DeleteRelativeTimelineCtrl" class="btn btn-danger" ng-click="deleteRelativeTimeline(relTimeline.id)" ng-confirm-click="{{ 'CUSTOMIZATION.ZONE_SHOW.CONFIRM_DELETE_TIMELINE' | translate }} ({{ relTimeline.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
               </div>

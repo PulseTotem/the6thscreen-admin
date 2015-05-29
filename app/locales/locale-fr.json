@@ -53,7 +53,10 @@
       },
       "TIMELINE_ADDEDIT" : {
         "DROP_SOMETHING" : "Glissez et déposez un appel sur la Timeline pour commencer et ajouter un événement",
-        "CONFIRM_DELETE_EVENT" : "Êtes-vous sûr de vouloir supprimer cet événement ?"
+        "CONFIRM_DELETE_EVENT" : "Êtes-vous sûr de vouloir supprimer cet événement ?",
+        "CHOOSE_TIMELINE_RUNNER" : "Choisiseez un Timeline Runner",
+        "CHOOSE_SYSTEM_TRIGGER" : "Choisiseez un System Trigger",
+        "CHOOSE_USER_TRIGGER" : "Choisiseez un User Trigger"
       },
       "CALL_ADDEDIT" : {
         "ADVANCED_PARAMETERS" : "Paramètres avancés"
