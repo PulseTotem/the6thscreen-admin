@@ -16,9 +16,24 @@
 
       <ul class="nav navbar-nav">
         <li class="active"><a ng-href="/" translate="MENU.HOME"></a></li>
-        <li><a ng-href="/config" translate="MENU.CONFIG"></a></li>
+        <li class="dropdown" dropdown>
+          <a class="dropdown-toggle" dropdown-toggle>{{ 'MENU.CONFIG.TITLE' | translate }}<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a ng-href="/config/sdi" translate="MENU.CONFIG.SDI">SDI</a></li>
+              <li><a ng-href="/config/zone" translate="MENU.CONFIG.ZONE">Zone</a></li>
+              <li><a ng-href="/config/oauth" translate="MENU.CONFIG.OAUTH">OAuth</a></li>
+            </ul>
+        </li>
         <li><a ng-href="/custom" translate="MENU.CUSTOM"></a></li>
-        <li><a ng-href="/admin" translate="MENU.ADMIN"></a></li>
+        <li class="dropdown" dropdown>
+          <a class="dropdown-toggle" dropdown-toggle>{{ 'MENU.ADMIN.TITLE' | translate }}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a ng-href="/admin/infotype" translate="MENU.ADMIN.INFOTYPE"></a></li>
+            <li><a ng-href="/admin/source" translate="MENU.ADMIN.SOURCE"></a></li>
+            <li><a ng-href="/admin/service" translate="MENU.ADMIN.SERVICE"></a></li>
+            <li><a ng-href="/admin/renderer" translate="MENU.ADMIN.RENDERER"></a></li>
+          </ul>
+        </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

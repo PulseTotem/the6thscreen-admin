@@ -2,9 +2,20 @@
     "MENU" : {
         "ADMIN_PANEL" : "Administration Panel",
         "HOME": "Home",
-        "CONFIG": "Configuration",
-        "CUSTOM": "Customization",
-        "ADMIN": "Admin",
+      "CONFIG": {
+        "TITLE": "Configuration",
+        "SDI": "SDI",
+        "OAUTH": "OAuth",
+        "ZONE": "Zone"
+      },
+      "CUSTOM": "Customization",
+      "ADMIN": {
+        "TITLE": "Admin",
+        "SOURCE": "Source",
+        "RENDERER": "Renderer",
+        "SERVICE": "Service",
+        "INFOTYPE": "InfoType"
+      },
         "LANGUAGE" : "Language",
         "ENGLISH": "English",
         "FRENCH": "Fran&ccedil;ais"
