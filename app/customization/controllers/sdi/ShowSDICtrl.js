@@ -38,24 +38,4 @@ angular.module('T6SCustomization')
 
     backendSocket.emit('RetrieveSDIDescription', {'sdiId' : $scope.sdiID});
 
-
-
-
-
-
-
-    backendSocket.on('deletedProfil', function(response) {
-      callbackManager(response, function (idProfil) {
-        $scope.sdi.profils = $scope.sdi.profils.filter(function (element) {
-          return (element.id != idProfil);
-        });
-      })
-    });
-
-
-
-    $scope.deleteProfil = function (idProfil) {
-      backendSocket.emit('DeleteProfil', { "profilId": idProfil});
-    };
-
   }]);
