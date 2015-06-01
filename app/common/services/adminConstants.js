@@ -9,7 +9,11 @@
  */
 angular.module('T6SCommon')
     .constant('ADMIN_CONSTANTS', {
+        //backendUrl: 'http://localhost:4000/',
         backendUrl: 'http://t6s-backend.herokuapp.com/',
-        adminBackendUrl: 'http://t6s-backend.herokuapp.com/admins',
-        loginBackendUrl: 'http://t6s-backend.herokuapp.com/login'
+        adminBackendPath: 'admins',
+        loginBackendPath: 'login',
+        loginFromTokenBackendPath: 'loginFromToken',
+        homeRoute: '/',
+        loginRoute: '/custom'
     });

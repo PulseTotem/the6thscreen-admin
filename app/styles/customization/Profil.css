@@ -1,0 +1,31 @@
+#profil-sdi-preview {
+  width: 960px;
+  height: 540px;
+  position: relative;
+  border: solid 1px black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profil-sdi-preview-zone {
+  position: absolute;
+  border: solid 1px black;
+}
+
+.profil-sdi-preview-zone-name {
+  text-align: center;
+  border-bottom: dotted 1px black;
+
+  height: 30px;
+}
+
+.profil-sdi-preview-zone-timelines {
+  height: 100%;
+  width: 100%;
+}
+
+.customization-profil-name h2, .customization-profil-name button {
+  float: left;
+  margin-left: 10px;
+  margin-top: auto;
+}

@@ -10,10 +10,24 @@
 angular.module('T6SConfiguration')
   .controller('T6SConfiguration.ListOAuthCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', 'oauthdManager', function ($rootScope, $scope, backendSocket, callbackManager, oauthdManager) {
 
-    backendSocket.userIsLogin(function() {
-      backendSocket.on('AllServiceDescription', function(response) {
-        callbackManager(response, function (allServices) {
-            $scope.services = allServices;
+    backendSocket.on('AllServiceDescription', function(response) {
+      callbackManager(response, function (allServices) {
+          $scope.services = allServices;
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
+
+    backendSocket.emit('RetrieveAllServiceDescription');
+
+    $scope.userOAuthKeys = [];
+
+    $rootScope.user.oauthkeys.forEach(function(oauthKey) {
+      backendSocket.on('OAuthKeyDescription_' + oauthKey.id, function(response) {
+        callbackManager(response, function (OAuthKey) {
+            $scope.userOAuthKeys.push(OAuthKey);
           },
           function (fail) {
             console.error(fail);
@@ -21,23 +35,7 @@ angular.module('T6SConfiguration')
         );
       });
 
-      backendSocket.emit('RetrieveAllServiceDescription');
-
-      $scope.userOAuthKeys = [];
-
-      $rootScope.user.oauthkeys.forEach(function(oauthKey) {
-        backendSocket.on('OAuthKeyDescription_' + oauthKey.id, function(response) {
-          callbackManager(response, function (OAuthKey) {
-              $scope.userOAuthKeys.push(OAuthKey);
-            },
-            function (fail) {
-              console.error(fail);
-            }
-          );
-        });
-
-        backendSocket.emit('RetrieveOAuthKeyDescription', {"oauthKeyId" : oauthKey.id});
-      });
+      backendSocket.emit('RetrieveOAuthKeyDescription', {"oauthKeyId" : oauthKey.id});
     });
 
     $scope.oauthOnly = function(element) {
