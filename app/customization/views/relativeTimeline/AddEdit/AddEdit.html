@@ -13,7 +13,7 @@
   <div class="row customization-timeline-services">
     <div class="col-md-12">
       <div>
-        <button ng-repeat="service in zone.services" class="customization-timeline-service pull-left" ng-click="showServiceId!={{service.id}}?updateShowServiceId({{service.id}}):updateShowServiceId(-1)" ng-class="{'customization-timeline-service-active' : showServiceId == {{service.id}} }">
+        <button ng-repeat="service in zone.services" class="customization-timeline-service pull-left" ng-click="showServiceId!=service.id?updateShowServiceId(service.id):updateShowServiceId(-1)" ng-class="{'customization-timeline-service-active' : showServiceId == {{service.id}} }">
           <img ng-src="{{service.logo}}" /> <span class="badge">{{service.callTypes.length}}</span>
         </button>
         <div class="clearfix">&nbsp;</div>
