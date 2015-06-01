@@ -18,7 +18,6 @@
     "oauth-js": "~0.4.0",
     "ngdraggable": "~0.1.8",
     "angular-bootstrap": "~0.13.0",
-    "venturocket-angular-slider": "~0.3.2",
     "moment": "~2.10.3",
     "angular-xeditable": "~0.1.9"
   },

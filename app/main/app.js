@@ -18,7 +18,6 @@ angular
     'ngTouch',
     'ngDraggable',
     'ui.bootstrap',
-    'vr.directives.slider',
     'pascalprecht.translate',
     'btford.socket-io',
     'xeditable',
