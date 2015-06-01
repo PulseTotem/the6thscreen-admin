@@ -10,7 +10,7 @@
  */
 angular
   .module('the6thscreenAdminApp')
-  .config(function ($routeProvider) {
+  .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
 
       // Routes for authentication
@@ -194,4 +194,4 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  }]);
