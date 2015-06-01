@@ -9,7 +9,7 @@
     <div class="barre_horizontale2" id="barreH2"  ></div>
     <div class="barre_verticale1" id="barreV1" ></div>
     <div class="barre_verticale2" id="barreV2" ></div>
-    <div ng-repeat="zone in sdi.zones" ng-click="$event.stopPropagation()" ng-resize-zone="true" ng-drag-zone="true" delete lock="false" class="zone" numero="{{zone.id}}" style="width: {{ zone.width}}%; height: {{ zone.height}}%; position: absolute; top: {{ zone.positionFromTop}}%; left: {{ zone.positionFromLeft}}%;" ng-drop="true" ng-drop-success="onDropCompleteOnZone($data,zone)" ng-mouseover="showTooltip = true" ng-mouseleave="showTooltip = false">
+    <div ng-repeat="zone in sdi.zones" ng-click="$event.stopPropagation()" ng-resize-zone="true" ng-drag-zone="true" delete lock="false" class="zone" numero="{{zone.id}}" style="width: {{ zone.width}}%; height: {{ zone.height}}%; position: absolute; top: {{ zone.positionFromTop}}%; left: {{ zone.positionFromLeft}}%;" ng-drop="true" ng-drop-success="onDropCompleteOnZone($data,zone)"  tooltip-placement="top" tooltip="Width: {{zone.width}} | Height: {{ zone.height }} | Top : {{ zone.positionFromTop }} | Left : {{ zone.positionFromLeft }}">
       <span class="dropdown" dropdown on-toggle="toggled(open)" style="float:right">
         <button type="button" class="btn btn-primary btn-xs dropdown-toggle" dropdown-toggle>
           <span class="glyphicon glyphicon-menu-hamburger"></span>
