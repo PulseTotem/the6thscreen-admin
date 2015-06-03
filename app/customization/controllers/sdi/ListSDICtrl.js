@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SCustomization')
-    .controller('T6SCustomization.ListSDICtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', function ($rootScope, $scope, backendSocket, callbackManager) {
+    .controller('T6SCustomization.ListSDICtrl', ['$rootScope', '$scope', 'backendSocket', function ($rootScope, $scope, backendSocket) {
 
         $scope.listSDI = [];
 
