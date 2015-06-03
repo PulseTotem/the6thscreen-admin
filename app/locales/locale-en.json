@@ -15,7 +15,8 @@
         "RENDERER": "Renderer",
         "SERVICE": "Service",
         "INFOTYPE": "InfoType",
-        "THEMEZONE": "ThemeZone"
+        "THEMEZONE": "ThemeZone",
+        "THEMESDI": "ThemeSDI"
       },
         "LANGUAGE" : "Language",
         "ENGLISH": "English",
@@ -145,6 +146,26 @@
         "BORDER": "Border",
         "COLOR": "Text color",
         "ZINDEX": "Z-index",
+        "CLOSE": "Close"
+      }
+    },
+    "THEMESDI" : {
+      "THEMESDI_LIST" : "List of SDI's theme",
+      "THEMESDI_NAME" : "Nom",
+      "THEMESDI_DESCRIPTION" : "Description",
+      "THEMESDI_DEFAULTTHEME" : "Default theme",
+      "THEMESDI_THEMEZONE" : "Zones' theme",
+      "ISCOMPLETE" : "Complete",
+      "CONFIRM_DELETE_THEMESDI": "Are you sure you want to delete this theme?",
+      "ADD_THEMESDI": "Add a new theme",
+      "ADD_EDIT": {
+        "TITLE": "Edit theme",
+        "BACKGROUND_IMAGE": "Background image",
+        "BACKGROUND_VIDEO": "Background video",
+        "BACKGROUND_COLOR": "Background color",
+        "FONT": "Font",
+        "OPACITY": "Opacity",
+        "COLOR": "Text color",
         "CLOSE": "Close"
       }
     }

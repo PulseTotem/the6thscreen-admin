@@ -15,7 +15,8 @@
           "RENDERER": "Renderer",
           "SERVICE": "Service",
           "INFOTYPE": "InfoType",
-          "THEMEZONE": "ThemeZone"
+          "THEMEZONE": "ThemeZone",
+          "THEMESDI": "ThemeSDI"
         },
         "LANGUAGE" : "Langage",
         "ENGLISH" : "English",
@@ -145,6 +146,26 @@
         "BORDER": "Bordure",
         "COLOR": "Couleur du texte",
         "ZINDEX": "Z-index",
+        "CLOSE": "Fermer"
+      }
+    },
+    "THEMESDI" : {
+      "THEMESDI_LIST" : "Liste des th&egrave;mes de SDI",
+      "THEMESDI_NAME" : "Nom",
+      "THEMESDI_DESCRIPTION" : "Description",
+      "THEMESDI_DEFAULTTHEME" : "Par d&eacute;faut",
+      "THEMESDI_THEMEZONE" : "Th&egrave;me de zone",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_THEMESDI": "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce th&egrave;me ?",
+      "ADD_THEMESDI": "Ajouter un th&egrave;me",
+      "ADD_EDIT": {
+        "TITLE": "Edition d'un th&egrave;me",
+        "BACKGROUND_IMAGE": "Image de fond",
+        "BACKGROUND_VIDEO": "Vid&eacute;o de fond",
+        "BACKGROUND_COLOR": "Couleur de fond",
+        "FONT": "Police",
+        "OPACITY": "Opacit&eacute;",
+        "COLOR": "Couleur du texte",
         "CLOSE": "Fermer"
       }
     }

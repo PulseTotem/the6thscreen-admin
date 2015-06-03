@@ -17,6 +17,14 @@
         </td>
       </tr>
       <tr>
+        <td translate="THEMEZONE.THEMEZONE_DEFAULTTHEME">Default theme</td>
+        <td>
+          <a href="#" editable-checkbox="theme.defaultTheme" e-title="is default?"  onaftersave="saveThemeZoneAttribute('setDefaultTheme', theme.defaultTheme)">
+            {{ theme.defaultTheme && "Is default" || "Is not default" }}
+          </a>
+        </td>
+      </tr>
+      <tr>
         <td translate="THEMEZONE.ADD_EDIT.BACKGROUND_IMAGE">Image de fond</td>
         <td>
           <a href="#" editable-url="theme.backgroundImageURL" onaftersave="saveThemeZoneAttribute('setBackgroundImageURL', theme.backgroundImageURL)">{{ theme.backgroundImageURL || 'No background image' }}</a>

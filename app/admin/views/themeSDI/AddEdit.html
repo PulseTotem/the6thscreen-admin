@@ -1,0 +1,78 @@
+<div class="modal-content" ng-controller="T6SAdmin.AddEditThemeSDICtrl">
+  <div class="modal-header">
+    <h3 translate="THEMESDI.ADD_EDIT.TITLE"></h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <td translate="THEMESDI.THEMESDI_NAME">Nom</td>
+        <td>
+          <a href="#" editable-text="theme.name" onaftersave="saveThemeSDIAttribute('setName', theme.name)">{{ theme.name || 'No name information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMESDI.THEMESDI_DESCRIPTION">Description</td>
+        <td>
+          <a href="#" editable-textarea="theme.description" e-rows="4" e-cols="40" onaftersave="saveThemeSDIAttribute('setDescription', theme.description)">{{ theme.description || 'No description information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMESDI.THEMESDI_DEFAULTTHEME">Default theme</td>
+        <td>
+          <a href="#" editable-checkbox="theme.defaultTheme" e-title="is default?" onaftersave="saveThemeSDIAttribute('setDefaultTheme', theme.defaultTheme)">
+            {{ theme.defaultTheme && "Is default" || "Is not default" }}
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMESDI.THEMESDI_THEMEZONE">Theme Zone</td>
+        <td>
+          <a href="#" editable-select="theme.themeZone.id" e-ng-options="themeZone.id as themeZone.name for themeZone in allThemeZones" onaftersave="saveThemeSDIAttribute('linkThemeZone', theme.themeZone.id)">
+            {{ showSelectedZone() }}
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMESDI.ADD_EDIT.BACKGROUND_IMAGE">Image de fond</td>
+        <td>
+          <a href="#" editable-url="theme.backgroundImageURL" onaftersave="saveThemeSDIAttribute('setBackgroundImageURL', theme.backgroundImageURL)">{{ theme.backgroundImageURL || 'No background image' }}</a>
+          <img ng-if="theme.backgroundImageURL" ng-src="{{ theme.backgroundImageURL }}" style="width: 100px; height: 100px" />
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMESDI.ADD_EDIT.BACKGROUND_VIDEO">Vidéo de fond</td>
+        <td>
+          <a href="#" editable-url="theme.backgroundVideoURL" onaftersave="saveThemeSDIAttribute('setBackgroundVideoURL', theme.backgroundVideoURL)">{{ theme.backgroundVideoURL || 'No background video' }}</a>
+          <video ng-if="theme.backgroundVideoURL" width="320" height="240" controls>
+            <source ng-src="theme.backgroundVideoURL">
+          </video>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMESDI.ADD_EDIT.BACKGROUND_COLOR">Couleur de fond</td>
+        <td><a href="#" editable-color="theme.backgroundColor" onaftersave="saveThemeSDIAttribute('setBackgroundColor', theme.backgroundColor)">{{ theme.backgroundColor || 'No background color' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMESDI.ADD_EDIT.FONT">Font</td>
+        <td>
+          <a href="#" editable-text="theme.font" onaftersave="saveThemeSDIAttribute('setFont', theme.font)">{{ theme.font || 'No font information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMESDI.ADD_EDIT.OPACITY">Opacity</td>
+        <td>
+          <a href="#" editable-range="theme.opacity" e-step="0.01" e-min="0" e-max="1" onaftersave="saveThemeSDIAttribute('setOpacity', theme.opacity)">{{ theme.opacity || 'No opacity information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMESDI.ADD_EDIT.COLOR">Color</td>
+        <td><a href="#" editable-color="theme.color" onaftersave="saveThemeSDIAttribute('setColor', theme.color)">{{ theme.color || 'No text color' }}</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="close()" ng-if="theme.complete" translate="THEMESDI.ADD_EDIT.CLOSE">Fermer</button>
+  </div>
+</div>
