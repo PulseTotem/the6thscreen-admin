@@ -14,7 +14,8 @@
         "SOURCE": "Source",
         "RENDERER": "Renderer",
         "SERVICE": "Service",
-        "INFOTYPE": "InfoType"
+        "INFOTYPE": "InfoType",
+        "THEMEZONE": "ThemeZone"
       },
         "LANGUAGE" : "Language",
         "ENGLISH": "English",
@@ -125,5 +126,26 @@
       "ACTION_ADD" : "Add",
       "ACTION_EDIT" : "Edit",
       "ACTION_DELETE" : "Delete"
-  }
+    },
+    "THEMEZONE" : {
+      "THEMEZONE_LIST" : "List of Zones' Theme",
+      "THEMEZONE_NAME" : "Name",
+      "THEMEZONE_DESCRIPTION" : "Description",
+      "THEMEZONE_DEFAULTNAME" : "Default theme",
+      "ISCOMPLETE" : "Complete",
+      "CONFIRM_DELETE_THEMEZONE": "Are you sure you want to delete this theme?",
+      "ADD_THEMEZONE": "Add a new theme",
+      "ADD_EDIT": {
+        "TITLE": "Edit theme",
+        "BACKGROUND_IMAGE": "Background image",
+        "BACKGROUND_VIDEO": "Background video",
+        "BACKGROUND_COLOR": "Background color",
+        "FONT": "Font",
+        "OPACITY": "Opacity",
+        "BORDER": "Border",
+        "COLOR": "Text color",
+        "ZINDEX": "Z-index",
+        "CLOSE": "Close"
+      }
+    }
 }

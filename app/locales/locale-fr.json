@@ -14,7 +14,8 @@
           "SOURCE": "Source",
           "RENDERER": "Renderer",
           "SERVICE": "Service",
-          "INFOTYPE": "InfoType"
+          "INFOTYPE": "InfoType",
+          "THEMEZONE": "ThemeZone"
         },
         "LANGUAGE" : "Langage",
         "ENGLISH" : "English",
@@ -116,7 +117,7 @@
         "SOURCE_PARAM_TYPE" : "Type de param&egrave;tre"
     },
     "OAUTH" : {
-      "LIST" : "Liste des autorisations d'acc&eagrave;es aux services disponibles",
+      "LIST" : "Liste des autorisations d'acc&egrave;es aux services disponibles",
       "SERVICE_SIGNIN" : "Se connecter",
       "SERVICE_SIGNOUT" : "Supprimer l'acc&egrave;s",
       "CONFIRM_DELETE_OAUTHKEY" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer l'acc&egrave;s &agrave; ce service ?"
@@ -125,5 +126,26 @@
       "ACTION_ADD" : "Ajouter",
       "ACTION_EDIT" : "Editer",
       "ACTION_DELETE" : "Supprimer"
+    },
+    "THEMEZONE" : {
+      "THEMEZONE_LIST" : "Liste des th&egrave;mes de zone",
+      "THEMEZONE_NAME" : "Nom",
+      "THEMEZONE_DESCRIPTION" : "Description",
+      "THEMEZONE_DEFAULTNAME" : "Par d&eacute;faut",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_THEMEZONE": "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce th&egrave;me ?",
+      "ADD_THEMEZONE": "Ajouter un th&egrave;me",
+      "ADD_EDIT": {
+        "TITLE": "Edition d'un th&egrave;me",
+        "BACKGROUND_IMAGE": "Image de fond",
+        "BACKGROUND_VIDEO": "Vid&eacute;o de fond",
+        "BACKGROUND_COLOR": "Couleur de fond",
+        "FONT": "Police",
+        "OPACITY": "Opacit&eacute;",
+        "BORDER": "Bordure",
+        "COLOR": "Couleur du texte",
+        "ZINDEX": "Z-index",
+        "CLOSE": "Fermer"
+      }
     }
 }
