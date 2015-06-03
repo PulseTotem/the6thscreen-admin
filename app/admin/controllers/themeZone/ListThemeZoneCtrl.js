@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SAdmin')
-  .controller('T6SAdmin.ListThemeZoneCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', '$modal', function ($rootScope, $scope, backendSocket, $modal) {
+  .controller('T6SAdmin.ListThemeZoneCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', '$modal', function ($rootScope, $scope, backendSocket, callbackManager, $modal) {
 
     var CONSTANT_MODAL_ADD_EDIT_TZ = "admin/views/themeZone/AddEdit.html";
 
@@ -60,7 +60,7 @@ angular.module('T6SAdmin')
       });
     };
 
-    $scope.createThemeZone = function (theme) {
+    $scope.editThemeZone = function (theme) {
 
       $scope.theme = theme;
       var modalInstance = $modal.open({

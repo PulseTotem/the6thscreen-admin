@@ -131,7 +131,7 @@
       "THEMEZONE_LIST" : "Liste des th&egrave;mes de zone",
       "THEMEZONE_NAME" : "Nom",
       "THEMEZONE_DESCRIPTION" : "Description",
-      "THEMEZONE_DEFAULTNAME" : "Par d&eacute;faut",
+      "THEMEZONE_DEFAULTTHEME" : "Par d&eacute;faut",
       "ISCOMPLETE" : "Complet",
       "CONFIRM_DELETE_THEMEZONE": "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce th&egrave;me ?",
       "ADD_THEMEZONE": "Ajouter un th&egrave;me",

@@ -131,7 +131,7 @@
       "THEMEZONE_LIST" : "List of Zones' Theme",
       "THEMEZONE_NAME" : "Name",
       "THEMEZONE_DESCRIPTION" : "Description",
-      "THEMEZONE_DEFAULTNAME" : "Default theme",
+      "THEMEZONE_DEFAULTTHEME" : "Default theme",
       "ISCOMPLETE" : "Complete",
       "CONFIRM_DELETE_THEMEZONE": "Are you sure you want to delete this theme?",
       "ADD_THEMEZONE": "Add a new theme",

@@ -20,7 +20,7 @@
         <td translate="THEMEZONE.ADD_EDIT.BACKGROUND_IMAGE">Image de fond</td>
         <td>
           <a href="#" editable-url="theme.backgroundImageURL" onaftersave="saveThemeZoneAttribute('setBackgroundImageURL', theme.backgroundImageURL)">{{ theme.backgroundImageURL || 'No background image' }}</a>
-          <img ng-if="theme.backgroundImageURL" src="theme.backgroundImageURL" />
+          <img ng-if="theme.backgroundImageURL" ng-src="{{ theme.backgroundImageURL }}" style="width: 100px; height: 100px" />
         </td>
       </tr>
       <tr>
@@ -28,7 +28,7 @@
         <td>
           <a href="#" editable-url="theme.backgroundVideoURL" onaftersave="saveThemeZoneAttribute('setBackgroundVideoURL', theme.backgroundVideoURL)">{{ theme.backgroundVideoURL || 'No background video' }}</a>
           <video ng-if="theme.backgroundVideoURL" width="320" height="240" controls>
-            <source src="{{theme.backgroundVideoURL}}">
+            <source ng-src="theme.backgroundVideoURL">
           </video>
         </td>
       </tr>
