@@ -23,6 +23,14 @@ angular
       .when('/admin/', {
         redirectTo: '/admin/source'
       })
+      .when('/admin/themezone', {
+        templateUrl: '../admin/views/themeZone/List.html',
+        controller: 'T6SAdmin.ListThemeZoneCtrl'
+      })
+      .when('/admin/themesdi', {
+        templateUrl: '../admin/views/themeSDI/List.html',
+        controller: 'T6SAdmin.ListThemeSDICtrl'
+      })
       .when('/admin/source', {
         templateUrl: '../admin/views/source/list.html',
         controller: 'T6SAdmin.ListSourceCtrl'
