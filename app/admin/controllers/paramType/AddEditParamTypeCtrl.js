@@ -35,7 +35,7 @@ angular.module('T6SAdmin')
 
     backendSocket.emit('RetrieveAllTypeParamTypeDescription');
 
-    backendSocket.on('AllConstraintDescription', function(response) {
+    backendSocket.on('AllConstraintParamTypeDescription', function(response) {
       callbackManager(response, function (constraints) {
           $scope.constraints = constraints;
         },
@@ -45,7 +45,7 @@ angular.module('T6SAdmin')
       );
     });
 
-    backendSocket.emit('RetrieveAllConstraint');
+    backendSocket.emit('RetrieveAllConstraintParamType');
 
     $scope.showSelectedType = function () {
       if (!$scope.paramType.type) {
