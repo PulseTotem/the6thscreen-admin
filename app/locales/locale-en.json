@@ -179,6 +179,10 @@
       "PARAMTYPE_VALUE" : "Default value",
       "ISCOMPLETE" : "Complete",
       "CONFIRM_DELETE_PARAMTYPE" : "Are you sure you want to delete this parameter type?",
-      "ADD_PARAMTYPE" : "Add a new parameter"
+      "ADD_PARAMTYPE" : "Add a new parameter",
+      "ADD_EDIT" : {
+        "TITLE": "Edit parameter",
+        "CLOSE": "Close"
+      }
     }
 }

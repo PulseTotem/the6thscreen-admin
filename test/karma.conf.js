@@ -38,6 +38,8 @@ module.exports = function(config) {
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/moment/moment.js',
       'bower_components/angular-xeditable/dist/js/xeditable.js',
+      'bower_components/requirejs/require.js',
+      'bower_components/ng-prettyjson/src/ng-prettyjson.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       '../app/configuration/**/*.js',

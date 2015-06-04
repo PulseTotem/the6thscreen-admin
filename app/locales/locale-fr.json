@@ -179,6 +179,10 @@
       "PARAMTYPE_VALUE" : "Valeur par d&eacute;faut",
       "ISCOMPLETE" : "Complet",
       "CONFIRM_DELETE_PARAMTYPE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce type de param&egrave;tre ?",
-      "ADD_PARAMTYPE" : "Ajouter un nouveau type de param&egrave;tre"
+      "ADD_PARAMTYPE" : "Ajouter un nouveau type de param&egrave;tre",
+      "ADD_EDIT" : {
+        "TITLE": "Edition d'un param&egrave;tre",
+        "CLOSE": "Fermer"
+      }
     }
 }
