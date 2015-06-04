@@ -29,8 +29,8 @@
           <button class="btn btn-default dropdown-toggle" dropdown-toggle ng-click="$event.stopPropagation()">
             <img ng-src="{{service.logo}}" /> <span class="badge" >{{service.callTypes.length}}</span>
           </button>
-          <ul class="dropdown-menu" role="menu" ng-repeat="callType in service.callTypes">
-            <li><a ng-click="editCallType(service, zone, callType, $event)" class="editCTMenu">Edit "{{ callType.name }}"</a></li>
+          <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="callType in service.callTypes"><a ng-click="editCallType(service, zone, callType, $event)" class="editCTMenu">Edit "{{ callType.name }}"</a></li>
           </ul>
         </div>
       </div>
