@@ -16,7 +16,8 @@
           "SERVICE": "Service",
           "INFOTYPE": "InfoType",
           "THEMEZONE": "ThemeZone",
-          "THEMESDI": "ThemeSDI"
+          "THEMESDI": "ThemeSDI",
+          "PARAMTYPE" : "ParamType"
         },
         "LANGUAGE" : "Langage",
         "ENGLISH" : "English",
@@ -168,5 +169,16 @@
         "COLOR": "Couleur du texte",
         "CLOSE": "Fermer"
       }
+    },
+    "PARAMTYPE": {
+      "PARAMTYPE_LIST" : "Liste des types de param&egrave;tres",
+      "PARAMTYPE_NAME" : "Nom",
+      "PARAMTYPE_DESCRIPTION" : "Description",
+      "PARAMTYPE_TYPE" : "Type de donn&eacute;e",
+      "PARAMTYPE_CONSTRAINT" : "Contrainte impos&eacute;e",
+      "PARAMTYPE_VALUE" : "Valeur par d&eacute;faut",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_PARAMTYPE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce type de param&egrave;tre ?",
+      "ADD_PARAMTYPE" : "Ajouter un nouveau type de param&egrave;tre"
     }
 }
