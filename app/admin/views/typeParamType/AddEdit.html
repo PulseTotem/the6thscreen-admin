@@ -1,0 +1,18 @@
+<div class="modal-content" ng-controller="T6SAdmin.AddEditTypeParamTypeCtrl">
+  <div class="modal-header">
+    <h3 translate="TYPEPARAMTYPE.ADD_EDIT.TITLE"></h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <td translate="TYPEPARAMTYPE.TYPEPARAMTYPE_NAME">Nom</td>
+        <td>
+          <a href="#" editable-text="typeParamType.name" onaftersave="saveTypeParamTypeAttribute('setName', typeParamType.name)">{{ typeParamType.name || 'No name information' }}</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" ng-click="close()" translate="TYPEPARAMTYPE.ADD_EDIT.CLOSE" ng-class="{ 'btn-danger': !typeParamType.complete, 'btn-primary': typeParamType.complete}">Fermer</button>
+  </div>
+</div>

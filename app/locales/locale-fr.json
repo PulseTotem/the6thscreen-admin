@@ -16,7 +16,9 @@
           "SERVICE": "Service",
           "INFOTYPE": "InfoType",
           "THEMEZONE": "ThemeZone",
-          "THEMESDI": "ThemeSDI"
+          "THEMESDI": "ThemeSDI",
+          "PARAMTYPE" : "ParamType",
+          "TYPEPARAMTYPE": "TypeParamType"
         },
         "LANGUAGE" : "Langage",
         "ENGLISH" : "English",
@@ -95,28 +97,6 @@
         "CALLTYPE_NAME" : "Nom",
         "CALLTYPE_DESCRIPTION" : "Description"
     },
-    "SOURCE" : {
-        "SOURCES_LIST" : "Liste des Sources",
-        "SOURCE_NAME" : "Nom",
-        "SOURCE_SERVICE" : "Service",
-        "SOURCE_DESCRIPTION" : "Description",
-        "SOURCE_METHOD" : "Method",
-        "SOURCE_TYPE" : "Type d'information",
-        "SOURCE_PARAM_TYPES" : "Types de param&egrave;tre",
-        "SOURCE_PARAM_VALUES" : "Valeurs des param&egrave;tre",
-        "ADD_SOURCE" : "Ajouter une nouvelle Source",
-        "ISCOMPLETE" : "Complet",
-        "CONFIRM_DELETE_SOURCE" : "Êtes-vous sûr de vouloir supprimer cette source ?"
-    },
-    "ADD_SOURCE" : {
-        "CREATE_SOURCE" : "Cr&eacute;er une nouvelle source",
-        "SOURCE_NAME" : "Nom",
-        "SOURCE_SERVICE" : "Service",
-        "SOURCE_DESCRIPTION" : "Description",
-        "SOURCE_METHOD" : "Method",
-        "SOURCE_TYPE" : "Type d'information",
-        "SOURCE_PARAM_TYPE" : "Type de param&egrave;tre"
-    },
     "OAUTH" : {
       "LIST" : "Liste des autorisations d'acc&egrave;es aux services disponibles",
       "SERVICE_SIGNIN" : "Se connecter",
@@ -166,6 +146,91 @@
         "FONT": "Police",
         "OPACITY": "Opacit&eacute;",
         "COLOR": "Couleur du texte",
+        "CLOSE": "Fermer"
+      }
+    },
+    "PARAMTYPE": {
+      "PARAMTYPE_LIST" : "Liste des types de param&egrave;tres",
+      "PARAMTYPE_NAME" : "Nom",
+      "PARAMTYPE_DESCRIPTION" : "Description",
+      "PARAMTYPE_TYPE" : "Type de donn&eacute;e",
+      "PARAMTYPE_CONSTRAINT" : "Contrainte impos&eacute;e",
+      "PARAMTYPE_VALUE" : "Valeur par d&eacute;faut",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_PARAMTYPE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce type de param&egrave;tre ?",
+      "ADD_PARAMTYPE" : "Ajouter un nouveau type de param&egrave;tre",
+      "ADD_EDIT" : {
+        "TITLE": "Edition d'un param&egrave;tre",
+        "CLOSE": "Fermer"
+      }
+    },
+    "TYPEPARAMTYPE": {
+      "TYPEPARAMTYPE_LIST" : "Liste des types primitifs des types de param&egrave;tres",
+      "TYPEPARAMTYPE_NAME" : "Nom",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_TYPEPARAMTYPE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce type primitif ?",
+      "ADD_TYPEPARAMTYPE" : "Ajouter un nouveau type",
+      "ADD_EDIT" : {
+        "TITLE": "Edition d'un type",
+        "CLOSE": "Fermer"
+      }
+    },
+    "INFOTYPE": {
+      "INFOTYPE_LIST" : "Liste des types d'information",
+      "INFOTYPE_NAME" : "Nom",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_INFOTYPE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce type d'information ?",
+      "ADD_INFOTYPE" : "Ajouter un nouveau type",
+      "ADD_EDIT" : {
+        "TITLE": "Editer un type",
+        "CLOSE": "Fermer"
+      }
+    },
+    "SERVICE": {
+      "SERVICE_LIST" : "Liste des services",
+      "SERVICE_NAME" : "Nom",
+      "SERVICE_DESCRIPTION" : "Description",
+      "SERVICE_HOST" : "H&ocirc;te",
+      "SERVICE_OAUTH" : "Authentification",
+      "SERVICE_PROVIDER" : "Provider",
+      "SERVICE_LOGO" : "Logo",
+      "SERVICE_SOURCES_NUMBER" : "Nombre de sources",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_SERVICE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce service ?",
+      "ADD_SERVICE" : "Ajouter un nouveau service",
+      "ADD_EDIT" : {
+        "TITLE": "Editer un service",
+        "CLOSE": "Fermer"
+      }
+    },
+    "SOURCE" : {
+      "SOURCE_LIST" : "Liste des sources",
+      "SOURCE_NAME" : "Nom",
+      "SOURCE_SERVICE" : "Service",
+      "SOURCE_DESCRIPTION" : "Description",
+      "SOURCE_METHOD" : "M&eacute;thode",
+      "SOURCE_INFOTYPE" : "Type d'information",
+      "SOURCE_PARAMS" : "Param&egrave;tres",
+      "SOURCE_VALUES" : "Valeurs par d&eacute;faut",
+      "ADD_SOURCE" : "Ajouter une source",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_SOURCE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer cette source ?",
+      "ADD_EDIT": {
+        "TITLE": "Editer la source",
+        "CLOSE": "Fermer",
+        "REMOVE": "Supprimer"
+      }
+    },
+    "RENDERER" : {
+      "RENDERER_LIST" : "Liste des renderers",
+      "RENDERER_NAME" : "Nom",
+      "RENDERER_DESCRIPTION" : "Description",
+      "RENDERER_INFOTYPE" : "Type d'information",
+      "ISCOMPLETE" : "Complet",
+      "ADD_RENDERER" : "Ajouter un renderer",
+      "CONFIRM_DELETE_RENDERER" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce renderer ?",
+      "ADD_EDIT": {
+        "TITLE": "Editer la source",
         "CLOSE": "Fermer"
       }
     }

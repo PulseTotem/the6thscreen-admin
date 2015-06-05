@@ -1,0 +1,36 @@
+<h3 translate="SERVICE.SERVICE_LIST"></h3>
+
+<table class="table table-striped">
+  <tr>
+    <th>#</th>
+    <th translate="SERVICE.SERVICE_NAME">Nom</th>
+    <th translate="SERVICE.SERVICE_DESCRIPTION">Description</th>
+    <th translate="SERVICE.SERVICE_HOST">Host</th>
+    <th translate="SERVICE.SERVICE_OAUTH">OAuth</th>
+    <th translate="SERVICE.SERVICE_PROVIDER">Provider</th>
+    <th translate="SERVICE.SERVICE_LOGO">Logo</th>
+    <th translate="SERVICE.SERVICE_SOURCES_NUMBER">Nombre de sources</th>
+    <th translate="SERVICE.ISCOMPLETE">Complete</th>
+    <th></th>
+  </tr>
+
+  <tr ng-repeat="service in services">
+    <td>{{ service.id }}</td>
+    <td>{{ service.name }}</td>
+    <td>{{ service.description }}</td>
+    <td>{{ service.host }}</td>
+    <td>{{ service.oauth }}</td>
+    <td>{{ service.provider }}</td>
+    <td><img ng-if="service.logo" src="{{service.logo}}" style="width: 50px; height: 50px" /></td>
+    <td>{{ service.sources.length }}</td>
+    <td>{{ service.complete }}</td>
+    <td>
+      <a type="button" class="btn btn-default" ng-click="editService(service)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_EDIT' | translate }}</a>
+      <button type="button" class="btn btn-danger" ng-click="deleteService(service.id)" ng-confirm-click="{{ 'SERVICE.CONFIRM_DELETE_SERVICE' | translate }} ({{ service.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_DELETE' | translate }}</button>
+    </td>
+  </tr>
+</table>
+
+<div style="float: right">
+  <a ng-click="createService()" class="btn btn-primary" translate><i class="icon-plus icon-white"></i> SERVICE.ADD_SERVICE</a>
+</div>

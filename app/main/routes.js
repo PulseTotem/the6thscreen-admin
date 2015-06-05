@@ -23,6 +23,22 @@ angular
       .when('/admin/', {
         redirectTo: '/admin/source'
       })
+      .when('/admin/service', {
+        templateUrl: '../admin/views/service/List.html',
+        controller: 'T6SAdmin.ListServiceCtrl'
+      })
+      .when('/admin/infotype', {
+        templateUrl: '../admin/views/infoType/List.html',
+        controller: 'T6SAdmin.ListInfoTypeCtrl'
+      })
+      .when('/admin/paramtype', {
+        templateUrl: '../admin/views/paramType/List.html',
+        controller: 'T6SAdmin.ListParamTypeCtrl'
+      })
+      .when('/admin/typeparamtype', {
+        templateUrl: '../admin/views/typeParamType/List.html',
+        controller: 'T6SAdmin.ListTypeParamTypeCtrl'
+      })
       .when('/admin/themezone', {
         templateUrl: '../admin/views/themeZone/List.html',
         controller: 'T6SAdmin.ListThemeZoneCtrl'
@@ -32,68 +48,12 @@ angular
         controller: 'T6SAdmin.ListThemeSDICtrl'
       })
       .when('/admin/source', {
-        templateUrl: '../admin/views/source/list.html',
+        templateUrl: '../admin/views/source/List.html',
         controller: 'T6SAdmin.ListSourceCtrl'
-      })
-      .when('/admin/source/add', {
-        templateUrl: '../admin/views/source/addEdit.html',
-        controller: 'T6SAdmin.AddSourceCtrl'
-      })
-      .when('/admin/source/:sourceId/edit', {
-        templateUrl: '../admin/views/source/addEdit.html',
-        controller: 'T6SAdmin.EditSourceCtrl'
-      })
-      .when('/admin/calltype', {
-        templateUrl: '../admin/views/calltype/list.html',
-        controller: 'T6SAdmin.ListCallTypeCtrl'
-      })
-      .when('/admin/calltype/add', {
-        templateUrl: '../admin/views/calltype/addEdit.html',
-        controller: 'T6SAdmin.AddCallTypeCtrl'
-      })
-      .when('/admin/calltype/:callTypeId/edit', {
-        templateUrl: '../admin/views/calltype/addEdit.html',
-        controller: 'T6SAdmin.EditCallTypeCtrl'
-      })
-      .when('/admin/service', {
-        templateUrl: '../admin/views/service/list.html',
-        controller: 'T6SAdmin.ListServiceCtrl'
-      })
-      .when('/admin/service/add', {
-        templateUrl: '../admin/views/service/addEdit.html',
-        controller: 'T6SAdmin.AddServiceCtrl'
-      })
-      .when('/admin/service/:serviceId/edit', {
-        templateUrl: '../admin/views/service/addEdit.html',
-        controller: 'T6SAdmin.EditServiceCtrl'
       })
       .when('/admin/renderer', {
         templateUrl: '../admin/views/renderer/list.html',
         controller: 'T6SAdmin.ListRendererCtrl'
-      })
-      .when('/admin/renderer/add', {
-        templateUrl: '../admin/views/renderer/addEdit.html',
-        controller: 'T6SAdmin.AddRendererCtrl'
-      })
-      .when('/admin/renderer/:rendererId/edit', {
-        templateUrl: '../admin/views/renderer/addEdit.html',
-        controller: 'T6SAdmin.EditRendererCtrl'
-      })
-      .when('/admin/infotype', {
-        templateUrl: '../admin/views/infoType/list.html',
-        controller: 'T6SAdmin.ListInfoTypeCtrl'
-      })
-      .when('/admin/infotype/add', {
-        templateUrl: '../admin/views/infoType/addEdit.html',
-        controller: 'T6SAdmin.AddInfoTypeCtrl'
-      })
-      .when('/admin/infotype/:infoTypeId/edit', {
-        templateUrl: '../admin/views/infoType/addEdit.html',
-        controller: 'T6SAdmin.EditInfoTypeCtrl'
-      })
-      .when('/admin/zone/', {
-        templateUrl: '../admin/views/zone/list.html',
-        controller: 'T6SAdmin.ListZoneCtrl'
       })
 
       // Routes for customization stuff

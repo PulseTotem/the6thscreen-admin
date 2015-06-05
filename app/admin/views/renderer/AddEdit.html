@@ -1,0 +1,32 @@
+<div class="modal-content" ng-controller="T6SAdmin.AddEditRendererCtrl">
+  <div class="modal-header">
+    <h3 translate="RENDERER.ADD_EDIT.TITLE"></h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <td translate="RENDERER.RENDERER_NAME">Nom</td>
+        <td>
+          <a href="#" editable-text="renderer.name" onaftersave="saveRendererAttribute('setName', renderer.name)">{{ renderer.name || 'No name information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="RENDERER.RENDERER_DESCRIPTION">Description</td>
+        <td>
+          <a href="#" editable-textarea="renderer.description" onaftersave="saveRendererAttribute('setDescription', renderer.description)">{{ renderer.description || 'No description information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="RENDERER.RENDERER_INFOTYPE">InfoType</td>
+        <td>
+          <a href="#" editable-select="renderer.infoType.id" e-ng-options="infoType.id as infoType.name for infoType in allInfoTypes" onaftersave="saveRendererAttribute('linkInfoType', renderer.infoType.id)">
+            {{ showSelectedInfoType() }}
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" ng-click="close()" translate="RENDERER.ADD_EDIT.CLOSE" ng-class="{ 'btn-danger': !renderer.complete, 'btn-primary': renderer.complete}">Fermer</button>
+  </div>
+</div>
