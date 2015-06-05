@@ -184,5 +184,16 @@
         "TITLE": "Edition d'un param&egrave;tre",
         "CLOSE": "Fermer"
       }
+    },
+    "TYPEPARAMTYPE": {
+      "TYPEPARAMTYPE_LIST" : "Liste des types primitifs des types de param&egrave;tres",
+      "TYPEPARAMTYPE_NAME" : "Nom",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_TYPEPARAMTYPE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce type primitif ?",
+      "ADD_TYPEPARAMTYPE" : "Ajouter un nouveau type",
+      "ADD_EDIT" : {
+        "TITLE": "Edition d'un type",
+        "CLOSE": "Fermer"
+      }
     }
 }

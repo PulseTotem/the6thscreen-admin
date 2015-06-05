@@ -184,5 +184,16 @@
         "TITLE": "Edit parameter",
         "CLOSE": "Close"
       }
+    },
+    "TYPEPARAMTYPE": {
+      "TYPEPARAMTYPE_LIST" : "List of primitive types for parameter types",
+      "TYPEPARAMTYPE_NAME" : "Name",
+      "ISCOMPLETE" : "Complete",
+      "CONFIRM_DELETE_TYPEPARAMTYPE" : "Are you sure you want to delete this primitive type?",
+      "ADD_TYPEPARAMTYPE" : "Add a new type",
+      "ADD_EDIT" : {
+        "TITLE": "Edit type",
+        "CLOSE": "Close"
+      }
     }
 }

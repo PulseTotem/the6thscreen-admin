@@ -1,0 +1,24 @@
+<h3 translate="TYPEPARAMTYPE.THEMEZONE_LIST"></h3>
+
+<table class="table table-striped">
+  <tr>
+    <th>#</th>
+    <th translate="TYPEPARAMTYPE.TYPEPARAMTYPE_NAME">Nom</th>
+    <th translate="TYPEPARAMTYPE.ISCOMPLETE">Complete</th>
+    <th></th>
+  </tr>
+
+  <tr ng-repeat="typeParamType in typeParamTypes">
+    <td>{{ typeParamType.id }}</td>
+    <td>{{ typeParamType.name }}</td>
+    <td>{{ typeParamType.complete }}</td>
+    <td>
+      <a type="button" class="btn btn-default" ng-click="editTypeParamType(typeParamType)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_EDIT' | translate }}</a>
+      <button type="button" class="btn btn-danger" ng-click="deleteTypeParamType(typeParamType.id)" ng-confirm-click="{{ 'TYPEPARAMTYPE.CONFIRM_DELETE_TYPEPARAMTYPE' | translate }} ({{ typeParamType.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_DELETE' | translate }}</button>
+    </td>
+  </tr>
+</table>
+
+<div style="float: right">
+  <a ng-click="createTypeParamType()" class="btn btn-primary" translate><i class="icon-plus icon-white"></i> TYPEPARAMTYPE.ADD_TYPEPARAMTYPE</a>
+</div>
