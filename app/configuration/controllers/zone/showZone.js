@@ -24,7 +24,7 @@ angular.module('T6SConfiguration')
 
         });
 
-        backendSocket.on('deletedCallType', function (response) {
+        backendSocket.on('AnswerDeleteCallType', function (response) {
           callbackManager(response, function (callTypeId) {
             $scope.zone.callTypes = $scope.zone.callTypes.filter(function (element) {
               return (element.id != callTypeId);

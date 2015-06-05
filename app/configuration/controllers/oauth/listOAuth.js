@@ -96,7 +96,7 @@ angular.module('T6SConfiguration')
         return false;
       }
 
-      backendSocket.on('deletedOAuthKey', function (response) {
+      backendSocket.on('AnswerDeleteOAuthKey', function (response) {
         callbackManager(response, function (oauthId) {
           $scope.userOAuthKeys = $scope.userOAuthKeys.filter(function (element) { return (element.id != oauthId); });
           $('#service_signin_' + service.id).show();
