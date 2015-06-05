@@ -21,7 +21,6 @@ angular
     'pascalprecht.translate',
     'btford.socket-io',
     'xeditable',
-    'ngPrettyJson',
     'T6SConfiguration',
     'T6SAdmin',
     'T6SCustomization'

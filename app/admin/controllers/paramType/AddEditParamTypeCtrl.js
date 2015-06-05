@@ -45,7 +45,7 @@ angular.module('T6SAdmin')
       );
     });
 
-    backendSocket.emit('RetrieveAllConstraintParamType');
+    backendSocket.emit('RetrieveAllConstraintParamTypeDescription');
 
     $scope.showSelectedType = function () {
       if (!$scope.paramType.type) {
@@ -70,5 +70,32 @@ angular.module('T6SAdmin')
 
     $scope.close = function () {
       $scope.$close();
+    };
+
+    backendSocket.on('AnswerCreateParamValue', function(response) {
+      callbackManager(response, function (paramValue) {
+          $scope.saveParamTypeAttribute("linkDefaultValue", paramValue.id);
+          $scope.paramType.defaultValue.id = paramValue.id;
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
+
+    $scope.saveDefaultValue = function () {
+      var defaultValue = $scope.paramType.defaultValue;
+      if (defaultValue.id != "undefined" && defaultValue.id != null) {
+        if (defaultValue.value === '') {
+          $scope.saveParamTypeAttribute("UnlinkDefaultValue", defaultValue.id);
+          backendSocket.emit("DeleteParamValue", {paramValueId: defaultValue.id});
+        } else {
+          saveAttribute("UpdateParamValue", defaultValue.id, "setValue", defaultValue.value);
+        }
+      } else {
+        if (defaultValue.value != '') {
+          backendSocket.emit("CreateParamValue", {"value": defaultValue.value});
+        }
+      }
     };
 }]);

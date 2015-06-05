@@ -41,6 +41,6 @@
     </table>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary" ng-click="close()" ng-if="paramType.complete" translate="PARAMTYPE.ADD_EDIT.CLOSE">Fermer</button>
+    <button type="button" class="btn" ng-click="close()" ng-class="{ 'btn-danger': !paramType.complete, 'btn-primary': paramType.complete}" translate="PARAMTYPE.ADD_EDIT.CLOSE">Fermer</button>
   </div>
 </div>
