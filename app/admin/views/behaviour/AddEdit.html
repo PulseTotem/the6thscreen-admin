@@ -13,7 +13,7 @@
       <tr>
         <td translate="BEHAVIOUR.BEHAVIOUR_DESCRIPTION">Description</td>
         <td>
-          <a href="#" editable-text="behaviour.description" onaftersave="saveBehaviourAttribute('setDescription', behaviour.description)">{{ behaviour.description || 'No description information' }}</a>
+          <a href="#" editable-textarea="behaviour.description" onaftersave="saveBehaviourAttribute('setDescription', behaviour.description)">{{ behaviour.description || 'No description information' }}</a>
         </td>
       </tr>
     </table>

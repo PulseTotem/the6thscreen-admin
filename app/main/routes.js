@@ -59,6 +59,10 @@ angular
         templateUrl: '../admin/views/behaviour/List.html',
         controller: 'T6SAdmin.ListBehaviourCtrl'
       })
+      .when('/admin/policy', {
+        templateUrl: '../admin/views/policy/List.html',
+        controller: 'T6SAdmin.ListPolicyCtrl'
+      })
 
       // Routes for customization stuff
       .when('/custom/', {

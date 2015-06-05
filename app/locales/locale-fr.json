@@ -19,7 +19,8 @@
           "THEMESDI": "ThemeSDI",
           "PARAMTYPE" : "ParamType",
           "TYPEPARAMTYPE": "TypeParamType",
-          "BEHAVIOUR" : "Behaviour"
+          "BEHAVIOUR" : "Behaviour",
+          "POLICY": "Politique"
         },
         "LANGUAGE" : "Langage",
         "ENGLISH" : "English",
@@ -244,6 +245,18 @@
       "ADD_BEHAVIOUR" : "Ajouter un nouveau behaviour",
       "ADD_EDIT" : {
         "TITLE": "Editer un behaviour",
+        "CLOSE": "Fermer"
+      }
+    },
+    "POLICY": {
+      "POLICY_LIST" : "Liste des politiques",
+      "POLICY_NAME" : "Nom",
+      "POLICY_DESCRIPTION" : "Description",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_POLICY" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer cette politique ?",
+      "ADD_POLICY" : "Ajouter une nouvelle politique",
+      "ADD_EDIT" : {
+        "TITLE": "Editer une politique",
         "CLOSE": "Fermer"
       }
     }
