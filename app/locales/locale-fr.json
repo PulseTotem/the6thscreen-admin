@@ -207,5 +207,22 @@
         "TITLE": "Editer un type",
         "CLOSE": "Fermer"
       }
+    },
+    "SERVICE": {
+      "SERVICE_LIST" : "Liste des services",
+      "SERVICE_NAME" : "Nom",
+      "SERVICE_DESCRIPTION" : "Description",
+      "SERVICE_HOST" : "H&ocirc;te",
+      "SERVICE_OAUTH" : "Authentification",
+      "SERVICE_PROVIDER" : "Provider",
+      "SERVICE_LOGO" : "Logo",
+      "SERVICE_SOURCES_NUMBER" : "Nombre de sources",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_SERVICE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce service ?",
+      "ADD_SERVICE" : "Ajouter un nouveau service",
+      "ADD_EDIT" : {
+        "TITLE": "Editer un service",
+        "CLOSE": "Fermer"
+      }
     }
 }

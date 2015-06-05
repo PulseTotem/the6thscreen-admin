@@ -23,6 +23,10 @@ angular
       .when('/admin/', {
         redirectTo: '/admin/source'
       })
+      .when('/admin/service', {
+        templateUrl: '../admin/views/service/List.html',
+        controller: 'T6SAdmin.ListServiceCtrl'
+      })
       .when('/admin/infotype', {
         templateUrl: '../admin/views/infoType/List.html',
         controller: 'T6SAdmin.ListInfoTypeCtrl'
@@ -66,18 +70,6 @@ angular
       .when('/admin/calltype/:callTypeId/edit', {
         templateUrl: '../admin/views/calltype/addEdit.html',
         controller: 'T6SAdmin.EditCallTypeCtrl'
-      })
-      .when('/admin/service', {
-        templateUrl: '../admin/views/service/list.html',
-        controller: 'T6SAdmin.ListServiceCtrl'
-      })
-      .when('/admin/service/add', {
-        templateUrl: '../admin/views/service/addEdit.html',
-        controller: 'T6SAdmin.AddServiceCtrl'
-      })
-      .when('/admin/service/:serviceId/edit', {
-        templateUrl: '../admin/views/service/addEdit.html',
-        controller: 'T6SAdmin.EditServiceCtrl'
       })
       .when('/admin/renderer', {
         templateUrl: '../admin/views/renderer/list.html',
