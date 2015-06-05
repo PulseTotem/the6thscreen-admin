@@ -17,7 +17,8 @@
         "INFOTYPE": "InfoType",
         "THEMEZONE": "ThemeZone",
         "THEMESDI": "ThemeSDI",
-        "PARAMTYPE" : "ParamType"
+        "PARAMTYPE" : "ParamType",
+        "TYPEPARAMTYPE": "TypeParamType"
       },
         "LANGUAGE" : "Language",
         "ENGLISH": "English",

@@ -27,6 +27,10 @@ angular
         templateUrl: '../admin/views/paramType/List.html',
         controller: 'T6SAdmin.ListParamTypeCtrl'
       })
+      .when('/admin/typeparamtype', {
+        templateUrl: '../admin/views/typeParamType/List.html',
+        controller: 'T6SAdmin.ListTypeParamTypeCtrl'
+      })
       .when('/admin/themezone', {
         templateUrl: '../admin/views/themeZone/List.html',
         controller: 'T6SAdmin.ListThemeZoneCtrl'
