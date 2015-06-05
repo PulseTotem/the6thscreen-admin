@@ -54,7 +54,8 @@ angular.module('T6SAdmin')
 
     backendSocket.on('AnswerUpdateSource', function(response) {
       callbackManager(response, function (source) {
-          $scope.source = source;
+          $scope.source.complete = source.complete;
+          $scope.updateParamType();
         },
         function (fail) {
           console.error(fail);
@@ -75,15 +76,17 @@ angular.module('T6SAdmin')
 
     $scope.linkParamType = function () {
       if ($scope.selectedParam != null) {
-        $scope.source.paramTypes.push($scope.selectedParam);
-        $scope.saveSourceAttribute("linkParamType", $scope.selectedParam.id);
+        $scope.source.paramTypes.push($filter('filter')($scope.availableParameters, {id: $scope.selectedParam})[0]);
+        $scope.saveSourceAttribute("addParamType", $scope.selectedParam);
         $scope.selectedParam = null;
       }
     };
 
     $scope.removeParamType = function (paramId) {
-      $scope.saveSourceAttribute("unlinkParamType", paramId);
-      $scope.source.paramTypes = $filter('filter')($scope.source.paramTypes, {id: !paramId});
+      $scope.saveSourceAttribute("removeParamType", paramId);
+      $scope.source.paramTypes = $filter('filter')($scope.source.paramTypes, function (value) {
+        return value.id != paramId;
+      });
     };
 
     $scope.showSelectedInfoType = function () {

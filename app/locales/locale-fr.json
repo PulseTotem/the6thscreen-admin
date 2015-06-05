@@ -220,5 +220,18 @@
         "CLOSE": "Fermer",
         "REMOVE": "Supprimer"
       }
+    },
+    "RENDERER" : {
+      "RENDERER_LIST" : "Liste des renderers",
+      "RENDERER_NAME" : "Nom",
+      "RENDERER_DESCRIPTION" : "Description",
+      "RENDERER_INFOTYPE" : "Type d'information",
+      "ISCOMPLETE" : "Complet",
+      "ADD_RENDERER" : "Ajouter un renderer",
+      "CONFIRM_DELETE_RENDERER" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce renderer ?",
+      "ADD_EDIT": {
+        "TITLE": "Editer la source",
+        "CLOSE": "Fermer"
+      }
     }
 }
