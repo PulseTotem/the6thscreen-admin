@@ -1,0 +1,67 @@
+<div class="modal-content" ng-controller="T6SAdmin.AddEditSourceCtrl">
+  <div class="modal-header">
+    <h3 translate="SOURCE.ADD_EDIT.TITLE"></h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <td translate="SOURCE.SOURCE_NAME">Nom</td>
+        <td>
+          <a href="#" editable-text="source.name" onaftersave="saveSourceAttribute('setName', source.name)">{{ source.name || 'No name information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="SOURCE.SOURCE_DESCRIPTION">Description</td>
+        <td>
+          <a href="#" editable-textarea="source.description" onaftersave="saveSourceAttribute('setDescription', source.description)">{{ source.description || 'No description information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="SOURCE.SOURCE_METHOD">Methode</td>
+        <td>
+          <a href="#" editable-text="source.method" onaftersave="saveSourceAttribute('setMethod', source.method)">{{ source.method || 'No method information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="SOURCE.SOURCE_SERVICE">Service</td>
+        <td>
+          <a href="#" editable-select="source.service.id" e-ng-options="service.id as service.name for service in allServices" onaftersave="saveSourceAttribute('linkService', source.service.id)">
+            {{ showSelectedService() }}
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="SOURCE.SOURCE_INFOTYPE">InfoType</td>
+        <td>
+          <a href="#" editable-select="source.infoType.id" e-ng-options="infoType.id as infoType.name for infoType in allInfoTypes" onaftersave="saveSourceAttribute('linkInfoType', source.infoType.id)">
+            {{ showSelectedInfoType() }}
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="SOURCE.SOURCE_PARAMS">Parameters</td>
+        <td>
+          <select class="form-control" ng-model="selectedParam" ng-change="updateParamType()">
+            <option ng-repeat="parameter in availableParameters()" ng-value="parameter.id">{{parameter.name}}</option>
+          </select>
+          <ul>
+            <li ng-repeat="parameter in source.paramTypes">{{ parameter.name}} <button class="btn btn-danger" ng-click="removeParamType(parameter.id)" translate="SOURCE.ADD_EDIT.REMOVE">Remove</button></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td translate="SOURCE.SOURCE_VALUES">Valeurs</td>
+        <td>
+          <ul>
+            <li ng-repeat="values in source.paramValues">
+              {{ values.value}} from {{ values.type }}
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" ng-click="close()" translate="SOURCE.ADD_EDIT.CLOSE" ng-class="{ 'btn-danger': !source.complete, 'btn-primary': source.complete}">Fermer</button>
+  </div>
+</div>

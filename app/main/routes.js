@@ -48,44 +48,12 @@ angular
         controller: 'T6SAdmin.ListThemeSDICtrl'
       })
       .when('/admin/source', {
-        templateUrl: '../admin/views/source/list.html',
+        templateUrl: '../admin/views/source/List.html',
         controller: 'T6SAdmin.ListSourceCtrl'
-      })
-      .when('/admin/source/add', {
-        templateUrl: '../admin/views/source/addEdit.html',
-        controller: 'T6SAdmin.AddSourceCtrl'
-      })
-      .when('/admin/source/:sourceId/edit', {
-        templateUrl: '../admin/views/source/addEdit.html',
-        controller: 'T6SAdmin.EditSourceCtrl'
-      })
-      .when('/admin/calltype', {
-        templateUrl: '../admin/views/calltype/list.html',
-        controller: 'T6SAdmin.ListCallTypeCtrl'
-      })
-      .when('/admin/calltype/add', {
-        templateUrl: '../admin/views/calltype/addEdit.html',
-        controller: 'T6SAdmin.AddCallTypeCtrl'
-      })
-      .when('/admin/calltype/:callTypeId/edit', {
-        templateUrl: '../admin/views/calltype/addEdit.html',
-        controller: 'T6SAdmin.EditCallTypeCtrl'
       })
       .when('/admin/renderer', {
         templateUrl: '../admin/views/renderer/list.html',
         controller: 'T6SAdmin.ListRendererCtrl'
-      })
-      .when('/admin/renderer/add', {
-        templateUrl: '../admin/views/renderer/addEdit.html',
-        controller: 'T6SAdmin.AddRendererCtrl'
-      })
-      .when('/admin/renderer/:rendererId/edit', {
-        templateUrl: '../admin/views/renderer/addEdit.html',
-        controller: 'T6SAdmin.EditRendererCtrl'
-      })
-      .when('/admin/zone/', {
-        templateUrl: '../admin/views/zone/list.html',
-        controller: 'T6SAdmin.ListZoneCtrl'
       })
 
       // Routes for customization stuff
