@@ -52,8 +52,12 @@ angular
         controller: 'T6SAdmin.ListSourceCtrl'
       })
       .when('/admin/renderer', {
-        templateUrl: '../admin/views/renderer/list.html',
+        templateUrl: '../admin/views/renderer/List.html',
         controller: 'T6SAdmin.ListRendererCtrl'
+      })
+      .when('/admin/behaviour', {
+        templateUrl: '../admin/views/behaviour/List.html',
+        controller: 'T6SAdmin.ListBehaviourCtrl'
       })
 
       // Routes for customization stuff

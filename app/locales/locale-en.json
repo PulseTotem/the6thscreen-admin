@@ -18,7 +18,8 @@
         "THEMEZONE": "ThemeZone",
         "THEMESDI": "ThemeSDI",
         "PARAMTYPE" : "ParamType",
-        "TYPEPARAMTYPE": "TypeParamType"
+        "TYPEPARAMTYPE": "TypeParamType",
+        "BEHAVIOUR": "Behaviour"
       },
         "LANGUAGE" : "Language",
         "ENGLISH": "English",
@@ -231,6 +232,18 @@
       "CONFIRM_DELETE_RENDERER" : "Are you sure you want to delete this renderer?",
       "ADD_EDIT": {
         "TITLE": "Edit renderer",
+        "CLOSE": "Close"
+      }
+    },
+    "BEHAVIOUR": {
+      "BEHAVIOUR_LIST" : "List of behaviours",
+      "BEHAVIOUR_NAME" : "Name",
+      "BEHAVIOUR_DESCRIPTION" : "Description",
+      "ISCOMPLETE" : "Complete",
+      "CONFIRM_DELETE_BEHAVIOUR" : "Are you sure you want to delete this behaviour?",
+      "ADD_BEHAVIOUR" : "Add a new behaviour",
+      "ADD_EDIT" : {
+        "TITLE": "Edit a behaviour",
         "CLOSE": "Close"
       }
     }
