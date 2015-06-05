@@ -21,6 +21,7 @@ angular
     'pascalprecht.translate',
     'btford.socket-io',
     'xeditable',
+    'angularSpinner',
     'T6SConfiguration',
     'T6SAdmin',
     'T6SCustomization'
