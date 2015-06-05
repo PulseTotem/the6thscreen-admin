@@ -23,6 +23,10 @@ angular
       .when('/admin/', {
         redirectTo: '/admin/source'
       })
+      .when('/admin/infotype', {
+        templateUrl: '../admin/views/infoType/List.html',
+        controller: 'T6SAdmin.ListInfoTypeCtrl'
+      })
       .when('/admin/paramtype', {
         templateUrl: '../admin/views/paramType/List.html',
         controller: 'T6SAdmin.ListParamTypeCtrl'
@@ -86,18 +90,6 @@ angular
       .when('/admin/renderer/:rendererId/edit', {
         templateUrl: '../admin/views/renderer/addEdit.html',
         controller: 'T6SAdmin.EditRendererCtrl'
-      })
-      .when('/admin/infotype', {
-        templateUrl: '../admin/views/infoType/list.html',
-        controller: 'T6SAdmin.ListInfoTypeCtrl'
-      })
-      .when('/admin/infotype/add', {
-        templateUrl: '../admin/views/infoType/addEdit.html',
-        controller: 'T6SAdmin.AddInfoTypeCtrl'
-      })
-      .when('/admin/infotype/:infoTypeId/edit', {
-        templateUrl: '../admin/views/infoType/addEdit.html',
-        controller: 'T6SAdmin.EditInfoTypeCtrl'
       })
       .when('/admin/zone/', {
         templateUrl: '../admin/views/zone/list.html',

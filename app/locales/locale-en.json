@@ -196,5 +196,16 @@
         "TITLE": "Edit type",
         "CLOSE": "Close"
       }
+    },
+    "INFOTYPE": {
+      "INFOTYPE_LIST" : "List of information types",
+      "INFOTYPE_NAME" : "Name",
+      "ISCOMPLETE" : "Complete",
+      "CONFIRM_DELETE_INFOTYPE" : "Are you sure you want to delete this information type?",
+      "ADD_INFOTYPE" : "Add a new type",
+      "ADD_EDIT" : {
+        "TITLE": "Edit type",
+        "CLOSE": "Close"
+      }
     }
 }

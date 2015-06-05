@@ -196,5 +196,16 @@
         "TITLE": "Edition d'un type",
         "CLOSE": "Fermer"
       }
+    },
+    "INFOTYPE": {
+      "INFOTYPE_LIST" : "Liste des types d'information",
+      "INFOTYPE_NAME" : "Nom",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_INFOTYPE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce type d'information ?",
+      "ADD_INFOTYPE" : "Ajouter un nouveau type",
+      "ADD_EDIT" : {
+        "TITLE": "Editer un type",
+        "CLOSE": "Fermer"
+      }
     }
 }
