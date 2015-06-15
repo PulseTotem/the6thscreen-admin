@@ -8,7 +8,18 @@
     <h4>{{ profil.description }}</h4>
   </div>
 </div>
-
+<table class="table table-striped" ng-if="connectedClients">
+  <tr>
+    <th translate="PROFIL.CLIENT.CONNECTED_HOUR"></th>
+    <th translate="PROFIL.CLIENT.IP"></th>
+    <th></th>
+  </tr>
+  <tr ng-repeat="client in connectedClients">
+    <td>{{ client.created_at }}</td>
+    <td>{{ client.ip }}</td>
+    <td><button class="btn primary-btn" ng-click="authorizeClient(client.id)" translate="PROFIL.CLIENT.AUTHORIZE_CLIENT"></button></td>
+  </tr>
+</table>
 <div class="row">
   <div class="col-md-12">
     <div id="profil-sdi-preview">

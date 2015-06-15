@@ -259,5 +259,12 @@
         "TITLE": "Edit a policy",
         "CLOSE": "Close"
       }
+    },
+    "PROFIL": {
+      "CLIENT": {
+        "CONNECTED_HOUR": "Connected hour",
+        "IP": "IP",
+        "AUTHORIZE_CLIENT": "Authorize"
+      }
     }
 }

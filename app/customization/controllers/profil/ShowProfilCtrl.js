@@ -15,6 +15,7 @@ angular.module('T6SCustomization')
     $scope.sdi = {};
     $scope.zones = [];
     $scope.selectedTimelines = [];
+    $scope.connectedClients = [];
 
     backendSocket.on('CompleteProfilDescription', function(response) {
       callbackManager(response, function (profil) {
@@ -65,6 +66,13 @@ angular.module('T6SCustomization')
       );
     });
 
+    backendSocket.on("ConnectedClientOfProfil", function (response) {
+      callbackManager(response, function (connectedClients) {
+        $scope.connectedClients = connectedClients;
+      });
+    });
+
     backendSocket.emit('RetrieveSDIDescription', {'sdiId' : $scope.sdiId});
+    backendSocket.emit("RetrieveConnectedClientOfProfil", {"profilId": $routeParams.profilId});
 
   }]);
