@@ -75,4 +75,7 @@ angular.module('T6SCustomization')
     backendSocket.emit('RetrieveSDIDescription', {'sdiId' : $scope.sdiId});
     backendSocket.emit("RetrieveConnectedClientOfProfil", {"profilId": $routeParams.profilId});
 
+    $scope.refreshClient = function (clientId) {
+      backendSocket.emit('RefreshCommand', {'clientId': clientId});
+    };
   }]);

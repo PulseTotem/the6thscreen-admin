@@ -265,7 +265,8 @@
         "TITLE": "Online clients",
         "CONNECTED_HOUR": "Connected hour",
         "IP": "IP",
-        "AUTHORIZE_CLIENT": "Authorize"
+        "AUTHORIZE_CLIENT": "Authorize",
+        "RELOAD_CLIENT": "Reload"
       }
     }
 }

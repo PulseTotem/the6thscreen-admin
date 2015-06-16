@@ -34,7 +34,10 @@
       <tr ng-repeat="client in connectedClients">
         <td>{{ client.createdAt | date:'short' }}</td>
         <td>{{ client.ip }}</td>
-        <td><button class="btn btn-primary" ng-click="authorizeClient(client.id)" translate="PROFIL.CLIENT.AUTHORIZE_CLIENT"></button></td>
+        <td>
+          <button class="btn btn-primary" ng-click="authorizeClient(client.id)" translate="PROFIL.CLIENT.AUTHORIZE_CLIENT"></button>
+          <button class="btn btn-primary" ng-click="refreshClient(client.id)" translate="PROFIL.CLIENT.RELOAD_CLIENT"></button>
+        </td>
       </tr>
     </table>
   </div>
