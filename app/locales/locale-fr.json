@@ -259,5 +259,14 @@
         "TITLE": "Editer une politique",
         "CLOSE": "Fermer"
       }
+    },
+    "PROFIL": {
+      "CLIENT": {
+        "TITLE": "Clients connectés",
+        "CONNECTED_HOUR": "Heure de connection",
+        "IP": "IP",
+        "AUTHORIZE_CLIENT": "Autoriser",
+        "RELOAD_CLIENT": "Recharger"
+      }
     }
 }
