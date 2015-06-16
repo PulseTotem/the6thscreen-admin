@@ -262,6 +262,7 @@
     },
     "PROFIL": {
       "CLIENT": {
+        "TITLE": "Online clients",
         "CONNECTED_HOUR": "Connected hour",
         "IP": "IP",
         "AUTHORIZE_CLIENT": "Authorize"
