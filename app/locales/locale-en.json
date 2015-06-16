@@ -266,7 +266,8 @@
         "CONNECTED_HOUR": "Connected hour",
         "IP": "IP",
         "AUTHORIZE_CLIENT": "Authorize",
-        "RELOAD_CLIENT": "Reload"
+        "RELOAD_CLIENT": "Reload",
+        "IDENTIFY_CLIENT": "Identify"
       }
     }
 }

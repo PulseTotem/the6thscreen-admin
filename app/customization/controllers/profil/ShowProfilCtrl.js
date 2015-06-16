@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SCustomization')
-  .controller('T6SCustomization.ShowProfilCtrl', ['$scope', '$routeParams', 'backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
+  .controller('T6SCustomization.ShowProfilCtrl', ['$scope', '$routeParams', 'backendSocket', 'callbackManager', '$window', function ($scope, $routeParams, backendSocket, callbackManager, $window) {
 
     $scope.profilId = $routeParams.profilId;
     $scope.sdiId = $routeParams.sdiId;
@@ -76,6 +76,22 @@ angular.module('T6SCustomization')
     backendSocket.emit("RetrieveConnectedClientOfProfil", {"profilId": $routeParams.profilId});
 
     $scope.refreshClient = function (clientId) {
+      backendSocket.on("AnswerRefreshCommand", function (response) {
+        callbackManager(response, function () {
+          $window.alert("The client has been successfully refreshed.");
+        });
+      });
+
       backendSocket.emit('RefreshCommand', {'clientId': clientId});
+    };
+
+    $scope.identifyClient = function (clientId) {
+      backendSocket.on("AnswerIdentifyCommand", function (response) {
+        callbackManager(response, function () {
+          $window.alert("You should now see a block containing the following number on your displayed screen : "+clientId+". This block will remain displayed during 30 sec.");
+        });
+      });
+
+      backendSocket.emit('IdentifyCommand', {'clientId': clientId});
     };
   }]);
