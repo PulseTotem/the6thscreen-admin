@@ -211,6 +211,7 @@
       "SOURCE_SERVICE" : "Service",
       "SOURCE_DESCRIPTION" : "Description",
       "SOURCE_METHOD" : "Method",
+      "SOURCE_REFRESHTIME" : "Refresh Time",
       "SOURCE_INFOTYPE" : "Information type",
       "SOURCE_PARAMS" : "Parameters",
       "SOURCE_VALUES" : "Default values",

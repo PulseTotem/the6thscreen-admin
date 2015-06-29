@@ -211,6 +211,7 @@
       "SOURCE_SERVICE" : "Service",
       "SOURCE_DESCRIPTION" : "Description",
       "SOURCE_METHOD" : "M&eacute;thode",
+      "SOURCE_REFRESHTIME" : "Dur&eacute;e de rafraichissement",
       "SOURCE_INFOTYPE" : "Type d'information",
       "SOURCE_PARAMS" : "Param&egrave;tres",
       "SOURCE_VALUES" : "Valeurs par d&eacute;faut",
