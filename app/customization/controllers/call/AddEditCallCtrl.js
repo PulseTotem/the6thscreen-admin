@@ -249,6 +249,17 @@ angular.module('T6SCustomization')
 
 
     $scope.saveParamValue = function(id, newValue) {
+
+      backendSocket.on('AnswerUpdateParamValue', function (response) {
+        callbackManager(response, function (call) {
+            //Nothing to do...
+          },
+          function (fail) {
+            console.error(fail);
+          }
+        );
+      });
+
       saveAttribute("UpdateParamValue", id, "setValue", newValue);
     };
   }]);
