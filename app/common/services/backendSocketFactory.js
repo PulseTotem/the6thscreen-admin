@@ -74,8 +74,13 @@ angular.module('T6SCommon')
       });
 
       backendIOSocket.on("reconnect_failed", function () {
-        console.error("Failed to connect to Backend. No new attempt will be done.");
-        backendSocketFactory.backendSocket = null;
+        console.error("Failed to connect to Backend. New attempt will be done in 5 seconds. Administrators received an Alert !");
+        //TODO: Send an email and Notification to Admins !
+
+        setTimeout(function() {
+          backendSocketFactory.backendSocket = null;
+          backendSocketFactory.init(token, successCB, failCB);
+        }, 5000);
       });
 
       var backendSocket = socketFactory({
