@@ -23,6 +23,12 @@
         </td>
       </tr>
       <tr>
+        <td translate="SOURCE.SOURCE_REFRESHTIME">Refresh Time</td>
+        <td>
+          <a href="#" editable-number="source.refreshTime" e-min="1" onaftersave="saveSourceAttribute('setRefreshTime', source.refreshTime)">{{ source.refreshTime || 'No refresh time information' }}</a>
+        </td>
+      </tr>
+      <tr>
         <td translate="SOURCE.SOURCE_SERVICE">Service</td>
         <td>
           <a href="#" editable-select="source.service.id" e-ng-options="service.id as service.name for service in allServices" onaftersave="saveSourceAttribute('linkService', source.service.id)">
