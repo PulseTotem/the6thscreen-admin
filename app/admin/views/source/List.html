@@ -3,9 +3,10 @@
 <table class="table table-striped">
   <tr>
     <th>#</th>
-    <th translate="SOURCE.SOURCE_NAME">Nom</th>
+    <th translate="SOURCE.SOURCE_NAME">Name</th>
     <th translate="SOURCE.SOURCE_DESCRIPTION">Description</th>
-    <th translate="SOURCE.SOURCE_METHOD">Methode</th>
+    <th translate="SOURCE.SOURCE_METHOD">Method</th>
+    <th translate="SOURCE.SOURCE_REFRESHTIME">Refresh Time</th>
     <th translate="SOURCE.SOURCE_SERVICE">Service</th>
     <th translate="SOURCE.SOURCE_INFOTYPE">InfoType</th>
     <th translate="SOURCE.SOURCE_PARAMS">Parameters</th>
@@ -19,6 +20,7 @@
     <td>{{ source.name }}</td>
     <td>{{ source.description }}</td>
     <td>{{ source.method }}</td>
+    <td>{{ source.refreshTime }}</td>
     <td>{{ source.service.name }}</td>
     <td>{{ source.infoType.name }}</td>
     <td><ul><li ng-repeat="parameter in source.paramTypes">{{ parameter.name }}</li></ul></td>
