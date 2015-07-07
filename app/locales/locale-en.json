@@ -215,6 +215,7 @@
       "SOURCE_INFOTYPE" : "Information type",
       "SOURCE_PARAMS" : "Parameters",
       "SOURCE_VALUES" : "Default values",
+      "SOURCE_ISSTATIC": "Static",
       "ADD_SOURCE" : "Add a new source",
       "ISCOMPLETE" : "Complete",
       "CONFIRM_DELETE_SOURCE" : "Are you sure you want to delete this source?",

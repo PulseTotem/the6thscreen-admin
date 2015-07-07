@@ -217,6 +217,7 @@
       "SOURCE_VALUES" : "Valeurs par d&eacute;faut",
       "ADD_SOURCE" : "Ajouter une source",
       "ISCOMPLETE" : "Complet",
+      "SOURCE_ISSTATIC": "Statique",
       "CONFIRM_DELETE_SOURCE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer cette source ?",
       "ADD_EDIT": {
         "TITLE": "Editer la source",

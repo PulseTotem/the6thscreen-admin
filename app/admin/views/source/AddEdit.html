@@ -17,6 +17,12 @@
         </td>
       </tr>
       <tr>
+        <td translate="SOURCE.SOURCE_ISSTATIC">Static</td>
+        <td>
+          <a href="#" editable-checkbox="source.isStatic" onaftersave="saveSourceAttribute('setIsStatic', source.isStatic)" e-title="is static?">{{ source.isStatic && "Is static!" || 'Not static' }}</a>
+        </td>
+      </tr>
+      <tr>
         <td translate="SOURCE.SOURCE_METHOD">Methode</td>
         <td>
           <a href="#" editable-text="source.method" onaftersave="saveSourceAttribute('setMethod', source.method)">{{ source.method || 'No method information' }}</a>
