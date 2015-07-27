@@ -12,6 +12,7 @@ angular.module('T6SAdmin')
 
     $scope.allInfoTypes = [];
     $scope.allServices = [];
+    $scope.retrievedParameters = [];
     $scope.availableParameters = [];
     $scope.selectedParam = null;
 
@@ -41,7 +42,7 @@ angular.module('T6SAdmin')
 
     backendSocket.on('AllParamTypeDescription', function(response) {
       callbackManager(response, function (allParamTypes) {
-          $scope.availableParameters = allParamTypes;
+          $scope.retrievedParameters = allParamTypes;
           $scope.updateParamType();
         },
         function (fail) {
@@ -68,15 +69,23 @@ angular.module('T6SAdmin')
     };
 
     $scope.updateParamType = function () {
-      $scope.availableParameters = $filter('filter')($scope.availableParameters, function (value) {
-        var filteredList = $filter('filter')($scope.source.paramTypes, {id: value.id});
+      $scope.availableParameters = $filter('filter')($scope.retrievedParameters, function (value) {
+        var filteredList = $filter('filter')($scope.source.paramTypes, function (value2) {
+          return value2.id == value.id;
+        });
         return filteredList.length == 0;
       });
     };
 
     $scope.linkParamType = function () {
       if ($scope.selectedParam != null) {
-        $scope.source.paramTypes.push($filter('filter')($scope.availableParameters, {id: $scope.selectedParam})[0]);
+        console.log("Selected paramType :");
+        console.log($scope.selectedParam);
+        console.log("Available params :");
+        console.log($scope.availableParameters);
+        $scope.source.paramTypes.push($filter('filter')($scope.availableParameters, function (value) {
+          return value.id == $scope.selectedParam;
+        })[0]);
         $scope.saveSourceAttribute("addParamType", $scope.selectedParam);
         $scope.selectedParam = null;
       }
@@ -87,13 +96,16 @@ angular.module('T6SAdmin')
       $scope.source.paramTypes = $filter('filter')($scope.source.paramTypes, function (value) {
         return value.id != paramId;
       });
+      $scope.updateParamType();
     };
 
     $scope.showSelectedInfoType = function () {
       if (!$scope.source.infoType) {
         return 'Not set';
       }
-      var selected = $filter('filter')($scope.allInfoTypes, {id: $scope.source.infoType.id});
+      var selected = $filter('filter')($scope.allInfoTypes, function (value) {
+        return value.id == $scope.source.infoType.id;
+      });
       return ($scope.source.infoType && selected.length) ? selected[0].name : 'Not set';
     };
 
