@@ -20,7 +20,9 @@
         "PARAMTYPE" : "ParamType",
         "TYPEPARAMTYPE": "TypeParamType",
         "BEHAVIOUR": "Behaviour",
-        "POLICY": "Policy"
+        "POLICY": "Policy",
+        "SYSTEMTRIGGER": "System Trigger",
+        "USERTRIGGER": "User Trigger"
       },
         "LANGUAGE" : "Language",
         "ENGLISH": "English",
