@@ -262,6 +262,30 @@
         "CLOSE": "Close"
       }
     },
+    "SYSTEMTRIGGER": {
+      "SYSTEMTRIGGER_LIST" : "List of system triggers",
+      "SYSTEMTRIGGER_NAME" : "Name",
+      "SYSTEMTRIGGER_DESCRIPTION" : "Description",
+      "ISCOMPLETE" : "Complete",
+      "CONFIRM_DELETE_SYSTEMTRIGGER" : "Are you sure you want to delete this system trigger?",
+      "ADD_SYSTEMTRIGGER" : "Add a new system trigger",
+      "ADD_EDIT" : {
+        "TITLE": "Edit a system trigger",
+        "CLOSE": "Close"
+      }
+    },
+    "USERTRIGGER": {
+      "USERTRIGGER_LIST" : "List of user triggers",
+      "USERTRIGGER_NAME" : "Name",
+      "USERTRIGGER_DESCRIPTION" : "Description",
+      "ISCOMPLETE" : "Complete",
+      "CONFIRM_DELETE_USERTRIGGER" : "Are you sure you want to delete this user trigger?",
+      "ADD_USERTRIGGER" : "Add a new user trigger",
+      "ADD_EDIT" : {
+        "TITLE": "Edit a user trigger",
+        "CLOSE": "Close"
+      }
+    },
     "PROFIL": {
       "CLIENT": {
         "TITLE": "Online clients",

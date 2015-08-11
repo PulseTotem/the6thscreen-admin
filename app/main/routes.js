@@ -63,6 +63,14 @@ angular
         templateUrl: '../admin/views/policy/List.html',
         controller: 'T6SAdmin.ListPolicyCtrl'
       })
+      .when('/admin/systemTrigger', {
+        templateUrl: '../admin/views/systemTrigger/List.html',
+        controller: 'T6SAdmin.ListSystemTriggerCtrl'
+      })
+      .when('/admin/userTrigger', {
+        templateUrl: '../admin/views/userTrigger/List.html',
+        controller: 'T6SAdmin.ListUserTriggerCtrl'
+      })
 
       // Routes for customization stuff
       .when('/custom/', {
