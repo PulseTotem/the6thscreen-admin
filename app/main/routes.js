@@ -174,6 +174,12 @@ angular
         controller: 'T6SConfiguration.AddCallTypeCtrl'
       })
 
+      // First route for CMS stuff
+      .when('/cms/photobox/:tag', {
+        templateUrl: '../cms/views/photobox/List.html',
+        controller: 'T6SCMS.ListPhotoboxCtrl'
+      })
+
       // All other stuff
       .otherwise({
         redirectTo: '/'

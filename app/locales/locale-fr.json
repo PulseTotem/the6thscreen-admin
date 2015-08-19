@@ -24,6 +24,10 @@
           "SYSTEMTRIGGER": "System Trigger",
           "USERTRIGGER": "User Trigger"
         },
+        "CMS": {
+          "TITLE": "CMS",
+          "PHOTOBOX": "Photobox"
+        },
         "LANGUAGE" : "Langage",
         "ENGLISH" : "English",
         "FRENCH" : "Fran&ccedil;ais"
@@ -296,6 +300,15 @@
         "AUTHORIZE_CLIENT": "Autoriser",
         "RELOAD_CLIENT": "Recharger",
         "IDENTIFY_CLIENT": "Identifier"
+      }
+    },
+    "CMS": {
+      "PHOTOBOX": {
+        "LIST": "Liste des images",
+        "PHOTO": "Photo",
+        "SCAN": "Scanner le r&eacute;pertoire",
+        "KILLSESSION": "Tuer la dernière session",
+        "CONFIRM_DELETE_PICTURE": "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer cette photo ?"
       }
     }
 }
