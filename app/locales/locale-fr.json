@@ -22,7 +22,8 @@
           "BEHAVIOUR" : "Behaviour",
           "POLICY": "Politique",
           "SYSTEMTRIGGER": "System Trigger",
-          "USERTRIGGER": "User Trigger"
+          "USERTRIGGER": "User Trigger",
+          "USER": "Utilisateur"
         },
         "CMS": {
           "TITLE": "CMS",
@@ -300,6 +301,28 @@
         "AUTHORIZE_CLIENT": "Autoriser",
         "RELOAD_CLIENT": "Recharger",
         "IDENTIFY_CLIENT": "Identifier"
+      }
+    },
+    "USER": {
+      "USER_LIST" : "Liste des utilisateurs",
+      "USERNAME" : "Nom d'utilisateur",
+      "EMAIL" : "Email",
+      "LASTIP": "Derni&egrave;re IP",
+      "SDIS": "Liste des SDI",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_USER" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer cet utilisateur ?",
+      "ADD_USER" : "Ajouter un nouvel utilisateur",
+      "ADD_EDIT" : {
+        "TITLE": "Editer un utilisateur",
+        "CLOSE": "Fermer",
+        "REMOVE": "Supprimer"
+      },
+      "RESETPASSWORD": {
+        "ACTION": "Changer le mot de passe",
+        "TITLE": "Changement de mot de passe",
+        "PASS": "Nouveau mot de passe",
+        "PASS2": "Entrez &agrave; nouveau le mot de passe",
+        "DISPLAYPASS": "Montrer le mot de passe"
       }
     },
     "CMS": {

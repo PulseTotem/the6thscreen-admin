@@ -22,7 +22,8 @@
         "BEHAVIOUR": "Behaviour",
         "POLICY": "Policy",
         "SYSTEMTRIGGER": "System Trigger",
-        "USERTRIGGER": "User Trigger"
+        "USERTRIGGER": "User Trigger",
+        "USER": "User"
       },
       "CMS": {
         "TITLE": "CMS",
@@ -300,6 +301,28 @@
         "AUTHORIZE_CLIENT": "Authorize",
         "RELOAD_CLIENT": "Reload",
         "IDENTIFY_CLIENT": "Identify"
+      }
+    },
+    "USER": {
+      "USER_LIST" : "List of users",
+      "USERNAME" : "Username",
+      "EMAIL" : "Email",
+      "LASTIP": "Last IP",
+      "SDIS": "List of SDIs",
+      "ISCOMPLETE" : "Complete",
+      "CONFIRM_DELETE_USER" : "Are you sure you want to delete this user?",
+      "ADD_USER" : "Add a new user",
+      "ADD_EDIT" : {
+        "TITLE": "Edit a user",
+        "CLOSE": "Close",
+        "REMOVE": "Remove"
+      },
+      "RESETPASSWORD": {
+        "ACTION": "Change password",
+        "TITLE": "Password changing",
+        "PASS": "New password",
+        "PASS2": "Enter again the password",
+        "DISPLAYPASS": "Show the password"
       }
     },
     "CMS": {

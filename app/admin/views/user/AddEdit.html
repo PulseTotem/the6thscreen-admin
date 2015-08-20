@@ -1,0 +1,35 @@
+<div class="modal-content" ng-controller="T6SAdmin.AddEditUserCtrl">
+  <div class="modal-header">
+    <h3 translate="USER.ADD_EDIT.TITLE"></h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <td translate="USER.USERNAME">Nom</td>
+        <td>
+          <a href="#" editable-text="user.username" onaftersave="saveUserAttribute('setUsername', user.username)">{{ user.username || 'No name information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="USER.EMAIL">Email</td>
+        <td>
+          <a href="#" editable-email="user.email" onaftersave="saveUserAttribute('setEmail', user.email)">{{ user.email || 'No mail information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="USER.SDIS">SDIs</td>
+        <td>
+          <select class="form-control" ng-model="selectedSDI" ng-change="linkSDI()">
+            <option ng-repeat="sdi in availableSDIs" ng-value="sdi.id">{{sdi.name}}</option>
+          </select>
+          <ul>
+            <li ng-repeat="sdi in user.sdis">{{ sdi.name}} <button class="btn btn-danger" ng-click="removeSDI(sdi.id)" translate="USER.ADD_EDIT.REMOVE">Remove</button></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" ng-click="close()" translate="USER.ADD_EDIT.CLOSE" ng-class="{ 'btn-danger': !userTrigger.complete, 'btn-primary': userTrigger.complete}">Fermer</button>
+  </div>
+</div>
