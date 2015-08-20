@@ -11,7 +11,7 @@ angular.module('T6SCMS')
   .controller('T6SCMS.ListAlbumCtrl', ['$rootScope', '$scope', '$http', '$routeParams', function ($rootScope, $scope, $http, $routeParams) {
 
     var REST_PATH = {
-      "DOMAIN": "http://localhost:6012/rest/",
+      "DOMAIN": "http://service-photobox.pulsetotem.fr/rest/",
       "TAGS": "tags/",
       "KILLSESSION": "lastsession/"
     };
