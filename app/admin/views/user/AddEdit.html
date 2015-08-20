@@ -20,10 +20,10 @@
         <td translate="USER.SDIS">SDIs</td>
         <td>
           <select class="form-control" ng-model="selectedSDI" ng-change="linkSDI()">
-            <option ng-repeat="sdi in availableSDIs" ng-value="sdi.id">{{sdi.name}}</option>
+            <option ng-repeat="sdi in availableSDIs | orderBy:'id'" ng-value="sdi.id">{{sdi.name}}</option>
           </select>
           <ul>
-            <li ng-repeat="sdi in user.sdis">{{ sdi.name}} <button class="btn btn-danger" ng-click="removeSDI(sdi.id)" translate="USER.ADD_EDIT.REMOVE">Remove</button></li>
+            <li ng-repeat="sdi in user.sdis | orderBy:'id'">{{ sdi.name}} <button class="btn btn-danger" ng-click="removeSDI(sdi.id)" translate="USER.ADD_EDIT.REMOVE">Remove</button></li>
           </ul>
         </td>
       </tr>

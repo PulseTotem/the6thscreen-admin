@@ -9,7 +9,7 @@
     <th></th>
   </tr>
 
-  <tr ng-repeat="usertrigger in userTriggers">
+  <tr ng-repeat="usertrigger in userTrigger | orderBy:'id's">
     <td>{{ usertrigger.id }}</td>
     <td>{{ usertrigger.name }}</td>
     <td>{{ usertrigger.description }}</td>

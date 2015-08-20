@@ -54,10 +54,10 @@
         <td translate="SOURCE.SOURCE_PARAMS">Parameters</td>
         <td>
           <select class="form-control" ng-model="selectedParam" ng-change="linkParamType()">
-            <option ng-repeat="parameter in availableParameters" ng-value="parameter.id">{{parameter.name}}</option>
+            <option ng-repeat="parameter in availableParameters | orderBy:'id'" ng-value="parameter.id">{{parameter.name}}</option>
           </select>
           <ul>
-            <li ng-repeat="parameter in source.paramTypes">{{ parameter.name}} <button class="btn btn-danger" ng-click="removeParamType(parameter.id)" translate="SOURCE.ADD_EDIT.REMOVE">Remove</button></li>
+            <li ng-repeat="parameter in source.paramTypes | orderBy:'id'">{{ parameter.name}} <button class="btn btn-danger" ng-click="removeParamType(parameter.id)" translate="SOURCE.ADD_EDIT.REMOVE">Remove</button></li>
           </ul>
         </td>
       </tr>
@@ -65,7 +65,7 @@
         <td translate="SOURCE.SOURCE_VALUES">Valeurs</td>
         <td>
           <ul>
-            <li ng-repeat="values in source.paramValues">
+            <li ng-repeat="values in source.paramValues | orderBy:'id'">
               {{ values.value}} from {{ values.type }}
             </li>
           </ul>

@@ -10,7 +10,7 @@
     <th></th>
   </tr>
 
-  <tr ng-repeat="renderer in renderers">
+  <tr ng-repeat="renderer in renderers | orderBy:'id'">
     <td>{{ renderer.id }}</td>
     <td>{{ renderer.name }}</td>
     <td>{{ renderer.description }}</td>

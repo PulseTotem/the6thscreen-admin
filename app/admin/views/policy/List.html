@@ -9,7 +9,7 @@
     <th></th>
   </tr>
 
-  <tr ng-repeat="policy in policys">
+  <tr ng-repeat="policy in policys | orderBy:'id'">
     <td>{{ policy.id }}</td>
     <td>{{ policy.name }}</td>
     <td>{{ policy.description }}</td>

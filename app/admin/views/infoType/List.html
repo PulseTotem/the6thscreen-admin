@@ -8,7 +8,7 @@
     <th></th>
   </tr>
 
-  <tr ng-repeat="infoType in infoTypes">
+  <tr ng-repeat="infoType in infoTypes | orderBy:'id'">
     <td>{{ infoType.id }}</td>
     <td>{{ infoType.name }}</td>
     <td>{{ infoType.complete }}</td>

@@ -9,7 +9,7 @@
     <th></th>
   </tr>
 
-  <tr ng-repeat="behaviour in behaviours">
+  <tr ng-repeat="behaviour in behaviours | orderBy:'id'">
     <td>{{ behaviour.id }}</td>
     <td>{{ behaviour.name }}</td>
     <td>{{ behaviour.description }}</td>

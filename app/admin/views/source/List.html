@@ -16,7 +16,7 @@
     <th></th>
   </tr>
 
-  <tr ng-repeat="source in sources">
+  <tr ng-repeat="source in sources | orderBy:'id'">
     <td>{{ source.id }}</td>
     <td>{{ source.name }}</td>
     <td>{{ source.description }}</td>
@@ -24,8 +24,8 @@
     <td>{{ source.refreshTime }}</td>
     <td>{{ source.service.name }}</td>
     <td>{{ source.infoType.name }}</td>
-    <td><ul><li ng-repeat="parameter in source.paramTypes">{{ parameter.name }}</li></ul></td>
-    <td><ul><li ng-repeat="values in source.paramValues">{{ values.value }}</li></ul></td>
+    <td><ul><li ng-repeat="parameter in source.paramTypes | orderBy:'id'">{{ parameter.name }}</li></ul></td>
+    <td><ul><li ng-repeat="values in source.paramValues | orderBy:'id'">{{ values.value }}</li></ul></td>
     <td><span class="glyphicon glyphicon-ok" ng-class="{'glyphicon-ok': source.isStatic, 'glyphicon-remove': !source.isStatic}" aria-hidden="true"></span></td>
     <td><span class="glyphicon glyphicon-ok" ng-class="{'glyphicon-ok': source.complete, 'glyphicon-remove': !source.complete}" aria-hidden="true"></span></td>
     <td>

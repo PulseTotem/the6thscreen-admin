@@ -14,7 +14,7 @@
     <th></th>
   </tr>
 
-  <tr ng-repeat="service in services">
+  <tr ng-repeat="service in services | orderBy:'id'">
     <td>{{ service.id }}</td>
     <td>{{ service.name }}</td>
     <td>{{ service.description }}</td>

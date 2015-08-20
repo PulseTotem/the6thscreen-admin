@@ -9,7 +9,7 @@
     <th></th>
   </tr>
 
-  <tr ng-repeat="systemtrigger in systemTriggers">
+  <tr ng-repeat="systemtrigger in systemTriggers | orderBy:'id'">
     <td>{{ systemtrigger.id }}</td>
     <td>{{ systemtrigger.name }}</td>
     <td>{{ systemtrigger.description }}</td>

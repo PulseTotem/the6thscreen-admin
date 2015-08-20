@@ -11,7 +11,7 @@
     <th></th>
   </tr>
 
-  <tr ng-repeat="theme in themeSDIs">
+  <tr ng-repeat="theme in themeSDIs | orderBy:'id'">
     <td>{{ theme.id }}</td>
     <td>{{ theme.name }}</td>
     <td>{{ theme.description }}</td>

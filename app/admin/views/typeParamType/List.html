@@ -8,7 +8,7 @@
     <th></th>
   </tr>
 
-  <tr ng-repeat="typeParamType in typeParamTypes">
+  <tr ng-repeat="typeParamType in typeParamTypes | orderBy:'id'">
     <td>{{ typeParamType.id }}</td>
     <td>{{ typeParamType.name }}</td>
     <td>{{ typeParamType.complete }}</td>

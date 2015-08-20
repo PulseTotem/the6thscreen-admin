@@ -10,7 +10,7 @@
     <th></th>
   </tr>
 
-  <tr ng-repeat="theme in themeZones">
+  <tr ng-repeat="theme in themeZones | orderBy:'id'">
     <td>{{ theme.id }}</td>
     <td>{{ theme.name }}</td>
     <td>{{ theme.description }}</td>

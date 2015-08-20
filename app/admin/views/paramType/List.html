@@ -12,7 +12,7 @@
     <th></th>
   </tr>
 
-  <tr ng-repeat="paramType in paramTypes">
+  <tr ng-repeat="paramType in paramTypes | orderBy:'id'">
     <td>{{ paramType.id }}</td>
     <td>{{ paramType.name }}</td>
     <td>{{ paramType.description }}</td>
