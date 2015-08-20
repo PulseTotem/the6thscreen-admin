@@ -453,6 +453,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('test', [
+    'build',
     'clean:server',
     'wiredep:test',
     'concurrent:test',
