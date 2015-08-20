@@ -13,7 +13,7 @@
     <th></th>
   </tr>
 
-  <tr ng-repeat="picture in pictures">
+  <tr ng-repeat="picture in pictures.slice().reverse()">
     <td>{{picture._id}}</td>
     <td><img src="{{picture._small._url}}" /></td>
     <td>
