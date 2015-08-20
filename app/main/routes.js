@@ -175,6 +175,10 @@ angular
       })
 
       // First route for CMS stuff
+      .when('/cms/photobox/', {
+        templateUrl: '../cms/views/photobox/ListAlbums.html',
+        controller: 'T6SCMS.ListAlbumCtrl'
+      })
       .when('/cms/photobox/:tag', {
         templateUrl: '../cms/views/photobox/List.html',
         controller: 'T6SCMS.ListPhotoboxCtrl'

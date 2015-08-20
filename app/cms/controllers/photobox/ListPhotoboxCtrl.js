@@ -13,7 +13,6 @@ angular.module('T6SCMS')
     var REST_PATH = {
       "DOMAIN": "http://localhost:6012/rest/",
       "ALLPICS": "allpics/",
-      "KILLSESSION": "lastsession/",
       "DELETEPIC": "picture/",
       "SCANDIR": "scans/"
     };
@@ -29,13 +28,9 @@ angular.module('T6SCMS')
       $http.post(REST_PATH["DOMAIN"]+REST_PATH["SCANDIR"]+$scope.tag);
     };
 
-    $scope.killSession = function () {
-      $http.delete(REST_PATH["DOMAIN"]+REST_PATH["KILLSESSION"]);
-    };
-
     $scope.deletePicture = function (pictureId) {
       $http.delete(REST_PATH["DOMAIN"]+REST_PATH["DELETEPIC"]+$scope.tag+"/"+pictureId).then( function (response) {
-        $http.get(REST_PATH["DOMAIN"]+REST_PATH["ALLPICS"]).then(function (response) {
+        $http.get(REST_PATH["DOMAIN"]+REST_PATH["ALLPICS"]+$scope.tag).then(function (response) {
           $scope.pictures = response.data;
         });
       });

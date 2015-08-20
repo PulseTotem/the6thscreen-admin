@@ -305,6 +305,8 @@
     "CMS": {
       "PHOTOBOX": {
         "LIST": "List of pictures",
+        "LISTALBUM": "List of albums",
+        "ALBUM": "Album",
         "PHOTO": "Photo",
         "SCAN": "Scan the directory",
         "KILLSESSION": "Kill last session",

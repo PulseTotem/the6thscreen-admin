@@ -27,7 +27,7 @@
         "CMS": {
           "TITLE": "CMS",
           "PHOTOBOX": "Photobox"
-        },
+        }
         "LANGUAGE" : "Langage",
         "ENGLISH" : "English",
         "FRENCH" : "Fran&ccedil;ais"
@@ -305,6 +305,8 @@
     "CMS": {
       "PHOTOBOX": {
         "LIST": "Liste des images",
+        "LISTALBUM": "Liste des albums",
+        "ALBUM": "Album",
         "PHOTO": "Photo",
         "SCAN": "Scanner le r&eacute;pertoire",
         "KILLSESSION": "Tuer la dernière session",

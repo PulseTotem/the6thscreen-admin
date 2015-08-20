@@ -1,10 +1,11 @@
 <h3 translate="CMS.PHOTOBOX.LIST"></h3>
 
-<div style="float: left">
-  <a href="#" editable-text="tag" onaftersave="refreshData(tag)">{{ tag || 'No tag given' }}</a>
-  <a ng-click="scanPictures()" class="btn btn-primary" translate><i class="icon-plus icon-white"></i> CMS.PHOTOBOX.SCAN</a>
-  <a ng-click="killSession()" class="btn btn-danger" translate><i class="glyphicon glyphicon-remove"></i> CMS.PHOTOBOX.KILLSESSION</a>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <a ng-click="scanPictures()" class="btn btn-primary" translate><i class="icon-plus icon-white"></i> CMS.PHOTOBOX.SCAN</a>
+  </div>
 </div>
+
 <table class="table table-striped">
   <tr>
     <th>#</th>

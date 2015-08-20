@@ -1,0 +1,16 @@
+<h3 translate="CMS.PHOTOBOX.LISTALBUM"></h3>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <a ng-click="killSession()" class="btn btn-danger" translate><i class="glyphicon glyphicon-remove"></i> CMS.PHOTOBOX.KILLSESSION</a>
+  </div>
+</div>
+<table class="table table-striped">
+  <tr>
+    <th translate="CMS.PHOTOBOX.ALBUM">Nom</th>
+  </tr>
+
+  <tr ng-repeat="tag in tags">
+    <td><a ng-href="/cms/photobox/{{ tag }}">{{ tag }}</a></td>
+  </tr>
+</table>
