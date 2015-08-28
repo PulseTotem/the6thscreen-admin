@@ -14,7 +14,7 @@ angular.module('T6SCMS')
       "DOMAIN": "http://service-photobox.pulsetotem.fr/rest/",
       "ALLPICS": "allpics/",
       "DELETEPIC": "picture/",
-      "SCANDIR": "scans/"
+      "SCANDIR": "scan/"
     };
 
     $scope.tag = $routeParams.tag;
