@@ -41,13 +41,26 @@ angular
         if(typeof($rootScope.user) != "undefined" && typeof($rootScope.user.id) != "undefined") {
 
           $rootScope.header = "default";
-          if(next.templateUrl === "../common/views/login.html") {
-            if (!$rootScope.$$phase) {
-              $rootScope.$apply(function () {
+
+          if($rootScope.user.id == 1 || $rootScope.user.id == 2 || $rootScope.user.username == "simon" || $rootScope.user.username == "christian") {
+            if (next.templateUrl === "../common/views/login.html") {
+              if (!$rootScope.$$phase) {
+                $rootScope.$apply(function () {
+                  $location.path(ADMIN_CONSTANTS.loginRoute);
+                });
+              } else {
                 $location.path(ADMIN_CONSTANTS.loginRoute);
-              });
-            } else {
-              $location.path(ADMIN_CONSTANTS.loginRoute);
+              }
+            }
+          } else {
+            if (next.templateUrl != "../cms/views/photobox/ListAlbums.html" && next.templateUrl != "../cms/views/photobox/List.html") {
+              if (!$rootScope.$$phase) {
+                $rootScope.$apply(function () {
+                  $location.path(ADMIN_CONSTANTS.cmsRoute);
+                });
+              } else {
+                $location.path(ADMIN_CONSTANTS.cmsRoute);
+              }
             }
           }
         }
@@ -82,9 +95,9 @@ angular
                     $cookies.adminT6SToken = data.token;
                   }
 
-                  if(ADMIN_CONSTANTS.backendUrl.indexOf("localhost") <= -1) {
+                  /*if(ADMIN_CONSTANTS.backendUrl.indexOf("localhost") <= -1) {
                     alert("/!\\ UTILISATION DU HOST DISTANT !!! /!\\");
-                  }
+                  }*/
 
                   $route.reload();
                 };
