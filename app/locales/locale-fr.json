@@ -115,7 +115,8 @@
     "ACTIONS" : {
       "ACTION_ADD" : "Ajouter",
       "ACTION_EDIT" : "Editer",
-      "ACTION_DELETE" : "Supprimer"
+      "ACTION_DELETE" : "Supprimer",
+      "ACTION_CLONE": "Cloner"
     },
     "THEMEZONE" : {
       "THEMEZONE_LIST" : "Liste des th&egrave;mes de zone",
