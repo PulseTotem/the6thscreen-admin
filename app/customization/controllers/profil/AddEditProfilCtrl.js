@@ -21,6 +21,7 @@ angular.module('T6SCustomization')
       callbackManager(response, function (profil) {
           $scope.profil = profil;
           $scope.profilName = profil.name;
+          $scope.profilHash = profil.hash;
 
           $scope.profil.zoneContents.forEach(function(zc) {
             if(zc.absoluteTimeline != null) {
@@ -93,6 +94,24 @@ angular.module('T6SCustomization')
         });
 
         saveAttribute("UpdateProfil", $scope.profilId, "setName", $scope.profilName);
+      }
+    }, true);
+
+    $scope.$watch(function () {
+      return $scope.profilHash;
+    }, function() {
+      if($scope.profilId != -1 && $scope.profil != null && $scope.profil.hash != $scope.profilHash) {
+        backendSocket.on('AnswerUpdateProfil', function (response) {
+          callbackManager(response, function (profil) {
+              $scope.profil.complete = profil.complete;
+            },
+            function (fail) {
+              console.error(fail);
+            }
+          );
+        });
+
+        saveAttribute("UpdateProfil", $scope.profilId, "setHash", $scope.profilHash);
       }
     }, true);
 
