@@ -134,6 +134,7 @@
         "FONT": "Police",
         "OPACITY": "Opacit&eacute;",
         "BORDER": "Bordure",
+        "BORDER_RADIUS": "Arrondi de bordure",
         "COLOR": "Couleur du texte",
         "ZINDEX": "Z-index",
         "CLOSE": "Fermer"

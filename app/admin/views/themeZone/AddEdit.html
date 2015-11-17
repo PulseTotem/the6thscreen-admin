@@ -27,7 +27,7 @@
       <tr>
         <td translate="THEMEZONE.ADD_EDIT.BACKGROUND_IMAGE">Image de fond</td>
         <td>
-          <a href="#" editable-url="theme.backgroundImageURL" onaftersave="saveThemeZoneAttribute('setBackgroundImageURL', theme.backgroundImageURL)">{{ theme.backgroundImageURL || 'No background image' }}</a>
+          <a href="#" editable-text="theme.backgroundImageURL" onaftersave="saveThemeZoneAttribute('setBackgroundImageURL', theme.backgroundImageURL)">{{ theme.backgroundImageURL || 'No background image' }}</a>
           <img ng-if="theme.backgroundImageURL" ng-src="{{ theme.backgroundImageURL }}" style="width: 100px; height: 100px" />
         </td>
       </tr>
@@ -61,6 +61,12 @@
         <td translate="THEMEZONE.ADD_EDIT.BORDER">Border</td>
         <td>
           <a href="#" editable-text="theme.border" onaftersave="saveThemeZoneAttribute('setBorder', theme.border)">{{ theme.border || 'No border information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMEZONE.ADD_EDIT.BORDER_RADIUS">BorderRadius</td>
+        <td>
+          <a href="#" editable-text="theme.borderRadius" onaftersave="saveThemeZoneAttribute('setBorderRadius', theme.borderRadius)">{{ theme.borderRadius || 'No borderRadius information' }}</a>
         </td>
       </tr>
       <tr>

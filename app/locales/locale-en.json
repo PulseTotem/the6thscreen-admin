@@ -134,6 +134,7 @@
         "FONT": "Font",
         "OPACITY": "Opacity",
         "BORDER": "Border",
+        "BORDER_RADIUS": "Border Radius",
         "COLOR": "Text color",
         "ZINDEX": "Z-index",
         "CLOSE": "Close"
