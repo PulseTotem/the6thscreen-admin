@@ -27,7 +27,7 @@
       <tr>
         <td translate="THEMEZONE.ADD_EDIT.BACKGROUND_IMAGE">Image de fond</td>
         <td>
-          <a href="#" editable-url="theme.backgroundImageURL" onaftersave="saveThemeZoneAttribute('setBackgroundImageURL', theme.backgroundImageURL)">{{ theme.backgroundImageURL || 'No background image' }}</a>
+          <a href="#" editable-text="theme.backgroundImageURL" onaftersave="saveThemeZoneAttribute('setBackgroundImageURL', theme.backgroundImageURL)">{{ theme.backgroundImageURL || 'No background image' }}</a>
           <img ng-if="theme.backgroundImageURL" ng-src="{{ theme.backgroundImageURL }}" style="width: 100px; height: 100px" />
         </td>
       </tr>
