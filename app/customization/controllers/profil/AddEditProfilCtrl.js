@@ -24,14 +24,15 @@ angular.module('T6SCustomization')
           $scope.profilHash = profil.hash;
 
           $scope.profil.zoneContents.forEach(function(zc) {
-            if(zc.absoluteTimeline != null) {
+            /*if(zc.absoluteTimeline != null) {
               $scope.selectedTimelines[zc.zone.id] = zc.absoluteTimeline;
             } else {
               if(zc.relativeTimeline != null) {
                 $scope.selectedTimelines[zc.zone.id] = zc.relativeTimeline;
               }
-            }
+            }*/
 
+            $scope.selectedTimelines[zc.zone.id] = zc;
           });
 
         },
