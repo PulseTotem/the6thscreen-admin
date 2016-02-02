@@ -71,6 +71,10 @@ angular
         templateUrl: '../admin/views/userTrigger/List.html',
         controller: 'T6SAdmin.ListUserTriggerCtrl'
       })
+      .when('/admin/timelinerunner', {
+        templateUrl: '../admin/views/timelineRunner/List.html',
+        controller: 'T6SAdmin.ListTimelineRunnerCtrl'
+      })
       .when('/admin/user', {
         templateUrl: '../admin/views/user/List.html',
         controller: 'T6SAdmin.ListUserCtrl'

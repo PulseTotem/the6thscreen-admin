@@ -23,6 +23,7 @@
         "POLICY": "Policy",
         "SYSTEMTRIGGER": "System Trigger",
         "USERTRIGGER": "User Trigger",
+        "TIMELINERUNNER" : "Timeline Runner",
         "USER": "User"
       },
       "CMS": {
@@ -292,6 +293,18 @@
       "ADD_USERTRIGGER" : "Add a new user trigger",
       "ADD_EDIT" : {
         "TITLE": "Edit a user trigger",
+        "CLOSE": "Close"
+      }
+    },
+    "TIMELINERUNNER": {
+      "TIMELINERUNNER_LIST" : "List of timeline runners",
+      "TIMELINERUNNER_NAME" : "Name",
+      "TIMELINERUNNER_DESCRIPTION" : "Description",
+      "ISCOMPLETE" : "Complete",
+      "CONFIRM_DELETE_TIMELINERUNNER" : "Are you sure you want to delete this timeline runner?",
+      "ADD_TIMELINERUNNER" : "Add a new timeline runner",
+      "ADD_EDIT" : {
+        "TITLE": "Edit a timeline runner",
         "CLOSE": "Close"
       }
     },

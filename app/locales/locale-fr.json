@@ -23,6 +23,7 @@
           "POLICY": "Politique",
           "SYSTEMTRIGGER": "System Trigger",
           "USERTRIGGER": "User Trigger",
+          "TIMELINERUNNER" : "Timeline Runner",
           "USER": "Utilisateur"
         },
         "CMS": {
@@ -292,6 +293,18 @@
       "ADD_USERTRIGGER" : "Ajouter un nouvel user trigger",
       "ADD_EDIT" : {
         "TITLE": "Editer un user trigger",
+        "CLOSE": "Fermer"
+      }
+    },
+    "TIMELINERUNNER": {
+      "TIMELINERUNNER_LIST" : "Liste des timeline runners",
+      "TIMELINERUNNER_NAME" : "Nom",
+      "TIMELINERUNNER_DESCRIPTION" : "Description",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_TIMELINERUNNER" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce timeline runner?",
+      "ADD_TIMELINERUNNER" : "Ajouter un nouveau timeline runner",
+      "ADD_EDIT" : {
+        "TITLE": "Editer un timeline runner",
         "CLOSE": "Fermer"
       }
     },
