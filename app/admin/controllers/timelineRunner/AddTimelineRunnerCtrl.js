@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name the6thscreenAdminApp.controller:timelineRunner.TimelineRunner
+ * @name the6thscreenAdminApp.controller:timelineRunner.AddTimelineRunnerCtrl
  * @description
- * # TimelineRunner
+ * # AddTimelineRunnerCtrl
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SAdmin')
-  .controller('T6SAdmin.TimelineRunner', ['$scope','$routeParams','backendSocket', 'callbackManager', 'saveAttribute', function ($scope, $routeParams, backendSocket, callbackManager, saveAttribute) {
+  .controller('T6SAdmin.AddTimelineRunnerCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', 'saveAttribute', function ($scope, $routeParams, backendSocket, callbackManager, saveAttribute) {
 
     $scope.timelineRunner = {};
 
