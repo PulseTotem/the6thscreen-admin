@@ -240,12 +240,15 @@
       "RENDERER_NAME" : "Name",
       "RENDERER_DESCRIPTION" : "Description",
       "RENDERER_INFOTYPE" : "Information type",
+      "RENDERER_THEMES" : "Themes",
       "ISCOMPLETE" : "Complete",
       "ADD_RENDERER" : "Add a new renderer",
       "CONFIRM_DELETE_RENDERER" : "Are you sure you want to delete this renderer?",
       "ADD_EDIT": {
         "TITLE": "Edit renderer",
-        "CLOSE": "Close"
+        "CLOSE": "Close",
+        "REMOVE": "Remove",
+        "ADD": "Add"
       }
     },
     "BEHAVIOUR": {
