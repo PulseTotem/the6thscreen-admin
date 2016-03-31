@@ -304,7 +304,7 @@ angular.module('T6SCustomization')
     };
 
     $scope.isRendererThemeSelected = function(rendererThemeId) {
-      if ($scope.rendererTheme) {
+      if($scope.rendererTheme) {
         return rendererThemeId === $scope.rendererTheme.id;
       }
       return false;
