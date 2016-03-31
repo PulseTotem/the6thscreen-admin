@@ -29,7 +29,7 @@
         <td>
           <input ng-model="newRendererThemeName" type="text" /><button class="btn btn-primary" ng-click="addNewTheme()" translate="RENDERER.ADD_EDIT.ADD"></button>
           <ul>
-            <li ng-repeat="theme in renderer.themes | orderBy:'id'">{{theme.name}} <button class="btn btn-danger" ng-click="removeTheme(theme.id)" translate="RENDERER.ADD_EDIT.REMOVE"></button></li>
+            <li ng-repeat="theme in renderer.rendererThemes | orderBy:'id'">{{theme.name}} <button class="btn btn-danger" ng-click="removeTheme(theme.id)" translate="RENDERER.ADD_EDIT.REMOVE"></button></li>
           </ul>
         </td>
       </tr>
