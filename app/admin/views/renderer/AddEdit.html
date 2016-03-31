@@ -5,28 +5,37 @@
   <div class="modal-body">
     <table class="table table-striped">
       <tr>
-        <td translate="RENDERER.RENDERER_NAME">Nom</td>
+        <td translate="RENDERER.RENDERER_NAME"></td>
         <td>
           <a href="#" editable-text="renderer.name" onaftersave="saveRendererAttribute('setName', renderer.name)">{{ renderer.name || 'No name information' }}</a>
         </td>
       </tr>
       <tr>
-        <td translate="RENDERER.RENDERER_DESCRIPTION">Description</td>
+        <td translate="RENDERER.RENDERER_DESCRIPTION"></td>
         <td>
           <a href="#" editable-textarea="renderer.description" onaftersave="saveRendererAttribute('setDescription', renderer.description)">{{ renderer.description || 'No description information' }}</a>
         </td>
       </tr>
       <tr>
-        <td translate="RENDERER.RENDERER_INFOTYPE">InfoType</td>
+        <td translate="RENDERER.RENDERER_INFOTYPE"></td>
         <td>
           <a href="#" editable-select="renderer.infoType.id" e-ng-options="infoType.id as infoType.name for infoType in allInfoTypes" onaftersave="saveRendererAttribute('linkInfoType', renderer.infoType.id)">
             {{ showSelectedInfoType() }}
           </a>
         </td>
       </tr>
+      <tr>
+        <td translate="RENDERER.RENDERER_THEMES"></td>
+        <td>
+          <input ng-model="newRendererThemeName" type="text" /><button class="btn btn-primary" ng-click="addNewTheme()" translate="RENDERER.ADD_EDIT.ADD"></button>
+          <ul>
+            <li ng-repeat="theme in renderer.rendererThemes | orderBy:'id'">{{theme.name}} <button class="btn btn-danger" ng-click="removeTheme(theme.id)" translate="RENDERER.ADD_EDIT.REMOVE"></button></li>
+          </ul>
+        </td>
+      </tr>
     </table>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn" ng-click="close()" translate="RENDERER.ADD_EDIT.CLOSE" ng-class="{ 'btn-danger': !renderer.complete, 'btn-primary': renderer.complete}">Fermer</button>
+    <button type="button" class="btn" ng-click="close()" translate="RENDERER.ADD_EDIT.CLOSE" ng-class="{ 'btn-danger': !renderer.complete, 'btn-primary': renderer.complete}"></button>
   </div>
 </div>

@@ -47,6 +47,27 @@
               </div>
             </div>
           </div>
+
+          <div class="panel-group" role="tablist">
+            <div class="panel panel-default">
+              <div class="panel-heading customization-call-renderertheme-heading" role="tab" ng-click="collapseRendererThemePanel()">
+                <h4 class="panel-title">
+                  {{ 'CUSTOMIZATION.CALL_ADDEDIT.RENDERER_THEME' | translate}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': rendererThemesIsCollapsed, 'glyphicon-chevron-right': !rendererThemesIsCollapsed}"></i>
+                </h4>
+                <h5>({{rendererTheme.name}})</h5>
+              </div>
+              <div class="panel-collapse collapse" role="tabpanel" ng-class="{'in' : rendererThemesIsCollapsed}">
+                <div class="panel-body">
+                  <div class="list-group" ng-repeat="theme in rendererThemes" ng-if="rendererThemes != null && rendererThemes.length > 0">
+                    <a href="#" class="list-group-item" ng-class="{active: isRendererThemeSelected(theme.id)}" ng-click="selectRendererTheme(theme)">
+                      <h4 class="list-group-item-heading">{{ theme.name }}</h4>
+                    </a>
+                  </div>
+                  <p class="bg-warning" translate="CUSTOMIZATION.CALL_ADDEDIT.RENDERER_THEME_NO_CHOICE" ng-if="rendererThemes == null || rendererThemes.length == 0"></p>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   </div>

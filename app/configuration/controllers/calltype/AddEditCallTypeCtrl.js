@@ -11,10 +11,12 @@ angular.module('T6SConfiguration')
   .controller('T6SConfiguration.AddEditCallTypeCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', 'saveAttribute', function ($scope, $routeParams, backendSocket, callbackManager, saveAttribute) {
     $scope.sources = [];
     $scope.renderers = [];
+    $scope.rendererThemes = [];
     $scope.policies = [];
     //$scope.callType = {};
     $scope.isFirstStep = true;
     $scope.isSecondStep = false;
+    $scope.isThirdStep = false;
     $scope.isFinalStep = false;
 
     backendSocket.emit("RetrieveSourcesFromServiceId", {"serviceId": $scope.current_service.id});
@@ -25,7 +27,11 @@ angular.module('T6SConfiguration')
         backendSocket.emit("RetrieveRenderersFromSourceId", {"sourceId": $scope.callType.source.id});
         $scope.isSecondStep = true;
       }
-      if ($scope.callType.renderer) {
+      if($scope.callType.renderer) {
+        backendSocket.emit("RetrieveRendererThemesFromRendererId", {"rendererId": $scope.callType.renderer.id});
+        $scope.isThirdStep = true;
+      }
+      if ($scope.callType.rendererTheme) {
         backendSocket.emit("RetrieveAllPolicyDescription");
         $scope.isFinalStep = true;
       }
@@ -73,6 +79,16 @@ angular.module('T6SConfiguration')
       );
     });
 
+    backendSocket.on('RendererThemesDescriptionFromRenderer', function(response) {
+      callbackManager(response, function (rendererThemes) {
+          $scope.rendererThemes = rendererThemes;
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
+
     backendSocket.on('AnswerUpdateCallType', function(response) {
       callbackManager(response, function (callType) {
           $scope.refreshCallType(callType);
@@ -91,6 +107,11 @@ angular.module('T6SConfiguration')
     $scope.selectRenderer = function (renderer) {
       $scope.callType.renderer = renderer;
       saveAttribute("UpdateCallType", $scope.callType.id, "linkRenderer", renderer.id);
+    };
+
+    $scope.selectRendererTheme = function (theme) {
+      $scope.callType.rendererTheme = theme;
+      saveAttribute("UpdateCallType", $scope.callType.id, "linkRendererTheme", theme.id);
     };
 
     $scope.saveName = function () {
@@ -123,6 +144,13 @@ angular.module('T6SConfiguration')
     $scope.isRendererSelected = function (rendererId) {
       if ($scope.callType && $scope.callType.renderer) {
         return rendererId === $scope.callType.renderer.id;
+      }
+      return false;
+    };
+
+    $scope.isRendererThemeSelected = function (rendererThemeId) {
+      if ($scope.callType && $scope.callType.rendererTheme) {
+        return rendererThemeId === $scope.callType.rendererTheme.id;
       }
       return false;
     };

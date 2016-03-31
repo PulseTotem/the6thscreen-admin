@@ -16,6 +16,15 @@ angular.module('T6SAdmin')
 
     backendSocket.on('AllRendererDescription', function(response) {
       callbackManager(response, function (allRenderers) {
+          allRenderers.forEach(function(renderer) {
+            renderer["themesDesc"] = "";
+            var themes = [];
+            renderer.rendererThemes.forEach(function(theme) {
+              themes.push(theme.name);
+            });
+            renderer["themesDesc"] = themes.join(', ');
+          });
+
           $scope.renderers = allRenderers;
         },
         function (fail) {
@@ -29,7 +38,6 @@ angular.module('T6SAdmin')
           $scope.renderers = $scope.renderers.filter(function (object) {
             return (object.id != idRenderer);
           });
-
         },
         function (fail) {
           console.error(fail);
