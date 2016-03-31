@@ -22,7 +22,15 @@
           </a>
         </div>
       </accordion-group>
-      <accordion-group heading="Nommez l'appel" is-open="isFinalStep" is-disabled="!callType.renderer">
+      <accordion-group heading="Thème d'affichage par défaut" is-open="isThirdStep" is-disabled="!callType.renderer">
+        <h3>Choisissez le thème d'affichage par défaut : </h3>
+        <div class="list-group" ng-repeat="theme in rendererThemes">
+          <a href="#" class="list-group-item" ng-class="{active: isRendererThemeSelected(theme.id)}" ng-click="selectRendererTheme(theme)">
+            <h4 class="list-group-item-heading">{{ theme.name }}</h4>
+          </a>
+        </div>
+      </accordion-group>
+      <accordion-group heading="Nommez l'appel" is-open="isFinalStep" is-disabled="!callType.rendererTheme">
         <h3>Donnez un nom à votre appel : </h3>
         <input type="text" class="form-control" ng-model="callType.name" placeholder="Name" ng-model-options="{ updateOn: 'blur' }" ng-change="saveName()" />
       </accordion-group>
