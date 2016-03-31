@@ -87,7 +87,9 @@
       },
       "CALL_ADDEDIT" : {
         "ADVANCED_PARAMETERS" : "Paramètres avancés",
-        "NEEDS_OAUTHKEY" : "Vous devez vous connecter au service {{servicename}}."
+        "NEEDS_OAUTHKEY" : "Vous devez vous connecter au service {{servicename}}.",
+        "RENDERER_THEME" : "Choisir un autre thème d'affichage",
+        "RENDERER_THEME_NO_CHOICE" : "Aucun choix supplémentaire pour le thème d'affichage"
       },
       "PROFIL_ADDEDIT" : {
         "SELECT_TIMELINE" : "Sélectionnez une Timeline pour cette zone."
