@@ -26,10 +26,6 @@
           "TIMELINERUNNER" : "Timeline Runner",
           "USER": "Utilisateur"
         },
-        "CMS": {
-          "TITLE": "CMS",
-          "PHOTOBOX": "Photobox"
-        },
         "LANGUAGE" : "Langage",
         "ENGLISH" : "English",
         "FRENCH" : "Fran&ccedil;ais"
@@ -343,17 +339,6 @@
         "PASS": "Nouveau mot de passe",
         "PASS2": "Entrez &agrave; nouveau le mot de passe",
         "DISPLAYPASS": "Montrer le mot de passe"
-      }
-    },
-    "CMS": {
-      "PHOTOBOX": {
-        "LIST": "Liste des images",
-        "LISTALBUM": "Liste des albums",
-        "ALBUM": "Album",
-        "PHOTO": "Photo",
-        "SCAN": "Scanner le r&eacute;pertoire",
-        "KILLSESSION": "Tuer la dernière session",
-        "CONFIRM_DELETE_PICTURE": "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer cette photo ?"
       }
     }
 }

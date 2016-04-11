@@ -24,8 +24,7 @@ angular
     'angularSpinner',
     'T6SConfiguration',
     'T6SAdmin',
-    'T6SCustomization',
-    'T6SCMS'
+    'T6SCustomization'
     ])
     .config(['$locationProvider', function($locationProvider) {
         $locationProvider.html5Mode(true).hashPrefix('!');
