@@ -35,6 +35,10 @@ angular
         templateUrl: '../admin/views/paramType/List.html',
         controller: 'T6SAdmin.ListParamTypeCtrl'
       })
+      .when('/admin/constraintparamtype', {
+        templateUrl: '../admin/views/constraintParamType/List.html',
+        controller: 'T6SAdmin.ListConstraintParamTypeCtrl'
+      })
       .when('/admin/typeparamtype', {
         templateUrl: '../admin/views/typeParamType/List.html',
         controller: 'T6SAdmin.ListTypeParamTypeCtrl'
@@ -180,16 +184,6 @@ angular
       .when('/config/calltype/:callTypeId/edit', {
         templateUrl: '../configuration/views/calltype/addEdit.html',
         controller: 'T6SConfiguration.AddCallTypeCtrl'
-      })
-
-      // First route for CMS stuff
-      .when('/cms/photobox/', {
-        templateUrl: '../cms/views/photobox/ListAlbums.html',
-        controller: 'T6SCMS.ListAlbumCtrl'
-      })
-      .when('/cms/photobox/:tag', {
-        templateUrl: '../cms/views/photobox/List.html',
-        controller: 'T6SCMS.ListPhotoboxCtrl'
       })
 
       // All other stuff
