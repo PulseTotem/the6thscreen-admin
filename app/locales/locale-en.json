@@ -18,7 +18,7 @@
         "THEMEZONE": "ThemeZone",
         "THEMESDI": "ThemeSDI",
         "PARAMTYPE" : "ParamType",
-        "PARAMTYPE" : "ConstraintParamType",
+        "CONSTRAINTPARAMTYPE" : "ConstraintParamType",
         "TYPEPARAMTYPE": "TypeParamType",
         "BEHAVIOUR": "Behaviour",
         "POLICY": "Policy",

@@ -9,4 +9,4 @@
  * Customization module of the application.
  */
 angular
-  .module('T6SCustomization', ['T6SCommon']);
+  .module('T6SCustomization', ['T6SCommon','ui.bootstrap']);

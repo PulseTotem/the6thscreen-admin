@@ -14,8 +14,11 @@ angular.module('T6SCommon')
       formatYear: 'yyyy',
       maxDate: new Date(2100, 1, 1),
       minDate: new Date(1800, 1, 1),
-      startingDay: 1
+      startingDay: 1,
+      initDate: new Date()
     };
+
+    $scope.dt = new Date();
 
     $scope.mytime = new Date();
 
@@ -26,7 +29,6 @@ angular.module('T6SCommon')
     $scope.today = function() {
       $scope.dt = new Date();
     };
-    $scope.today();
 
     $scope.clear = function() {
       $scope.dt = null;

@@ -43,7 +43,7 @@ angular.module('T6SAdmin')
       backendSocket.emit('DeleteConstraintParamType', { "constraintParamTypeId": idConstraintParamType});
     };
 
-    $scope.createParamType = function () {
+    $scope.createConstraintParamType = function () {
       var modalInstance = $modal.open({
         animation: true,
         templateUrl: CONSTANT_MODAL_ADD_EDIT_CONSTRAINTPARAMTYPE,
