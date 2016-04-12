@@ -1,11 +1,11 @@
 <div class="row" ng-controller="T6SCommon.T6SINPUTS.DatetimeCtrl">
   <div class="col-md-12">
     <div class="row">
-      <div class="form-group paramValueForm" ng-class="{'has-success' : t6sInputValid, 'has-error' : t6sInputInvalid, 'has-feedback' : t6sInputValid || t6sInputInvalid}">
+      <div class="form-group paramValueForm">
         <label class="control-label col-md-3" for="paramValue_{{paramValue.id}}">{{paramValue.paramType.name}}</label>
         <div class="col-md-6">
           <p class="input-group">
-            <input type="text" class="form-control" datetime-picker="dd MMM yyyy HH:mm" ng-model="dt" is-open="isOpen"  />
+            <input type="text" class="form-control" datetime-picker="dd MMM yyyy HH:mm" ng-model="dt" is-open="isOpen" ng-change="checkValue()"  />
             <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="openCalendar($event, prop)"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>

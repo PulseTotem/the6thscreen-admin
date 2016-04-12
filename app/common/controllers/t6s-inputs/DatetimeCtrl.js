@@ -20,7 +20,7 @@ angular.module('T6SCommon')
     };
 
     $scope.$watch(function () {
-      return $scope.paramValue;
+      return $scope.paramValue.value;
     }, function() {
       if($scope.paramValue.value != "" && !isNaN($scope.paramValue.value)) {
         var milliseconds = parseInt($scope.paramValue.value);
@@ -35,7 +35,6 @@ angular.module('T6SCommon')
 
     var timeout = null;
 
-
     $scope.checkValue = function() {
       $scope.errors = [];
       $scope.t6sInputValid = true;
@@ -46,9 +45,8 @@ angular.module('T6SCommon')
       }
 
       var milliseconds = $scope.dt.getTime();
-      console.log("Obtained date: "+fullDate);
       console.log("In milliseconds: "+milliseconds);
-
+      console.log("hours : "+$scope.dt.getHours());
       if($scope.paramValue.paramType.constraint != null && typeof($scope.paramValue.paramType.constraint.name) != "undefined") {
         switch($scope.paramValue.paramType.constraint.name) {
           case "InFuture" :
@@ -71,9 +69,10 @@ angular.module('T6SCommon')
 
     var isInFuture = function(milliseconds) {
       var now = (new Date()).getTime();
+      var difference = milliseconds-now;
 
       // A date is in the future if it is a minute in the future (i.e. 60 seconds or 60 000 milliseconds)
-      return (now-milliseconds > 60000);
+      return (difference > 60000);
     };
 
   }]);
