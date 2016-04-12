@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SAdmin')
-  .controller('T6SAdmin.ListConstraintParamTypeCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', '$modal', function ($rootScope, $scope, backendSocket, callbackManager, $modal) {
+  .controller('T6SAdmin.ListConstraintParamTypeCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', '$uibModal', function ($rootScope, $scope, backendSocket, callbackManager, $uibModal) {
 
     var CONSTANT_MODAL_ADD_EDIT_CONSTRAINTPARAMTYPE = "admin/views/constraintParamType/AddEdit.html";
 
@@ -44,7 +44,7 @@ angular.module('T6SAdmin')
     };
 
     $scope.createConstraintParamType = function () {
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         animation: true,
         templateUrl: CONSTANT_MODAL_ADD_EDIT_CONSTRAINTPARAMTYPE,
         controller: 'T6SAdmin.AddConstraintParamTypeCtrl',
@@ -63,7 +63,7 @@ angular.module('T6SAdmin')
     $scope.editConstraintParamType = function (constraintParamType) {
 
       $scope.constraintParamType = constraintParamType;
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         animation: true,
         templateUrl: CONSTANT_MODAL_ADD_EDIT_CONSTRAINTPARAMTYPE,
         scope: $scope,

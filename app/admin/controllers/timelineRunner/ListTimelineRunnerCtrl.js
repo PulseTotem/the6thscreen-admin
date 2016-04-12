@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SAdmin')
-  .controller('T6SAdmin.ListTimelineRunnerCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', '$modal', function ($rootScope, $scope, backendSocket, callbackManager, $modal) {
+  .controller('T6SAdmin.ListTimelineRunnerCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', '$uibModal', function ($rootScope, $scope, backendSocket, callbackManager, $uibModal) {
 
     var CONSTANT_MODAL_ADD_EDIT_TPT = "admin/views/timelineRunner/AddEdit.html";
 
@@ -44,7 +44,7 @@ angular.module('T6SAdmin')
     };
 
     $scope.createTimelineRunner = function () {
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         animation: true,
         templateUrl: CONSTANT_MODAL_ADD_EDIT_TPT,
         controller: 'T6SAdmin.AddTimelineRunnerCtrl',
@@ -63,7 +63,7 @@ angular.module('T6SAdmin')
     $scope.editTimelineRunner = function (timelineRunner) {
 
       $scope.timelineRunner = timelineRunner;
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         animation: true,
         templateUrl: CONSTANT_MODAL_ADD_EDIT_TPT,
         scope: $scope,

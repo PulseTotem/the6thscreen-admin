@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SAdmin')
-  .controller('T6SAdmin.ListParamTypeCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', '$modal', function ($rootScope, $scope, backendSocket, callbackManager, $modal) {
+  .controller('T6SAdmin.ListParamTypeCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', '$uibModal', function ($rootScope, $scope, backendSocket, callbackManager, $uibModal) {
 
     var CONSTANT_MODAL_ADD_EDIT_PARAMTYPE = "admin/views/paramType/AddEdit.html";
 
@@ -44,7 +44,7 @@ angular.module('T6SAdmin')
     };
 
     $scope.createParamType = function () {
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         animation: true,
         templateUrl: CONSTANT_MODAL_ADD_EDIT_PARAMTYPE,
         controller: 'T6SAdmin.AddParamTypeCtrl',
@@ -63,7 +63,7 @@ angular.module('T6SAdmin')
     $scope.editParamType = function (paramType) {
 
       $scope.paramType = paramType;
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         animation: true,
         templateUrl: CONSTANT_MODAL_ADD_EDIT_PARAMTYPE,
         scope: $scope,

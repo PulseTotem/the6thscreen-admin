@@ -3,8 +3,8 @@
     <h3>Sélection d'un thème pour la zone {{ current_zone.name }}</h3>
   </div>
   <div class="modal-body">
-    <accordion close-others="true">
-      <accordion-group heading="Thèmes disponibles" is-open="true">
+    <uib-accordion close-others="true">
+      <uib-accordion-group heading="Thèmes disponibles" is-open="true">
         <h4>Choisissez un thème : </h4>
         <div class="list-group" ng-repeat="theme in themesZone">
           <a href="#" class="list-group-item" ng-class="{active: isThemeZoneSelected(theme)}" ng-click="selectThemeZone(theme)">
@@ -12,8 +12,8 @@
             <p class="list-group-item-text">{{ theme.description }}</p>
           </a>
         </div>
-      </accordion-group>
-    </accordion>
+      </uib-accordion-group>
+    </uib-accordion>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-warning" ng-click="unlink()">Enlever le thème de la zone</button>

@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SAdmin')
-  .controller('T6SAdmin.ListSourceCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', '$modal', function ($rootScope, $scope, backendSocket, callbackManager, $modal) {
+  .controller('T6SAdmin.ListSourceCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', '$uibModal', function ($rootScope, $scope, backendSocket, callbackManager, $uibModal) {
 
     var CONSTANT_MODAL_ADD_EDIT_TPT = "admin/views/source/AddEdit.html";
 
@@ -44,7 +44,7 @@ angular.module('T6SAdmin')
     };
 
     $scope.createSource = function () {
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         animation: true,
         templateUrl: CONSTANT_MODAL_ADD_EDIT_TPT,
         controller: 'T6SAdmin.AddSourceCtrl',
@@ -63,7 +63,7 @@ angular.module('T6SAdmin')
     $scope.editSource = function (source) {
 
       $scope.source = source;
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         animation: true,
         templateUrl: CONSTANT_MODAL_ADD_EDIT_TPT,
         scope: $scope,
