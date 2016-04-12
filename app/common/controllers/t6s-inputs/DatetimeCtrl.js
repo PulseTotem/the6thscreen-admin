@@ -9,33 +9,14 @@
  */
 angular.module('T6SCommon')
   .controller('T6SCommon.T6SINPUTS.DatetimeCtrl', ['$scope', function ($scope) {
-    $scope.dateOptions = {
-      dateDisabled: disabled,
-      formatYear: 'yyyy',
-      maxDate: new Date(2100, 1, 1),
-      minDate: new Date(1800, 1, 1),
-      startingDay: 1,
-      initDate: new Date()
-    };
-
+    $scope.isOpen = false;
     $scope.dt = new Date();
 
-    $scope.mytime = new Date();
+    $scope.openCalendar = function(e) {
+      e.preventDefault();
+      e.stopPropagation();
 
-    $scope.popup = {
-      opened: false
-    };
-
-    $scope.today = function() {
-      $scope.dt = new Date();
-    };
-
-    $scope.clear = function() {
-      $scope.dt = null;
-    };
-
-    $scope.open = function() {
-      $scope.popup.opened = true;
+      $scope.isOpen = true;
     };
 
     $scope.$watch(function () {
@@ -45,7 +26,6 @@ angular.module('T6SCommon')
         var milliseconds = parseInt($scope.paramValue.value);
 
         $scope.dt = new Date(milliseconds);
-        $scope.mytime = new Date(milliseconds);
       }
 
       $scope.t6sInputValid = false;
@@ -65,11 +45,9 @@ angular.module('T6SCommon')
         timeout = null;
       }
 
-      var fullDate = new Date($scope.dt);
-      fullDate.setHours($scope.mytime.getHours());
-      fullDate.setMinutes($scope.mytime.getMinutes());
-
-      var milliseconds = fullDate.getTime();
+      var milliseconds = $scope.dt.getTime();
+      console.log("Obtained date: "+fullDate);
+      console.log("In milliseconds: "+milliseconds);
 
       if($scope.paramValue.paramType.constraint != null && typeof($scope.paramValue.paramType.constraint.name) != "undefined") {
         switch($scope.paramValue.paramType.constraint.name) {
