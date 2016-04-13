@@ -1,0 +1,32 @@
+<div class="modal-content" ng-controller="T6SAdmin.AddEditConstraintParamTypeCtrl">
+  <div class="modal-header">
+    <h3 translate="CONSTRAINTPARAMTYPE.ADD_EDIT.TITLE"></h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <td translate="CONSTRAINTPARAMTYPE.CONSTRAINTPARAMTYPE_NAME">Nom</td>
+        <td>
+          <a href="#" editable-text="constraintParamType.name" onaftersave="saveConstraintParamTypeAttribute('setName', constraintParamType.name)">{{ constraintParamType.name || 'No name information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="CONSTRAINTPARAMTYPE.CONSTRAINTPARAMTYPE_DESCRIPTION">Description</td>
+        <td>
+          <a href="#" editable-textarea="constraintParamType.description" e-rows="4" e-cols="40" onaftersave="saveConstraintParamTypeAttribute('setDescription', constraintParamType.description)">{{ constraintParamType.description || 'No description information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="CONSTRAINTPARAMTYPE.CONSTRAINTPARAMTYPE_TYPE">Type</td>
+        <td>
+          <a href="#" editable-select="constraintParamType.type.id" e-ng-options="typeParamType.id as typeParamType.name for typeParamType in typeParamTypes" onaftersave="saveConstraintParamTypeAttribute('linkType', constraintParamType.type.id)">
+            {{ showSelectedType() }}
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" ng-click="close()" ng-class="{ 'btn-danger': !constraintParamType.complete, 'btn-primary': constraintParamType.complete}" translate="CONSTRAINTPARAMTYPE.ADD_EDIT.CLOSE">Fermer</button>
+  </div>
+</div>

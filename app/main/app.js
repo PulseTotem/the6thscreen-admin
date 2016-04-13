@@ -18,14 +18,14 @@ angular
     'ngTouch',
     'ngDraggable',
     'ui.bootstrap',
+    'ui.bootstrap.datetimepicker',
     'pascalprecht.translate',
     'btford.socket-io',
     'xeditable',
     'angularSpinner',
     'T6SConfiguration',
     'T6SAdmin',
-    'T6SCustomization',
-    'T6SCMS'
+    'T6SCustomization'
     ])
     .config(['$locationProvider', function($locationProvider) {
         $locationProvider.html5Mode(true).hashPrefix('!');

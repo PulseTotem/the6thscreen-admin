@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SAdmin')
-  .controller('T6SAdmin.ListRendererCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', '$modal', function ($rootScope, $scope, backendSocket, callbackManager, $modal) {
+  .controller('T6SAdmin.ListRendererCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', '$uibModal', function ($rootScope, $scope, backendSocket, callbackManager, $uibModal) {
 
     var CONSTANT_MODAL_ADD_EDIT_TPT = "admin/views/renderer/AddEdit.html";
 
@@ -52,7 +52,7 @@ angular.module('T6SAdmin')
     };
 
     $scope.createRenderer = function () {
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         animation: true,
         templateUrl: CONSTANT_MODAL_ADD_EDIT_TPT,
         controller: 'T6SAdmin.AddRendererCtrl',
@@ -71,7 +71,7 @@ angular.module('T6SAdmin')
     $scope.editRenderer = function (renderer) {
 
       $scope.renderer = renderer;
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         animation: true,
         templateUrl: CONSTANT_MODAL_ADD_EDIT_TPT,
         scope: $scope,

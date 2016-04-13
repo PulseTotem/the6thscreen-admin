@@ -9,4 +9,4 @@
  * Common module of the application.
  */
 angular
-  .module('T6SCommon', [ ]);
+  .module('T6SCommon', ['ui.bootstrap' ]);

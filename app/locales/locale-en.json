@@ -18,6 +18,7 @@
         "THEMEZONE": "ThemeZone",
         "THEMESDI": "ThemeSDI",
         "PARAMTYPE" : "ParamType",
+        "CONSTRAINTPARAMTYPE" : "ConstraintParamType",
         "TYPEPARAMTYPE": "TypeParamType",
         "BEHAVIOUR": "Behaviour",
         "POLICY": "Policy",
@@ -25,10 +26,6 @@
         "USERTRIGGER": "User Trigger",
         "TIMELINERUNNER" : "Timeline Runner",
         "USER": "User"
-      },
-      "CMS": {
-        "TITLE": "CMS",
-        "PHOTOBOX": "Photobox"
       },
         "LANGUAGE" : "Language",
         "ENGLISH": "English",
@@ -56,7 +53,8 @@
         "NAN" : "Value needs to be a number.",
         "URL" : "This is not a well formatted URL.",
         "POSITIVE" : "Value needs to be positive.",
-        "DURATION" : "Duration needs to be almost equals to 1 second."
+        "DURATION" : "Duration needs to be almost equals to 1 second.",
+        "INFUTURE": "The given date should be 1 minute in the future."
       }
     },
     "DASHBOARD" : {
@@ -175,6 +173,19 @@
       "ADD_PARAMTYPE" : "Add a new parameter",
       "ADD_EDIT" : {
         "TITLE": "Edit parameter",
+        "CLOSE": "Close"
+      }
+    },
+    "CONSTRAINTPARAMTYPE": {
+      "CONSTRAINTPARAMTYPE_LIST" : "List of constraints for parameter types",
+      "CONSTRAINTPARAMTYPE_NAME" : "Name",
+      "CONSTRAINTPARAMTYPE_DESCRIPTION" : "Description",
+      "CONSTRAINTPARAMTYPE_TYPE" : "Type of data",
+      "ISCOMPLETE" : "Complete",
+      "CONFIRM_DELETE_CONSTRAINTPARAMTYPE" : "Are you sure you want to delete this constraint?",
+      "ADD_CONSTRAINTPARAMTYPE" : "Add a new constraint",
+      "ADD_EDIT" : {
+        "TITLE": "Edit constraint",
         "CLOSE": "Close"
       }
     },
@@ -343,17 +354,6 @@
         "PASS": "New password",
         "PASS2": "Enter again the password",
         "DISPLAYPASS": "Show the password"
-      }
-    },
-    "CMS": {
-      "PHOTOBOX": {
-        "LIST": "List of pictures",
-        "LISTALBUM": "List of albums",
-        "ALBUM": "Album",
-        "PHOTO": "Photo",
-        "SCAN": "Scan the directory",
-        "KILLSESSION": "Kill last session",
-        "CONFIRM_DELETE_PICTURE": "Are you sure you want to delete this picture?"
       }
     }
 }

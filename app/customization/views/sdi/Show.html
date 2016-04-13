@@ -12,7 +12,7 @@
         </div>
         <div class="customization-sdi-preview-zone-services">
           <div class="customization-sdi-preview-zone-service" ng-repeat="service in zone.services">
-            <button popover-template="'customization/views/sdi/CallTypeList.html'" popover-title="{{ 'CUSTOMIZATION.SDI_SHOW.CALLTYPES_FOR_SERVICES' | translate:{ servicename: service.name } }}" popover-trigger="mouseenter" popover-placement="right" class="btn btn-default">
+            <button uib-popover-template="'customization/views/sdi/CallTypeList.html'" popover-title="{{ 'CUSTOMIZATION.SDI_SHOW.CALLTYPES_FOR_SERVICES' | translate:{ servicename: service.name } }}" popover-trigger="mouseenter" popover-placement="right" class="btn btn-default">
               <img ng-src="{{service.logo}}" /> <span class="badge" >{{service.callTypes.length}}</span>
             </button>
           </div>
@@ -22,7 +22,7 @@
             <span class="badge">{{zone.zoneContents.length}}</span> {{ 'CUSTOMIZATION.SDI_SHOW.TIMELINES' | translate }}
           </div>
           <div class="customization-sdi-preview-zone-config-managetimelines pull-right" ng-show="showConfig">
-            <a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}" class="btn btn-primary" popover="{{ 'CUSTOMIZATION.SDI_SHOW.MANAGE_TIMELINES' | translate }}" popover-trigger="mouseenter" popover-placement="right">
+            <a ng-href="/custom/sdi/{{sdi.id}}/zone/{{zone.id}}" class="btn btn-primary" uib-popover="{{ 'CUSTOMIZATION.SDI_SHOW.MANAGE_TIMELINES' | translate }}" popover-trigger="mouseenter" popover-placement="right">
               <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
             </a>
           </div>
