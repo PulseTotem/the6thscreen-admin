@@ -82,7 +82,7 @@ angular.module('T6SCustomization')
         });
       });
 
-      backendSocket.emit('RefreshCommand', {'clientId': clientId});
+      backendSocket.emit('RefreshCommand', {'socketId': clientId});
     };
 
     $scope.identifyClient = function (clientId) {
@@ -92,6 +92,6 @@ angular.module('T6SCustomization')
         });
       });
 
-      backendSocket.emit('IdentifyCommand', {'clientId': clientId});
+      backendSocket.emit('IdentifyCommand', {'socketId': clientId});
     };
   }]);
