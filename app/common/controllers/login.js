@@ -25,11 +25,11 @@ angular.module('T6SCommon')
                 var successBackendInit = function() {
 
                   if(user.remember) {
-                    delete($cookies.tmpAdminT6SToken);
-                    $cookies.adminT6SToken = data.token;
+                    $cookies.remove("tmpAdminT6SToken");
+                    $cookies.put("adminT6SToken",data.token);
                   } else {
-                    delete($cookies.adminT6SToken);
-                    $cookies.tmpAdminT6SToken = data.token;
+                    $cookies.remove("adminT6SToken");
+                    $cookies.put("tmpAdminT6SToken",data.token);
                   }
 
                   $rootScope.header = "default";
@@ -44,8 +44,8 @@ angular.module('T6SCommon')
 
                 var failBackendInit = function(errorDesc) {
                   console.error(errorDesc); //TODO: Manage error during post => display error message
-                  delete($cookies.adminT6SToken);
-                  delete($cookies.tmpAdminT6SToken);
+                  $cookies.remove("adminT6SToken");
+                  $cookies.remove("tmpAdminT6SToken");
                   $rootScope.header = "home";
                   if(next.templateUrl != "../common/views/login.html") {
                     if (!$rootScope.$$phase) {
