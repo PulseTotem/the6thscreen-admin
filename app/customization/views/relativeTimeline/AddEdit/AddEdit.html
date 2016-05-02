@@ -1,4 +1,10 @@
 <div class="container-fluid" ng-controller="T6SCustomization.AddEditRelativeTimelineCtrl">
+  <ol class="breadcrumb">
+    <li><a ng-href="/">Home</a></li>
+    <li><a ng-href="/custom/sdi/{{ currentSDI }}">SDI</a></li>
+    <li><a ng-href="/custom/sdi/{{ currentSDI }}/zone/{{ currentZone }}">Timelines</a></li>
+    <li class="active">{{ timelineName }}</li>
+  </ol>
   <div class="row">
     <div class="col-md-12 customization-timeline-name">
       <h2 editable-text="timelineName" e-form="timelineNameForm">

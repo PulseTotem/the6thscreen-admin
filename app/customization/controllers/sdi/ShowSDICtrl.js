@@ -8,9 +8,10 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SCustomization')
-  .controller('T6SCustomization.ShowSDICtrl', ['$scope', '$routeParams', 'backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
+  .controller('T6SCustomization.ShowSDICtrl', ['$scope', '$rootScope', '$routeParams', 'backendSocket', 'callbackManager', function ($scope, $rootScope, $routeParams, backendSocket, callbackManager) {
 
     $scope.sdiID = $routeParams.sdiId;
+    $rootScope.currentSDI = $scope.sdiID;
     $scope.sdi = {};
     $scope.zones = [];
 
