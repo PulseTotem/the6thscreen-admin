@@ -181,6 +181,7 @@
       "CONSTRAINTPARAMTYPE_NAME" : "Nom",
       "CONSTRAINTPARAMTYPE_DESCRIPTION" : "Description",
       "CONSTRAINTPARAMTYPE_TYPE" : "Type de donn&eacute;e",
+      "CONSTRAINTPARAMTYPE_VALUES" : "Valeurs",
       "ISCOMPLETE" : "Complet",
       "CONFIRM_DELETE_CONSTRAINTPARAMTYPE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer cette contrainte ?",
       "ADD_CONSTRAINTPARAMTYPE" : "Ajouter une nouvelle contrainte",
