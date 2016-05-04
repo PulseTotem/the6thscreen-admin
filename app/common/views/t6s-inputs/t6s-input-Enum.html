@@ -1,0 +1,22 @@
+<div class="row" ng-controller="T6SCommon.T6SINPUTS.EnumCtrl">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="form-group paramValueForm" ng-class="{'has-success' : t6sInputValid, 'has-error' : t6sInputInvalid, 'has-feedback' : t6sInputValid || t6sInputInvalid}">
+        <label class="control-label col-md-3" for="paramValue_{{paramValue.id}}">{{paramValue.paramType.name}}</label>
+        <div class="col-md-6">
+          <select class="form-control" id="paramValue_{{paramValue.id}}" ng-model="value" ng-change="checkValue()">
+            <option></option>
+            <option ng-repeat="aValue in allowedValues">{{aValue}}</option>
+          </select>
+          <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" ng-show="t6sInputValid"></span>
+          <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-show="t6sInputInvalid"></span>
+        </div>
+      </div>
+    </div>
+    <div ng-show="t6sInputInvalid" class="row">
+      <div class="col-md-12 t6sInputs_errors">
+        <p class="bg-danger" ng-repeat="error in errors">{{error | translate}}</p>
+      </div>
+    </div>
+  </div>
+</div>
