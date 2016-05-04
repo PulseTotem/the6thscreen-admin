@@ -9,13 +9,13 @@
  */
 angular.module('T6SCommon')
   .controller('T6SCommon.T6SINPUTS.BooleanCtrl', ['$scope', function ($scope) {
-    $scope.value = 0;
+    $scope.value = false;
 
     $scope.$watch(function () {
       return $scope.paramValue;
     }, function() {
       if ($scope.paramValue.value != null) {
-        $scope.value = $scope.paramValue.value;
+        $scope.value = ($scope.paramValue.value == "true");
       }
 
       $scope.t6sInputValid = false;
