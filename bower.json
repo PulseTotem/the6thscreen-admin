@@ -21,7 +21,8 @@
     "moment": "<=2.10.3",
     "angular-xeditable": "<=0.1.9",
     "angular-spinner": "<=0.6.1",
-    "bootstrap-ui-datetime-picker": "^2.3.1"
+    "bootstrap-ui-datetime-picker": "^2.3.1",
+    "angular-bootstrap-slider": "^0.1.27"
   },
   "devDependencies": {
     "angular-mocks": "<=1.3.0"

@@ -19,6 +19,7 @@ angular
     'ngDraggable',
     'ui.bootstrap',
     'ui.bootstrap.datetimepicker',
+    'ui.bootstrap-slider',
     'pascalprecht.translate',
     'btford.socket-io',
     'xeditable',
