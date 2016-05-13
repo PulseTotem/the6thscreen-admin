@@ -26,7 +26,7 @@ angular.module('T6SCustomization')
 
           if($scope.oauthkeys.length > 0) {
             var firstOAuthKey = $scope.oauthkeys[0];
-
+            console.debug("Update oauth");
             backendSocket.on('AnswerUpdateCall', function (response) {
               callbackManager(response, function (call) {
                   $scope.needsOauth = true;
@@ -66,6 +66,7 @@ angular.module('T6SCustomization')
 
           if($scope.callType.source.service.oauth) {
             if($scope.callDesc.oAuthKey == null) {
+              console.log("OAuthKey == null");
               backendSocket.emit('RetrieveOAuthKeysFromServiceAndUser', {'userId': $rootScope.user.id, 'serviceId': $scope.callType.source.service.id});
             } else {
               $scope.needsOauth = false;
