@@ -54,7 +54,8 @@
         "URL" : "This is not a well formatted URL.",
         "POSITIVE" : "Value needs to be positive.",
         "DURATION" : "Duration needs to be almost equals to 1 second.",
-        "INFUTURE": "The given date should be 1 minute in the future."
+        "INFUTURE": "The given date should be 1 minute in the future.",
+        "STRINGTOOLONG": "The given string is too long."
       }
     },
     "DASHBOARD" : {

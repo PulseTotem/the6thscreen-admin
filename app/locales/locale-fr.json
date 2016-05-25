@@ -54,7 +54,8 @@
         "NAN" : "La valeur renseignée doit être un nombre.",
         "POSITIVE" : "La valeur renseignée doit être positive.",
         "DURATION" : "La durée doit être au moins égale à 1 seconde.",
-        "INFUTURE": "La date que vous donnez doit se trouver au minimum 1 minute dans le futur."
+        "INFUTURE": "La date que vous donnez doit se trouver au minimum 1 minute dans le futur.",
+        "STRINGTOOLONG": "La chaîne que vous avez entrée est trop longue."
       }
     },
     "DASHBOARD" : {
