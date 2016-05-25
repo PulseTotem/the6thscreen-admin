@@ -46,15 +46,15 @@ angular.module('T6SCommon')
               $scope.errors.push("T6SINPUTS.ERRORS.URL");
             }
             break;
+        }
 
-          case "StringSizeLimited":
-            if (isStringTooLong($scope.paramValue.paramType.constraint.values)) {
-              $scope.t6sInputValid = false;
-              $scope.t6sInputInvalid = true;
-              $scope.errors.push("T6SINPUTS.ERRORS.STRINGTOOLONG");
-              $scope.errors.push("Limit: "+$scope.paramValue.paramType.constraint.values+" Size: "+$scope.value.length);
-            }
-            break;
+        if ($scope.paramValue.paramType.constraint.name.startsWith("StringSizeLimited")) {
+          if (isStringTooLong($scope.paramValue.paramType.constraint.values)) {
+            $scope.t6sInputValid = false;
+            $scope.t6sInputInvalid = true;
+            $scope.errors.push("T6SINPUTS.ERRORS.STRINGTOOLONG");
+            $scope.errors.push("Limit: "+$scope.paramValue.paramType.constraint.values+" Size: "+$scope.value.length);
+          }
         }
       }
 
