@@ -8,13 +8,14 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SCustomization')
-  .controller('T6SCustomization.ShowProfilCtrl', ['$scope', '$routeParams', 'backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
+  .controller('T6SCustomization.ShowProfilCtrl', ['$scope', '$routeParams', 'backendSocket', 'callbackManager', '$window', function ($scope, $routeParams, backendSocket, callbackManager, $window) {
 
     $scope.profilId = $routeParams.profilId;
     $scope.sdiId = $routeParams.sdiId;
     $scope.sdi = {};
     $scope.zones = [];
     $scope.selectedTimelines = [];
+    $scope.connectedClients = [];
 
     backendSocket.on('CompleteProfilDescription', function(response) {
       callbackManager(response, function (profil) {
@@ -65,6 +66,32 @@ angular.module('T6SCustomization')
       );
     });
 
-    backendSocket.emit('RetrieveSDIDescription', {'sdiId' : $scope.sdiId});
+    backendSocket.on("ConnectedClientOfProfil", function (response) {
+      callbackManager(response, function (connectedClients) {
+        $scope.connectedClients = connectedClients;
+      });
+    });
 
+    backendSocket.emit('RetrieveSDIDescription', {'sdiId' : $scope.sdiId});
+    backendSocket.emit("RetrieveConnectedClientOfProfil", {"profilId": $routeParams.profilId});
+
+    $scope.refreshClient = function (clientId) {
+      backendSocket.on("AnswerRefreshCommand", function (response) {
+        callbackManager(response, function () {
+          $window.alert("The client has been successfully refreshed.");
+        });
+      });
+
+      backendSocket.emit('RefreshCommand', {'socketId': clientId});
+    };
+
+    $scope.identifyClient = function (clientId) {
+      backendSocket.on("AnswerIdentifyCommand", function (response) {
+        callbackManager(response, function () {
+          $window.alert("You should now see a block containing the following number on your displayed screen : "+clientId+". This block will remain displayed during 30 sec.");
+        });
+      });
+
+      backendSocket.emit('IdentifyCommand', {'socketId': clientId});
+    };
   }]);

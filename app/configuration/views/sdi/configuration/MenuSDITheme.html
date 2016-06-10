@@ -1,12 +1,51 @@
 <div ng-controller="T6SConfiguration.SelectEditThemeSDICtrl">
-  <accordion>
-    <accordion-group heading="Sélectionner un thème">
+  <uib-accordion>
+    <uib-accordion-group heading="Sélectionner un thème">
       <div class="list-group" ng-repeat="theme in themesSDI">
         <a href="#" class="list-group-item" ng-class="{active: isThemeSDISelected(theme)}" ng-click="selectThemeSDI(theme)">
           <h4 class="list-group-item-heading">{{ theme.name }}</h4>
           <p class="list-group-item-text">{{ theme.description }}</p>
         </a>
       </div>
-    </accordion-group>
-  </accordion>
+    </uib-accordion-group>
+    <uib-accordion-group heading="Voir le thème" is-disabled="!sdi.theme">
+      <table class="table table-striped">
+        <tr>
+          <td>Image de fond</td>
+          <td><img ng-if="sdi.theme.backgroundImageURL" src="sdi.theme.backgroundImageURL" />
+              <span ng-if="!sdi.theme.backgroundImageURL">No background image to display</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Couleur de fond</td>
+          <td><div ng-if="sdi.theme.backgroundColor" style="background-color: {{sdi.theme.backgroundColor}}; width: 100%; height: 100%">Background Color</div>
+              <div ng-if="!sdi.theme.backgroundColor">No color to show</div>
+          </td>
+        </tr>
+        <tr>
+          <td>Font</td>
+          <td>
+            <span ng-if="sdi.theme.font" style="font: {{sdi.theme.font}}">{{ sdi.theme.font }}</span>
+            <span ng-if="!sdi.theme.font">No font information to show</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Opacity</td>
+          <td>{{sdi.theme.opacity}}</td>
+        </tr>
+        <tr>
+          <td>Border</td>
+          <td><hr ng-if="sdi.theme.border" style="border: {{sdi.theme.border}}" />
+              <span ng-if="!sdi.theme.border">No border information to show</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Color</td>
+          <td><span ng-if="sdi.theme.color" style="color: {{sdi.theme.color}}">Text color</span>
+              <span ng-if="!sdi.theme.color">No color information to show</span>
+          </td>
+        </tr>
+      </table>
+    </uib-accordion-group>
+  </uib-accordion>
 </div>

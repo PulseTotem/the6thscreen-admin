@@ -47,6 +47,15 @@ angular.module('T6SCommon')
             }
             break;
         }
+
+        if ($scope.paramValue.paramType.constraint.name.startsWith("StringSizeLimited")) {
+          if (isStringTooLong($scope.paramValue.paramType.constraint.values)) {
+            $scope.t6sInputValid = false;
+            $scope.t6sInputInvalid = true;
+            $scope.errors.push("T6SINPUTS.ERRORS.STRINGTOOLONG");
+            $scope.errors.push("Limit: "+$scope.paramValue.paramType.constraint.values+" Size: "+$scope.value.length);
+          }
+        }
       }
 
       if($scope.t6sInputValid) {
@@ -54,19 +63,23 @@ angular.module('T6SCommon')
           $scope.saveParamValue($scope.paramValue.id, $scope.value);
         }, 1000);
       }
-    }
+    };
+
+    var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+      '|(localhost)?' + // OR localhost address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+      '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
 
     //Constraint check functions
     var isUrl = function() {
-      var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-          //'|^(localhost)?' + // OR localhost address
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-        '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
-
       return pattern.test($scope.value);
     };
 
+    var isStringTooLong = function (limitStr) {
+      var limit = parseInt(limitStr);
+      return ($scope.value.length > limit);
+    }
   }]);

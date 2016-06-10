@@ -16,30 +16,41 @@
 
       <ul class="nav navbar-nav">
         <li class="active"><a ng-href="/" translate="MENU.HOME"></a></li>
-        <li class="dropdown" dropdown>
-          <a class="dropdown-toggle" dropdown-toggle>{{ 'MENU.CONFIG.TITLE' | translate }}<span class="caret"></span></a>
-            <ul class="dropdown-menu">
+        <li ng-if="user.id == 1 || user.id == 2 || user.username == 'simon' || user.username == 'christian'" uib-dropdown>
+          <a uib-dropdown-toggle>{{ 'MENU.CONFIG.TITLE' | translate }}<span class="caret"></span></a>
+            <ul uib-dropdown-menu>
               <li><a ng-href="/config/sdi" translate="MENU.CONFIG.SDI">SDI</a></li>
               <li><a ng-href="/config/zone" translate="MENU.CONFIG.ZONE">Zone</a></li>
               <li><a ng-href="/config/oauth" translate="MENU.CONFIG.OAUTH">OAuth</a></li>
             </ul>
         </li>
-        <li><a ng-href="/custom" translate="MENU.CUSTOM"></a></li>
-        <li class="dropdown" dropdown>
-          <a class="dropdown-toggle" dropdown-toggle>{{ 'MENU.ADMIN.TITLE' | translate }}<span class="caret"></span></a>
-          <ul class="dropdown-menu">
+        <li ng-if="user.id == 1 || user.id == 2 || user.username == 'simon' || user.username == 'christian'"><a ng-href="/custom" translate="MENU.CUSTOM"></a></li>
+        <li ng-if="user.id == 1 || user.id == 2 || user.username == 'simon' || user.username == 'christian'" uib-dropdown>
+          <a uib-dropdown-toggle>{{ 'MENU.ADMIN.TITLE' | translate }}<span class="caret"></span></a>
+          <ul uib-dropdown-menu>
             <li><a ng-href="/admin/infotype" translate="MENU.ADMIN.INFOTYPE"></a></li>
-            <li><a ng-href="/admin/source" translate="MENU.ADMIN.SOURCE"></a></li>
+            <li><a ng-href="/admin/typeparamtype" translate="MENU.ADMIN.TYPEPARAMTYPE"></a></li>
+            <li><a ng-href="/admin/constraintparamtype" translate="MENU.ADMIN.CONSTRAINTPARAMTYPE"></a></li>
+            <li><a ng-href="/admin/paramtype" translate="MENU.ADMIN.PARAMTYPE"></a></li>
             <li><a ng-href="/admin/service" translate="MENU.ADMIN.SERVICE"></a></li>
+            <li><a ng-href="/admin/source" translate="MENU.ADMIN.SOURCE"></a></li>
             <li><a ng-href="/admin/renderer" translate="MENU.ADMIN.RENDERER"></a></li>
+            <li><a ng-href="/admin/behaviour" translate="MENU.ADMIN.BEHAVIOUR"></a></li>
+            <li><a ng-href="/admin/policy" translate="MENU.ADMIN.POLICY"></a></li>
+            <li><a ng-href="/admin/themezone" translate="MENU.ADMIN.THEMEZONE"></a></li>
+            <li><a ng-href="/admin/themesdi" translate="MENU.ADMIN.THEMESDI"></a></li>
+            <li><a ng-href="/admin/systemtrigger" translate="MENU.ADMIN.SYSTEMTRIGGER"></a></li>
+            <li><a ng-href="/admin/usertrigger" translate="MENU.ADMIN.USERTRIGGER"></a></li>
+            <li><a ng-href="/admin/timelinerunner" translate="MENU.ADMIN.TIMELINERUNNER"></a></li>
+            <li><a ng-href="/admin/user" translate="MENU.ADMIN.USER"></a></li>
           </ul>
         </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> <span translate="MENU.LANGUAGE"></span> <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
+        <li uib-dropdown>
+          <a href="#" uib-dropdown-toggle role="button" aria-expanded="false"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> <span translate="MENU.LANGUAGE"></span> <span class="caret"></span></a>
+          <ul uib-dropdown-menu>
             <li ng-click="changeLanguage('en')" class="menuLangItem"><img src="/images/flags/en.png" class="img-responsive" alt="{{ 'MENU.ENGLISH' | translate }}" /> <span translate="MENU.ENGLISH"></span></li>
             <li ng-click="changeLanguage('fr')" class="menuLangItem"><img src="/images/flags/fr.png" class="img-responsive" alt="{{ 'MENU.FRENCH' | translate }}" /> <span translate="MENU.FRENCH"></span></li>
           </ul>

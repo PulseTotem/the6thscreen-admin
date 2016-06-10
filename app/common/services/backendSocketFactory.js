@@ -8,8 +8,9 @@
  * Factory of the the6thscreenAdminApp
  */
 angular.module('T6SCommon')
-  .factory('backendSocket', ['$rootScope', 'ADMIN_CONSTANTS', 'callbackManager', 'socketFactory', function ($rootScope, ADMIN_CONSTANTS, callbackManager, socketFactory) {
-    var backendSocketFactory = {}
+  .factory('backendSocket', ['$rootScope', 'ADMIN_CONSTANTS', 'callbackManager', 'socketFactory','usSpinnerService', function ($rootScope, ADMIN_CONSTANTS, callbackManager, socketFactory, usSpinnerService) {
+    var backendSocketFactory = {};
+    $rootScope.pendingRequests = 0;
     backendSocketFactory.backendSocket = null;
 
     backendSocketFactory.init = function(token, successCB, failCB) {
@@ -73,8 +74,13 @@ angular.module('T6SCommon')
       });
 
       backendIOSocket.on("reconnect_failed", function () {
-        console.error("Failed to connect to Backend. No new attempt will be done.");
-        backendSocketFactory.backendSocket = null;
+        console.error("Failed to connect to Backend. New attempt will be done in 5 seconds. Administrators received an Alert !");
+        //TODO: Send an email and Notification to Admins !
+
+        setTimeout(function() {
+          backendSocketFactory.backendSocket = null;
+          backendSocketFactory.init(token, successCB, failCB);
+        }, 5000);
       });
 
       var backendSocket = socketFactory({
@@ -90,10 +96,19 @@ angular.module('T6SCommon')
       backendSocketFactory.backendSocket = null;
     };
 
-    backendSocketFactory.on = function() {
+    backendSocketFactory.on = function(name, callback) {
       if(backendSocketFactory.backendSocket != null) {
-        backendSocketFactory.backendSocket.removeAllListeners(arguments[0]);
-        backendSocketFactory.backendSocket.on.apply(this,arguments);
+        backendSocketFactory.backendSocket.removeAllListeners(name);
+        var myCallback = function() {
+          $rootScope.pendingRequests--;
+          if ($rootScope.pendingRequests == 0) {
+            usSpinnerService.stop('pending-request');
+          }
+          callback.apply(this, arguments);
+        };
+
+        backendSocketFactory.backendSocket.on(name, myCallback);
+        //backendSocketFactory.backendSocket.on.apply(this,arguments);
       } else {
         console.error("An error occurred : BackendSocket isn't initialized.");
       }
@@ -124,8 +139,10 @@ angular.module('T6SCommon')
       }
     };
 
-    backendSocketFactory.emit = function() {
+    backendSocketFactory.emit = function(name, callback) {
       if(backendSocketFactory.backendSocket != null) {
+        $rootScope.pendingRequests++;
+        usSpinnerService.spin('pending-request');
         backendSocketFactory.backendSocket.emit.apply(this,arguments);
       } else {
         console.error("An error occurred : BackendSocket isn't initialized.");

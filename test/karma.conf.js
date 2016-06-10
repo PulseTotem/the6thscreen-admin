@@ -14,7 +14,7 @@ module.exports = function(config) {
     basePath: '../',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['jasmine'],
+    frameworks: ['mocha','chai'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -38,6 +38,11 @@ module.exports = function(config) {
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/moment/moment.js',
       'bower_components/angular-xeditable/dist/js/xeditable.js',
+      'bower_components/spin.js/spin.js',
+      'bower_components/angular-spinner/angular-spinner.js',
+      'bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js',
+      'bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.js',
+      'bower_components/angular-bootstrap-slider/slider.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       '../app/configuration/**/*.js',
@@ -50,7 +55,7 @@ module.exports = function(config) {
     ],
 
     // web server port
-    port: 8080,
+    port: 10001,
 
     // Start these browsers, currently available:
     // - Chrome
@@ -64,11 +69,25 @@ module.exports = function(config) {
       'PhantomJS'
     ],
 
-    // Which plugins to enable
-    plugins: [
-      'karma-phantomjs-launcher',
-      'karma-jasmine'
-    ],
+    reporters: ['progress', 'jenkins', 'coverage'],
+
+    jenkinsReporter: {
+      outputFile: 'build/test/report.xml'
+    },
+
+    preprocessors: {
+      // source files, that you wanna generate coverage for
+      // do not include tests or libraries
+      // (these files will be instrumented by Istanbul)
+      '*.js': ['coverage']
+    },
+
+    coverageReporter: {
+      reporters: [
+        { type: "html", dir: 'build/coverage', subdir: '.' },
+        { type: "cobertura", dir: 'build/coverage', subdir: '.' },
+      ]
+    },
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit

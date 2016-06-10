@@ -6,7 +6,7 @@ then
   exit 1
 fi
 
-heroku login
+#heroku login
 grunt build
 current=$(pwd)
 herokuDir="$current-heroku"

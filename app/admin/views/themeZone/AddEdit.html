@@ -1,0 +1,87 @@
+<div class="modal-content" ng-controller="T6SAdmin.AddEditThemeZoneCtrl">
+  <div class="modal-header">
+    <h3 translate="THEMEZONE.ADD_EDIT.TITLE"></h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <td translate="THEMEZONE.THEMEZONE_NAME">Nom</td>
+        <td>
+          <a href="#" editable-text="theme.name" onaftersave="saveThemeZoneAttribute('setName', theme.name)">{{ theme.name || 'No name information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMEZONE.THEMEZONE_DESCRIPTION">Description</td>
+        <td>
+          <a href="#" editable-textarea="theme.description" e-rows="4" e-cols="40" onaftersave="saveThemeZoneAttribute('setDescription', theme.description)">{{ theme.description || 'No description information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMEZONE.THEMEZONE_DEFAULTTHEME">Default theme</td>
+        <td>
+          <a href="#" editable-checkbox="theme.defaultTheme" e-title="is default?"  onaftersave="saveThemeZoneAttribute('setDefaultTheme', theme.defaultTheme)">
+            {{ theme.defaultTheme && "Is default" || "Is not default" }}
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMEZONE.ADD_EDIT.BACKGROUND_IMAGE">Image de fond</td>
+        <td>
+          <a href="#" editable-text="theme.backgroundImageURL" onaftersave="saveThemeZoneAttribute('setBackgroundImageURL', theme.backgroundImageURL)">{{ theme.backgroundImageURL || 'No background image' }}</a>
+          <img ng-if="theme.backgroundImageURL" ng-src="{{ theme.backgroundImageURL }}" style="width: 100px; height: 100px" />
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMEZONE.ADD_EDIT.BACKGROUND_VIDEO">Vidéo de fond</td>
+        <td>
+          <a href="#" editable-url="theme.backgroundVideoURL" onaftersave="saveThemeZoneAttribute('setBackgroundVideoURL', theme.backgroundVideoURL)">{{ theme.backgroundVideoURL || 'No background video' }}</a>
+          <video ng-if="theme.backgroundVideoURL" width="320" height="240" controls>
+            <source ng-src="theme.backgroundVideoURL">
+          </video>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMEZONE.ADD_EDIT.BACKGROUND_COLOR">Couleur de fond</td>
+        <td><a href="#" editable-color="theme.backgroundColor" onaftersave="saveThemeZoneAttribute('setBackgroundColor', theme.backgroundColor)">{{ theme.backgroundColor || 'No background color' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMEZONE.ADD_EDIT.FONT">Font</td>
+        <td>
+          <a href="#" editable-text="theme.font" onaftersave="saveThemeZoneAttribute('setFont', theme.font)">{{ theme.font || 'No font information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMEZONE.ADD_EDIT.OPACITY">Opacity</td>
+        <td>
+          <a href="#" editable-range="theme.opacity" e-step="0.01" e-min="0" e-max="1" onaftersave="saveThemeZoneAttribute('setOpacity', theme.opacity)">{{ theme.opacity || 'No opacity information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMEZONE.ADD_EDIT.BORDER">Border</td>
+        <td>
+          <a href="#" editable-text="theme.border" onaftersave="saveThemeZoneAttribute('setBorder', theme.border)">{{ theme.border || 'No border information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMEZONE.ADD_EDIT.BORDER_RADIUS">BorderRadius</td>
+        <td>
+          <a href="#" editable-text="theme.borderRadius" onaftersave="saveThemeZoneAttribute('setBorderRadius', theme.borderRadius)">{{ theme.borderRadius || 'No borderRadius information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMEZONE.ADD_EDIT.COLOR">Color</td>
+        <td><a href="#" editable-color="theme.color" onaftersave="saveThemeZoneAttribute('setColor', theme.color)">{{ theme.color || 'No text color' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="THEMEZONE.ADD_EDIT.ZINDEX">Z-index</td>
+        <td><a href="#" editable-number="theme.zindex" e-min="0" onaftersave="saveThemeZoneAttribute('setZindex', theme.zindex)">{{ theme.zindex || 'No z-index information' }}</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="close()" ng-if="theme.complete" translate="THEMEZONE.ADD_EDIT.CLOSE">Fermer</button>
+  </div>
+</div>

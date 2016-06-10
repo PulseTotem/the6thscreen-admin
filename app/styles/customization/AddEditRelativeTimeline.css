@@ -42,8 +42,6 @@
 }
 
 .customization-timeline-calltype {
-  width: 100px;
-  height: 100px;
   overflow: hidden;
   border: 1px black solid;
   border-radius: 10px;

@@ -1,0 +1,24 @@
+<div class="modal-content" ng-controller="T6SAdmin.AddEditPolicyCtrl">
+  <div class="modal-header">
+    <h3 translate="POLICY.ADD_EDIT.TITLE"></h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <td translate="POLICY.POLICY_NAME">Nom</td>
+        <td>
+          <a href="#" editable-text="policy.name" onaftersave="savePolicyAttribute('setName', policy.name)">{{ policy.name || 'No name information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="POLICY.POLICY_DESCRIPTION">Description</td>
+        <td>
+          <a href="#" editable-textarea="policy.description" onaftersave="savePolicyAttribute('setDescription', policy.description)">{{ policy.description || 'No description information' }}</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" ng-click="close()" translate="POLICY.ADD_EDIT.CLOSE" ng-class="{ 'btn-danger': !policy.complete, 'btn-primary': policy.complete}">Fermer</button>
+  </div>
+</div>

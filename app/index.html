@@ -35,6 +35,7 @@
         <!-- bower:css -->
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
+        <link rel="stylesheet" href="bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css" />
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css(.tmp) styles/main.css -->
@@ -64,6 +65,7 @@
     </div>
 
     <div class="container-fluid" id="t6s-main">
+        <span us-spinner spinner-key="pending-request"></span>
         <div ng-view=""></div>
     </div>
 
@@ -106,10 +108,19 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+    <script src="bower_components/spin.js/spin.js"></script>
+    <script src="bower_components/angular-spinner/angular-spinner.js"></script>
+    <script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
+    <script src="bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.js"></script>
+    <script src="bower_components/angular-bootstrap-slider/slider.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="main/app.js"></script>
+    <script src="main/translation.js"></script>
+    <script src="main/routes.js"></script>
+
     <script src="common/common.js"></script>
     <script src="common/directives/confirmclick.js"></script>
     <script src="common/directives/t6sInput.js"></script>
@@ -123,6 +134,10 @@
     <script src="common/controllers/t6s-inputs/StringCtrl.js"></script>
     <script src="common/controllers/t6s-inputs/EntierCtrl.js"></script>
     <script src="common/controllers/t6s-inputs/DurationCtrl.js"></script>
+    <script src="common/controllers/t6s-inputs/BooleanCtrl.js"></script>
+    <script src="common/controllers/t6s-inputs/DatetimeCtrl.js"></script>
+    <script src="common/controllers/t6s-inputs/EnumCtrl.js"></script>
+    <script src="common/controllers/t6s-inputs/RangeCtrl.js"></script>
 
     <script src="configuration/configuration.js"></script>
     <script src="configuration/services/zoneUtil.js"></script>
@@ -139,6 +154,7 @@
     <script src="configuration/controllers/zone/ZoneSelectBehaviourCtrl.js"></script>
     <script src="configuration/controllers/zone/SelectEditThemeZoneCtrl.js"></script>
     <script src="configuration/controllers/sdi/SelectEditThemeSDICtrl.js"></script>
+    <script src="configuration/controllers/sdi/CloneSDICtrl.js"></script>
 
     <script src="configuration/controllers/services/ListServicesCtrl.js"></script>
 
@@ -148,8 +164,6 @@
     <script src="configuration/controllers/zone/showZone.js"></script>
     <script src="configuration/controllers/zone/editZone.js"></script>
     <script src="configuration/controllers/zone/addZone.js"></script>
-
-
 
     <script src="customization/customization.js"></script>
     <script src="customization/controllers/sdi/ListSDICtrl.js"></script>
@@ -166,29 +180,58 @@
     <script src="customization/controllers/profil/EditProfilCtrl.js"></script>
     <script src="customization/controllers/profil/AddProfilCtrl.js"></script>
     <script src="customization/controllers/profil/DeleteProfilCtrl.js"></script>
+    <script src="customization/controllers/profil/CloneProfilCtrl.js"></script>
 
 
     <script src="admin/admin.js"></script>
-    <script src="admin/controllers/service/listService.js"></script>
-    <script src="admin/controllers/service/editService.js"></script>
-    <script src="admin/controllers/service/addService.js"></script>
-    <script src="admin/controllers/source/listSource.js"></script>
-    <script src="admin/controllers/source/editSource.js"></script>
-    <script src="admin/controllers/source/addSource.js"></script>
-    <script src="admin/controllers/renderer/listRenderer.js"></script>
-    <script src="admin/controllers/renderer/editRenderer.js"></script>
-    <script src="admin/controllers/renderer/addRenderer.js"></script>
-    <script src="admin/controllers/calltype/listCallType.js"></script>
-    <script src="admin/controllers/calltype/editCallType.js"></script>
-    <script src="admin/controllers/calltype/addCallType.js"></script>
-    <script src="admin/controllers/infoType/listInfoType.js"></script>
-    <script src="admin/controllers/infoType/editInfoType.js"></script>
-    <script src="admin/controllers/infoType/addInfoType.js"></script>
-    <script src="admin/controllers/zone/listZone.js"></script>
+    <script src="admin/controllers/themeZone/ListThemeZoneCtrl.js"></script>
+    <script src="admin/controllers/themeZone/AddEditThemeZoneCtrl.js"></script>
+    <script src="admin/controllers/themeZone/AddThemeZoneCtrl.js"></script>
+    <script src="admin/controllers/themeSDI/ListThemeSDICtrl.js"></script>
+    <script src="admin/controllers/themeSDI/AddEditThemeSDICtrl.js"></script>
+    <script src="admin/controllers/themeSDI/AddThemeSDICtrl.js"></script>
+    <script src="admin/controllers/paramType/ListParamTypeCtrl.js"></script>
+    <script src="admin/controllers/paramType/AddParamTypeCtrl.js"></script>
+    <script src="admin/controllers/paramType/AddEditParamTypeCtrl.js"></script>
+    <script src="admin/controllers/constraintParamType/ListConstraintParamTypeCtrl.js"></script>
+    <script src="admin/controllers/constraintParamType/AddConstraintParamTypeCtrl.js"></script>
+    <script src="admin/controllers/constraintParamType/AddEditConstraintParamTypeCtrl.js"></script>
+    <script src="admin/controllers/typeParamType/ListTypeParamTypeCtrl.js"></script>
+    <script src="admin/controllers/typeParamType/AddTypeParamTypeCtrl.js"></script>
+    <script src="admin/controllers/typeParamType/AddEditTypeParamTypeCtrl.js"></script>
+    <script src="admin/controllers/infoType/ListInfoTypeCtrl.js"></script>
+    <script src="admin/controllers/infoType/AddInfoTypeCtrl.js"></script>
+    <script src="admin/controllers/infoType/AddEditInfoTypeCtrl.js"></script>
+    <script src="admin/controllers/service/ListServiceCtrl.js"></script>
+    <script src="admin/controllers/service/AddEditServiceCtrl.js"></script>
+    <script src="admin/controllers/service/AddServiceCtrl.js"></script>
+    <script src="admin/controllers/source/ListSourceCtrl.js"></script>
+    <script src="admin/controllers/source/AddEditSourceCtrl.js"></script>
+    <script src="admin/controllers/source/AddSourceCtrl.js"></script>
+    <script src="admin/controllers/renderer/ListRendererCtrl.js"></script>
+    <script src="admin/controllers/renderer/AddEditRendererCtrl.js"></script>
+    <script src="admin/controllers/renderer/AddRendererCtrl.js"></script>
+    <script src="admin/controllers/behaviour/ListBehaviourCtrl.js"></script>
+    <script src="admin/controllers/behaviour/AddBehaviourCtrl.js"></script>
+    <script src="admin/controllers/behaviour/AddEditBehaviourCtrl.js"></script>
+    <script src="admin/controllers/policy/ListPolicyCtrl.js"></script>
+    <script src="admin/controllers/policy/AddPolicyCtrl.js"></script>
+    <script src="admin/controllers/policy/AddEditPolicyCtrl.js"></script>
+    <script src="admin/controllers/systemTrigger/AddEditSystemTriggerCtrl.js"></script>
+    <script src="admin/controllers/systemTrigger/AddSystemTriggerCtrl.js"></script>
+    <script src="admin/controllers/systemTrigger/ListSystemTriggerCtrl.js"></script>
+    <script src="admin/controllers/userTrigger/AddEditUserTriggerCtrl.js"></script>
+    <script src="admin/controllers/userTrigger/AddUserTriggerCtrl.js"></script>
+    <script src="admin/controllers/userTrigger/ListUserTriggerCtrl.js"></script>
+    <script src="admin/controllers/user/ListUserCtrl.js"></script>
+    <script src="admin/controllers/user/AddEditUserCtrl.js"></script>
+    <script src="admin/controllers/user/AddUserCtrl.js"></script>
+    <script src="admin/controllers/user/ResetPasswordUserCtrl.js"></script>
+    <script src="admin/controllers/timelineRunner/AddEditTimelineRunnerCtrl.js"></script>
+    <script src="admin/controllers/timelineRunner/AddTimelineRunnerCtrl.js"></script>
+    <script src="admin/controllers/timelineRunner/ListTimelineRunnerCtrl.js"></script>
 
-    <script src="main/app.js"></script>
-    <script src="main/translation.js"></script>
-    <script src="main/routes.js"></script>
+
     <!-- endbuild -->
 </body>
 </html>

@@ -3,8 +3,8 @@
     <h3>Création d'un appel pour le service {{ current_service.name }}</h3>
   </div>
   <div class="modal-body">
-    <accordion close-others="true">
-      <accordion-group heading="Source d'information" is-open="isFirstStep">
+    <uib-accordion close-others="true">
+      <uib-accordion-group heading="Source d'information" is-open="isFirstStep">
         <h4>Choisissez une source d'information : </h4>
         <div class="list-group" ng-repeat="source in sources">
           <a href="#" class="list-group-item" ng-class="{active: isSourceSelected(source.id)}" ng-click="selectSource(source)">
@@ -12,8 +12,8 @@
             <p class="list-group-item-text">{{ source.description }}</p>
           </a>
         </div>
-      </accordion-group>
-      <accordion-group heading="Composant d'affichage" is-open="isSecondStep" is-disabled="!callType.source">
+      </uib-accordion-group>
+      <uib-accordion-group heading="Composant d'affichage" is-open="isSecondStep" is-disabled="!callType.source">
         <h3>Choisissez un mode d'affichage : </h3>
         <div class="list-group" ng-repeat="renderer in renderers">
           <a href="#" class="list-group-item" ng-class="{active: isRendererSelected(renderer.id)}" ng-click="selectRenderer(renderer)">
@@ -21,12 +21,20 @@
             <p class="list-group-item-text">{{ renderer.description }}</p>
           </a>
         </div>
-      </accordion-group>
-      <accordion-group heading="Nommez l'appel" is-open="isFinalStep" is-disabled="!callType.renderer">
+      </uib-accordion-group>
+      <uib-accordion-group heading="Thème d'affichage par défaut" is-open="isThirdStep" is-disabled="!callType.renderer">
+        <h3>Choisissez le thème d'affichage par défaut : </h3>
+        <div class="list-group" ng-repeat="theme in rendererThemes">
+          <a href="#" class="list-group-item" ng-class="{active: isRendererThemeSelected(theme.id)}" ng-click="selectRendererTheme(theme)">
+            <h4 class="list-group-item-heading">{{ theme.name }}</h4>
+          </a>
+        </div>
+      </uib-accordion-group>
+      <uib-accordion-group heading="Nommez l'appel" is-open="isFinalStep" is-disabled="!callType.rendererTheme">
         <h3>Donnez un nom à votre appel : </h3>
         <input type="text" class="form-control" ng-model="callType.name" placeholder="Name" ng-model-options="{ updateOn: 'blur' }" ng-change="saveName()" />
-      </accordion-group>
-      <accordion-group heading="Options avancées" is-disabled="!callType.renderer">
+      </uib-accordion-group>
+      <uib-accordion-group heading="Options avancées" is-disabled="!callType.renderer">
         <h3>Choisissez une politique : </h3>
         <div class="list-group" ng-repeat="policy in policies">
           <a href="#" class="list-group-item" ng-class="{active: isPolicySelected(policy.id)}" ng-click="selectPolicy(policy)">
@@ -34,8 +42,8 @@
             <p class="list-group-item-text">{{ policy.description }}</p>
           </a>
         </div>
-      </accordion-group>
-    </accordion>
+      </uib-accordion-group>
+    </uib-accordion>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="destroyCallType()" ng-if="!callType.complete">Annuler</button>

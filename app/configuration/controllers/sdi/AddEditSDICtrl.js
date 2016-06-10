@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SConfiguration')
-  .controller('T6SConfiguration.AddEditSDICtrl', ['$scope','$rootScope','$routeParams','backendSocket', 'callbackManager', 'saveAttribute', '$modal', function ($scope, $rootScope, $routeParams, backendSocket, callbackManager, saveAttribute, $modal) {
+  .controller('T6SConfiguration.AddEditSDICtrl', ['$scope','$rootScope','$routeParams','backendSocket', 'callbackManager', 'saveAttribute', '$uibModal', function ($scope, $rootScope, $routeParams, backendSocket, callbackManager, saveAttribute, $uibModal) {
 
     var CONSTANT_MODAL_CALLTYPE_CREATION_URL = "configuration/views/sdi/configuration/ModalCallTypeCreation.html";
     var CONSTANT_MODAL_CONFIRM_DELETE_ZONE = "configuration/views/sdi/configuration/ModalConfirmDeleteZone.html";
@@ -41,7 +41,7 @@ angular.module('T6SConfiguration')
 
     };
 
-    backendSocket.on('deletedZone', function (response) {
+    backendSocket.on('AnswerDeleteZone', function (response) {
       callbackManager(response, function (zoneId) {
         for (var indexZone in $scope.sdi.zones) {
           var zone = $scope.sdi.zones[indexZone];
@@ -52,7 +52,7 @@ angular.module('T6SConfiguration')
       })
     });
 
-    backendSocket.on('deletedCallType', function (response) {
+    backendSocket.on('AnswerDeleteCallType', function (response) {
       callbackManager(response, function (callTypeid) {
         for (var indexZone in $scope.sdi.zones) {
           var zone = $scope.sdi.zones[indexZone];
@@ -163,7 +163,7 @@ angular.module('T6SConfiguration')
       $scope.current_zone = zone_id;
       $scope.current_service = data;
 
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         animation: true,
         templateUrl: CONSTANT_MODAL_CALLTYPE_CREATION_URL,
         controller: 'T6SConfiguration.AddCallTypeCtrl',
@@ -192,7 +192,7 @@ angular.module('T6SConfiguration')
       $scope.current_service = service;
       $scope.current_calltype = callType;
 
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         animation: true,
         templateUrl: CONSTANT_MODAL_CALLTYPE_CREATION_URL,
         controller: 'T6SConfiguration.EditCallTypeCtrl',
@@ -230,7 +230,7 @@ angular.module('T6SConfiguration')
     var displayModal = function (modalTemplateUrl, zone) {
       $scope.current_zone = zone;
 
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         animation: true,
         templateUrl: modalTemplateUrl,
         scope: $scope

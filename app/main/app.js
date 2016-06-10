@@ -18,9 +18,12 @@ angular
     'ngTouch',
     'ngDraggable',
     'ui.bootstrap',
+    'ui.bootstrap.datetimepicker',
+    'ui.bootstrap-slider',
     'pascalprecht.translate',
     'btford.socket-io',
     'xeditable',
+    'angularSpinner',
     'T6SConfiguration',
     'T6SAdmin',
     'T6SCustomization'
@@ -37,15 +40,17 @@ angular
       $rootScope.$on("$routeChangeStart", function(event, next, current) {
 
         if(typeof($rootScope.user) != "undefined" && typeof($rootScope.user.id) != "undefined") {
-
           $rootScope.header = "default";
-          if(next.templateUrl === "../common/views/login.html") {
-            if (!$rootScope.$$phase) {
-              $rootScope.$apply(function () {
+
+          if($rootScope.user.id == 1 || $rootScope.user.id == 2 || $rootScope.user.username == "simon" || $rootScope.user.username == "christian") {
+            if (next.templateUrl === "../common/views/login.html") {
+              if (!$rootScope.$$phase) {
+                $rootScope.$apply(function () {
+                  $location.path(ADMIN_CONSTANTS.loginRoute);
+                });
+              } else {
                 $location.path(ADMIN_CONSTANTS.loginRoute);
-              });
-            } else {
-              $location.path(ADMIN_CONSTANTS.loginRoute);
+              }
             }
           }
         }
@@ -57,12 +62,16 @@ angular
 
           var adminT6SToken = null;
           var tmpToken = false;
-          if($cookies.adminT6SToken) {
-            adminT6SToken = $cookies.adminT6SToken;
+          if($cookies.get("adminT6SToken")) {
+            console.log("Cookie admin T6S token");
+            adminT6SToken = $cookies.get("adminT6SToken");
           } else {
-            if($cookies.tmpAdminT6SToken) {
-              adminT6SToken = $cookies.tmpAdminT6SToken;
+            if($cookies.get("tmpAdminT6SToken")) {
+              console.log("TMP TOKEN");
+              adminT6SToken = $cookies.get("tmpAdminT6SToken");
               tmpToken = true;
+            } else {
+              console.log("No cookie token");
             }
           }
 
@@ -73,24 +82,24 @@ angular
               .success(function(data, status, headers, config) {
                 var successBackendInit = function() {
                   if(tmpToken) {
-                    delete($cookies.adminT6SToken);
-                    $cookies.tmpAdminT6SToken = data.token;
+                    $cookies.remove("adminT6SToken");
+                    $cookies.put("tmpAdminT6SToken",data.token);
                   } else {
-                    delete($cookies.tmpAdminT6SToken);
-                    $cookies.adminT6SToken = data.token;
+                    $cookies.remove("tmpAdminT6SToken");
+                    $cookies.put("adminT6SToken",data.token);
                   }
 
-                  if(ADMIN_CONSTANTS.backendUrl.indexOf("localhost") <= -1) {
+                  /*if(ADMIN_CONSTANTS.backendUrl.indexOf("localhost") <= -1) {
                     alert("/!\\ UTILISATION DU HOST DISTANT !!! /!\\");
-                  }
+                  }*/
 
                   $route.reload();
                 };
 
                 var failBackendInit = function(errorDesc) {
                   console.error(errorDesc);
-                  delete($cookies.adminT6SToken);
-                  delete($cookies.tmpAdminT6SToken);
+                  $cookies.remove("adminT6SToken");
+                  $cookies.remove("tmpAdminT6SToken");
 
                   $rootScope.header = "home";
                   if (!$rootScope.$$phase) {
@@ -106,9 +115,11 @@ angular
 
               })
               .error(function(data, status, headers, config) {
-                delete($cookies.adminT6SToken);
-                delete($cookies.tmpAdminT6SToken);
+                console.error("Error while authenticating.");
+                $cookies.remove("adminT6SToken");
+                $cookies.remove("tmpAdminT6SToken");
                 $rootScope.header = "home";
+
                 if (!$rootScope.$$phase) {
                   $rootScope.$apply(function () {
                     $location.path(ADMIN_CONSTANTS.homeRoute);
@@ -119,6 +130,7 @@ angular
               });
           } else {
             $rootScope.header = "home";
+            console.log("final else");
             if (!$rootScope.$$phase) {
               $rootScope.$apply(function () {
                 $location.path(ADMIN_CONSTANTS.homeRoute);

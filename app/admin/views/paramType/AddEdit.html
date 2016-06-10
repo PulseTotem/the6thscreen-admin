@@ -1,0 +1,46 @@
+<div class="modal-content" ng-controller="T6SAdmin.AddEditParamTypeCtrl">
+  <div class="modal-header">
+    <h3 translate="PARAMTYPE.ADD_EDIT.TITLE"></h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <td translate="PARAMTYPE.PARAMTYPE_NAME">Nom</td>
+        <td>
+          <a href="#" editable-text="paramType.name" onaftersave="saveParamTypeAttribute('setName', paramType.name)">{{ paramType.name || 'No name information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="PARAMTYPE.PARAMTYPE_DESCRIPTION">Description</td>
+        <td>
+          <a href="#" editable-textarea="paramType.description" e-rows="4" e-cols="40" onaftersave="saveParamTypeAttribute('setDescription', paramType.description)">{{ paramType.description || 'No description information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="PARAMTYPE.PARAMTYPE_TYPE">Type</td>
+        <td>
+          <a href="#" editable-select="paramType.type.id" e-ng-options="typeParamType.id as typeParamType.name for typeParamType in typeParamTypes" onaftersave="saveParamTypeAttribute('linkType', paramType.type.id)">
+            {{ showSelectedType() }}
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="PARAMTYPE.PARAMTYPE_CONSTRAINT">Type</td>
+        <td>
+          <a href="#" editable-select="paramType.constraint.id" e-ng-options="constraint.id as constraint.name for constraint in constraints" onaftersave="saveParamTypeAttribute('linkConstraint', paramType.constraint.id)">
+            {{ showSelectedConstraint() }}
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="PARAMTYPE.PARAMTYPE_VALUE">Type</td>
+        <td>
+          <a href="#" editable-text="paramType.defaultValue.value" onaftersave="saveDefaultValue()">{{ paramType.defaultValue.value || 'No default value information' }}</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" ng-click="close()" ng-class="{ 'btn-danger': !paramType.complete, 'btn-primary': paramType.complete}" translate="PARAMTYPE.ADD_EDIT.CLOSE">Fermer</button>
+  </div>
+</div>

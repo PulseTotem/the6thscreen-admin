@@ -11,6 +11,7 @@ angular.module('T6SCustomization')
   .controller('T6SCustomization.AddEditCallCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', 'saveAttribute', function ($rootScope, $scope, backendSocket, callbackManager, saveAttribute) {
     $scope.callType = null;
     $scope.callDesc = null;
+    $scope.rendererTheme = null;
     $scope.infoDurationParamValue = null;
     $scope.limitParamValue = null;
     $scope.paramValues = [];
@@ -25,7 +26,7 @@ angular.module('T6SCustomization')
 
           if($scope.oauthkeys.length > 0) {
             var firstOAuthKey = $scope.oauthkeys[0];
-
+            console.debug("Update oauth");
             backendSocket.on('AnswerUpdateCall', function (response) {
               callbackManager(response, function (call) {
                   $scope.needsOauth = true;
@@ -53,8 +54,19 @@ angular.module('T6SCustomization')
       callbackManager(response, function (cTInfo) {
           $scope.callType = cTInfo;
 
+          if($scope.callDesc.rendererTheme != null) {
+            $scope.rendererTheme = $scope.callDesc.rendererTheme;
+          } else {
+            if($scope.callType.rendererTheme != null) {
+              $scope.rendererTheme = $scope.callType.rendererTheme;
+            } else {
+              $scope.rendererTheme = {"name" : "default"};
+            }
+          }
+
           if($scope.callType.source.service.oauth) {
             if($scope.callDesc.oAuthKey == null) {
+              console.log("OAuthKey == null");
               backendSocket.emit('RetrieveOAuthKeysFromServiceAndUser', {'userId': $rootScope.user.id, 'serviceId': $scope.callType.source.service.id});
             } else {
               $scope.needsOauth = false;
@@ -249,6 +261,53 @@ angular.module('T6SCustomization')
 
 
     $scope.saveParamValue = function(id, newValue) {
+
+      backendSocket.on('AnswerUpdateParamValue', function (response) {
+        callbackManager(response, function (call) {
+            //Nothing to do...
+          },
+          function (fail) {
+            console.error(fail);
+          }
+        );
+      });
+
       saveAttribute("UpdateParamValue", id, "setValue", newValue);
+    };
+
+    //Manage Renderer Themes
+    $scope.rendererThemesIsCollapsed = false;
+    $scope.rendererThemes_loaded = false;
+
+    backendSocket.on('RendererThemesDescriptionFromRenderer', function(response) {
+      callbackManager(response, function (rendererThemes) {
+          $scope.rendererThemes = rendererThemes;
+          $scope.rendererThemes_loaded = true;
+          $scope.rendererThemesIsCollapsed = !$scope.rendererThemesIsCollapsed;
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
+
+    $scope.collapseRendererThemePanel = function() {
+      if($scope.rendererThemes_loaded) {
+        $scope.rendererThemesIsCollapsed = !$scope.rendererThemesIsCollapsed;
+      } else {
+        backendSocket.emit("RetrieveRendererThemesFromRendererId", {"rendererId": $scope.callType.renderer.id});
+      }
+    };
+
+    $scope.selectRendererTheme = function(theme) {
+      $scope.rendererTheme = theme;
+      saveAttribute("UpdateCall", $scope.call.id, "linkRendererTheme", theme.id);
+    };
+
+    $scope.isRendererThemeSelected = function(rendererThemeId) {
+      if($scope.rendererTheme) {
+        return rendererThemeId === $scope.rendererTheme.id;
+      }
+      return false;
     };
   }]);

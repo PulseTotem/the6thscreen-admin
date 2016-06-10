@@ -329,7 +329,7 @@ module.exports = function (grunt) {
     // Replace Google CDN references
     cdnify: {
       dist: {
-        html: ['<%= yeoman.dist %>/**/*.html']
+        html: ['<%= yeoman.dist %>/index.html']
       }
     },
 
@@ -453,11 +453,11 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('test', [
+    'build',
     'clean:server',
     'wiredep:test',
     'concurrent:test',
     'autoprefixer',
-    'connect:test',
     'karma'
   ]);
 
@@ -465,7 +465,9 @@ module.exports = function (grunt) {
     'clean:dist',
     'wiredep',
     'useminPrepare',
-    'concurrent:dist',
+    'copy:styles',
+    'imagemin',
+    'svgmin',
     'autoprefixer',
     'concat',
     'ngAnnotate',

@@ -1,0 +1,24 @@
+<div class="modal-content" ng-controller="T6SAdmin.AddEditTimelineRunnerCtrl">
+  <div class="modal-header">
+    <h3 translate="TIMELINERUNNER.ADD_EDIT.TITLE"></h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <td translate="TIMELINERUNNER.TIMELINERUNNER_NAME">Nom</td>
+        <td>
+          <a href="#" editable-text="timelineRunner.name" onaftersave="saveTimelineRunnerAttribute('setName', timelineRunner.name)">{{ timelineRunner.name || 'No name information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="TIMELINERUNNER.TIMELINERUNNER_DESCRIPTION">Description</td>
+        <td>
+          <a href="#" editable-textarea="timelineRunner.description" onaftersave="saveTimelineRunnerAttribute('setDescription', timelineRunner.description)">{{ timelineRunner.description || 'No description information' }}</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" ng-click="close()" translate="TIMELINERUNNER.ADD_EDIT.CLOSE" ng-class="{ 'btn-danger': !timelineRunner.complete, 'btn-primary': timelineRunner.complete}">Fermer</button>
+  </div>
+</div>

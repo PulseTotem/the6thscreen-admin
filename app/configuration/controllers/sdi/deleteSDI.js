@@ -10,7 +10,7 @@
 angular.module('T6SConfiguration')
   .controller('T6SConfiguration.DeleteSDICtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', function ($rootScope, $scope, backendSocket, callbackManager) {
 
-    backendSocket.on('deletedSDI', function (response) {
+    backendSocket.on('AnswerDeleteSDI', function (response) {
       callbackManager(response, function (sdiId) {
         var newList = $scope.listSDI.filter(function (element) { return (element.id != sdiId); });
         $scope.reloadList(newList);

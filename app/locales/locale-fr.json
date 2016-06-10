@@ -14,7 +14,18 @@
           "SOURCE": "Source",
           "RENDERER": "Renderer",
           "SERVICE": "Service",
-          "INFOTYPE": "InfoType"
+          "INFOTYPE": "InfoType",
+          "THEMEZONE": "ThemeZone",
+          "THEMESDI": "ThemeSDI",
+          "PARAMTYPE" : "ParamType",
+          "CONSTRAINTPARAMTYPE" : "ConstraintParamType",
+          "TYPEPARAMTYPE": "TypeParamType",
+          "BEHAVIOUR" : "Behaviour",
+          "POLICY": "Politique",
+          "SYSTEMTRIGGER": "System Trigger",
+          "USERTRIGGER": "User Trigger",
+          "TIMELINERUNNER" : "Timeline Runner",
+          "USER": "Utilisateur"
         },
         "LANGUAGE" : "Langage",
         "ENGLISH" : "English",
@@ -42,7 +53,9 @@
         "URL" : "La valeur renseignée n'est pas une URL valide.",
         "NAN" : "La valeur renseignée doit être un nombre.",
         "POSITIVE" : "La valeur renseignée doit être positive.",
-        "DURATION" : "La durée doit être au moins égale à 1 seconde."
+        "DURATION" : "La durée doit être au moins égale à 1 seconde.",
+        "INFUTURE": "La date que vous donnez doit se trouver au minimum 1 minute dans le futur.",
+        "STRINGTOOLONG": "La chaîne que vous avez entrée est trop longue."
       }
     },
     "DASHBOARD" : {
@@ -73,7 +86,9 @@
       },
       "CALL_ADDEDIT" : {
         "ADVANCED_PARAMETERS" : "Paramètres avancés",
-        "NEEDS_OAUTHKEY" : "Vous devez vous connecter au service {{servicename}}."
+        "NEEDS_OAUTHKEY" : "Vous devez vous connecter au service {{servicename}}.",
+        "RENDERER_THEME" : "Choisir un autre thème d'affichage",
+        "RENDERER_THEME_NO_CHOICE" : "Aucun choix supplémentaire pour le thème d'affichage"
       },
       "PROFIL_ADDEDIT" : {
         "SELECT_TIMELINE" : "Sélectionnez une Timeline pour cette zone."
@@ -93,30 +108,8 @@
         "CALLTYPE_NAME" : "Nom",
         "CALLTYPE_DESCRIPTION" : "Description"
     },
-    "SOURCE" : {
-        "SOURCES_LIST" : "Liste des Sources",
-        "SOURCE_NAME" : "Nom",
-        "SOURCE_SERVICE" : "Service",
-        "SOURCE_DESCRIPTION" : "Description",
-        "SOURCE_METHOD" : "Method",
-        "SOURCE_TYPE" : "Type d'information",
-        "SOURCE_PARAM_TYPES" : "Types de param&egrave;tre",
-        "SOURCE_PARAM_VALUES" : "Valeurs des param&egrave;tre",
-        "ADD_SOURCE" : "Ajouter une nouvelle Source",
-        "ISCOMPLETE" : "Complet",
-        "CONFIRM_DELETE_SOURCE" : "Êtes-vous sûr de vouloir supprimer cette source ?"
-    },
-    "ADD_SOURCE" : {
-        "CREATE_SOURCE" : "Cr&eacute;er une nouvelle source",
-        "SOURCE_NAME" : "Nom",
-        "SOURCE_SERVICE" : "Service",
-        "SOURCE_DESCRIPTION" : "Description",
-        "SOURCE_METHOD" : "Method",
-        "SOURCE_TYPE" : "Type d'information",
-        "SOURCE_PARAM_TYPE" : "Type de param&egrave;tre"
-    },
     "OAUTH" : {
-      "LIST" : "Liste des autorisations d'acc&eagrave;es aux services disponibles",
+      "LIST" : "Liste des autorisations d'acc&egrave;es aux services disponibles",
       "SERVICE_SIGNIN" : "Se connecter",
       "SERVICE_SIGNOUT" : "Supprimer l'acc&egrave;s",
       "CONFIRM_DELETE_OAUTHKEY" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer l'acc&egrave;s &agrave; ce service ?"
@@ -124,6 +117,245 @@
     "ACTIONS" : {
       "ACTION_ADD" : "Ajouter",
       "ACTION_EDIT" : "Editer",
-      "ACTION_DELETE" : "Supprimer"
+      "ACTION_DELETE" : "Supprimer",
+      "ACTION_CLONE": "Cloner"
+    },
+    "THEMEZONE" : {
+      "THEMEZONE_LIST" : "Liste des th&egrave;mes de zone",
+      "THEMEZONE_NAME" : "Nom",
+      "THEMEZONE_DESCRIPTION" : "Description",
+      "THEMEZONE_DEFAULTTHEME" : "Par d&eacute;faut",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_THEMEZONE": "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce th&egrave;me ?",
+      "ADD_THEMEZONE": "Ajouter un th&egrave;me",
+      "ADD_EDIT": {
+        "TITLE": "Edition d'un th&egrave;me",
+        "BACKGROUND_IMAGE": "Image de fond",
+        "BACKGROUND_VIDEO": "Vid&eacute;o de fond",
+        "BACKGROUND_COLOR": "Couleur de fond",
+        "FONT": "Police",
+        "OPACITY": "Opacit&eacute;",
+        "BORDER": "Bordure",
+        "BORDER_RADIUS": "Arrondi de bordure",
+        "COLOR": "Couleur du texte",
+        "ZINDEX": "Z-index",
+        "CLOSE": "Fermer"
+      }
+    },
+    "THEMESDI" : {
+      "THEMESDI_LIST" : "Liste des th&egrave;mes de SDI",
+      "THEMESDI_NAME" : "Nom",
+      "THEMESDI_DESCRIPTION" : "Description",
+      "THEMESDI_DEFAULTTHEME" : "Par d&eacute;faut",
+      "THEMESDI_THEMEZONE" : "Th&egrave;me de zone",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_THEMESDI": "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce th&egrave;me ?",
+      "ADD_THEMESDI": "Ajouter un th&egrave;me",
+      "ADD_EDIT": {
+        "TITLE": "Edition d'un th&egrave;me",
+        "BACKGROUND_IMAGE": "Image de fond",
+        "BACKGROUND_VIDEO": "Vid&eacute;o de fond",
+        "BACKGROUND_COLOR": "Couleur de fond",
+        "FONT": "Police",
+        "OPACITY": "Opacit&eacute;",
+        "COLOR": "Couleur du texte",
+        "CLOSE": "Fermer"
+      }
+    },
+    "PARAMTYPE": {
+      "PARAMTYPE_LIST" : "Liste des types de param&egrave;tres",
+      "PARAMTYPE_NAME" : "Nom",
+      "PARAMTYPE_DESCRIPTION" : "Description",
+      "PARAMTYPE_TYPE" : "Type de donn&eacute;e",
+      "PARAMTYPE_CONSTRAINT" : "Contrainte impos&eacute;e",
+      "PARAMTYPE_VALUE" : "Valeur par d&eacute;faut",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_PARAMTYPE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce type de param&egrave;tre ?",
+      "ADD_PARAMTYPE" : "Ajouter un nouveau type de param&egrave;tre",
+      "ADD_EDIT" : {
+        "TITLE": "Edition d'un param&egrave;tre",
+        "CLOSE": "Fermer"
+      }
+    },
+    "CONSTRAINTPARAMTYPE": {
+      "CONSTRAINTPARAMTYPE_LIST" : "Liste des contraintes pour les types de param&egrave;tres",
+      "CONSTRAINTPARAMTYPE_NAME" : "Nom",
+      "CONSTRAINTPARAMTYPE_DESCRIPTION" : "Description",
+      "CONSTRAINTPARAMTYPE_TYPE" : "Type de donn&eacute;e",
+      "CONSTRAINTPARAMTYPE_VALUES" : "Valeurs",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_CONSTRAINTPARAMTYPE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer cette contrainte ?",
+      "ADD_CONSTRAINTPARAMTYPE" : "Ajouter une nouvelle contrainte",
+      "ADD_EDIT" : {
+        "TITLE": "Edition d'une contrainte",
+        "CLOSE": "Fermer"
+      }
+    },
+    "TYPEPARAMTYPE": {
+      "TYPEPARAMTYPE_LIST" : "Liste des types primitifs des types de param&egrave;tres",
+      "TYPEPARAMTYPE_NAME" : "Nom",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_TYPEPARAMTYPE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce type primitif ?",
+      "ADD_TYPEPARAMTYPE" : "Ajouter un nouveau type",
+      "ADD_EDIT" : {
+        "TITLE": "Edition d'un type",
+        "CLOSE": "Fermer"
+      }
+    },
+    "INFOTYPE": {
+      "INFOTYPE_LIST" : "Liste des types d'information",
+      "INFOTYPE_NAME" : "Nom",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_INFOTYPE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce type d'information ?",
+      "ADD_INFOTYPE" : "Ajouter un nouveau type",
+      "ADD_EDIT" : {
+        "TITLE": "Editer un type",
+        "CLOSE": "Fermer"
+      }
+    },
+    "SERVICE": {
+      "SERVICE_LIST" : "Liste des services",
+      "SERVICE_NAME" : "Nom",
+      "SERVICE_DESCRIPTION" : "Description",
+      "SERVICE_HOST" : "H&ocirc;te",
+      "SERVICE_OAUTH" : "Authentification",
+      "SERVICE_PROVIDER" : "Provider",
+      "SERVICE_LOGO" : "Logo",
+      "SERVICE_SOURCES_NUMBER" : "Nombre de sources",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_SERVICE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce service ?",
+      "ADD_SERVICE" : "Ajouter un nouveau service",
+      "ADD_EDIT" : {
+        "TITLE": "Editer un service",
+        "CLOSE": "Fermer"
+      }
+    },
+    "SOURCE" : {
+      "SOURCE_LIST" : "Liste des sources",
+      "SOURCE_NAME" : "Nom",
+      "SOURCE_SERVICE" : "Service",
+      "SOURCE_DESCRIPTION" : "Description",
+      "SOURCE_METHOD" : "M&eacute;thode",
+      "SOURCE_REFRESHTIME" : "Dur&eacute;e de rafraichissement",
+      "SOURCE_INFOTYPE" : "Type d'information",
+      "SOURCE_PARAMS" : "Param&egrave;tres",
+      "SOURCE_VALUES" : "Valeurs par d&eacute;faut",
+      "ADD_SOURCE" : "Ajouter une source",
+      "ISCOMPLETE" : "Complet",
+      "SOURCE_ISSTATIC": "Statique",
+      "CONFIRM_DELETE_SOURCE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer cette source ?",
+      "ADD_EDIT": {
+        "TITLE": "Editer la source",
+        "CLOSE": "Fermer",
+        "REMOVE": "Supprimer"
+      }
+    },
+    "RENDERER" : {
+      "RENDERER_LIST" : "Liste des renderers",
+      "RENDERER_NAME" : "Nom",
+      "RENDERER_DESCRIPTION" : "Description",
+      "RENDERER_INFOTYPE" : "Type d'information",
+      "RENDERER_THEMES" : "Themes",
+      "ISCOMPLETE" : "Complet",
+      "ADD_RENDERER" : "Ajouter un renderer",
+      "CONFIRM_DELETE_RENDERER" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce renderer ?",
+      "ADD_EDIT": {
+        "TITLE": "Editer la source",
+        "CLOSE": "Fermer",
+        "REMOVE": "Supprimer",
+        "ADD": "Ajouter"
+      }
+    },
+    "BEHAVIOUR": {
+      "BEHAVIOUR_LIST" : "Liste des behaviours",
+      "BEHAVIOUR_NAME" : "Nom",
+      "BEHAVIOUR_DESCRIPTION" : "Description",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_BEHAVIOUR" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce behaviour ?",
+      "ADD_BEHAVIOUR" : "Ajouter un nouveau behaviour",
+      "ADD_EDIT" : {
+        "TITLE": "Editer un behaviour",
+        "CLOSE": "Fermer"
+      }
+    },
+    "POLICY": {
+      "POLICY_LIST" : "Liste des politiques",
+      "POLICY_NAME" : "Nom",
+      "POLICY_DESCRIPTION" : "Description",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_POLICY" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer cette politique ?",
+      "ADD_POLICY" : "Ajouter une nouvelle politique",
+      "ADD_EDIT" : {
+        "TITLE": "Editer une politique",
+        "CLOSE": "Fermer"
+      }
+    },
+    "SYSTEMTRIGGER": {
+      "SYSTEMTRIGGER_LIST" : "Liste des system triggers",
+      "SYSTEMTRIGGER_NAME" : "Nom",
+      "SYSTEMTRIGGER_DESCRIPTION" : "Description",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_SYSTEMTRIGGER" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce system trigger?",
+      "ADD_SYSTEMTRIGGER" : "Ajouter un nouveau system trigger",
+      "ADD_EDIT" : {
+        "TITLE": "Editer un system trigger",
+        "CLOSE": "Fermer"
+      }
+    },
+    "USERTRIGGER": {
+      "USERTRIGGER_LIST" : "Liste des user triggers",
+      "USERTRIGGER_NAME" : "Nom",
+      "USERTRIGGER_DESCRIPTION" : "Description",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_USERTRIGGER" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer cet user trigger?",
+      "ADD_USERTRIGGER" : "Ajouter un nouvel user trigger",
+      "ADD_EDIT" : {
+        "TITLE": "Editer un user trigger",
+        "CLOSE": "Fermer"
+      }
+    },
+    "TIMELINERUNNER": {
+      "TIMELINERUNNER_LIST" : "Liste des timeline runners",
+      "TIMELINERUNNER_NAME" : "Nom",
+      "TIMELINERUNNER_DESCRIPTION" : "Description",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_TIMELINERUNNER" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce timeline runner?",
+      "ADD_TIMELINERUNNER" : "Ajouter un nouveau timeline runner",
+      "ADD_EDIT" : {
+        "TITLE": "Editer un timeline runner",
+        "CLOSE": "Fermer"
+      }
+    },
+    "PROFIL": {
+      "CLIENT": {
+        "TITLE": "Clients connectés",
+        "CONNECTED_HOUR": "Heure de connection",
+        "IP": "IP",
+        "AUTHORIZE_CLIENT": "Autoriser",
+        "RELOAD_CLIENT": "Recharger",
+        "IDENTIFY_CLIENT": "Identifier"
+      }
+    },
+    "USER": {
+      "USER_LIST" : "Liste des utilisateurs",
+      "USERNAME" : "Nom d'utilisateur",
+      "EMAIL" : "Email",
+      "LASTIP": "Derni&egrave;re IP",
+      "SDIS": "Liste des SDI",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_USER" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer cet utilisateur ?",
+      "ADD_USER" : "Ajouter un nouvel utilisateur",
+      "ADD_EDIT" : {
+        "TITLE": "Editer un utilisateur",
+        "CLOSE": "Fermer",
+        "REMOVE": "Supprimer"
+      },
+      "RESETPASSWORD": {
+        "ACTION": "Changer le mot de passe",
+        "TITLE": "Changement de mot de passe",
+        "PASS": "Nouveau mot de passe",
+        "PASS2": "Entrez &agrave; nouveau le mot de passe",
+        "DISPLAYPASS": "Montrer le mot de passe"
+      }
     }
 }

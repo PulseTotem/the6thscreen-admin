@@ -14,23 +14,28 @@ angular.module('T6SCustomization')
     $scope.zones = [];
     $scope.selectedTimelines = [];
     $scope.neutralZoneContent = {
-      "id" : -1
+      "id" : -1,
+      "relativeTimeline": {
+        "name" : ""
+      }
     };
 
     backendSocket.on('CompleteProfilDescription', function(response) {
       callbackManager(response, function (profil) {
           $scope.profil = profil;
           $scope.profilName = profil.name;
+          $scope.profilHash = profil.hash;
 
           $scope.profil.zoneContents.forEach(function(zc) {
-            if(zc.absoluteTimeline != null) {
+            /*if(zc.absoluteTimeline != null) {
               $scope.selectedTimelines[zc.zone.id] = zc.absoluteTimeline;
             } else {
               if(zc.relativeTimeline != null) {
                 $scope.selectedTimelines[zc.zone.id] = zc.relativeTimeline;
               }
-            }
+            }*/
 
+            $scope.selectedTimelines[zc.zone.id] = zc;
           });
 
         },
@@ -42,6 +47,8 @@ angular.module('T6SCustomization')
 
     backendSocket.on('ZoneContentsFromZoneId', function (response) {
       callbackManager(response, function (infoCT) {
+        infoCT.zoneContents.splice(0, 0, $scope.neutralZoneContent);
+
         $scope.zones.push(infoCT);
 
         if($scope.zones.length == $scope.sdi.zones.length) {
@@ -96,6 +103,24 @@ angular.module('T6SCustomization')
       }
     }, true);
 
+    $scope.$watch(function () {
+      return $scope.profilHash;
+    }, function() {
+      if($scope.profilId != -1 && $scope.profil != null && $scope.profil.hash != $scope.profilHash) {
+        backendSocket.on('AnswerUpdateProfil', function (response) {
+          callbackManager(response, function (profil) {
+              $scope.profil.complete = profil.complete;
+            },
+            function (fail) {
+              console.error(fail);
+            }
+          );
+        });
+
+        saveAttribute("UpdateProfil", $scope.profilId, "setHash", $scope.profilHash);
+      }
+    }, true);
+
     $scope.addZoneContent = function(zoneId, zoneContent) {
       var zoneContentJSON = JSON.parse(zoneContent);
 
@@ -117,18 +142,20 @@ angular.module('T6SCustomization')
 
       } else {
 
-        backendSocket.on('AnswerUpdateProfil', function (response) {
-          callbackManager(response, function (profil) {
-              $scope.profil.complete = profil.complete;
-              $scope.selectedTimelines[zoneId] = zoneContentJSON;
-            },
-            function (fail) {
-              console.error(fail);
-            }
-          );
-        });
+        if(zoneContentJSON.id != -1) {
+          backendSocket.on('AnswerUpdateProfil', function (response) {
+            callbackManager(response, function (profil) {
+                $scope.profil.complete = profil.complete;
+                $scope.selectedTimelines[zoneId] = zoneContentJSON;
+              },
+              function (fail) {
+                console.error(fail);
+              }
+            );
+          });
 
-        saveAttribute("UpdateProfil", $scope.profilId, "addZoneContent", zoneContentJSON.id);
+          saveAttribute("UpdateProfil", $scope.profilId, "addZoneContent", zoneContentJSON.id);
+        }
       }
     };
 

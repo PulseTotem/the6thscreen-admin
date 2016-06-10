@@ -1,0 +1,28 @@
+<h3 translate="THEMEZONE.THEMEZONE_LIST"></h3>
+
+<table class="table table-striped">
+  <tr>
+    <th>#</th>
+    <th translate="THEMEZONE.THEMEZONE_NAME">Nom</th>
+    <th translate="THEMEZONE.THEMEZONE_DESCRIPTION">Description</th>
+    <th translate="THEMEZONE.THEMEZONE_DEFAULTTHEME">Par défaut</th>
+    <th translate="THEMEZONE.ISCOMPLETE">Complete</th>
+    <th></th>
+  </tr>
+
+  <tr ng-repeat="theme in themeZones | orderBy:'id'">
+    <td>{{ theme.id }}</td>
+    <td>{{ theme.name }}</td>
+    <td>{{ theme.description }}</td>
+    <td>{{ theme.defaultTheme }}</td>
+    <td>{{ theme.complete }}</td>
+    <td>
+      <a type="button" class="btn btn-default" ng-click="editThemeZone(theme)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_EDIT' | translate }}</a>
+      <button type="button" class="btn btn-danger" ng-click="deleteThemeZone(theme.id)" ng-confirm-click="{{ 'THEMEZONE.CONFIRM_DELETE_THEMEZONE' | translate }} ({{ theme.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_DELETE' | translate }}</button>
+    </td>
+  </tr>
+</table>
+
+<div style="float: right">
+  <a ng-click="createThemeZone()" class="btn btn-primary" translate><i class="icon-plus icon-white"></i> THEMEZONE.ADD_THEMEZONE</a>
+</div>

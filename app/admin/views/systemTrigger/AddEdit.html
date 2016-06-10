@@ -1,0 +1,24 @@
+<div class="modal-content" ng-controller="T6SAdmin.AddEditSystemTriggerCtrl">
+  <div class="modal-header">
+    <h3 translate="SYSTEMTRIGGER.ADD_EDIT.TITLE"></h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <td translate="SYSTEMTRIGGER.SYSTEMTRIGGER_NAME">Nom</td>
+        <td>
+          <a href="#" editable-text="systemTrigger.name" onaftersave="saveSystemTriggerAttribute('setName', systemTrigger.name)">{{ systemTrigger.name || 'No name information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="SYSTEMTRIGGER.SYSTEMTRIGGER_DESCRIPTION">Description</td>
+        <td>
+          <a href="#" editable-textarea="systemTrigger.description" onaftersave="saveSystemTriggerAttribute('setDescription', systemTrigger.description)">{{ systemTrigger.description || 'No description information' }}</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" ng-click="close()" translate="SYSTEMTRIGGER.ADD_EDIT.CLOSE" ng-class="{ 'btn-danger': !systemTrigger.complete, 'btn-primary': systemTrigger.complete}">Fermer</button>
+  </div>
+</div>

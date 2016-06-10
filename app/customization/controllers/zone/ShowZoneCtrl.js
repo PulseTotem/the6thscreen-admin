@@ -8,10 +8,11 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SCustomization')
-  .controller('T6SCustomization.ShowZoneCtrl', ['$scope', '$routeParams', 'backendSocket', 'callbackManager', function ($scope, $routeParams, backendSocket, callbackManager) {
+  .controller('T6SCustomization.ShowZoneCtrl', ['$scope', '$rootScope', '$routeParams', 'backendSocket', 'callbackManager', function ($scope, $rootScope, $routeParams, backendSocket, callbackManager) {
 
     $scope.zoneId = $routeParams.zoneId;
     $scope.sdiId = $routeParams.sdiId;
+    $rootScope.currentZone = $scope.zoneId;
     $scope.zone = {};
     $scope.relativeTimelines = [];
     $scope.absoluteTimelines = [];

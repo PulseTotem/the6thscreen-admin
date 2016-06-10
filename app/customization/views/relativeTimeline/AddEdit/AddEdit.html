@@ -1,4 +1,10 @@
 <div class="container-fluid" ng-controller="T6SCustomization.AddEditRelativeTimelineCtrl">
+  <ol class="breadcrumb">
+    <li><a ng-href="/">Home</a></li>
+    <li><a ng-href="/custom/sdi/{{ currentSDI }}">SDI</a></li>
+    <li><a ng-href="/custom/sdi/{{ currentSDI }}/zone/{{ currentZone }}">Timelines</a></li>
+    <li class="active">{{ timelineName }}</li>
+  </ol>
   <div class="row">
     <div class="col-md-12 customization-timeline-name">
       <h2 editable-text="timelineName" e-form="timelineNameForm">
@@ -22,7 +28,8 @@
         <ul class="customization-timeline-calltypes">
           <li ng-repeat="callType in service.callTypes" class="customization-timeline-calltype pull-left"
               ng-drag="true" ng-drag-data="callType" ng-center-anchor="true" ng-drag-success="onDragComplete($data,$event)">
-            Source : {{callType.source.name}}
+            Name : {{callType.name}} <br />
+            Source : {{callType.source.name}}<br />
             Renderer : {{callType.renderer.name}}
           </li>
           <li class="clearfix">&nbsp;</li>
