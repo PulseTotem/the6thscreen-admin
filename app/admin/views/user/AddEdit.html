@@ -17,13 +17,13 @@
         </td>
       </tr>
       <tr>
-        <td translate="USER.SDIS">SDIs</td>
+        <td translate="USER.TEAM">Team</td>
         <td>
-          <select class="form-control" ng-model="selectedSDI" ng-change="linkSDI()">
-            <option ng-repeat="sdi in availableSDIs | orderBy:'id'" ng-value="sdi.id">{{sdi.name}}</option>
+          <select class="form-control" ng-model="selectedTeam" ng-change="linkTeam()">
+            <option ng-repeat="team in availableTeams | orderBy:'id'" ng-value="team.id">{{team.name}}</option>
           </select>
           <ul>
-            <li ng-repeat="sdi in user.sdis | orderBy:'id'">{{ sdi.name}} <button class="btn btn-danger" ng-click="removeSDI(sdi.id)" translate="USER.ADD_EDIT.REMOVE">Remove</button></li>
+            <li ng-repeat="team in user.teams | orderBy:'id'">{{ team.name}} <button class="btn btn-danger" ng-if="teamCanBeRemoved(team.id)" ng-click="removeTeam(team.id)" translate="USER.ADD_EDIT.REMOVE">Remove</button></li>
           </ul>
         </td>
       </tr>
