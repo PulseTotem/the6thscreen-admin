@@ -10,14 +10,14 @@
 angular.module('T6SAdmin')
   .controller('T6SAdmin.AddEditUserCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', 'saveAttribute', '$filter', function ($scope, $routeParams, backendSocket, callbackManager, saveAttribute, $filter) {
 
-    $scope.retrievedSDIs = [];
-    $scope.availableSDIs = [];
-    $scope.selectedSDI = null;
+    $scope.retrievedTeams = [];
+    $scope.availableTeams = [];
+    $scope.selectedTeam = null;
 
-    backendSocket.on('AllSDIDescription', function(response) {
-      callbackManager(response, function (allSDIs) {
-          $scope.retrievedSDIs = allSDIs;
-          $scope.updateSDI();
+    backendSocket.on('AllTeamDescription', function(response) {
+      callbackManager(response, function (allTeams) {
+          $scope.retrievedTeams = allTeams;
+          $scope.updateTeam();
         },
         function (fail) {
           console.error(fail);
@@ -25,39 +25,43 @@ angular.module('T6SAdmin')
       );
     });
 
-    backendSocket.emit('RetrieveAllSDIDescription');
+    backendSocket.emit('RetrieveAllTeamDescription');
 
-    $scope.updateSDI = function () {
-      $scope.availableSDIs = $filter('filter')($scope.retrievedSDIs, function (value) {
-        var filteredList = $filter('filter')($scope.user.sdis, function (value2) {
+    $scope.updateTeam = function () {
+      $scope.availableTeams = $filter('filter')($scope.retrievedTeams, function (value) {
+        var filteredList = $filter('filter')($scope.user.teams, function (value2) {
           return value2.id == value.id;
         });
         return filteredList.length == 0;
       });
     };
 
-    $scope.linkSDI = function () {
-      if ($scope.selectedSDI != null) {
-        $scope.user.sdis.push($filter('filter')($scope.availableSDIs, function (value) {
-          return value.id == $scope.selectedSDI;
+    $scope.teamCanBeRemoved = function (teamId) {
+      return $scope.user.defaultTeam.id != teamId;
+    };
+
+    $scope.linkTeam = function () {
+      if ($scope.selectedTeam != null) {
+        $scope.user.teams.push($filter('filter')($scope.availableTeams, function (value) {
+          return value.id == $scope.selectedTeam;
         })[0]);
-        $scope.saveUserAttribute("addSDI", $scope.selectedSDI);
-        $scope.selectedSDI = null;
+        $scope.saveUserAttribute("addTeam", $scope.selectedTeam);
+        $scope.selectedTeam = null;
       }
     };
 
-    $scope.removeSDI = function (sdiId) {
-      $scope.saveUserAttribute("removeSDI", sdiId);
-      $scope.user.sdis = $filter('filter')($scope.user.sdis, function (value) {
+    $scope.removeTeam = function (teamId) {
+      $scope.saveUserAttribute("removeTeam", teamId);
+      $scope.user.teams = $filter('filter')($scope.user.teams, function (value) {
         return value.id != paramId;
       });
-      $scope.updateSDI();
+      $scope.updateTeam();
     };
 
     backendSocket.on('AnswerUpdateUser', function(response) {
       callbackManager(response, function (user) {
           $scope.user.complete = user.complete;
-          $scope.updateSDI();
+          $scope.updateTeam();
         },
         function (fail) {
           console.error(fail);

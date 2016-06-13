@@ -25,7 +25,8 @@
           "SYSTEMTRIGGER": "System Trigger",
           "USERTRIGGER": "User Trigger",
           "TIMELINERUNNER" : "Timeline Runner",
-          "USER": "Utilisateur"
+          "USER": "Utilisateur",
+          "TEAM": "Equipe"
         },
         "LANGUAGE" : "Langage",
         "ENGLISH" : "English",
@@ -340,8 +341,8 @@
       "USER_LIST" : "Liste des utilisateurs",
       "USERNAME" : "Nom d'utilisateur",
       "EMAIL" : "Email",
-      "LASTIP": "Derni&egrave;re IP",
-      "SDIS": "Liste des SDI",
+      "LASTIP": "Dernière IP",
+      "TEAM": "Liste des équipes",
       "ISCOMPLETE" : "Complet",
       "CONFIRM_DELETE_USER" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer cet utilisateur ?",
       "ADD_USER" : "Ajouter un nouvel utilisateur",
@@ -356,6 +357,22 @@
         "PASS": "Nouveau mot de passe",
         "PASS2": "Entrez &agrave; nouveau le mot de passe",
         "DISPLAYPASS": "Montrer le mot de passe"
+      }
+    },
+    "TEAM": {
+      "TEAM_LIST" : "Liste des équipes",
+      "NAME" : "Nom",
+      "OWNER" : "Possesseur",
+      "USERS": "Liste des utilisateurs",
+      "SDIS": "Liste des SDIs",
+      "DEFAULTTEAM": "Equipe par défaut",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_TEAM" : "Etes-vous sûr de vouloir supprimer cette équipe ?",
+      "ADD_TEAM" : "Ajouter une nouvelle équipe",
+      "ADD_EDIT" : {
+        "TITLE": "Editer une équipe",
+        "CLOSE": "Fermer",
+        "REMOVE": "Supprimer"
       }
     }
 }

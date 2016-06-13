@@ -83,6 +83,10 @@ angular
         templateUrl: '../admin/views/user/List.html',
         controller: 'T6SAdmin.ListUserCtrl'
       })
+      .when('/admin/team', {
+        templateUrl: '../admin/views/team/List.html',
+        controller: 'T6SAdmin.ListTeamCtrl'
+      })
 
       // Routes for customization stuff
       .when('/custom/', {

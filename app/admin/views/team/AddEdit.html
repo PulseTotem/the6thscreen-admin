@@ -1,0 +1,49 @@
+<div class="modal-content" ng-controller="T6SAdmin.AddEditTeamCtrl">
+  <div class="modal-header">
+    <h3 translate="TEAM.ADD_EDIT.TITLE"></h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <td translate="TEAM.NAME">Nom</td>
+        <td>
+          <a href="#" editable-text="team.name" onaftersave="saveTeamAttribute('setName', team.name)">{{ team.name || 'No name information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="TEAM.OWNER"></td>
+        <td>
+          <a ng-if="!team.isDefaultTeam" href="#" editable-select="team.owner.id" e-ng-options="user.id as user.username for user in retrievedUsers" onaftersave="linkOwner(team.owner.id)">
+            {{ selectedOwner }}
+          </a>
+          <span ng-if="team.isDefaultTeam">{{ team.owner.username }} ( {{ team.owner.email }})</span>
+        </td>
+      </tr>
+      <tr>
+        <td translate="TEAM.USERS">Users</td>
+        <td>
+          <select class="form-control" ng-model="selectedUser" ng-change="linkUser()">
+            <option ng-repeat="user in availableUsers | orderBy:'id'" value="{{ user.id }}">{{user.username}} ({{user.email}})</option>
+          </select>
+          <ul>
+            <li ng-repeat="user in team.users | orderBy:'id'">{{ user.username}} <button class="btn btn-danger" ng-if="userCanBeRemoved(user.id)" ng-click="removeUser(user.id)" translate="TEAM.ADD_EDIT.REMOVE">Remove</button></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td translate="TEAM.SDIS">SDIs</td>
+        <td>
+          <select class="form-control" ng-model="selectedSDI" ng-change="linkSDI()">
+            <option ng-repeat="sdi in availableSDIs | orderBy:'id'" value="{{ sdi.id }}">{{sdi.name}} [{{ sdiTeamName(sdi) }} - {{ sdi.id }}]</option>
+          </select>
+          <ul>
+            <li ng-repeat="sdi in team.sdis | orderBy:'id'">{{ sdi.name }} <button class="btn btn-danger" ng-click="removeSDI(sdi.id)" translate="TEAM.ADD_EDIT.REMOVE">Remove</button></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" ng-click="close()" translate="TEAM.ADD_EDIT.CLOSE" ng-class="{ 'btn-danger': !team.complete, 'btn-primary': team.complete}">Fermer</button>
+  </div>
+</div>
