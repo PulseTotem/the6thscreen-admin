@@ -25,7 +25,8 @@
           "SYSTEMTRIGGER": "System Trigger",
           "USERTRIGGER": "User Trigger",
           "TIMELINERUNNER" : "Timeline Runner",
-          "USER": "Utilisateur"
+          "USER": "Utilisateur",
+          "TEAM": "Equipe"
         },
         "LANGUAGE" : "Langage",
         "ENGLISH" : "English",
@@ -356,6 +357,22 @@
         "PASS": "Nouveau mot de passe",
         "PASS2": "Entrez &agrave; nouveau le mot de passe",
         "DISPLAYPASS": "Montrer le mot de passe"
+      }
+    },
+    "TEAM": {
+      "TEAM_LIST" : "Liste des équipes",
+      "NAME" : "Nom",
+      "OWNER" : "Possesseur",
+      "USERS": "Liste des utilisateurs",
+      "SDIS": "Liste des SDIs",
+      "DEFAULTTEAM": "Equipe par défaut",
+      "ISCOMPLETE" : "Complet",
+      "CONFIRM_DELETE_TEAM" : "Etes-vous sûr de vouloir supprimer cette équipe ?",
+      "ADD_TEAM" : "Ajouter une nouvelle équipe",
+      "ADD_EDIT" : {
+        "TITLE": "Editer une équipe",
+        "CLOSE": "Fermer",
+        "REMOVE": "Supprimer"
       }
     }
 }
