@@ -74,7 +74,7 @@ angular.module('T6SAdmin')
       modalInstance.result.then(function () {
         backendSocket.emit('RetrieveAllTeamDescription');
       }, function () {
-        $scope.user = null;
+        $scope.team = null;
       });
     };
   }]);
