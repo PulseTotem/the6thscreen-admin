@@ -26,7 +26,8 @@
         "USERTRIGGER": "User Trigger",
         "TIMELINERUNNER" : "Timeline Runner",
         "USER": "User",
-        "TEAM": "Team"
+        "TEAM": "Team",
+        "PROVIDER": "Provider"
       },
         "LANGUAGE" : "Language",
         "ENGLISH": "English",
@@ -371,6 +372,20 @@
       "ADD_TEAM" : "Add a new team",
       "ADD_EDIT" : {
         "TITLE": "Edit a team",
+        "CLOSE": "Close",
+        "REMOVE": "Remove"
+      }
+    },
+    "PROVIDER": {
+      "LIST" : "List of providers",
+      "NAME" : "Name",
+      "DESCRIPTION": "Description",
+      "SOURCE": "Source",
+      "ISCOMPLETE" : "Complete",
+      "CONFIRM_DELETE_PROVIDER" : "Are you sure you want to delete this provider?",
+      "ADD_PROVIDER" : "Add a new provider",
+      "ADD_EDIT" : {
+        "TITLE": "Edit provider",
         "CLOSE": "Close",
         "REMOVE": "Remove"
       }
