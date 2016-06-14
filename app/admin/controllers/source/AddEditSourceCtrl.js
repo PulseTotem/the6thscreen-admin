@@ -12,6 +12,7 @@ angular.module('T6SAdmin')
 
     $scope.allInfoTypes = [];
     $scope.allServices = [];
+    $scope.allProviders = [];
     $scope.retrievedParameters = [];
     $scope.availableParameters = [];
     $scope.selectedParam = null;
@@ -39,6 +40,18 @@ angular.module('T6SAdmin')
     });
 
     backendSocket.emit('RetrieveAllServiceDescription');
+
+    backendSocket.on('AllProviderDescription', function(response) {
+      callbackManager(response, function (allProviders) {
+          $scope.allProviders = allProviders;
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
+
+    backendSocket.emit('RetrieveAllProviderDescription');
 
     backendSocket.on('AllParamTypeDescription', function(response) {
       callbackManager(response, function (allParamTypes) {
@@ -115,6 +128,14 @@ angular.module('T6SAdmin')
       }
       var selected = $filter('filter')($scope.allServices, {id: $scope.source.service.id});
       return ($scope.source.service && selected.length) ? selected[0].name : 'Not set';
+    };
+
+    $scope.showSelectedProvider = function () {
+      if (!$scope.source.provider) {
+        return 'Not set';
+      }
+      var selected = $scope.allProviders.filter(function (element) { return element.id == $scope.source.provider.id ;});
+      return ($scope.source.provider && selected.length) ? selected[0].name : 'Not set';
     };
 
     $scope.close = function () {
