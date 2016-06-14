@@ -43,6 +43,14 @@
         </td>
       </tr>
       <tr>
+        <td translate="SOURCE.SOURCE_PROVIDER">Provider</td>
+        <td>
+          <a href="#" editable-select="source.provider.id" e-ng-options="provider.id as provider.name for provider in allProviders" onaftersave="saveSourceAttribute('linkProvider', source.provider.id)">
+            {{ showSelectedProvider() }}
+          </a>
+        </td>
+      </tr>
+      <tr>
         <td translate="SOURCE.SOURCE_INFOTYPE">InfoType</td>
         <td>
           <a href="#" editable-select="source.infoType.id" e-ng-options="infoType.id as infoType.name for infoType in allInfoTypes" onaftersave="saveSourceAttribute('linkInfoType', source.infoType.id)">
