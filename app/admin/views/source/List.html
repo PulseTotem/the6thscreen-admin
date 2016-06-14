@@ -8,6 +8,7 @@
     <th translate="SOURCE.SOURCE_METHOD">Method</th>
     <th translate="SOURCE.SOURCE_REFRESHTIME">Refresh Time</th>
     <th translate="SOURCE.SOURCE_SERVICE">Service</th>
+    <th translate="SOURCE.SOURCE_PROVIDER">Provider</th>
     <th translate="SOURCE.SOURCE_INFOTYPE">InfoType</th>
     <th translate="SOURCE.SOURCE_PARAMS">Parameters</th>
     <th translate="SOURCE.SOURCE_VALUES">Default values</th>
@@ -23,6 +24,7 @@
     <td>{{ source.method }}</td>
     <td>{{ source.refreshTime }}</td>
     <td>{{ source.service.name }}</td>
+    <td>{{ source.provider.name }}</td>
     <td>{{ source.infoType.name }}</td>
     <td><ul><li ng-repeat="parameter in source.paramTypes | orderBy:'id'">{{ parameter.name }}</li></ul></td>
     <td><ul><li ng-repeat="values in source.paramValues | orderBy:'id'">{{ values.value }}</li></ul></td>

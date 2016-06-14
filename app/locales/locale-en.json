@@ -26,7 +26,8 @@
         "USERTRIGGER": "User Trigger",
         "TIMELINERUNNER" : "Timeline Runner",
         "USER": "User",
-        "TEAM": "Team"
+        "TEAM": "Team",
+        "PROVIDER": "Provider"
       },
         "LANGUAGE" : "Language",
         "ENGLISH": "English",
@@ -219,10 +220,8 @@
       "SERVICE_NAME" : "Name",
       "SERVICE_DESCRIPTION" : "Description",
       "SERVICE_HOST" : "Host",
-      "SERVICE_OAUTH" : "Authentication",
-      "SERVICE_PROVIDER" : "Provider",
       "SERVICE_LOGO" : "Logo",
-      "SERVICE_SOURCES_NUMBER" : "Number of sources",
+      "SERVICE_SOURCES" : "Sources",
       "ISCOMPLETE" : "Complete",
       "CONFIRM_DELETE_SERVICE" : "Are you sure you want to delete this service?",
       "ADD_SERVICE" : "Add a new service",
@@ -235,6 +234,7 @@
       "SOURCE_LIST" : "List of sources",
       "SOURCE_NAME" : "Name",
       "SOURCE_SERVICE" : "Service",
+      "SOURCE_PROVIDER" : "Provider",
       "SOURCE_DESCRIPTION" : "Description",
       "SOURCE_METHOD" : "Method",
       "SOURCE_REFRESHTIME" : "Refresh Time",
@@ -371,6 +371,20 @@
       "ADD_TEAM" : "Add a new team",
       "ADD_EDIT" : {
         "TITLE": "Edit a team",
+        "CLOSE": "Close",
+        "REMOVE": "Remove"
+      }
+    },
+    "PROVIDER": {
+      "LIST" : "List of providers",
+      "NAME" : "Name",
+      "DESCRIPTION": "Description",
+      "SOURCE": "Source",
+      "ISCOMPLETE" : "Complete",
+      "CONFIRM_DELETE_PROVIDER" : "Are you sure you want to delete this provider?",
+      "ADD_PROVIDER" : "Add a new provider",
+      "ADD_EDIT" : {
+        "TITLE": "Edit provider",
         "CLOSE": "Close",
         "REMOVE": "Remove"
       }

@@ -1,0 +1,35 @@
+<div class="modal-content" ng-controller="T6SAdmin.AddEditProviderCtrl">
+  <div class="modal-header">
+    <h3 translate="PROVIDER.ADD_EDIT.TITLE"></h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <td translate="PROVIDER.NAME">Nom</td>
+        <td>
+          <a href="#" editable-text="provider.name" onaftersave="saveProviderAttribute('setName', provider.name)">{{ provider.name || 'No name information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="PROVIDER.DESCRIPTION">Description</td>
+        <td>
+          <a href="#" editable-text="provider.description" onaftersave="saveProviderAttribute('setDescription', provider.description)">{{ provider.description || 'No description information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="PROVIDER.SOURCE">Source</td>
+        <td>
+          <select class="form-control" ng-model="selectedSource" ng-change="linkSource()">
+            <option ng-repeat="source in availableSources | orderBy:'id'" ng-value="source.id">{{source.name}}</option>
+          </select>
+          <ul>
+            <li ng-repeat="source in provider.sources | orderBy:'id'">{{ source.name}} <button class="btn btn-danger" ng-click="removeSource(source.id)" translate="PROVIDER.ADD_EDIT.REMOVE">Remove</button></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" ng-click="close()" translate="PROVIDER.ADD_EDIT.CLOSE" ng-class="{ 'btn-danger': !infoType.complete, 'btn-primary': infoType.complete}">Fermer</button>
+  </div>
+</div>
