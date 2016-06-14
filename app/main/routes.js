@@ -149,6 +149,14 @@ angular
         templateUrl: '../configuration/views/oauth/list.html',
         controller: 'T6SConfiguration.ListOAuthCtrl'
         })
+      .when('/config/oauth/:providerId/add', {
+        templateUrl: '../configuration/views/oauth/AddEdit.html',
+        controller: 'T6SConfiguration.AddOAuthCtrl'
+      })
+      .when('/config/oauth/:oauthkeyId/edit', {
+        templateUrl: '../configuration/views/oauth/AddEdit.html',
+        controller: 'T6SConfiguration.EditOAuthCtrl'
+      })
       .when('/config/sdi/', {
           templateUrl: '../configuration/views/sdi/list.html',
           controller: 'T6SConfiguration.ListSDICtrl'

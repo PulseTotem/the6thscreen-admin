@@ -1,9 +1,35 @@
 <h1 translate="OAUTH.LIST"></h1>
 
-<ul>
-    <li ng-repeat="service in services | filter:oauthOnly">
-        {{service.name}}
-        <button class="btn btn-success ng-hide" ng-show="!oauthDone(service.id)" id="service_signin_{{service.id}}" ng-click="signIn(service)" translate="OAUTH.SERVICE_SIGNIN"></button>
-        <button class="btn btn-danger ng-hide" ng-show="oauthDone(service.id)" id="service_signout_{{service.id}}" ng-click="signOut(service)" ng-confirm-click="{{ 'OAUTH.CONFIRM_DELETE_OAUTHKEY' | translate }}" translate="OAUTH.SERVICE_SIGNOUT"></button>
-    </li>
-</ul>
+<div class="row">
+  <div class="col-sm-6 col-md-4" ng-repeat="provider in providers | orderBy:'id'">
+    <div class="thumbnail">
+      <img ng-src="{{provider.logo}}">
+
+      <div class="caption">
+        <h3>{{provider.name}}</h3>
+        <p>{{provider.description}}</p>
+        <h4><span class="badge">{{oauthDone(provider.id).length}}</span> {{'OAUTH.OAUTH_DONE' | translate}}</h4>
+        <table class="table table-striped" ng-show="oauthDone(provider.id).length > 0">
+          <thead>
+          <tr>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="oauthDone in oauthDone(provider.id) | orderBy:'id'">
+            <th>{{oauthDone.name}}</th>
+            <td>
+              <a class="btn btn-primary" ng-href="/config/oauth/{{oauthDone.id}}/edit" translate="ACTIONS.ACTION_EDIT"></a>
+              <button class="btn btn-danger"
+                        ng-click="signOut(oauthDone)" ng-confirm-click="{{ 'OAUTH.CONFIRM_DELETE_OAUTHKEY' | translate }}"
+                        translate="OAUTH.SERVICE_SIGNOUT"></button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <p><a class="btn btn-success" ng-href="/config/oauth/{{provider.id}}/add" translate="OAUTH.NEW_OAUTHKEY"></a></p>
+      </div>
+    </div>
+  </div>
+</div>

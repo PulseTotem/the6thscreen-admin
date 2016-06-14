@@ -109,10 +109,17 @@
         "CALLTYPE_DESCRIPTION" : "Description"
     },
     "OAUTH" : {
-      "LIST" : "Liste des autorisations d'acc&egrave;es aux services disponibles",
+      "LIST" : "Liste des autorisations d'acc&egrave;es aux providers disponibles",
+      "OAUTH_DONE" : " autorisations pour ce provider",
       "SERVICE_SIGNIN" : "Se connecter",
       "SERVICE_SIGNOUT" : "Supprimer l'acc&egrave;s",
-      "CONFIRM_DELETE_OAUTHKEY" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer l'acc&egrave;s &agrave; ce service ?"
+      "CONFIRM_DELETE_OAUTHKEY" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer l'acc&egrave;s &agrave; ce service ?",
+      "NEW_OAUTHKEY" : "Ajouter une nouvelle autorisation",
+      "OAUTHKEY_NAME" : "Nom",
+      "OAUTHKEY_DESCRIPTION" : "Description",
+      "ADD_EDIT" : {
+        "TITLE" : "Edition de l'autorisation"
+      }
     },
     "ACTIONS" : {
       "ACTION_ADD" : "Ajouter",

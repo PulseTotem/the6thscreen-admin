@@ -1,0 +1,38 @@
+<div class="row" ng-controller="T6SConfiguration.AddEditOAuthCtrl">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 translate="OAUTH.ADD_EDIT.TITLE"></h2>
+        <h4>Provider: {{oauth.provider.name}}</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-striped">
+          <tr>
+            <td translate="OAUTH.OAUTHKEY_NAME"></td>
+            <td>
+              <a href="#" editable-text="oauth.name" onaftersave="saveOAuthAttribute('setName', oauth.name)">{{ oauth.name || 'No name information' }}</a>
+            </td>
+          </tr>
+          <tr>
+            <td translate="OAUTH.OAUTHKEY_DESCRIPTION"></td>
+            <td>
+              <a href="#" editable-textarea="oauth.description" e-rows="4" e-cols="40" onaftersave="saveOAuthAttribute('setDescription', oauth.description)">{{ oauth.description || 'No description information' }}</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-success" ng-hide="oauth.value != ''"
+                ng-click="signIn()"
+                translate="OAUTH.SERVICE_SIGNIN"></button>
+        <button class="btn btn-danger" ng-hide="oauth.value == ''"
+                ng-click="signOut()" ng-confirm-click="{{ 'OAUTH.CONFIRM_DELETE_OAUTHKEY' | translate }}"
+                translate="OAUTH.SERVICE_SIGNOUT"></button>
+      </div>
+    </div>
+  </div>
+</div>

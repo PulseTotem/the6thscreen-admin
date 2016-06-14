@@ -8,11 +8,20 @@
  * Controller of the T6SConfiguration
  */
 angular.module('T6SConfiguration')
-  .controller('T6SConfiguration.ListOAuthCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', 'oauthdManager', function ($rootScope, $scope, backendSocket, callbackManager, oauthdManager) {
+  .controller('T6SConfiguration.ListOAuthCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', function ($rootScope, $scope, backendSocket, callbackManager) {
 
-    backendSocket.on('AllServiceDescription', function(response) {
-      callbackManager(response, function (allServices) {
-          $scope.services = allServices;
+    $scope.providersDone = false;
+    $scope.userOAuthKeysDone = false;
+
+    backendSocket.on('AllProviderDescription', function(response) {
+      callbackManager(response, function (allProviders) {
+          $scope.providers = allProviders;
+          $scope.providersDone = true;
+
+          if($scope.providersDone && $scope.userOAuthKeysDone) {
+            $scope.checkAllOauthFromProviders();
+          }
+
         },
         function (fail) {
           console.error(fail);
@@ -20,54 +29,23 @@ angular.module('T6SConfiguration')
       );
     });
 
-    backendSocket.emit('RetrieveAllServiceDescription');
+    backendSocket.emit('RetrieveAllProviderDescription');
 
     $scope.userOAuthKeys = [];
 
-    $rootScope.user.oauthkeys.forEach(function(oauthKey) {
-      backendSocket.on('OAuthKeyDescription_' + oauthKey.id, function(response) {
-        callbackManager(response, function (OAuthKey) {
-            $scope.userOAuthKeys.push(OAuthKey);
-          },
-          function (fail) {
-            console.error(fail);
-          }
-        );
-      });
-
-      backendSocket.emit('RetrieveOAuthKeyDescription', {"oauthKeyId" : oauthKey.id});
-    });
-
-    $scope.oauthOnly = function(element) {
-      return element.oauth;
-    };
-
-    $scope.oauthDone = function(serviceId) {
-      var done = false;
-      $scope.userOAuthKeys.forEach(function(oauthKey) {
-        if(oauthKey.service.id == serviceId) {
-          done = true;
-        }
-      });
-
-      return done;
-    };
-
-    $scope.signIn = function(service) {
-      oauthdManager.connectToProvider(service.provider, function(oauthKeyValue) {
-        var oauthKey = {
-          "userId": $rootScope.user.id,
-          "serviceId": service.id,
-          "name": "OAuthKey_" + $rootScope.user.id + "_" + service.id + "_" + service.provider,
-          "description": "",
-          "value": JSON.stringify(oauthKeyValue)
-        };
-
-        backendSocket.on('OAuthKeyDescription', function(response) {
+    backendSocket.refreshUser(function() {
+      $rootScope.user.oauthkeys.forEach(function(oauthKey) {
+        backendSocket.on('OAuthKeyDescription_' + oauthKey.id, function(response) {
           callbackManager(response, function (OAuthKey) {
               $scope.userOAuthKeys.push(OAuthKey);
-              $('#service_signin_' + OAuthKey.service.id).hide();
-              $('#service_signout_' + OAuthKey.service.id).show();
+
+              if($scope.userOAuthKeys.length == $rootScope.user.oauthkeys.length) {
+                $scope.userOAuthKeysDone = true;
+
+                if($scope.providersDone && $scope.userOAuthKeysDone) {
+                  $scope.checkAllOauthFromProviders();
+                }
+              }
             },
             function (fail) {
               console.error(fail);
@@ -75,38 +53,47 @@ angular.module('T6SConfiguration')
           );
         });
 
-        backendSocket.emit('CreateOAuthKeyDescription', oauthKey);
+        backendSocket.emit('RetrieveOAuthKeyDescription', {"oauthKeyId" : oauthKey.id});
+      });
+    });
 
+    $scope.oauthDoneList = {};
 
-      }, function(error) {
-        console.log(error);
-      })
+    $scope.oauthDone = function(providerId, force) {
+      if(typeof(force) == "undefined") {
+        force = false;
+      }
+      if(typeof($scope.oauthDoneList[providerId]) == "undefined" || force) {
+        var done = [];
+        $scope.userOAuthKeys.forEach(function (oauthKey) {
+          if (oauthKey.provider.id == providerId) {
+            done.push(oauthKey);
+          }
+        });
+
+        $scope.oauthDoneList[providerId] = done;
+
+        return done;
+      } else {
+        return $scope.oauthDoneList[providerId];
+      }
     };
 
-    $scope.signOut = function(service) {
-
-      var oauthId = -1;
-      $scope.userOAuthKeys.forEach(function(oauthKey) {
-        if(oauthKey.service.id == service.id) {
-          oauthId = oauthKey.id;
-        }
+    $scope.checkAllOauthFromProviders = function() {
+      $scope.providers.forEach(function(provider) {
+        $scope.oauthDone(provider.id, true);
       });
+    };
 
-      if(oauthId == -1) {
-        return false;
-      }
-
+    $scope.signOut = function(oauth) {
       backendSocket.on('AnswerDeleteOAuthKey', function (response) {
         callbackManager(response, function (oauthId) {
           $scope.userOAuthKeys = $scope.userOAuthKeys.filter(function (element) { return (element.id != oauthId); });
-          $('#service_signin_' + service.id).show();
-          $('#service_signout_' + service.id).hide();
+          $scope.oauthDone(oauth.provider.id, true);
         })
       });
 
-      backendSocket.emit('DeleteOAuthKey', {"oauthKeyId": oauthId});
+      backendSocket.emit('DeleteOAuthKey', {"oauthKeyId": oauth.id});
     };
-
-
 
   }]);
