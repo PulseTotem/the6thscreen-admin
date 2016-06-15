@@ -88,8 +88,9 @@
       },
       "CALL_ADDEDIT" : {
         "ADVANCED_PARAMETERS" : "Advanced parameters",
+        "OAUTHKEY" : "Authentication Key",
         "NEEDS_OAUTHKEY" : "You need to log in to service {{providername}}.",
-        "NEEDS_SELECT_OAUTHKEY" : "You need to select an authorization in this list",
+        "NEEDS_SELECT_OAUTHKEY" : "You need to select an Authentication Key in this list",
         "RENDERER_THEME" : "Choose another renderer theme",
         "RENDERER_THEME_NO_CHOICE" : "No more choice for renderer themes"
       },

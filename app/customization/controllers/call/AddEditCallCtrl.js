@@ -273,7 +273,8 @@ angular.module('T6SCustomization')
     };
 
     $scope.updateOAuthKey = function(newOAuthKey) {
-      if(newOAuthKey != null) {
+      if(newOAuthKey != "") {
+        newOAuthKey = JSON.parse(newOAuthKey);
         backendSocket.on('AnswerUpdateCall', function (response) {
           callbackManager(response, function (call) {
               $scope.call.oAuthKey = newOAuthKey;
@@ -284,7 +285,7 @@ angular.module('T6SCustomization')
           );
         });
 
-        saveAttribute("UpdateCall", $scope.call.id, "linkOAuthKey", firstOAuthKey.id);
+        saveAttribute("UpdateCall", $scope.call.id, "linkOAuthKey", newOAuthKey.id);
       } else {
         if($scope.call.oAuthKey != null) {
           backendSocket.on('AnswerUpdateCall', function (response) {
