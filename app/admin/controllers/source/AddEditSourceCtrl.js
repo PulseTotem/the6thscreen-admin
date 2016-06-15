@@ -92,10 +92,6 @@ angular.module('T6SAdmin')
 
     $scope.linkParamType = function () {
       if ($scope.selectedParam != null) {
-        console.log("Selected paramType :");
-        console.log($scope.selectedParam);
-        console.log("Available params :");
-        console.log($scope.availableParameters);
         $scope.source.paramTypes.push($filter('filter')($scope.availableParameters, function (value) {
           return value.id == $scope.selectedParam;
         })[0]);
