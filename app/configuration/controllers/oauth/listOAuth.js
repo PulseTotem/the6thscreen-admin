@@ -8,7 +8,7 @@
  * Controller of the T6SConfiguration
  */
 angular.module('T6SConfiguration')
-  .controller('T6SConfiguration.ListOAuthCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', function ($rootScope, $scope, backendSocket, callbackManager) {
+  .controller('T6SConfiguration.ListOAuthCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', 'oauthdManager', 'saveAttribute', function ($rootScope, $scope, backendSocket, callbackManager, oauthdManager, saveAttribute) {
 
     $scope.providersDone = false;
     $scope.userOAuthKeysDone = false;
@@ -85,7 +85,36 @@ angular.module('T6SConfiguration')
       });
     };
 
+    backendSocket.on('AnswerUpdateOAuthKey', function(response) {
+      callbackManager(response, function (newOAuthKey) {
+          $scope.userOAuthKeys.forEach(function(oauthkey) {
+            if(oauthkey.id == newOAuthKey.id) {
+              oauthkey.name = newOAuthKey.name;
+              oauthkey.description = newOAuthKey.description;
+              oauthkey.value = newOAuthKey.value;
+              oauthkey.complete = newOAuthKey.complete;
+            }
+          });
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
+
+    $scope.signIn = function(oauth, provider) {
+      oauthdManager.connectToProvider(provider.name, function(oauthKeyValue) {
+        saveAttribute("UpdateOAuthKey", oauth.id, "setValue", JSON.stringify(oauthKeyValue));
+      }, function(error) {
+        console.log(error);
+      })
+    };
+
     $scope.signOut = function(oauth) {
+      saveAttribute("UpdateOAuthKey", oauth.id, "setValue", "");
+    };
+
+    $scope.delete = function(oauth) {
       backendSocket.on('AnswerDeleteOAuthKey', function (response) {
         callbackManager(response, function (oauthId) {
           $scope.userOAuthKeys = $scope.userOAuthKeys.filter(function (element) { return (element.id != oauthId); });

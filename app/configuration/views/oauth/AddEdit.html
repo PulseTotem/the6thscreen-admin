@@ -1,5 +1,10 @@
 <div class="row" ng-controller="T6SConfiguration.AddEditOAuthCtrl">
   <div class="col-md-12">
+    <ol class="breadcrumb">
+      <li><a ng-href="/">Home</a></li>
+      <li><a ng-href="/config/oauth/">{{'OAUTH.LIST' | translate}}</a></li>
+      <li class="active">{{oauth.provider.name}} - {{oauth.name}}</li>
+    </ol>
     <div class="row">
       <div class="col-md-12">
         <h2 translate="OAUTH.ADD_EDIT.TITLE"></h2>
@@ -29,9 +34,12 @@
         <button class="btn btn-success" ng-hide="oauth.value != ''"
                 ng-click="signIn()"
                 translate="OAUTH.SERVICE_SIGNIN"></button>
-        <button class="btn btn-danger" ng-hide="oauth.value == ''"
-                ng-click="signOut()" ng-confirm-click="{{ 'OAUTH.CONFIRM_DELETE_OAUTHKEY' | translate }}"
+        <button class="btn btn-warning" ng-hide="oauth.value == ''"
+                ng-click="signOut()" ng-confirm-click="{{ 'OAUTH.CONFIRM_SIGNOUT_OAUTHKEY' | translate }}"
                 translate="OAUTH.SERVICE_SIGNOUT"></button>
+        <button class="btn btn-danger"
+                ng-click="delete()" ng-confirm-click="{{ 'OAUTH.CONFIRM_DELETE_OAUTHKEY' | translate }}"
+                translate="ACTIONS.ACTION_DELETE"></button>
       </div>
     </div>
   </div>

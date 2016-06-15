@@ -21,9 +21,15 @@
             <th>{{oauthDone.name}}</th>
             <td>
               <a class="btn btn-primary" ng-href="/config/oauth/{{oauthDone.id}}/edit" translate="ACTIONS.ACTION_EDIT"></a>
-              <button class="btn btn-danger"
-                        ng-click="signOut(oauthDone)" ng-confirm-click="{{ 'OAUTH.CONFIRM_DELETE_OAUTHKEY' | translate }}"
+              <button class="btn btn-success" ng-hide="oauthDone.value != ''"
+                      ng-click="signIn(oauthDone, provider)"
+                      translate="OAUTH.SERVICE_SIGNIN"></button>
+              <button class="btn btn-warning" ng-hide="oauthDone.value == ''"
+                        ng-click="signOut(oauthDone)" ng-confirm-click="{{ 'OAUTH.CONFIRM_SIGNOUT_OAUTHKEY' | translate }}"
                         translate="OAUTH.SERVICE_SIGNOUT"></button>
+              <button class="btn btn-danger"
+                      ng-click="delete(oauthDone)" ng-confirm-click="{{ 'OAUTH.CONFIRM_DELETE_OAUTHKEY' | translate }}"
+                      translate="ACTIONS.ACTION_DELETE"></button>
             </td>
           </tr>
           </tbody>
