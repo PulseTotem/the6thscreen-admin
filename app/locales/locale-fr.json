@@ -183,6 +183,7 @@
       "PARAMTYPE_CONSTRAINT" : "Contrainte impos&eacute;e",
       "PARAMTYPE_VALUE" : "Valeur par d&eacute;faut",
       "PARAMTYPE_SOURCE" : "Sources",
+      "PARAMTYPE_NB_PARAMVALUES" : "Nombre de ParamValues",
       "ISCOMPLETE" : "Complet",
       "CONFIRM_DELETE_PARAMTYPE" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce type de param&egrave;tre ?",
       "ADD_PARAMTYPE" : "Ajouter un nouveau type de param&egrave;tre",
