@@ -7,13 +7,15 @@
     <th>#</th>
     <th translate="DASHBOARD.SDI_NAME"></th>
     <th translate="DASHBOARD.SDI_DESCRIPTION"></th>
+    <th translate="DASHBOARD.SDI_TEAM"></th>
     <th>Complete</th>
   </tr>
 
-  <tr ng-repeat="sdi in listSDI | orderBy:'id'">
+  <tr ng-repeat="sdi in listSDI | orderBy:'id'" ng-class="{'danger': !sdi.team}">
     <td><a ng-href="/custom/sdi/{{sdi.id}}">{{ sdi.id }}</a></td>
     <td><a ng-href="/custom/sdi/{{sdi.id}}">{{ sdi.name }}</a></td>
     <td><a ng-href="/custom/sdi/{{sdi.id}}">{{ sdi.description }}</a></td>
+    <td><a ng-href="/custom/sdi/{{sdi.id}}">{{ sdi.team.name }}</a></td>
     <td>{{ sdi.complete }}</td>
   </tr>
 </table>

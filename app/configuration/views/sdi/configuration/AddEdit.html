@@ -1,5 +1,8 @@
 <div ng-controller="T6SConfiguration.AddEditSDICtrl">
   <h2><a editable-text="sdi.name" onaftersave="updateSDIName()">{{ sdi.name || 'Choose a name' }}</a></h2>
+  <h3>Team: <a ng-class="{'danger': !sdi.team}" href="#" editable-select="sdi.team.id" e-ng-options="team.id as team.name for team in retrievedTeams" onaftersave="linkTeam(sdi.team.id)">
+    {{ selectedTeam }}
+  </a></h3>
 
   <div ng-include="'configuration/views/sdi/configuration/MenuSDITheme.html'"></div>
   <div ng-include="'configuration/views/sdi/configuration/MenuService.html'"></div>

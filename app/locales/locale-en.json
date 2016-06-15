@@ -63,7 +63,8 @@
     "DASHBOARD" : {
         "WELCOME" : "Welcome {{username}}, here are Digital Signages you can edit.",
         "SDI_NAME" : "Name",
-        "SDI_DESCRIPTION" : "Description"
+        "SDI_DESCRIPTION" : "Description",
+        "SDI_TEAM": "Team"
     },
     "CUSTOMIZATION" : {
       "SDI_SHOW" : {

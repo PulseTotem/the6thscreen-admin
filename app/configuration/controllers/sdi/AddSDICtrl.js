@@ -19,7 +19,7 @@ angular.module('T6SConfiguration')
 
       callbackManager(response, function (sdi) {
           $scope.sdi = sdi;
-          saveAttribute("UpdateSDI", $scope.sdi.id, "addUser", $rootScope.user.id);
+          saveAttribute("UpdateSDI", $scope.sdi.id, "linkTeam", $rootScope.user.defaultTeam.id);
         },
         function (fail) {
           console.error(fail);

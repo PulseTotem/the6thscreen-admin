@@ -63,7 +63,8 @@
     "DASHBOARD" : {
         "WELCOME" : "Bienvenue {{username}}, voici les SDI auxquels vous avez acc&egrave;s.",
         "SDI_NAME" : "Nom",
-        "SDI_DESCRIPTION" : "Description"
+        "SDI_DESCRIPTION" : "Description",
+        "SDI_TEAM": "Equipe"
     },
     "CUSTOMIZATION" : {
       "SDI_SHOW" : {

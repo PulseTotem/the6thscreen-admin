@@ -19,6 +19,35 @@ angular.module('T6SConfiguration')
     $scope.current_service = null;
     $scope.current_calltype = null;
     $scope.authorize_zone_creation = true;
+    $scope.retrievedTeams = [];
+
+    backendSocket.on('AllTeamDescription', function(response) {
+      callbackManager(response, function (allTeams) {
+          $scope.retrievedTeams = allTeams;
+          $scope.updateSelectedTeam();
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
+
+    backendSocket.emit('RetrieveAllTeamDescription');
+
+    $scope.updateSelectedTeam = function () {
+      if (!$scope.sdi.team) {
+        $scope.selectedTeam = 'You must link this SDI to a team!';
+      } else {
+        var selected = $scope.retrievedTeams.filter(function (element) {return element.id == $scope.sdi.team.id;});
+        $scope.selectedTeam = ($scope.sdi.team.id && selected.length) ? selected[0].name : 'You must link this SDI to a team!';
+      }
+    };
+
+    $scope.linkTeam = function (teamId) {
+      $scope.sdi.team.id = teamId;
+      saveAttribute("UpdateSDI", $scope.sdi.id, "linkTeam", teamId);
+      $scope.updateSelectedTeam();
+    };
 
     $scope.refreshZoneInformations = function(zoneJSON) {
       var index = -1;
