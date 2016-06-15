@@ -129,25 +129,6 @@ angular
         controller: 'T6SCustomization.EditProfilCtrl'
       })
 
-      //TODO: Need yet ?
-
-      .when('/custom/sdi/:sdiId/calltype/:callTypeId', {
-        templateUrl: '../customization/views/calltype/show.html',
-        controller: 'T6SCustomization.ShowCallTypeCtrl'
-      })
-      .when('/custom/sdi/:sdiId/calltype/:callTypeId/call/add', {
-        templateUrl: '../customization/views/call/addEdit.html',
-        controller: 'T6SCustomization.AddCallCtrl'
-      })
-      .when('/custom/sdi/:sdiId/calltype/:callTypeId/call/:callId/edit', {
-        templateUrl: '../customization/views/call/AddEdit.html',
-        controller: 'T6SCustomization.EditCallCtrl'
-      })
-      .when('/custom/sdi/:sdiId/call/:callId', {
-        templateUrl: '../customization/views/call/show.html',
-        controller: 'T6SCustomization.ShowCallCtrl'
-      })
-
 
       // Routes for configuration stuff
       .when('/config/', {

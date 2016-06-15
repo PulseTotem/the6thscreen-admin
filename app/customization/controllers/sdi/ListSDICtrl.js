@@ -8,15 +8,17 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SCustomization')
-    .controller('T6SCustomization.ListSDICtrl', ['$rootScope', '$scope', 'backendSocket', function ($rootScope, $scope, backendSocket) {
+    .controller('T6SCustomization.ListSDICtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', function ($rootScope, $scope, backendSocket, callbackManager) {
 
-        $scope.listSDI = [];
-
-        backendSocket.refreshUser(function(){
-          $scope.listSDI = $rootScope.user.sdis;
+        backendSocket.on('AllSDIDescription', function(response) {
+          callbackManager(response, function (allSDIs) {
+              $scope.listSDI = allSDIs;
+            },
+            function (fail) {
+              console.error(fail);
+            }
+          );
         });
 
-        $scope.reloadList = function (newList) {
-          $scope.listSDI = newList;
-        };
+        backendSocket.emit('RetrieveAllSDIDescription');
     }]);

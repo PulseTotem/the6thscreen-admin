@@ -88,7 +88,9 @@
       },
       "CALL_ADDEDIT" : {
         "ADVANCED_PARAMETERS" : "Paramètres avancés",
-        "NEEDS_OAUTHKEY" : "Vous devez vous connecter au service {{servicename}}.",
+        "OAUTHKEY" : "Clef d'authentification",
+        "NEEDS_OAUTHKEY" : "Vous devez vous connecter au service {{providername}}.",
+        "NEEDS_SELECT_OAUTHKEY" : "Vous devez sélectionner une Clef d'authentification dans cette liste",
         "RENDERER_THEME" : "Choisir un autre thème d'affichage",
         "RENDERER_THEME_NO_CHOICE" : "Aucun choix supplémentaire pour le thème d'affichage"
       },
