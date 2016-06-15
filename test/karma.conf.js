@@ -43,6 +43,7 @@ module.exports = function(config) {
       'bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js',
       'bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.js',
       'bower_components/angular-bootstrap-slider/slider.js',
+      'bower_components/angular-filter/dist/angular-filter.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       '../app/configuration/**/*.js',

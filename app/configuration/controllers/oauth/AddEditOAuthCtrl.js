@@ -36,6 +36,10 @@ angular.module('T6SConfiguration')
     };
 
     $scope.signOut = function() {
+      $scope.saveOAuthAttribute("setValue", "");
+    };
+
+    $scope.delete = function() {
       backendSocket.on('AnswerDeleteOAuthKey', function (response) {
         callbackManager(response, function (oauthId) {
           if (!$rootScope.$$phase) {

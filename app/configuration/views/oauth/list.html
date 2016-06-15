@@ -1,7 +1,7 @@
 <h1 translate="OAUTH.LIST"></h1>
 
-<div class="row">
-  <div class="col-sm-6 col-md-4" ng-repeat="provider in providers | orderBy:'id'">
+<div class="row" ng-repeat="providersGroups in providers | chunkBy:3 | orderBy:'id'">
+  <div class="col-md-4" ng-repeat="provider in providersGroups | orderBy:'id'">
     <div class="thumbnail">
       <img ng-src="{{provider.logo}}">
 
@@ -21,9 +21,15 @@
             <th>{{oauthDone.name}}</th>
             <td>
               <a class="btn btn-primary" ng-href="/config/oauth/{{oauthDone.id}}/edit" translate="ACTIONS.ACTION_EDIT"></a>
-              <button class="btn btn-danger"
-                        ng-click="signOut(oauthDone)" ng-confirm-click="{{ 'OAUTH.CONFIRM_DELETE_OAUTHKEY' | translate }}"
+              <button class="btn btn-success" ng-hide="oauthDone.value != ''"
+                      ng-click="signIn(oauthDone, provider)"
+                      translate="OAUTH.SERVICE_SIGNIN"></button>
+              <button class="btn btn-warning" ng-hide="oauthDone.value == ''"
+                        ng-click="signOut(oauthDone)" ng-confirm-click="{{ 'OAUTH.CONFIRM_SIGNOUT_OAUTHKEY' | translate }}"
                         translate="OAUTH.SERVICE_SIGNOUT"></button>
+              <button class="btn btn-danger"
+                      ng-click="delete(oauthDone)" ng-confirm-click="{{ 'OAUTH.CONFIRM_DELETE_OAUTHKEY' | translate }}"
+                      translate="ACTIONS.ACTION_DELETE"></button>
             </td>
           </tr>
           </tbody>

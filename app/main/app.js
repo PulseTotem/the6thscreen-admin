@@ -24,6 +24,7 @@ angular
     'btford.socket-io',
     'xeditable',
     'angularSpinner',
+    'angular.filter',
     'T6SConfiguration',
     'T6SAdmin',
     'T6SCustomization'
