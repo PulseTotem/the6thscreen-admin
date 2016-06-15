@@ -11,6 +11,7 @@ angular.module('T6SAdmin')
   .controller('T6SAdmin.ListTeamCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', '$uibModal', function ($rootScope, $scope, backendSocket, callbackManager, $uibModal) {
 
     var CONSTANT_MODAL_ADD_EDIT_TPT = "admin/views/team/AddEdit.html";
+    var CONSTANT_MODAL_MANAGE_OAUTH = "admin/views/team/ManageTeamOAuth.html";
 
     $scope.teams = [];
 
@@ -66,6 +67,24 @@ angular.module('T6SAdmin')
       var modalInstance = $uibModal.open({
         animation: true,
         templateUrl: CONSTANT_MODAL_ADD_EDIT_TPT,
+        scope: $scope,
+        backdrop: 'static',
+        keyboard: false
+      });
+
+      modalInstance.result.then(function () {
+        backendSocket.emit('RetrieveAllTeamDescription');
+      }, function () {
+        $scope.team = null;
+      });
+    };
+
+    $scope.manageOAuth = function (team) {
+
+      $scope.team = team;
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: CONSTANT_MODAL_MANAGE_OAUTH,
         scope: $scope,
         backdrop: 'static',
         keyboard: false

@@ -375,7 +375,7 @@
       "OWNER" : "Possesseur",
       "USERS": "Liste des utilisateurs",
       "SDIS": "Liste des SDIs",
-      "DEFAULTTEAM": "Equipe par défaut",
+      "NB_OAUTH": "Nombre d'OAuth",
       "ISCOMPLETE" : "Complet",
       "CONFIRM_DELETE_TEAM" : "Etes-vous sûr de vouloir supprimer cette équipe ?",
       "ADD_TEAM" : "Ajouter une nouvelle équipe",
@@ -383,6 +383,9 @@
         "TITLE": "Editer une équipe",
         "CLOSE": "Fermer",
         "REMOVE": "Supprimer"
+      },
+      "MANAGE_OAUTH": {
+        "TITLE": "Gérer les OAuth"
       }
     },
     "PROVIDER": {
