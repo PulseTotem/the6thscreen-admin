@@ -182,6 +182,7 @@
       "PARAMTYPE_TYPE" : "Type of data",
       "PARAMTYPE_CONSTRAINT" : "Constraint",
       "PARAMTYPE_VALUE" : "Default value",
+      "PARAMTYPE_SOURCE" : "Sources",
       "ISCOMPLETE" : "Complete",
       "CONFIRM_DELETE_PARAMTYPE" : "Are you sure you want to delete this parameter type?",
       "ADD_PARAMTYPE" : "Add a new parameter",
