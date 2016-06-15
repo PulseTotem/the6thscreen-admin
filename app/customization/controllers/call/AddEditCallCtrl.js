@@ -66,6 +66,9 @@ angular.module('T6SCustomization')
             }
           }
 
+          $scope.rendererThemesIsCollapsed = true;
+          backendSocket.emit("RetrieveRendererThemesFromRendererId", {"rendererId": $scope.callType.renderer.id});
+
           if($scope.callType.source.provider != null) {
             backendSocket.emit('RetrieveOAuthKeysFromProviderAndSDI', {'sdiId': $scope.sdiID, 'providerId': $scope.callType.source.provider.id});
           } else {
@@ -106,6 +109,8 @@ angular.module('T6SCustomization')
       $scope.advancedParamValues = [];
       $scope.needsOauth = false;
       $scope.oauthkeys = [];
+      $scope.rendererThemesIsCollapsed = false;
+      $scope.rendererThemes_loaded = false;
 
       if(typeof($scope.event.name) != "undefined") {
         $scope.eventName = $scope.event.name;
