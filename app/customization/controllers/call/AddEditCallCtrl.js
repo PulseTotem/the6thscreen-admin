@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SCustomization')
-  .controller('T6SCustomization.AddEditCallCtrl', ['$rootScope', '$scope', 'backendSocket', 'callbackManager', 'saveAttribute', function ($rootScope, $scope, backendSocket, callbackManager, saveAttribute) {
+  .controller('T6SCustomization.AddEditCallCtrl', ['$rootScope', '$scope', '$routeParams', 'backendSocket', 'callbackManager', 'saveAttribute', function ($rootScope, $scope, $routeParams, backendSocket, callbackManager, saveAttribute) {
     $scope.callType = null;
     $scope.callDesc = null;
     $scope.rendererTheme = null;
@@ -19,16 +19,18 @@ angular.module('T6SCustomization')
     $scope.needsOauth = false;
     $scope.oauthkeys = [];
 
+    $scope.sdiID = $routeParams.sdiId;
+
     //Manage retrieve CallType description and Call description
-    backendSocket.on('OAuthKeysFromServiceAndUser', function(response) {
+    backendSocket.on('OAuthKeysFromProviderAndSDI', function(response) {
       callbackManager(response, function (oauthkeysList) {
           $scope.oauthkeys = oauthkeysList;
 
-          if($scope.oauthkeys.length > 0) {
+          if($scope.call.oAuthKey == null && $scope.oauthkeys.length == 1) {
             var firstOAuthKey = $scope.oauthkeys[0];
-            console.debug("Update oauth");
             backendSocket.on('AnswerUpdateCall', function (response) {
               callbackManager(response, function (call) {
+                  $scope.call.oAuthKey = firstOAuthKey;
                   $scope.needsOauth = true;
                   manageParamValues();
                 },
@@ -64,17 +66,12 @@ angular.module('T6SCustomization')
             }
           }
 
-          if($scope.callType.source.service.oauth) {
-            if($scope.callDesc.oAuthKey == null) {
-              console.log("OAuthKey == null");
-              backendSocket.emit('RetrieveOAuthKeysFromServiceAndUser', {'userId': $rootScope.user.id, 'serviceId': $scope.callType.source.service.id});
-            } else {
-              $scope.needsOauth = false;
-              manageParamValues();
-            }
+          if($scope.callType.source.provider != null) {
+            backendSocket.emit('RetrieveOAuthKeysFromProviderAndSDI', {'sdiId': $scope.sdiID, 'providerId': $scope.callType.source.provider.id});
           } else {
             manageParamValues();
           }
+
         },
         function (fail) {
           console.error(fail);
@@ -273,6 +270,36 @@ angular.module('T6SCustomization')
       });
 
       saveAttribute("UpdateParamValue", id, "setValue", newValue);
+    };
+
+    $scope.updateOAuthKey = function(newOAuthKey) {
+      if(newOAuthKey != null) {
+        backendSocket.on('AnswerUpdateCall', function (response) {
+          callbackManager(response, function (call) {
+              $scope.call.oAuthKey = newOAuthKey;
+            },
+            function (fail) {
+              console.error(fail);
+            }
+          );
+        });
+
+        saveAttribute("UpdateCall", $scope.call.id, "linkOAuthKey", firstOAuthKey.id);
+      } else {
+        if($scope.call.oAuthKey != null) {
+          backendSocket.on('AnswerUpdateCall', function (response) {
+            callbackManager(response, function (call) {
+                $scope.call.oAuthKey = null;
+              },
+              function (fail) {
+                console.error(fail);
+              }
+            );
+          });
+
+          saveAttribute("UpdateCall", $scope.call.id, "unlinkOAuthKey", $scope.call.oAuthKey.id);
+        }
+      }
     };
 
     //Manage Renderer Themes

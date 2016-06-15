@@ -88,7 +88,8 @@
       },
       "CALL_ADDEDIT" : {
         "ADVANCED_PARAMETERS" : "Paramètres avancés",
-        "NEEDS_OAUTHKEY" : "Vous devez vous connecter au service {{servicename}}.",
+        "NEEDS_OAUTHKEY" : "Vous devez vous connecter au service {{providername}}.",
+        "NEEDS_SELECT_OAUTHKEY" : "Vous devez sélectionner une autorisation dans cette liste",
         "RENDERER_THEME" : "Choisir un autre thème d'affichage",
         "RENDERER_THEME_NO_CHOICE" : "Aucun choix supplémentaire pour le thème d'affichage"
       },

@@ -16,8 +16,33 @@
     <div class="row">
       <div class="col-md-12">
           <div ng-show="needsOauth && oauthkeys.length == 0">
-            <p class="bg-danger" translate="CUSTOMIZATION.CALL_ADDEDIT.NEEDS_OAUTHKEY" translate-value-servicename="{{ callType.source.service.name }}"></p>
+            <p class="bg-danger" translate="CUSTOMIZATION.CALL_ADDEDIT.NEEDS_OAUTHKEY" translate-value-providername="{{ callType.source.provider.name }}"></p>
           </div>
+
+          <div class="row" ng-show="needsOauth && oauthkeys.length > 0">
+            <div class="col-md-12">
+              <form novalidate class="form-horizontal">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="form-group paramValueForm">
+                        <div ng-show="call.oAuthKey == null">
+                          <p class="bg-danger" translate="CUSTOMIZATION.CALL_ADDEDIT.NEEDS_SELECT_OAUTHKEY"></p>
+                        </div>
+                        <div class="col-md-6">
+                          <select class="form-control" ng-model="newOAuthKey" ng-change="updateOAuthKey(newOAuthKey)">
+                            <option></option>
+                            <option ng-repeat="auth in oauthkeys">{{auth.name}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
           <t6s-input param-value="eventDuration" save-param-value="saveEventDuration" ng-if="eventDuration.id != -1">
 
           </t6s-input>
