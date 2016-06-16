@@ -1,6 +1,6 @@
 {
-  "name": "the6thscreen-admin",
-  "version": "3.0.0",
+  "name": "pulsetotem-admin",
+  "version": "3.1.0",
   "dependencies": {
     "angular": "<=1.4.10",
     "bootstrap": "<=3.2.0",
