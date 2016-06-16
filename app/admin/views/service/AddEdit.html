@@ -1,0 +1,37 @@
+<div class="modal-content" ng-controller="T6SAdmin.AddEditServiceCtrl">
+  <div class="modal-header">
+    <h3 translate="SERVICE.ADD_EDIT.TITLE"></h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <td translate="SERVICE.SERVICE_NAME">Nom</td>
+        <td>
+          <a href="#" editable-text="service.name" onaftersave="saveServiceAttribute('setName', service.name)">{{ service.name || 'No name information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="SERVICE.SERVICE_DESCRIPTION">Description</td>
+        <td>
+          <a href="#" editable-textarea="service.description" e-rows="4" e-cols="40" onaftersave="saveServiceAttribute('setDescription', service.description)">{{ service.description || 'No description information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="SERVICE.SERVICE_HOST">Host</td>
+        <td>
+          <a href="#" editable-url="service.host" onaftersave="saveServiceAttribute('setHost', service.host)">{{ service.host || 'No host information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="SERVICE.SERVICE_LOGO">Logo</td>
+        <td>
+          <a href="#" editable-url="service.logo" onaftersave="saveServiceAttribute('setLogo', service.logo)">{{ service.logo || 'No logo information' }}</a>
+          <img ng-if="service.logo" ng-src="{{ service.logo }}" style="width: 50px; height: 50px" />
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" ng-click="close()" ng-class="{ 'btn-danger': !service.complete, 'btn-primary': service.complete}" translate="SERVICE.ADD_EDIT.CLOSE">Fermer</button>
+  </div>
+</div>

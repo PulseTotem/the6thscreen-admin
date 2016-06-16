@@ -1,0 +1,40 @@
+<h3 translate="PARAMTYPE.PARAMTYPE_LIST"></h3>
+
+<table class="table table-striped">
+  <tr>
+    <th>#</th>
+    <th translate="PARAMTYPE.PARAMTYPE_NAME">Nom</th>
+    <th translate="PARAMTYPE.PARAMTYPE_DESCRIPTION">Description</th>
+    <th translate="PARAMTYPE.PARAMTYPE_TYPE">Type</th>
+    <th translate="PARAMTYPE.PARAMTYPE_CONSTRAINT">Contrainte</th>
+    <th translate="PARAMTYPE.PARAMTYPE_VALUE">Valeur par défaut</th>
+    <th translate="PARAMTYPE.PARAMTYPE_SOURCE">Source</th>
+    <th translate="PARAMTYPE.PARAMTYPE_NB_PARAMVALUES">Source</th>
+    <th translate="PARAMTYPE.ISCOMPLETE">Complete</th>
+    <th></th>
+  </tr>
+
+  <tr ng-repeat="paramType in paramTypes | orderBy:'id'">
+    <td>{{ paramType.id }}</td>
+    <td>{{ paramType.name }}</td>
+    <td>{{ paramType.description }}</td>
+    <td>{{ paramType.type.name }}</td>
+    <td>{{ paramType.constraint.name }}</td>
+    <td>{{ paramType.defaultValue.value }}</td>
+    <td>
+      <ul>
+        <li ng-repeat="source in paramType.sources  | orderBy:'id'">{{source.name}}</li>
+      </ul>
+    </td>
+    <td>{{ paramType.paramValues.length }}</td>
+    <td>{{ paramType.complete }}</td>
+    <td>
+      <a type="button" class="btn btn-default" ng-click="editParamType(paramType)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_EDIT' | translate }}</a>
+      <button type="button" class="btn btn-danger" ng-click="deleteParamType(paramType.id)" ng-confirm-click="{{ 'PARAMTYPE.CONFIRM_DELETE_PARAMTYPE' | translate }} ({{ paramType.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_DELETE' | translate }}</button>
+    </td>
+  </tr>
+</table>
+
+<div style="float: right">
+  <a ng-click="createParamType()" class="btn btn-primary" translate><i class="icon-plus icon-white"></i> PARAMTYPE.ADD_PARAMTYPE</a>
+</div>

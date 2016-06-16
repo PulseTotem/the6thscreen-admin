@@ -1,0 +1,40 @@
+<h3 translate="TEAM.TEAM_LIST"></h3>
+
+<table class="table table-striped">
+  <tr>
+    <th>#</th>
+    <th translate="TEAM.NAME">Nom</th>
+    <th translate="TEAM.OWNER">Possesseur</th>
+    <th translate="TEAM.USERS">Utilisateurs</th>
+    <th translate="TEAM.SDIS">SDIs</th>
+    <th translate="TEAM.NB_OAUTH">NB Oauth</th>
+    <th translate="USER.ISCOMPLETE">Complete</th>
+    <th></th>
+  </tr>
+
+  <tr ng-repeat="team in teams | orderBy:'id'" ng-class="{'warning': team.isDefaultTeam}">
+    <td>{{ team.id }}</td>
+    <td>{{ team.name }}</td>
+    <td>{{ team.owner.username }} ({{ team.owner.email }})</td>
+    <td>
+      <ul>
+        <li ng-repeat="user in team.users  | orderBy:'id'">{{user.username}} ({{ user.email }})</li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li ng-repeat="sdi in team.sdis  | orderBy:'id'">{{sdi.name}}</li>
+      </ul>
+    </td>
+    <td>{{ team.oauthkeys.length }} <a type="button" class="btn btn-primary" ng-click="manageOAuth(team)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>{{ 'TEAM.MANAGE_OAUTH.TITLE' | translate }}</a></td>
+    <td>{{ team.complete }}</td>
+    <td>
+      <a type="button" class="btn btn-default" ng-click="editTeam(team)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_EDIT' | translate }}</a>
+      <button ng-if="!team.isDefaultTeam" type="button" class="btn btn-danger" ng-click="deleteTeam(team.id)" ng-confirm-click="{{ 'TEAM.CONFIRM_DELETE_TEAM' | translate }} ({{ team.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_DELETE' | translate }}</button>
+    </td>
+  </tr>
+</table>
+
+<div style="float: right">
+  <a ng-click="createTeam()" class="btn btn-primary" translate><i class="icon-plus icon-white"></i> TEAM.ADD_TEAM</a>
+</div>

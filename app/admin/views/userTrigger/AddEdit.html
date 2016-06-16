@@ -1,0 +1,24 @@
+<div class="modal-content" ng-controller="T6SAdmin.AddEditUserTriggerCtrl">
+  <div class="modal-header">
+    <h3 translate="USERTRIGGER.ADD_EDIT.TITLE"></h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <td translate="USERTRIGGER.USERTRIGGER_NAME">Nom</td>
+        <td>
+          <a href="#" editable-text="userTrigger.name" onaftersave="saveUserTriggerAttribute('setName', userTrigger.name)">{{ userTrigger.name || 'No name information' }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td translate="USERTRIGGER.USERTRIGGER_DESCRIPTION">Description</td>
+        <td>
+          <a href="#" editable-textarea="userTrigger.description" onaftersave="saveUserTriggerAttribute('setDescription', userTrigger.description)">{{ userTrigger.description || 'No description information' }}</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" ng-click="close()" translate="USERTRIGGER.ADD_EDIT.CLOSE" ng-class="{ 'btn-danger': !userTrigger.complete, 'btn-primary': userTrigger.complete}">Fermer</button>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<h3 translate="INFOTYPE.INFOTYPE_LIST"></h3>
+
+<table class="table table-striped">
+  <tr>
+    <th>#</th>
+    <th translate="INFOTYPE.INFOTYPE_NAME">Nom</th>
+    <th translate="INFOTYPE.ISCOMPLETE">Complete</th>
+    <th></th>
+  </tr>
+
+  <tr ng-repeat="infoType in infoTypes | orderBy:'id'">
+    <td>{{ infoType.id }}</td>
+    <td>{{ infoType.name }}</td>
+    <td>{{ infoType.complete }}</td>
+    <td>
+      <a type="button" class="btn btn-default" ng-click="editInfoType(infoType)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_EDIT' | translate }}</a>
+      <button type="button" class="btn btn-danger" ng-click="deleteInfoType(infoType.id)" ng-confirm-click="{{ 'INFOTYPE.CONFIRM_DELETE_INFOTYPE' | translate }} ({{ infoType.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_DELETE' | translate }}</button>
+    </td>
+  </tr>
+</table>
+
+<div style="float: right">
+  <a ng-click="createInfoType()" class="btn btn-primary" translate><i class="icon-plus icon-white"></i> INFOTYPE.ADD_INFOTYPE</a>
+</div>

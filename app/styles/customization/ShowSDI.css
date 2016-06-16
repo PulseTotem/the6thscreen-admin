@@ -1,0 +1,49 @@
+#customization-sdi-preview {
+  width: 960px;
+  height: 540px;
+  position: relative;
+  border: solid 1px black;
+}
+
+.customization-sdi-preview-zone {
+  position: absolute;
+  border: solid 1px black;
+}
+
+.customization-sdi-preview-zone-name {
+  text-align: center;
+  border-bottom: dotted 1px black;
+
+  height: 30px;
+}
+
+.customization-sdi-preview-zone-services {
+  height: 100%;
+  width: 100%;
+}
+
+.customization-sdi-preview-zone-service img {
+  width: 30px;
+  height: 30px;
+}
+
+.customization-sdi-preview-zone-service-calltype {
+
+}
+
+.customization-sdi-preview-zone-config {
+  width: 100%;
+  height: 35px;
+  margin-top: -64px;
+  border-top: dotted 1px black;
+}
+
+.customization-sdi-preview-zone-config-timelines {
+  height: 100%;
+  vertical-align: middle;
+  line-height: 35px;
+}
+
+.customization-sdi-preview-zone-config-managetimelines {
+
+}

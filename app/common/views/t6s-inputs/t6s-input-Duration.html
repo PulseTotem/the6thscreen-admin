@@ -1,0 +1,26 @@
+<div class="row" ng-controller="T6SCommon.T6SINPUTS.DurationCtrl">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="form-group paramValueForm" ng-class="{'has-success' : t6sInputValid, 'has-error' : t6sInputInvalid, 'has-feedback' : t6sInputValid || t6sInputInvalid}">
+        <label class="control-label col-md-3" for="paramValue_{{paramValue.id}}">{{paramValue.paramType.name}}</label>
+        <div class="col-md-2">
+          <input class="form-control" id="paramValue_{{paramValue.id}}" type="number" ng-model="hours" min="0" max="23" ng-change="checkValue()" />
+        </div>
+        <label class="control-label col-md-1">h</label>
+        <div class="col-md-2">
+          <input class="form-control" type="number" ng-model="minutes" min="0" max="59" ng-change="checkValue()" />
+        </div>
+        <label class="control-label col-md-1">m</label>
+        <div class="col-md-2">
+          <input class="form-control" type="number" ng-model="seconds" min="0" max="59" ng-change="checkValue()" />
+        </div>
+        <label class="control-label col-md-1">s</label>
+      </div>
+    </div>
+    <div ng-show="t6sInputInvalid" class="row">
+      <div class="col-md-12 t6sInputs_errors">
+        <p class="bg-danger" ng-repeat="error in errors">{{error | translate}}</p>
+      </div>
+    </div>
+  </div>
+</div>

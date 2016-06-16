@@ -1,0 +1,486 @@
+<ol class="breadcrumb">
+  <li><a ng-href="/">Home</a></li>
+  <li><a ng-href="/custom/sdi/{{ currentSDI }}">SDI</a></li>
+  <li class="active">Timelines</li>
+</ol>
+<div>
+  <h3>{{zone.name }}</h3>
+  <h4>{{ zone.description }}</h4>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h3 translate="CUSTOMIZATION.ZONE_SHOW.RELATIVE_TIMELINES"></h3>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div ng-repeat="relTimeline in relativeTimelines" class="customization-zone-timeline-row">
+          <div class="customization-zone-timeline-description container-fluid" ng-class-odd="'customization-zone-timeline-odd'" ng-class-even="'customization-zone-timeline-even'">
+            <div class="row">
+              <div class="col-md-2" ng-click="showPreview=!showPreview" ng-init="showPreview=false">
+                <span class="glyphicon" aria-hidden="true" ng-class="showPreview?'glyphicon-collapse-up':'glyphicon-collapse-down'"> </span> {{relTimeline.name}}
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span> {{relTimeline.durationString}}
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> {{relTimeline.createdAtString}}
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span> {{relTimeline.updatedAtString}}
+              </div>
+              <div class="col-md-offset-2 col-md-2">
+                <a class="btn btn-primary" ng-href="/custom/sdi/{{sdiId}}/zone/{{zoneId}}/relative/{{relTimeline.id}}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+                <button ng-controller="T6SCustomization.DeleteRelativeTimelineCtrl" class="btn btn-danger" ng-click="deleteRelativeTimeline(relTimeline.id)" ng-confirm-click="{{ 'CUSTOMIZATION.ZONE_SHOW.CONFIRM_DELETE_TIMELINE' | translate }} ({{ relTimeline.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="customization-zone-timeline-preview" ng-show="showPreview">
+            <div class="customization-zone-timeline-preview-event pull-left"
+                 ng-repeat="event in relTimeline.relativeEvents"
+                 style="width: {{(event.duration / relTimeline.duration)*100}}%">
+              <div>
+                {{event.call.name}}
+              </div>
+              <div>
+                {{event.call.callType.name}}
+              </div>
+            </div>
+            <div class="clearfix">&nbsp;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <a class="btn btn-success" ng-href="/custom/sdi/{{sdiId}}/zone/{{zoneId}}/relative/new">{{ 'CUSTOMIZATION.ZONE_SHOW.ADD_RELATIVE_TIMELINE' | translate }}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <h3 translate="CUSTOMIZATION.ZONE_SHOW.ABSOLUTE_TIMELINES"></h3>
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <div ng-repeat="absTimeline in absoluteTimelines"  class="customization-zone-timeline-row">
+          <div class="customization-zone-timeline-description container-fluid" ng-class-odd="'customization-zone-timeline-odd'" ng-class-even="'customization-zone-timeline-even'">
+            <div class="row">
+              <div class="col-md-2" ng-click="showPreview=!showPreview" ng-init="showPreview=false">
+                <span class="glyphicon" aria-hidden="true" ng-class="showPreview?'glyphicon-collapse-up':'glyphicon-collapse-down'"></span> {{absTimeline.name}}
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span> {{absTimeline.durationString}}
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> {{absTimeline.createdAtString}}
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span> {{absTimeline.updatedAtString}}
+              </div>
+              <div class="col-md-offset-3 col-md-1">
+                <a class="btn btn-primary" ng-href="/custom/sdi/{{sdiId}}/zone/{{zoneId}}/absolute/{{absTimeline.id}}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+                <button class="btn btn-danger" ng-click="deleteAbsoluteTimeline(absTimeline.id)" ng-confirm-click="{{ 'CUSTOMIZATION.ZONE_SHOW.CONFIRM_DELETE_TIMELINE' | translate }} ({{ absTimeline.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="customization-zone-timeline-preview" ng-show="showPreview">
+            <div class="customization-zone-timeline-preview-event pull-left"
+                 ng-repeat="event in absTimeline.absoluteEvents"
+                 style="width: {{(event.duration / absTimeline.duration)*100}}%">
+              <div>
+                {{event.relativeTimeline.name}}
+              </div>
+              <div>
+                {{event.relativeTimeline.durationString}}
+              </div>
+            </div>
+            <div class="clearfix">&nbsp;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- fieldset class="searchBox" width="100%">
+  <table width="100%" class="thin">
+    <tr>
+      <td>
+        <label>Search by Name
+          <input id="searchName"
+                 type="checkbox"
+                 ng-init="checkboxModel.searchName = false"
+                 ng-model="checkboxModel.searchName">
+        </label>
+      </td>
+      <td>
+        <label>Search by Type
+          <input id="searchType"
+                 type="checkbox"
+                 ng-model="checkboxModel.searchType"
+                 ng-change="updateTypeSearch()">
+        </label>
+      </td>
+      <td>
+        <label>Search by Duration
+          <input id="searchDuration"
+                 type="checkbox"
+                 ng-model="checkboxModel.searchDuration">
+        </label>
+      </td>
+      <td></td>
+      <td>
+        <a ng-href="/#/AbsoluteEdit">
+          <button class="btn btn-primary" id="absoluteTimelineButton">New Absolute TL</button>
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Search by Creation Date
+          <input id="creationDate"
+                 type="checkbox"
+                 ng-model="checkboxModel.searchCreationDate">
+        </label>
+      </td>
+      <td>
+        <label>Search by Modification Date
+          <input id="modificationDate"
+                 type="checkbox"
+                 ng-model="checkboxModel.searchModificationDate">
+        </label>
+      </td>
+      <td></td>
+      <td></td>
+      <td>
+        <a ng-href="/#/TimelineEdit">
+          <button class="btn btn-primary" id="relativeTimelineButton">New Relative TL</button>
+        </a>
+      </td>
+    </tr>
+  </table>
+  <div ng-show="checkboxModel.searchName">
+    <hr class="simpleSeparator">
+    <label>Search Name:
+      <input id="searchNameInput"
+             type="text"
+             data-ng-model="name"/></label>
+  </div>
+
+  <div ng-show="checkboxModel.searchDuration">
+    <hr class="simpleSeparator">
+    <div>
+      <label>Search Duration:</label>
+    </div>
+
+    <div>
+      <div class="pre">Selected durations are between: <em><input ng-change="changeMinDuration()"
+                                                                  ng-model="duration.minimum.hour"
+                                                                  type="number"
+                                                                  min="0"
+                                                                  max="23"
+                                                                  ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }"
+                                                                  class="searchDurationMin hour"/>h
+        <input ng-change="changeMinDuration()"
+               ng-model="duration.minimum.minute"
+               type="number"
+               min="0"
+               max="59"
+               ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }"
+               class="searchDurationMin minute" />m
+        <input
+          ng-change="changeMinDuration()"
+          ng-model="duration.minimum.seconde"
+          type="number"
+          min="0"
+          max="59"
+          ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }"
+          class="searchDurationMin second"/>s and
+        <input
+          ng-change="changeMaxDuration()"
+          ng-model="duration.maximum.hour"
+          type="number"
+          min="0"
+          max="23"
+          ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }"
+          class="searchDurationMax hour"/>h
+        <input
+          ng-change="changeMaxDuration()"
+          ng-model="duration.maximum.minute"
+          type="number"
+          min="0"
+          max="59"
+          ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }"
+          class="searchDurationMax minute"/>m
+        <input
+          ng-change="changeMaxDuration()"
+          ng-model="duration.maximum.seconde"
+          type="number"
+          min="0"
+          max="59"
+          ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }"
+          class="searchDurationMax second"/>s</em></div>
+      <slider floor='{{ 0 }}'
+              ceiling='{{ 86399 }}'
+              step='{{ 1 }}'
+              precision='{{ 0 }}'
+              ng-init="duration.end = 86399; duration.begin = 0"
+              ng-model='duration.begin'
+              ng-model-range='duration.end'
+              buffer="0"
+              translate-fn='translate'
+              translate-range-fn='translateRange'
+              translate-combined-fn='translateCombined'
+              ng-change="durationMinChange(); durationMaxChange()">
+      </slider>
+    </div>
+  </div>
+
+  <div class="datepickerclass" ng-controller="T6SCustomization.TimelineDatesCtrl">
+    <div ng-show="checkboxModel.searchCreationDate">
+      <hr class="simpleSeparator">
+      <label>Search Creation Date:</label>
+
+      <div>
+        <div class="row">
+          <pre ng-if="dt1 !== undefined && dt1 !== null && (dt2 === undefined || dt2 === null)">Selected date is: <em>{{dt1
+            | date:'fullDate' }}</em></pre>
+          <pre ng-if="dt2 !== undefined && dt2 !== null">Selected dates are between: <em>{{dt1 | date:'fullDate' }}</em> and <em>{{dt2
+            | date:'fullDate' }}</em></pre>
+          <div class="col-md-6">
+            <p class="input-group">
+              <input placeholder="First Date"
+                     type="text"
+                     class="form-control creationDateInputFirst"
+                     datepicker-popup="{{format}}"
+                     ng-model="dt1"
+                     is-open="opened1"
+                     max-date="maxDate"
+                     datepicker-options="dateOptions"
+                     date-disabled="disabled(date, mode)"
+                     ng-required="true"
+                     show-button-bar="false"/>
+            <span class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default"
+                        ng-click="open($event, 'opened1')">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+              </span>
+            </p>
+          </div>
+
+          <div class="col-md-6">
+            <p class="input-group">
+              <input placeholder="Last Date"
+                     ng-disabled="dt1 === undefined || dt1 === null"
+                     type="text"
+                     class="form-control creationDateInputLast"
+                     datepicker-popup="{{format}}"
+                     ng-model="dt2"
+                     is-open="opened2"
+                     min-date="dt1"
+                     max-date="maxDate"
+                     datepicker-options="dateOptions"
+                     date-disabled="disabled(date, mode)"
+                     ng-required="true"
+                     show-button-bar="false"/>
+            <span class="input-group-btn">
+                <button ng-disabled="dt1 === undefined || dt1 === null"
+                        type="button"
+                        class="btn btn-default"
+                        ng-click="open($event, 'opened2')">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+              </span>
+            </p>
+          </div>
+        </div>
+        <button type="button" class="btn btn-sm btn-danger" ng-click="clear('creation')">Clear</button>
+      </div>
+    </div>
+
+    <div ng-show="checkboxModel.searchModificationDate">
+      <hr class="simpleSeparator">
+      <label>Search Modification Date:</label>
+
+      <div>
+        <div class="row">
+          <pre ng-if="dt3 !== undefined && dt3 !== null && (dt4 === undefined || dt4 === null)">Selected date is: <em>{{dt3
+            | date:'fullDate' }}</em></pre>
+          <pre ng-if="dt4 !== undefined && dt4 !== null">Selected dates are between: <em>{{dt3 | date:'fullDate' }}</em> and <em>{{dt4
+            | date:'fullDate' }}</em></pre>
+          <div class="col-md-6">
+            <p class="input-group">
+              <input placeholder="First Date"
+                     type="text"
+                     class="form-control modificationDateInputFirst"
+                     datepicker-popup="{{format}}"
+                     ng-model="dt3"
+                     is-open="opened3"
+                     max-date="maxDate"
+                     datepicker-options="dateOptions"
+                     date-disabled="disabled(date, mode)"
+                     ng-required="true"
+                     show-button-bar="false"/>
+            <span class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default"
+                        ng-click="open($event, 'opened3')">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+              </span>
+            </p>
+          </div>
+
+          <div class="col-md-6">
+            <p class="input-group">
+              <input placeholder="Last Date"
+                     ng-disabled="dt3 === undefined || dt3 === null"
+                     type="text"
+                     class="form-control modificationDateInputLast"
+                     datepicker-popup="{{format}}"
+                     ng-model="dt4"
+                     is-open="opened4"
+                     min-date="dt3"
+                     max-date="maxDate"
+                     datepicker-options="dateOptions"
+                     date-disabled="disabled(date, mode)"
+                     ng-required="true"
+                     show-button-bar="false"/>
+            <span class="input-group-btn">
+                <button ng-disabled="dt3 === undefined || dt3 === null"
+                        type="button"
+                        class="btn btn-default"
+                        ng-click="open($event, 'opened4')">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+              </span>
+            </p>
+          </div>
+        </div>
+        <button type="button" class="btn btn-sm btn-danger" ng-click="clear('modification')">Clear</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div ng-show="checkboxModel.searchType">
+    <hr class="simpleSeparator">
+    <input type="checkbox" id="listRelative" ng-model="bFilterRelative" ng-click="timelineListsRefresh()"><label>List Relative
+    Timelines</label>
+    <br>
+    <input type="checkbox" id="listAbsolute" ng-model="bFilterAbsolute" ng-click="timelineListsRefresh()"><label>List Absolute
+    Timelines</label>
+  </div>
+</fieldset>
+
+<hr>
+
+<div ng-if="resultLength() === 0" width="100%" id="noResults" style="text-align: center">
+  There is currently no Timeline fitting your criteria saved.
+</div>
+
+<table width="100%" ng-repeat="(timelineListKey, timelineList) in timelineLists" ng-if="timelineList.data.length > 0">
+  <tr>
+    <td colspan="9">{{timelineList.name}} Timeline</td>
+  </tr>
+  <tr class="header">
+    <th ng-repeat="header in headers" width={{header.width}}
+        ng-click="setOrdering(timelineListKey, header.value)"
+        ng-class="{button: header.value !== null}"
+        ng-if="(header.name !== 'Duplicate' && timelineListKey === 1) || timelineListKey===0">
+      {{header.name}}
+        <span class="glyphicon"
+              ng-class="{'glyphicon-chevron-down': timelineList.ordering===header.value,'glyphicon-chevron-up': timelineList.ordering==='-'+header.value }"></span>
+    </th>
+  </tr>
+  <tr class="hr">
+    <td colspan="9">
+      <hr>
+    </td>
+  </tr>
+  <tbody ng-repeat="timeline in timelineList.data
+    | filter:filterByName
+    | filter:filterByCreationDate
+    | filter:filterByModificationDate
+    | filter:filterByDuration
+    | orderBy:timelineList.ordering">
+  <tr slide-toggle={{'.preview_'+timeline.name}} class="button"
+      ng-click="timelineProperties[timeline.name].bPreview = !timelineProperties[timeline.name].bPreview"
+      ng-class="{'active': timelineProperties[timeline.name].bPreview}">
+    <td>
+      {{unformatString(timeline.name)}}
+    </td>
+    <td class="td_duration">
+      {{formatTime(timeline.duration, true)}}
+    </td>
+    <td>
+      {{timeline.tags}}
+    </td>
+    <td class="td_creationDate">
+      {{timeline.creationDate}}
+    </td>
+    <td class="td_modificationDate">
+      {{timeline.lastModificationDate}}
+    </td>
+    <td ng-init="timelineProperties[timeline.name].bPreview = false">
+      <img ng-if="timelineProperties[timeline.name].bPreview" class="button" src="images/icon_eye.png"
+           ng-click="timelineProperties[timeline.name].bPreview = true">
+      <img ng-if="!timelineProperties[timeline.name].bPreview" class="button" src="images/icon_eye_crossed.png"
+           ng-click="timelineProperties[timeline.name].bPreview = false">
+    </td>
+    <td ng-if="timelineListKey === 0">
+      <img src="images/icon_duplicate.png"
+           ng-click="$event.stopPropagation();timelineDuplicate(timelineListKey,timeline)" class="button"
+        >
+    </td>
+    <td>
+      <img src="images/icon_edit.png" class="button edit"
+           ng-click="$event.stopPropagation();timelineEdit(timelineListKey, timeline.name)">
+    </td>
+    <td>
+      <img class="button delete" src="images/icon_delete.png"
+           ng-click="$event.stopPropagation();timelineDelete(timelineListKey, timeline.name)">
+    </td>
+  </tr>
+  <tr class="preview" ng-class="{'active': timelineProperties[timeline.name].bPreview}">
+    <td colspan="9" class="preview">
+      <div class="slideable {{'preview_'+timeline.name}}" duration="0.3s">
+        <table width="90%" class="preview">
+          <tr>
+            <td ng-class="{'empty': event.data.empty}" class="preview timeline event"
+                ng-repeat="event in timelineProperties[timeline.name].data"
+                width="{{(event.data.duration / timeline.duration)*100}}%">
+              <div
+                ng-if="widthToPixel((event.data.duration / timeline.duration)*100)  > 75 && event.type==='relative'">
+                {{event.call.name}}
+                <br>
+                {{databaseFeed[event.call.callTypeId].name}}
+              </div>
+              <div
+                ng-if="widthToPixel((event.data.duration / timeline.duration)*100)  > 75 && event.type ==='absolute'">
+                {{unformatString(event.data.name)}}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+  <tr class="hr">
+    <td colspan="9">
+      <hr>
+    </td>
+  </tr>
+  </tbody>
+</table -->

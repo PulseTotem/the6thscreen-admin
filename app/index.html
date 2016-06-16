@@ -1,0 +1,247 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+
+        <base href="/">
+
+        <title>The 6th Screen : Administration Panel</title>
+        <meta name="description" content="The 6th Screen : Administration Panel">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="images/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+        <link rel="manifest" href="images/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="images/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- build:css(.) styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
+        <link rel="stylesheet" href="bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css" />
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/configuration/addEditSDI.css">
+        <link rel="stylesheet" href="styles/customization/ShowSDI.css">
+        <link rel="stylesheet" href="styles/customization/ShowZone.css">
+        <link rel="stylesheet" href="styles/customization/AddEditRelativeTimeline.css">
+        <link rel="stylesheet" href="styles/customization/AddEditCall.css">
+        <link rel="stylesheet" href="styles/customization/Profil.css">
+        <!-- endbuild -->
+
+        <!-- SocketIO -->
+        <script src="https://cdn.socket.io/socket.io-1.3.2.js"></script>
+        <!-- script src="http://localhost:4000/socket.io/socket.io.js"></script -->
+        <!-- endSocketIO -->
+
+    </head>
+  <body ng-app="the6thscreenAdminApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div id="header" ng-include="'common/views/menu-' + header + '.html'" ng-controller="T6SCommon.MenuCtrl">
+
+    </div>
+
+    <div class="container-fluid" id="t6s-main">
+        <span us-spinner spinner-key="pending-request"></span>
+        <div ng-view=""></div>
+    </div>
+
+    <div class="footer">
+      <div class="container-fluid">
+        <p>&copy; The 6th Screen : Administration Panel / 2015 from the <a href="http://www.the6thscreen.fr/">T6S team</a></p>
+      </div>
+    </div>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-socket-io/socket.js"></script>
+    <script src="bower_components/jsSHA/src/sha.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="bower_components/angular-translate-handler-log/angular-translate-handler-log.js"></script>
+    <script src="bower_components/oauth-js/dist/oauth.min.js"></script>
+    <script src="bower_components/ngdraggable/ngDraggable.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+    <script src="bower_components/spin.js/spin.js"></script>
+    <script src="bower_components/angular-spinner/angular-spinner.js"></script>
+    <script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
+    <script src="bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.js"></script>
+    <script src="bower_components/angular-bootstrap-slider/slider.js"></script>
+    <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="main/app.js"></script>
+    <script src="main/translation.js"></script>
+    <script src="main/routes.js"></script>
+
+    <script src="common/common.js"></script>
+    <script src="common/directives/confirmclick.js"></script>
+    <script src="common/directives/t6sInput.js"></script>
+    <script src="common/services/adminConstants.js"></script>
+    <script src="common/services/backendSocketFactory.js"></script>
+    <script src="common/services/callbackmanager.js"></script>
+    <script src="common/services/oauthdManager.js"></script>
+    <script src="common/services/saveAttribute.js"></script>
+    <script src="common/controllers/menu.js"></script>
+    <script src="common/controllers/login.js"></script>
+    <script src="common/controllers/t6s-inputs/StringCtrl.js"></script>
+    <script src="common/controllers/t6s-inputs/EntierCtrl.js"></script>
+    <script src="common/controllers/t6s-inputs/DurationCtrl.js"></script>
+    <script src="common/controllers/t6s-inputs/BooleanCtrl.js"></script>
+    <script src="common/controllers/t6s-inputs/DatetimeCtrl.js"></script>
+    <script src="common/controllers/t6s-inputs/EnumCtrl.js"></script>
+    <script src="common/controllers/t6s-inputs/RangeCtrl.js"></script>
+
+    <script src="configuration/configuration.js"></script>
+    <script src="configuration/services/zoneUtil.js"></script>
+    <script src="configuration/directives/dragZone.js"></script>
+    <script src="configuration/directives/resizeZone.js"></script>
+    <script src="configuration/controllers/sdi/ListSDICtrl.js"></script>
+    <script src="configuration/controllers/sdi/EditSDICtrl.js"></script>
+    <script src="configuration/controllers/sdi/AddSDICtrl.js"></script>
+    <script src="configuration/controllers/sdi/AddEditSDICtrl.js"></script>
+    <script src="configuration/controllers/calltype/AddCallTypeCtrl.js"></script>
+    <script src="configuration/controllers/calltype/AddEditCallTypeCtrl.js"></script>
+    <script src="configuration/controllers/calltype/EditCallTypeCtrl.js"></script>
+    <script src="configuration/controllers/zone/ConfirmDeleteZoneCtrl.js"></script>
+    <script src="configuration/controllers/zone/ZoneSelectBehaviourCtrl.js"></script>
+    <script src="configuration/controllers/zone/SelectEditThemeZoneCtrl.js"></script>
+    <script src="configuration/controllers/sdi/SelectEditThemeSDICtrl.js"></script>
+    <script src="configuration/controllers/sdi/CloneSDICtrl.js"></script>
+
+    <script src="configuration/controllers/services/ListServicesCtrl.js"></script>
+
+    <script src="configuration/controllers/oauth/listOAuth.js"></script>
+    <script src="configuration/controllers/oauth/AddEditOAuthCtrl.js"></script>
+    <script src="configuration/controllers/oauth/AddOAuthCtrl.js"></script>
+    <script src="configuration/controllers/oauth/EditOAuthCtrl.js"></script>
+    <script src="configuration/controllers/sdi/deleteSDI.js"></script>
+    <script src="configuration/controllers/sdi/showSDI.js"></script>
+    <script src="configuration/controllers/zone/showZone.js"></script>
+    <script src="configuration/controllers/zone/editZone.js"></script>
+    <script src="configuration/controllers/zone/addZone.js"></script>
+
+    <script src="customization/customization.js"></script>
+    <script src="customization/controllers/sdi/ListSDICtrl.js"></script>
+    <script src="customization/controllers/sdi/ShowSDICtrl.js"></script>
+    <script src="customization/controllers/zone/ShowZoneCtrl.js"></script>
+    <script src="customization/controllers/relativeTimeline/TimelineDatesCtrl.js"></script>
+    <script src="customization/controllers/relativeTimeline/AddEditRelativeTimelineCtrl.js"></script>
+    <script src="customization/controllers/relativeTimeline/AddRelativeTimelineCtrl.js"></script>
+    <script src="customization/controllers/relativeTimeline/EditRelativeTimelineCtrl.js"></script>
+    <script src="customization/controllers/relativeTimeline/DeleteRelativeTimelineCtrl.js"></script>
+    <script src="customization/controllers/call/AddEditCallCtrl.js"></script>
+    <script src="customization/controllers/profil/ShowProfilCtrl.js"></script>
+    <script src="customization/controllers/profil/AddEditProfilCtrl.js"></script>
+    <script src="customization/controllers/profil/EditProfilCtrl.js"></script>
+    <script src="customization/controllers/profil/AddProfilCtrl.js"></script>
+    <script src="customization/controllers/profil/DeleteProfilCtrl.js"></script>
+    <script src="customization/controllers/profil/CloneProfilCtrl.js"></script>
+
+
+    <script src="admin/admin.js"></script>
+    <script src="admin/controllers/themeZone/ListThemeZoneCtrl.js"></script>
+    <script src="admin/controllers/themeZone/AddEditThemeZoneCtrl.js"></script>
+    <script src="admin/controllers/themeZone/AddThemeZoneCtrl.js"></script>
+    <script src="admin/controllers/themeSDI/ListThemeSDICtrl.js"></script>
+    <script src="admin/controllers/themeSDI/AddEditThemeSDICtrl.js"></script>
+    <script src="admin/controllers/themeSDI/AddThemeSDICtrl.js"></script>
+    <script src="admin/controllers/paramType/ListParamTypeCtrl.js"></script>
+    <script src="admin/controllers/paramType/AddParamTypeCtrl.js"></script>
+    <script src="admin/controllers/paramType/AddEditParamTypeCtrl.js"></script>
+    <script src="admin/controllers/constraintParamType/ListConstraintParamTypeCtrl.js"></script>
+    <script src="admin/controllers/constraintParamType/AddConstraintParamTypeCtrl.js"></script>
+    <script src="admin/controllers/constraintParamType/AddEditConstraintParamTypeCtrl.js"></script>
+    <script src="admin/controllers/typeParamType/ListTypeParamTypeCtrl.js"></script>
+    <script src="admin/controllers/typeParamType/AddTypeParamTypeCtrl.js"></script>
+    <script src="admin/controllers/typeParamType/AddEditTypeParamTypeCtrl.js"></script>
+    <script src="admin/controllers/infoType/ListInfoTypeCtrl.js"></script>
+    <script src="admin/controllers/infoType/AddInfoTypeCtrl.js"></script>
+    <script src="admin/controllers/infoType/AddEditInfoTypeCtrl.js"></script>
+    <script src="admin/controllers/service/ListServiceCtrl.js"></script>
+    <script src="admin/controllers/service/AddEditServiceCtrl.js"></script>
+    <script src="admin/controllers/service/AddServiceCtrl.js"></script>
+    <script src="admin/controllers/source/ListSourceCtrl.js"></script>
+    <script src="admin/controllers/source/AddEditSourceCtrl.js"></script>
+    <script src="admin/controllers/source/AddSourceCtrl.js"></script>
+    <script src="admin/controllers/renderer/ListRendererCtrl.js"></script>
+    <script src="admin/controllers/renderer/AddEditRendererCtrl.js"></script>
+    <script src="admin/controllers/renderer/AddRendererCtrl.js"></script>
+    <script src="admin/controllers/behaviour/ListBehaviourCtrl.js"></script>
+    <script src="admin/controllers/behaviour/AddBehaviourCtrl.js"></script>
+    <script src="admin/controllers/behaviour/AddEditBehaviourCtrl.js"></script>
+    <script src="admin/controllers/policy/ListPolicyCtrl.js"></script>
+    <script src="admin/controllers/policy/AddPolicyCtrl.js"></script>
+    <script src="admin/controllers/policy/AddEditPolicyCtrl.js"></script>
+    <script src="admin/controllers/systemTrigger/AddEditSystemTriggerCtrl.js"></script>
+    <script src="admin/controllers/systemTrigger/AddSystemTriggerCtrl.js"></script>
+    <script src="admin/controllers/systemTrigger/ListSystemTriggerCtrl.js"></script>
+    <script src="admin/controllers/userTrigger/AddEditUserTriggerCtrl.js"></script>
+    <script src="admin/controllers/userTrigger/AddUserTriggerCtrl.js"></script>
+    <script src="admin/controllers/userTrigger/ListUserTriggerCtrl.js"></script>
+    <script src="admin/controllers/user/ListUserCtrl.js"></script>
+    <script src="admin/controllers/user/AddEditUserCtrl.js"></script>
+    <script src="admin/controllers/user/AddUserCtrl.js"></script>
+    <script src="admin/controllers/user/ResetPasswordUserCtrl.js"></script>
+    <script src="admin/controllers/timelineRunner/AddEditTimelineRunnerCtrl.js"></script>
+    <script src="admin/controllers/timelineRunner/AddTimelineRunnerCtrl.js"></script>
+    <script src="admin/controllers/timelineRunner/ListTimelineRunnerCtrl.js"></script>
+    <script src="admin/controllers/team/ListTeamCtrl.js"></script>
+    <script src="admin/controllers/team/AddEditTeamCtrl.js"></script>
+    <script src="admin/controllers/team/AddTeamCtrl.js"></script>
+    <script src="admin/controllers/team/ManageTeamOAuthCtrl.js"></script>
+    <script src="admin/controllers/provider/ListProviderCtrl.js"></script>
+    <script src="admin/controllers/provider/AddProviderCtrl.js"></script>
+    <script src="admin/controllers/provider/AddEditProviderCtrl.js"></script>
+
+    <!-- endbuild -->
+</body>
+</html>

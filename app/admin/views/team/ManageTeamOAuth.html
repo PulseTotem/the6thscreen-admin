@@ -1,0 +1,22 @@
+<div class="modal-content" ng-controller="T6SAdmin.ManageTeamOAuthCtrl">
+  <div class="modal-header">
+    <h3 translate="TEAM.MANAGE_OAUTH.TITLE"></h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <td>
+          <select class="form-control" ng-model="selectedOAuth" ng-change="linkOAuth()">
+            <option ng-repeat="oauth in teamAvailableOAuth | orderBy:'id'" value="{{ oauth.id }}">{{oauth.provider.name}}: {{oauth.name}}</option>
+          </select>
+          <ul>
+            <li ng-repeat="oauth in team.oauthkeys | orderBy:'id'">{{oauth.provider.name}}: {{oauth.name}}<button class="btn btn-danger" ng-click="removeOAuth(oauth.id)" translate="TEAM.ADD_EDIT.REMOVE">Remove</button></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" ng-click="close()" translate="TEAM.ADD_EDIT.CLOSE" ng-class="{ 'btn-danger': !team.complete, 'btn-primary': team.complete}">Fermer</button>
+  </div>
+</div>

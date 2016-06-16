@@ -1,0 +1,22 @@
+<div class="row" ng-controller="T6SCommon.T6SINPUTS.DatetimeCtrl">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="form-group paramValueForm">
+        <label class="control-label col-md-3" for="paramValue_{{paramValue.id}}">{{paramValue.paramType.name}}</label>
+        <div class="col-md-6">
+          <p class="input-group">
+            <input type="text" class="form-control" datetime-picker="dd MMM yyyy HH:mm" ng-model="dt" is-open="isOpen" ng-change="checkValue()"  />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openCalendar($event, prop)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div ng-show="t6sInputInvalid" class="row">
+      <div class="col-md-12 t6sInputs_errors">
+        <p class="bg-danger" ng-repeat="error in errors">{{error | translate}}</p>
+      </div>
+    </div>
+  </div>
+</div>

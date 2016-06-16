@@ -1,0 +1,35 @@
+{
+  "name": "pulsetotem-admin",
+  "version": "3.1.0",
+  "dependencies": {
+    "angular": "<=1.4.10",
+    "bootstrap": "<=3.2.0",
+    "angular-animate": "<=1.4.0",
+    "angular-cookies": "<=1.4.0",
+    "angular-resource": "<=1.4.0",
+    "angular-route": "<=1.4.0",
+    "angular-sanitize": "<=1.4.0",
+    "angular-touch": "<=1.2.28",
+    "angular-socket-io": "<=0.7.0",
+    "jsSHA": "<=1.5.0",
+    "angular-translate": "<=2.6.1",
+    "angular-translate-loader-static-files": "<=2.6.1",
+    "angular-translate-handler-log": "<=2.6.1",
+    "oauth-js": "<=0.5.0",
+    "ngdraggable": "<=0.1.8",
+    "angular-bootstrap": "<=1.2.5",
+    "moment": "<=2.10.3",
+    "angular-xeditable": "<=0.1.9",
+    "angular-spinner": "<=0.6.1",
+    "bootstrap-ui-datetime-picker": "^2.3.1",
+    "angular-bootstrap-slider": "^0.1.27",
+    "angular-filter": "<=0.5.8"
+  },
+  "devDependencies": {
+    "angular-mocks": "<=1.3.0"
+  },
+  "resolutions": {
+    "angular": "=1.4.10"
+  },
+  "appPath": "app"
+}
