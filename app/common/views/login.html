@@ -33,6 +33,10 @@
                                     <button class="btn btn-primary" ng-click="login(user)" translate="MAIN.LOGIN_BUTTON"></button>
                                 </div>
                             </div>
+
+                            <div class="alert alert-danger" role="alert" ng-if="loginError">
+                              Please check your information, the following error occured: {{ loginError }}
+                            </div>
                         </fieldset>
                     </form>
                     <p>

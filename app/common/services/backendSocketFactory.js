@@ -38,15 +38,15 @@ angular.module('T6SCommon')
             successCB();
           },
           function (fail) {
-            console.error(fail);
+            $rootScope.loginError = "An error occurred during User authentication.";
+            console.log(fail);
             failCB("An error occurred during User authentication.");
           }
         );
       });
 
       backendIOSocket.on("error", function (errorData) {
-        console.error("An error occurred during connection to Backend.");
-        console.log(errorData);
+        $rootScope.loginError = errorData;
         if($rootScope.user == null) {
           failCB("An error occurred during User authentication.");
         }

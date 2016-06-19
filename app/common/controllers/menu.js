@@ -20,8 +20,8 @@ angular.module('T6SCommon')
         $scope.logout = function() {
           $rootScope.user = {};
 
-          delete($cookies.tmpAdminT6SToken);
-          delete($cookies.adminT6SToken);
+          $cookies.remove("adminT6SToken");
+          $cookies.remove("tmpAdminT6SToken");
 
           backendSocket.exit();
 
