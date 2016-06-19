@@ -397,6 +397,7 @@
       "LIST" : "List of providers",
       "NAME" : "Name",
       "DESCRIPTION": "Description",
+      "LOGO": "Logo",
       "SOURCE": "Source",
       "ISCOMPLETE" : "Complete",
       "CONFIRM_DELETE_PROVIDER" : "Are you sure you want to delete this provider?",
