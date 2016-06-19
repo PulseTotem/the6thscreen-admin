@@ -355,6 +355,8 @@
       "USERNAME" : "Nom d'utilisateur",
       "EMAIL" : "Email",
       "LASTIP": "Dernière IP",
+      "LASTCONNECTION": "Dernière connection",
+      "ISADMIN": "Administrateur",
       "TEAM": "Liste des équipes",
       "ISCOMPLETE" : "Complet",
       "CONFIRM_DELETE_USER" : "&Ecirc;tes-vous s&ucirc;r de vouloir supprimer cet utilisateur ?",

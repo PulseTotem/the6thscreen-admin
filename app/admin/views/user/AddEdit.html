@@ -11,6 +11,14 @@
         </td>
       </tr>
       <tr>
+        <td translate="USER.ISADMIN">Admin</td>
+        <td>
+          <a href="#" editable-checkbox="user.isAdmin" e-title="is admin?" onaftersave="saveUserAttribute('setIsAdmin', user.isAdmin)">
+            {{ user.isAdmin && "Is admin" || "Is not admin" }}
+          </a>
+        </td>
+      </tr>
+      <tr>
         <td translate="USER.EMAIL">Email</td>
         <td>
           <a href="#" editable-email="user.email" onaftersave="saveUserAttribute('setEmail', user.email)">{{ user.email || 'No mail information' }}</a>
