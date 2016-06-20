@@ -3,6 +3,7 @@
 <table class="table table-striped">
   <tr>
     <th>#</th>
+    <th translate="PROVIDER.LOGO">Logo</th>
     <th translate="PROVIDER.NAME">Nom</th>
     <th translate="PROVIDER.DESCRIPTION">Description</th>
     <th translate="PROVIDER.SOURCE">Source</th>
@@ -12,6 +13,7 @@
 
   <tr ng-repeat="provider in providers | orderBy:'id'">
     <td>{{ provider.id }}</td>
+    <td><img ng-if="provider.logo" src="{{provider.logo}}" style="width: 50px; height: 50px" /></td>
     <td>{{ provider.name }}</td>
     <td>{{ provider.description }}</td>
     <td>

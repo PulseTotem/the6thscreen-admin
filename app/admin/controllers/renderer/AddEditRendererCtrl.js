@@ -28,7 +28,7 @@ angular.module('T6SAdmin')
     backendSocket.on('AnswerUpdateRenderer', function(response) {
       callbackManager(response, function (renderer) {
           $scope.newRendererThemeName = "";
-          $scope.renderer = renderer;
+          $scope.renderer.compete = renderer.complete;
         },
         function (fail) {
           console.error(fail);
@@ -44,7 +44,9 @@ angular.module('T6SAdmin')
       if (!$scope.renderer.infoType) {
         return 'Not set';
       }
-      var selected = $filter('filter')($scope.allInfoTypes, {id: $scope.renderer.infoType.id});
+      var selected = $scope.allInfoTypes.filter(function (renderer) {
+        return renderer.id == $scope.renderer.infoType.id;
+      });
       return ($scope.renderer.infoType && selected.length) ? selected[0].name : 'Not set';
     };
 

@@ -25,11 +25,17 @@ angular.module('T6SConfiguration')
     });
 
     $scope.isThemeZoneSelected = function (theme) {
-      return (theme.id == $scope.current_zone.theme.id);
+      if ($scope.current_zone && $scope.current_zone.theme) {
+        return (theme.id == $scope.current_zone.theme.id);
+      } else {
+        return false;
+      }
+
     };
 
     $scope.selectThemeZone = function (theme) {
       saveAttribute("UpdateZone", $scope.current_zone.id, "linkTheme", theme.id);
+      $scope.current_zone.theme = theme;
       $scope.$close();
     };
 

@@ -6,16 +6,20 @@
     <th translate="USER.USERNAME">Nom</th>
     <th translate="USER.EMAIL">Email</th>
     <th translate="USER.LASTIP">Last IP</th>
+    <th translate="USER.LASTCONNECTION">Last Connection</th>
+    <th translate="USER.ISADMIN">Is Admin?</th>
     <th translate="USER.TEAM">Teams</th>
     <th translate="USER.ISCOMPLETE">Complete</th>
     <th></th>
   </tr>
 
-  <tr ng-repeat="user in users | orderBy:'id'" ng-class="{'info': isCurrentUser(user.id)}">
+  <tr ng-repeat="user in users | orderBy:'id'" ng-class="{'warning': user.isAdmin, 'info': isCurrentUser(user.id)}">
     <td>{{ user.id }}</td>
     <td>{{ user.username }}</td>
     <td>{{ user.email }}</td>
     <td>{{ user.lastIp }}</td>
+    <td>{{ user.lastConnection | date:'medium' }}</td>
+    <td>{{ user.isAdmin }}</td>
     <td>
       <ul>
         <li ng-repeat="team in user.teams  | orderBy:'id'">{{team.name}}</li>
