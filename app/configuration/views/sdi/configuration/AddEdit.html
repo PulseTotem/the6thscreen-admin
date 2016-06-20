@@ -7,12 +7,12 @@
   <div ng-include="'configuration/views/sdi/configuration/MenuSDITheme.html'"></div>
   <div ng-include="'configuration/views/sdi/configuration/MenuService.html'"></div>
 
-  <div id="zone_edit" class="zone_edit" ng-click="createZone($event)">
+  <div id="zone_edit" class="zone_edit" ng-mousedown="createZone($event)">
     <div class="barre_horizontale1" id="barreH1" ></div>
     <div class="barre_horizontale2" id="barreH2"  ></div>
     <div class="barre_verticale1" id="barreV1" ></div>
     <div class="barre_verticale2" id="barreV2" ></div>
-    <div ng-repeat="zone in sdi.zones" ng-click="$event.stopPropagation()" ng-resize-zone="true" ng-drag-zone="true" delete lock="false" class="zone" numero="{{zone.id}}" style="width: {{ zone.width}}%; height: {{ zone.height}}%; position: absolute; top: {{ zone.positionFromTop}}%; left: {{ zone.positionFromLeft}}%;" ng-drop="true" ng-drop-success="onDropCompleteOnZone($data,zone)"  uib-tooltip-placement="top" uib-tooltip="Width: {{zone.width}} | Height: {{ zone.height }} | Top : {{ zone.positionFromTop }} | Left : {{ zone.positionFromLeft }}">
+    <div ng-repeat="zone in sdi.zones" ng-mousedown="$event.stopPropagation()" ng-click="$event.stopPropagation()" ng-resize-zone="true" ng-drag-zone="true" delete lock="false" class="zone" numero="{{zone.id}}" style="width: {{ zone.width}}%; height: {{ zone.height}}%; position: absolute; top: {{ zone.positionFromTop}}%; left: {{ zone.positionFromLeft}}%;" ng-drop="true" ng-drop-success="onDropCompleteOnZone($data,zone)"  uib-tooltip-placement="top" uib-tooltip="Width: {{zone.width}} | Height: {{ zone.height }} | Top : {{ zone.positionFromTop }} | Left : {{ zone.positionFromLeft }}">
       <span uib-dropdown on-toggle="toggled(open)" style="float:right">
         <button type="button" class="btn btn-primary btn-xs" uib-dropdown-toggle>
           <span class="glyphicon glyphicon-menu-hamburger"></span>
