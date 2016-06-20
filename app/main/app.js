@@ -37,6 +37,10 @@ angular
     }])
     .run(['$rootScope', '$location', '$cookies', '$http', 'ADMIN_CONSTANTS', 'backendSocket', '$route', function($rootScope, $location, $cookies, $http, ADMIN_CONSTANTS, backendSocket, $route) {
       $rootScope.header = "home";
+      $rootScope.requestErrors = [];
+      $rootScope.closeAlert = function (index) {
+        $rootScope.requestErrors.splice(index, 1);
+      };
 
       $rootScope.$on("$routeChangeStart", function(event, next, current) {
 

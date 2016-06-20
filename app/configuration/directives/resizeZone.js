@@ -7,7 +7,7 @@
  * # dragZone
  */
 angular.module('T6SConfiguration')
-  .directive('ngResizeZone', [ 'zoneUtil', '$document', function(zoneUtil, $document) {
+  .directive('ngResizeZone', [ '$rootScope', 'zoneUtil', '$document', function($rootScope, zoneUtil, $document) {
     return {
       priority: -1,
       restrict: 'A',
@@ -142,6 +142,7 @@ angular.module('T6SConfiguration')
           newElement.on('mousedown', function ($event) {
             scope.authorize_zone_creation = false;
             $event.preventDefault();
+            $event.stopPropagation();
             if (attrs.ngResizeZone === 'true') {
 
               var clicX = ($event.pageX - getEditZoneRect().left);
@@ -159,8 +160,8 @@ angular.module('T6SConfiguration')
               };
 
               var mouseup = function () {
-                $document.off('mousemove', mousemove);
-                $document.off('mouseup', mouseup);
+                $event.preventDefault();
+                $event.stopPropagation();
                 //zone_JSON = JSON.stringify(scope.sdi.zones);
                 //ole.log(zone_JSON);
                 scope.showTooltip = true;
@@ -169,6 +170,8 @@ angular.module('T6SConfiguration')
                 var tmpZone = zoneUtil.get(scope.sdi.zones, attrs.numero);
                 scope.updateZonePosition(tmpZone);
                 scope.authorize_zone_creation = true;
+                $document.off('mousemove', mousemove);
+                $document.off('mouseup', mouseup);
               };
 
               $document.on('mouseup', mouseup);

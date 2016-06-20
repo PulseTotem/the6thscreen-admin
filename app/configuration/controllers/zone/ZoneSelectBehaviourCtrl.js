@@ -22,15 +22,16 @@ angular.module('T6SConfiguration')
     backendSocket.emit("RetrieveAllBehaviourDescription");
 
     $scope.isBehaviourSelected = function (behaviourId) {
-      if ($scope.current_zone.behaviour) {
+      if ($scope.current_zone && $scope.current_zone.behaviour) {
         return ($scope.current_zone.behaviour.id == behaviourId);
       } else {
         return false;
       }
     };
 
-    $scope.selectBehaviour = function (behaviourId) {
-      saveAttribute("UpdateZone", $scope.current_zone.id, "linkBehaviour", behaviourId);
+    $scope.selectBehaviour = function (behaviour) {
+      saveAttribute("UpdateZone", $scope.current_zone.id, "linkBehaviour", behaviour.id);
+      $scope.current_zone.behaviour = behaviour;
       $scope.$close();
     };
 

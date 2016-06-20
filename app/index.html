@@ -66,6 +66,7 @@
 
     <div class="container-fluid" id="t6s-main">
         <span us-spinner spinner-key="pending-request"></span>
+        <uib-alert ng-repeat="alert in requestErrors" type="danger" close="closeAlert($index)">{{alert}}</uib-alert>
         <div ng-view=""></div>
     </div>
 

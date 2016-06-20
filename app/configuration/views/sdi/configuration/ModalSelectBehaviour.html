@@ -4,7 +4,7 @@
   </div>
   <div class="modal-body">
     <div class="list-group" ng-repeat="behaviour in behaviours">
-      <a href="#" class="list-group-item" ng-class="{active: isBehaviourSelected(behaviour.id)}" ng-click="selectBehaviour(behaviour.id)">
+      <a href="#" class="list-group-item" ng-class="{active: isBehaviourSelected(behaviour.id)}" ng-click="selectBehaviour(behaviour)">
         <h4 class="list-group-item-heading">{{ behaviour.name }}</h4>
         <p class="list-group-item-text">{{ behaviour.description }}</p>
       </a>
