@@ -16,7 +16,7 @@
 
       <ul class="nav navbar-nav">
         <li class="active"><a ng-href="/" translate="MENU.HOME"></a></li>
-        <li ng-if="user.id == 1 || user.id == 2 || user.username == 'simon' || user.username == 'christian'" uib-dropdown>
+        <li uib-dropdown>
           <a uib-dropdown-toggle>{{ 'MENU.CONFIG.TITLE' | translate }}<span class="caret"></span></a>
             <ul uib-dropdown-menu>
               <li><a ng-href="/config/sdi" translate="MENU.CONFIG.SDI">SDI</a></li>
@@ -24,8 +24,8 @@
               <li><a ng-href="/config/oauth" translate="MENU.CONFIG.OAUTH">OAuth</a></li>
             </ul>
         </li>
-        <li ng-if="user.id == 1 || user.id == 2 || user.username == 'simon' || user.username == 'christian'"><a ng-href="/custom" translate="MENU.CUSTOM"></a></li>
-        <li ng-if="user.id == 1 || user.id == 2 || user.username == 'simon' || user.username == 'christian'" uib-dropdown>
+        <li><a ng-href="/custom" translate="MENU.CUSTOM"></a></li>
+        <li uib-dropdown>
           <a uib-dropdown-toggle>{{ 'MENU.ADMIN.TITLE' | translate }}<span class="caret"></span></a>
           <ul uib-dropdown-menu>
             <li><a ng-href="/admin/infotype" translate="MENU.ADMIN.INFOTYPE"></a></li>
