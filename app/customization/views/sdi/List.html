@@ -2,20 +2,36 @@
   <h3 translate="DASHBOARD.WELCOME" translate-value-username="{{ user.username }}"></h3>
 </div>
 
-<table class="table table-striped table-hover">
-  <tr>
-    <th>#</th>
-    <th translate="DASHBOARD.SDI_NAME"></th>
-    <th translate="DASHBOARD.SDI_DESCRIPTION"></th>
-    <th translate="DASHBOARD.SDI_TEAM"></th>
-    <th>Complete</th>
-  </tr>
+<div class="row">
+  <div class="col-md-12">
+    <select ng-model="filterTeamName" ng-init="filterTeamName=''">
+      <option value="">All</option>
+      <option value="{{teamName}}" ng-repeat="(teamName, sdis) in listSDI | orderBy:'team.name' | groupBy:'team.name'">
+        {{teamName}}
+      </option>
+    </select>
+  </div>
+</div>
 
-  <tr ng-repeat="sdi in listSDI | orderBy:'id'" ng-class="{'danger': !sdi.team}">
-    <td><a ng-href="/custom/sdi/{{sdi.id}}">{{ sdi.id }}</a></td>
-    <td><a ng-href="/custom/sdi/{{sdi.id}}">{{ sdi.name }}</a></td>
-    <td><a ng-href="/custom/sdi/{{sdi.id}}">{{ sdi.description }}</a></td>
-    <td><a ng-href="/custom/sdi/{{sdi.id}}">{{ sdi.team.name }}</a></td>
-    <td>{{ sdi.complete }}</td>
-  </tr>
-</table>
+<div class="row" ng-repeat="(teamName, sdis) in listSDI | orderBy:'team.name' | filterBy:['team.name']:filterTeamName | groupBy:'team.name'">
+  <div class="col-md-12">
+    <h4>{{'MENU.ADMIN.TEAM' | translate}} : {{teamName}}</h4>
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>#</th>
+        <th translate="DASHBOARD.SDI_NAME"></th>
+        <th translate="DASHBOARD.SDI_DESCRIPTION"></th>
+        <th translate="DASHBOARD.SDI_TEAM"></th>
+        <th>Complete</th>
+      </tr>
+
+      <tr ng-repeat="sdi in sdis | orderBy:'id'" ng-class="{'danger': !sdi.team}">
+        <td><a ng-href="/custom/sdi/{{sdi.id}}">{{ sdi.id }}</a></td>
+        <td><a ng-href="/custom/sdi/{{sdi.id}}">{{ sdi.name }}</a></td>
+        <td><a ng-href="/custom/sdi/{{sdi.id}}">{{ sdi.description }}</a></td>
+        <td><a ng-href="/custom/sdi/{{sdi.id}}">{{ sdi.team.name }}</a></td>
+        <td>{{ sdi.complete }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

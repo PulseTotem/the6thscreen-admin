@@ -47,15 +47,13 @@ angular
         if(typeof($rootScope.user) != "undefined" && typeof($rootScope.user.id) != "undefined") {
           $rootScope.header = "default";
 
-          if($rootScope.user.id == 1 || $rootScope.user.id == 2 || $rootScope.user.username == "simon" || $rootScope.user.username == "christian") {
-            if (next.templateUrl === "../common/views/login.html") {
-              if (!$rootScope.$$phase) {
-                $rootScope.$apply(function () {
-                  $location.path(ADMIN_CONSTANTS.loginRoute);
-                });
-              } else {
+          if (next.templateUrl === "../common/views/login.html") {
+            if (!$rootScope.$$phase) {
+              $rootScope.$apply(function () {
                 $location.path(ADMIN_CONSTANTS.loginRoute);
-              }
+              });
+            } else {
+              $location.path(ADMIN_CONSTANTS.loginRoute);
             }
           }
         }
