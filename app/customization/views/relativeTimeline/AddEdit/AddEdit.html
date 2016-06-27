@@ -54,6 +54,10 @@
                 <span class="glyphicon glyphicon-remove">
                 </span>
               </button>
+              <button class="btn btn-primary" ng-click="$parent.cloneEvent(event)">
+                <span class="glyphicon glyphicon-repeat">
+                </span>
+              </button>
             </div>
             <img ng-src="{{callTypes[event.call.callType.id].logo}}" /> {{event.name}}
           </div>
