@@ -377,6 +377,7 @@
     "TEAM": {
       "TEAM_LIST" : "Liste des équipes",
       "NAME" : "Nom",
+      "CMSID" : "CMS Id",
       "OWNER" : "Possesseur",
       "USERS": "Liste des utilisateurs",
       "SDIS": "Liste des SDIs",
