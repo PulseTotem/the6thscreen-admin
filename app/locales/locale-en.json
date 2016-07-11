@@ -106,7 +106,9 @@
         "ZONE_WIDTH" : "Width",
         "ZONE_HEIGHT" : "Height",
         "ZONE_POSITION_FROM_TOP" : "Position from top of screen",
-        "ZONE_POSITION_FROM_LEFT" : "Positon from left of screen"
+        "ZONE_POSITION_FROM_LEFT" : "Positon from left of screen",
+        "CLONE_WITHOUT_PROFIL": "Clone without profil",
+        "CLONE_WITH_PROFIL": "Clone with profil"
     },
     "ZONE" : {
         "CALLTYPES_LIST" : "CallTypes List",
