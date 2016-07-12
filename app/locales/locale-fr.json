@@ -27,7 +27,8 @@
           "TIMELINERUNNER" : "Timeline Runner",
           "USER": "Utilisateur",
           "TEAM": "Equipe",
-          "PROVIDER": "Provider"
+          "PROVIDER": "Provider",
+          "TOOLS": "Outils"
         },
         "LANGUAGE" : "Langage",
         "ENGLISH" : "English",
@@ -409,5 +410,9 @@
         "CLOSE": "Fermer",
         "REMOVE": "Supprimer"
       }
+    },
+    "TOOLS": {
+      "TITLE": "Outils",
+      "CHECK_DATA": "Vérifier les données de la base"
     }
 }

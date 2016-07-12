@@ -1,0 +1,13 @@
+<h3 translate="TOOLS.TITLE"></h3>
+
+<div style="float: left">
+  <a ng-click="checkAllData()" class="btn btn-primary btn-lg" translate><i class="icon-plus icon-white"></i> TOOLS.CHECK_DATA</a>
+</div>
+
+
+<table class="table table-striped" ng-if="result">
+  <tr ng-repeat="line in result | orderBy:'model'">
+    <td>{{ line.model }}</td>
+    <td>{{ line.msg }}</td>
+  </tr>
+</table>

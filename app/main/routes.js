@@ -91,6 +91,10 @@ angular
         templateUrl: '../admin/views/provider/List.html',
         controller: 'T6SAdmin.ListProviderCtrl'
       })
+      .when('/admin/tools', {
+        templateUrl: '../admin/views/tools/Main.html',
+        controller: 'T6SAdmin.MainToolsCtrl'
+      })
 
       // Routes for customization stuff
       .when('/custom/', {

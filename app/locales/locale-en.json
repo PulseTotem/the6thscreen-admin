@@ -27,7 +27,8 @@
         "TIMELINERUNNER" : "Timeline Runner",
         "USER": "User",
         "TEAM": "Team",
-        "PROVIDER": "Provider"
+        "PROVIDER": "Provider",
+        "TOOLS": "Tools"
       },
         "LANGUAGE" : "Language",
         "ENGLISH": "English",
@@ -409,5 +410,9 @@
         "CLOSE": "Close",
         "REMOVE": "Remove"
       }
+    },
+    "TOOLS": {
+      "TITLE": "Tools",
+      "CHECK_DATA": "Check data in database"
     }
 }
