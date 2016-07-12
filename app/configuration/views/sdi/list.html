@@ -13,6 +13,10 @@
   </div>
 </div>
 
+<div style="float: right">
+  <a ng-href="/config/sdi/add" class="btn btn-success btn-lg" translate><i class="icon-plus icon-white"></i> Add SDI</a>
+</div>
+
 <div class="row" ng-repeat="(teamName, sdis) in listSDI | orderBy:'team.name' | filterBy:['team.name']:filterTeamName | groupBy:'team.name'">
   <div class="col-md-12">
     <h4>{{'MENU.ADMIN.TEAM' | translate}} : {{teamName}}</h4>
@@ -48,8 +52,4 @@
         </tr>
       </table>
   </div>
-</div>
-
-<div style="float: right">
-  <a ng-href="/config/sdi/add" class="btn btn-primary" translate><i class="icon-plus icon-white"></i> Add SDI</a>
 </div>
