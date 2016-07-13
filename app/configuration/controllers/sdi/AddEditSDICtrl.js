@@ -49,7 +49,7 @@ angular.module('T6SConfiguration')
       $scope.updateSelectedTeam();
     };
 
-    $scope.refreshZoneInformations = function(zoneJSON) {
+    $scope.refreshZoneInformations = function(zoneJSON, callTypes) {
       var index = -1;
       for (var i = 0; i < $scope.sdi.zones.length; i++) {
         if ($scope.sdi.zones[i].id == zoneJSON.id) {
@@ -59,11 +59,21 @@ angular.module('T6SConfiguration')
 
       if (index != -1) {
         var zone = $scope.sdi.zones[index];
-        zone.positionFromLeft = zoneJSON.positionFromLeft;
-        zone.positionFromTop = zoneJSON.positionFromTop;
-        zone.width = zoneJSON.width;
-        zone.height = zoneJSON.height;
-        zone.name = zoneJSON.name;
+
+        if (callTypes) {
+          if (zone.cannotBeDeleted) {
+            zoneJSON.cannotBeDeleted = true;
+          }
+          $scope.sdi.zones.splice(index,1);
+          $scope.sdi.zones.push(zoneJSON);
+        } else {
+          zone.positionFromLeft = zoneJSON.positionFromLeft;
+          zone.positionFromTop = zoneJSON.positionFromTop;
+          zone.width = zoneJSON.width;
+          zone.height = zoneJSON.height;
+          zone.name = zoneJSON.name;
+          zone.complete = zoneJSON.complete;
+        }
       } else {
         $scope.sdi.zones.push(zoneJSON);
       }
@@ -118,21 +128,41 @@ angular.module('T6SConfiguration')
 
     backendSocket.on('CallTypesDescriptionFromZone', function (response) {
       callbackManager(response, function (infoCT) {
-        var index = -1;
-        for (var i = 0; i < $scope.sdi.zones.length; i++) {
-          if ($scope.sdi.zones[i].id == infoCT.id) {
-            index = i;
-          }
-        }
-        if (index !== -1) {
-          $scope.sdi.zones.splice(index,1);
-        }
-        $scope.sdi.zones.push(infoCT);
+        $scope.refreshZoneInformations(infoCT, true);
         //console.log(infoCT);
       }, function (fail) {
         console.error(fail);
       });
     });
+
+    backendSocket.on('CompleteProfilDescription', function(response) {
+      callbackManager(response, function (profil) {
+          for (var i = 0; i < profil.zoneContents.length; i++) {
+            var zoneContent = profil.zoneContents[i];
+
+            for (var j = 0; j < $scope.sdi.zones.length; j++) {
+              var zone = $scope.sdi.zones[j];
+              if (zoneContent.zone.id == zone.id) {
+                zone.cannotBeDeleted = true;
+              }
+            }
+          }
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
+
+    $scope.retrieveAllProfils = function() {
+      if ($scope.sdi.profils.length > 0) {
+        $scope.sdi.profils.forEach(function (profil) {
+          backendSocket.emit("RetrieveCompleteProfilDescription", {"profilId": profil.id});
+        });
+      } else {
+        $scope.allRequestsDone = true;
+      }
+    };
 
     backendSocket.on('SDIDescription', function(response) {
       callbackManager(response, function (sdi) {
@@ -141,6 +171,7 @@ angular.module('T6SConfiguration')
           for (var i = 0; i < sdi.zones.length; i++) {
             backendSocket.emit('RetrieveCallTypesFromZoneId', {'zoneId': sdi.zones[i].id});
           }
+          $scope.retrieveAllProfils();
         },
         function (fail) {
           console.error(fail);
@@ -275,10 +306,6 @@ angular.module('T6SConfiguration')
 
     $scope.confirmDeleteZone = function (zone) {
       displayModal(CONSTANT_MODAL_CONFIRM_DELETE_ZONE, zone);
-    };
-
-    $scope.enableButtonDeleteZone = function (zone) {
-      return (!zone.zoneContents || zone.zoneContents.length === 0);
     };
 
     $scope.selectBehaviour = function (zone) {

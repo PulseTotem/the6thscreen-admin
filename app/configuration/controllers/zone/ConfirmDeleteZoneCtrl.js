@@ -12,6 +12,7 @@ angular.module('T6SConfiguration')
 
     $scope.confirmation = false;
 
+
     $scope.deleteZone = function (zone) {
       backendSocket.emit("DeleteZone", {"zoneId": zone.id});
       $scope.$close();

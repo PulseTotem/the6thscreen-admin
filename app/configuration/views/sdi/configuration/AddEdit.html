@@ -20,8 +20,8 @@
         <ul uib-dropdown-menu>
           <li style="cursor: pointer;"><a uib-dropdown-toggle ng-click="selectBehaviour(zone)">Edit Behaviour</a></li>
           <li style="cursor: pointer;"><a uib-dropdown-toggle ng-click="selectTheme(zone)">Edit Theme</a></li>
-          <li class="divider" ng-if="enableButtonDeleteZone(zone)"></li>
-          <li style="cursor: pointer;" ng-if="enableButtonDeleteZone(zone)"><a uib-dropdown-toggle ng-click="confirmDeleteZone(zone)" style="background: red">Delete zone</a></li>
+          <li class="divider" ng-if="!zone.cannotBeDeleted"></li>
+          <li style="cursor: pointer;" class="alert-danger" ng-if="!zone.cannotBeDeleted" ><a uib-dropdown-toggle ng-click="confirmDeleteZone(zone)" style="background: red">Delete zone</a></li>
         </ul>
       </span>
 
