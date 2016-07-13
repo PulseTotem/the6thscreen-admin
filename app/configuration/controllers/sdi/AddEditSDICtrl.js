@@ -281,7 +281,7 @@ angular.module('T6SConfiguration')
       saveAttribute("UpdateZone", zone.id, "setName", zone.name);
     };
 
-    var reset_current = function () {
+    $scope.reset_current = function () {
       $scope.current_zone = null;
       $scope.current_service = null;
       $scope.current_calltype = null;
@@ -298,9 +298,9 @@ angular.module('T6SConfiguration')
 
       modalInstance.result.then(function () {
         $scope.refreshZoneInformations($scope.current_zone);
-        reset_current();
+        $scope.reset_current();
       }, function () {
-        reset_current();
+        $scope.reset_current();
       });
     };
 
