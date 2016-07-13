@@ -266,6 +266,7 @@ angular.module('T6SConfiguration')
       });
 
       modalInstance.result.then(function () {
+        $scope.refreshZoneInformations($scope.current_zone);
         reset_current();
       }, function () {
         reset_current();

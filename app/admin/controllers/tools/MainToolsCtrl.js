@@ -12,6 +12,8 @@ angular.module('T6SAdmin')
     backendSocket.on('AnswerCheckAllData', function(response) {
       callbackManager(response, function (result) {
           $scope.result = result;
+          $scope.resultCheckData = true;
+          $scope.analysing = false;
         },
         function (fail) {
           console.error(fail);
@@ -21,5 +23,6 @@ angular.module('T6SAdmin')
 
     $scope.checkAllData = function () {
       backendSocket.emit('CheckAllData', {});
+      $scope.analysing = true;
     };
   }]);

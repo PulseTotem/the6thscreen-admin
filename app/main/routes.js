@@ -162,10 +162,6 @@ angular
         templateUrl: '../configuration/views/sdi/configuration/AddEdit.html',
         controller: 'T6SConfiguration.EditSDICtrl'
       })
-      .when('/config/sdi/:sdiId', {
-          templateUrl: '../configuration/views/sdi/show.html',
-          controller: 'T6SConfiguration.ShowSDICtrl'
-      })
 
       // All other stuff
       .otherwise({
