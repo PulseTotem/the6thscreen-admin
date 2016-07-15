@@ -1,6 +1,6 @@
 {
   "name": "pulsetotem-admin",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "dependencies": {
     "angular": "<=1.4.10",
     "bootstrap": "<=3.2.0",
