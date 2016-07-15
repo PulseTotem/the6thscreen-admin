@@ -15,8 +15,8 @@
 
   <tr ng-repeat="team in teams | orderBy:'id'" ng-class="{'warning': team.isDefaultTeam}">
     <td>{{ team.id }}</td>
-    <td>{{ team.cmsId }}</td>
     <td>{{ team.name }}</td>
+    <td>{{ team.cmsId }}</td>
     <td>{{ team.owner.username }} ({{ team.owner.email }})</td>
     <td>
       <ul>
