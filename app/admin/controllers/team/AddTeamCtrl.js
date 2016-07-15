@@ -16,7 +16,6 @@ angular.module('T6SAdmin')
       callbackManager(response, function (team) {
           $scope.team = team;
           saveAttribute("UpdateTeam", team.id, "linkOwner", $rootScope.user.id);
-          saveAttribute("UpdateTeam", team.id, "addUser", $rootScope.user.id);
 
           $scope.team.owner = $rootScope.user;
           $scope.team.users.push($rootScope.user);
