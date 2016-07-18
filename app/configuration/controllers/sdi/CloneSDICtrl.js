@@ -12,9 +12,7 @@ angular.module('T6SConfiguration')
 
     backendSocket.on('AnswerCloneSDI', function(response) {
       callbackManager(response, function (sdi) {
-        console.log("Received new SDI");
-        $scope.listSDI.push(sdi);
-        console.log($scope.listSDI);
+        $scope.$parent.listSDI.push(sdi);
       })
     });
 
