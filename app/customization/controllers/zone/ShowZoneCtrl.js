@@ -16,6 +16,8 @@ angular.module('T6SCustomization')
     $scope.zone = {};
     $scope.relativeTimelines = [];
     $scope.absoluteTimelines = [];
+    $scope.zoneContentForRelativeTimeline = {};
+    $scope.zoneContentForAbsoluteTimeline = {};
 
     backendSocket.on('CompleteAbsoluteTimelineDescription', function(response) {
       callbackManager(response, function (absTimelineInfo) {
@@ -79,8 +81,10 @@ angular.module('T6SCustomization')
       callbackManager(response, function (zoneContentInfo) {
           insertInZoneDescription(zoneContentInfo);
           if(zoneContentInfo.absoluteTimeline != null) {
+            $scope.zoneContentForAbsoluteTimeline[zoneContentInfo.absoluteTimeline.id] = zoneContentInfo.id;
             backendSocket.emit('RetrieveCompleteAbsoluteTimeline', {'timelineId' : zoneContentInfo.absoluteTimeline.id});
           } else if(zoneContentInfo.relativeTimeline != null) {
+            $scope.zoneContentForRelativeTimeline[zoneContentInfo.relativeTimeline.id] = zoneContentInfo.id;
             backendSocket.emit('RetrieveCompleteRelativeTimeline', {'timelineId' : zoneContentInfo.relativeTimeline.id});
           }
         },

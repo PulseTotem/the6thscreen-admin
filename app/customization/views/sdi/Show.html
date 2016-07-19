@@ -63,7 +63,6 @@
             </td>
             <td>
               <a ng-href="/custom/sdi/{{sdi.id}}/profil/{{ profil.id }}/edit" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-              <button ng-controller="T6SCustomization.CloneProfilCtrl" type="button" class="btn btn-default" ng-click="cloneProfil(profil.id)"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_CLONE' | translate }}</button>
               <button ng-controller="T6SCustomization.DeleteProfilCtrl" type="button" class="btn btn-danger" ng-click="deleteProfil(profil.id)" ng-confirm-click="{{ 'CUSTOMIZATION.SDI_SHOW.CONFIRM_DELETE_PROFIL' | translate }} ({{ profil.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
             </td>
           </tr>
