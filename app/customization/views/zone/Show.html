@@ -17,19 +17,14 @@
         <div ng-repeat="relTimeline in relativeTimelines" class="customization-zone-timeline-row">
           <div class="customization-zone-timeline-description container-fluid" ng-class-odd="'customization-zone-timeline-odd'" ng-class-even="'customization-zone-timeline-even'">
             <div class="row">
-              <div class="col-md-2" ng-click="showPreview=!showPreview" ng-init="showPreview=false">
+              <div class="col-md-4" ng-click="showPreview=!showPreview" ng-init="showPreview=false">
                 <span class="glyphicon" aria-hidden="true" ng-class="showPreview?'glyphicon-collapse-up':'glyphicon-collapse-down'"> </span> {{relTimeline.name}}
               </div>
-              <div class="col-md-2">
+              <div class="col-md-6">
                 <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span> {{relTimeline.durationString}}
+                <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> {{relTimeline.updatedAtString}}
               </div>
               <div class="col-md-2">
-                <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> {{relTimeline.createdAtString}}
-              </div>
-              <div class="col-md-2">
-                <span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span> {{relTimeline.updatedAtString}}
-              </div>
-              <div class="col-md-offset-2 col-md-2">
                 <a class="btn btn-primary" ng-href="/custom/sdi/{{sdiId}}/zone/{{zoneId}}/relative/{{relTimeline.id}}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
                 <button ng-if="relTimeline.complete" ng-controller="T6SCustomization.CloneRelativeTimelineCtrl" type="button" class="btn btn-default" ng-click="cloneRelativeTimeline(relTimeline.id)"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_CLONE' | translate }}</button>
                 <button ng-controller="T6SCustomization.DeleteRelativeTimelineCtrl" class="btn btn-danger" ng-click="deleteRelativeTimeline(relTimeline.id)" ng-confirm-click="{{ 'CUSTOMIZATION.ZONE_SHOW.CONFIRM_DELETE_TIMELINE' | translate }} ({{ relTimeline.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
