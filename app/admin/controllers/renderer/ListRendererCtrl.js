@@ -35,9 +35,7 @@ angular.module('T6SAdmin')
 
     backendSocket.on('AnswerDeleteRenderer', function(response) {
       callbackManager(response, function (idRenderer) {
-          $scope.renderers = $scope.renderers.filter(function (object) {
-            return (object.id != idRenderer);
-          });
+          backendSocket.emit('RetrieveAllRendererDescription');
         },
         function (fail) {
           console.error(fail);
@@ -64,7 +62,7 @@ angular.module('T6SAdmin')
       modalInstance.result.then(function () {
         backendSocket.emit('RetrieveAllRendererDescription');
       }, function () {
-        $scope.reset_current();
+        backendSocket.emit('RetrieveAllRendererDescription');
       });
     };
 
