@@ -380,6 +380,7 @@
     "TEAM": {
       "TEAM_LIST" : "List of TEAMS",
       "NAME" : "Name",
+      "CMSID" : "CMS Id",
       "OWNER" : "Owner",
       "USERS": "List of users",
       "SDIS": "List of SDIs",

@@ -3,18 +3,20 @@
 <table class="table table-striped">
   <tr>
     <th>#</th>
-    <th translate="TEAM.NAME">Nom</th>
-    <th translate="TEAM.OWNER">Possesseur</th>
-    <th translate="TEAM.USERS">Utilisateurs</th>
-    <th translate="TEAM.SDIS">SDIs</th>
-    <th translate="TEAM.NB_OAUTH">NB Oauth</th>
-    <th translate="USER.ISCOMPLETE">Complete</th>
+    <th translate="TEAM.NAME"></th>
+    <th translate="TEAM.CMSID"></th>
+    <th translate="TEAM.OWNER"></th>
+    <th translate="TEAM.USERS"></th>
+    <th translate="TEAM.SDIS"></th>
+    <th translate="TEAM.NB_OAUTH"></th>
+    <th translate="USER.ISCOMPLETE"></th>
     <th></th>
   </tr>
 
   <tr ng-repeat="team in teams | orderBy:'id'" ng-class="{'warning': team.isDefaultTeam}">
     <td>{{ team.id }}</td>
     <td>{{ team.name }}</td>
+    <td>{{ team.cmsId }}</td>
     <td>{{ team.owner.username }} ({{ team.owner.email }})</td>
     <td>
       <ul>
