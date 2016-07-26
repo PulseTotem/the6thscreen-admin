@@ -2,6 +2,7 @@
 
 <div style="float: left" ng-if="!analysing">
   <a ng-click="checkAllData()" class="btn btn-primary btn-lg" translate><i class="icon-plus icon-white"></i> TOOLS.CHECK_DATA</a>
+  <a ng-click="checkAndRemoveOrphans()" class="btn btn-primary btn-lg" translate><i class="icon-plus icon-white"></i> TOOLS.CHECK_AND_REMOVE_ORPHANS</a>
 </div>
 
 <div class="alert alert-warning" role="alert" ng-if="analysing">

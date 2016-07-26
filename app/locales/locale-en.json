@@ -413,6 +413,7 @@
     },
     "TOOLS": {
       "TITLE": "Tools",
-      "CHECK_DATA": "Check data in database"
+      "CHECK_DATA": "Check data in database",
+      "CHECK_AND_REMOVE_ORPHANS": "Check for orphans in database and remove them"
     }
 }

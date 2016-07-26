@@ -413,6 +413,7 @@
     },
     "TOOLS": {
       "TITLE": "Outils",
-      "CHECK_DATA": "Vérifier les données de la base"
+      "CHECK_DATA": "Vérifier les données de la base",
+      "CHECK_AND_REMOVE_ORPHANS": "Chercher et supprimer les orphelins dans la base"
     }
 }
