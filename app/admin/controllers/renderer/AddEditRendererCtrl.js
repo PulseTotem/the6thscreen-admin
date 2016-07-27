@@ -28,7 +28,7 @@ angular.module('T6SAdmin')
     backendSocket.on('AnswerUpdateRenderer', function(response) {
       callbackManager(response, function (renderer) {
           $scope.newRendererThemeName = "";
-          $scope.renderer.compete = renderer.complete;
+          $scope.renderer = renderer;
         },
         function (fail) {
           console.error(fail);

@@ -30,7 +30,10 @@
         <td><a ng-href="/custom/sdi/{{sdi.id}}">{{ sdi.name }}</a></td>
         <td><a ng-href="/custom/sdi/{{sdi.id}}">{{ sdi.description }}</a></td>
         <td><a ng-href="/custom/sdi/{{sdi.id}}">{{ sdi.team.name }}</a></td>
-        <td>{{ sdi.complete }}</td>
+        <td ng-class="{'danger': !sdi.complete, 'success':sdi.complete}">
+          <span ng-if="sdi.complete" class="glyphicon glyphicon-ok"></span>
+          <span ng-if="!sdi.complete" class="glyphicon glyphicon-remove" uib-popover="This SDI is not complete, you cannot add a profil until it is. You should edit it to make it complete." popover-trigger="mouseenter"></span>
+        </td>
       </tr>
     </table>
   </div>

@@ -11,6 +11,7 @@ angular.module('T6SCommon')
   .controller('T6SCommon.LoginCtrl', ['$rootScope', '$scope', '$http', '$location', 'ADMIN_CONSTANTS', 'backendSocket', '$cookies', function ($rootScope, $scope, $http, $location, ADMIN_CONSTANTS, backendSocket, $cookies) {
 
         $rootScope.user = {};
+        $rootScope.user.remember = false;
         $rootScope.loginError = null;
 
         $scope.login = function(user) {
@@ -78,7 +79,8 @@ angular.module('T6SCommon')
 
             $http.post(ADMIN_CONSTANTS.backendUrl + ADMIN_CONSTANTS.loginBackendPath, {
               'usernameOrEmail': user.usernameOrEmail,
-              'password': encryptedPwd
+              'password': encryptedPwd,
+              'rememberme': $scope.user.remember
             }).then(successPostCallBack, failPostCallback);
           } else {
             //TODO: Manage error during post => display error message

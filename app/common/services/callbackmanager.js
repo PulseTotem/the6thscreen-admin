@@ -14,7 +14,13 @@ angular.module('T6SCommon')
       if (backendMessage.success == true) {
         successCallback(backendMessage.response);
       } else {
-        $rootScope.requestErrors.push(backendMessage.response.message);
+        if (backendMessage.response.message) {
+          $rootScope.requestErrors.push(backendMessage.response.message);
+        } else if (backendMessage.response.data) {
+          $rootScope.requestErrors.push(backendMessage.response.data);
+        } else {
+          $rootScope.requestErrors.push(backendMessage.response);
+        }
         failCallback(backendMessage.response);
       }
     }

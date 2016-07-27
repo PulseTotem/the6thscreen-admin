@@ -27,7 +27,8 @@
           "TIMELINERUNNER" : "Timeline Runner",
           "USER": "Utilisateur",
           "TEAM": "Equipe",
-          "PROVIDER": "Provider"
+          "PROVIDER": "Provider",
+          "TOOLS": "Outils"
         },
         "LANGUAGE" : "Langage",
         "ENGLISH" : "English",
@@ -106,7 +107,9 @@
         "ZONE_WIDTH" : "Largeur",
         "ZONE_HEIGHT" : "Hauteur",
         "ZONE_POSITION_FROM_TOP" : "Position &agrave; partir du haut de l'&eacute;cran",
-        "ZONE_POSITION_FROM_LEFT" : "Position &agrave; partir de la gauche de l'&eacute;cran"
+        "ZONE_POSITION_FROM_LEFT" : "Position &agrave; partir de la gauche de l'&eacute;cran",
+        "CLONE_WITHOUT_PROFIL": "Cloner avec le profil",
+        "CLONE_WITH_PROFIL": "Cloner sans le profil"
     },
     "ZONE" : {
         "CALLTYPES_LIST" : "Liste des CallTypes",
@@ -408,5 +411,10 @@
         "CLOSE": "Fermer",
         "REMOVE": "Supprimer"
       }
+    },
+    "TOOLS": {
+      "TITLE": "Outils",
+      "CHECK_DATA": "Vérifier les données de la base",
+      "CHECK_AND_REMOVE_ORPHANS": "Chercher et supprimer les orphelins dans la base"
     }
 }

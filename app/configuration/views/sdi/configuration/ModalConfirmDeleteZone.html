@@ -9,9 +9,16 @@
         <span ng-repeat="callType in service.callTypes">{{ callType.name }} </span>
       </li>
     </ul>
+
+    <div ng-if="current_zone.zoneContents.length != 0">
+      Cette zone possède par ailleurs des timelines qui sont peut être utilisées dans des profils, ces timelines seront également supprimées :
+      <ul>
+        <li ng-repeat="zoneContent in current_zone.zoneContents">{{ zoneContent.name }}</li>
+      </ul>
+    </div>
     <div class="checkbox">
       <label>
-        <input type="checkbox" ng-model="confirmation"> Je confirme la suppression de cette zone.
+        <input type="checkbox" ng-model="confirmation"> Je confirme la suppression de cette zone et de ses éléments associés.
       </label>
     </div>
   </div>
