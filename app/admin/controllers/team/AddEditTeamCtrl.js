@@ -8,7 +8,7 @@
  * Controller of the the6thscreenAdminApp
  */
 angular.module('T6SAdmin')
-  .controller('T6SAdmin.AddEditTeamCtrl', ['$scope','$routeParams','backendSocket', 'callbackManager', 'saveAttribute', '$filter', function ($scope, $routeParams, backendSocket, callbackManager, saveAttribute, $filter) {
+  .controller('T6SAdmin.AddEditTeamCtrl', ['$rootScope', '$scope','$routeParams','backendSocket', 'callbackManager', 'saveAttribute', '$filter', function ($rootScope, $scope, $routeParams, backendSocket, callbackManager, saveAttribute, $filter) {
 
     $scope.retrievedSDIs = [];
     $scope.availableSDIs = [];
@@ -134,8 +134,13 @@ angular.module('T6SAdmin')
     backendSocket.on('AnswerUpdateTeam', function(response) {
       callbackManager(response, function (team) {
           $scope.team.complete = team.complete;
-          $scope.updateSDI();
-          $scope.updateUser();
+
+          if(team.users.length == 0) {
+            saveAttribute("UpdateTeam", team.id, "addUser", $rootScope.user.id);
+          } else {
+            $scope.updateSDI();
+            $scope.updateUser();
+          }
         },
         function (fail) {
           console.error(fail);

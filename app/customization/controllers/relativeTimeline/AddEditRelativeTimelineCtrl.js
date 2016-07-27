@@ -345,6 +345,20 @@ angular.module('T6SCustomization')
       backendSocket.emit('DeleteRelativeEvent', {'relativeEventId' : event.id});
     };
 
+    backendSocket.on('AnswerCloneRelativeEventAndLinkTimeline', function(response) {
+      callbackManager(response, function (relEventId) {
+          $scope.refreshRelativeTimeline();
+        },
+        function (fail) {
+          console.error(fail);
+        }
+      );
+    });
+
+    $scope.cloneEvent = function(event) {
+      backendSocket.emit("CloneRelativeEventAndLinkTimeline", {'relativeEventId': event.id, 'timelineId' : $scope.timelineId});
+    };
+
     $scope.saveEventDuration = function(id, newValue) {
       if(typeof(id) != "undefined" && id != -1) {
         backendSocket.on('AnswerUpdateRelativeEvent', function(response) {

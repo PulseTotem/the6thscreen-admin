@@ -161,4 +161,12 @@ angular.module('T6SConfiguration')
       }
       return false;
     };
+
+    $scope.canBeDeleted = function () {
+      if ($scope.callType.calls.length == 0) {
+        return true;
+      } else {
+        return !($scope.current_zone.cannotBeDeleted);
+      }
+    }
   }]);

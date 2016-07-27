@@ -16,3 +16,6 @@
 .customization-call-renderertheme-heading {
   cursor: pointer;
 }
+input[type="number"] {
+  padding-right: 0px !important;
+}

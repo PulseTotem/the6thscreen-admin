@@ -1,0 +1,25 @@
+<h3 translate="TOOLS.TITLE"></h3>
+
+<div style="float: left" ng-if="!analysing">
+  <a ng-click="checkAllData()" class="btn btn-primary btn-lg" translate><i class="icon-plus icon-white"></i> TOOLS.CHECK_DATA</a>
+  <a ng-click="checkAndRemoveOrphans()" class="btn btn-primary btn-lg" translate><i class="icon-plus icon-white"></i> TOOLS.CHECK_AND_REMOVE_ORPHANS</a>
+</div>
+
+<div class="alert alert-warning" role="alert" ng-if="analysing">
+  The data model is currently being checking. The process can take a while (around 1 to 2 minutes).
+</div>
+
+<div ng-if="resultCheckData">
+  <table class="table table-striped" ng-if="result">
+    <tr>
+      <th>Concept</th>
+      <th>Message</th>
+    </tr>
+    <tr ng-repeat="line in result | orderBy:'model'">
+      <td>{{ line.model }}</td>
+      <td>{{ line.msg }}</td>
+    </tr>
+  </table>
+
+  <span ng-if="!result">The check data operation does not return any information.</span>
+</div>

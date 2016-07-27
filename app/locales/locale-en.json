@@ -27,7 +27,8 @@
         "TIMELINERUNNER" : "Timeline Runner",
         "USER": "User",
         "TEAM": "Team",
-        "PROVIDER": "Provider"
+        "PROVIDER": "Provider",
+        "TOOLS": "Tools"
       },
         "LANGUAGE" : "Language",
         "ENGLISH": "English",
@@ -106,7 +107,9 @@
         "ZONE_WIDTH" : "Width",
         "ZONE_HEIGHT" : "Height",
         "ZONE_POSITION_FROM_TOP" : "Position from top of screen",
-        "ZONE_POSITION_FROM_LEFT" : "Positon from left of screen"
+        "ZONE_POSITION_FROM_LEFT" : "Positon from left of screen",
+        "CLONE_WITHOUT_PROFIL": "Clone without profil",
+        "CLONE_WITH_PROFIL": "Clone with profil"
     },
     "ZONE" : {
         "CALLTYPES_LIST" : "CallTypes List",
@@ -377,6 +380,7 @@
     "TEAM": {
       "TEAM_LIST" : "List of TEAMS",
       "NAME" : "Name",
+      "CMSID" : "CMS Id",
       "OWNER" : "Owner",
       "USERS": "List of users",
       "SDIS": "List of SDIs",
@@ -407,5 +411,10 @@
         "CLOSE": "Close",
         "REMOVE": "Remove"
       }
+    },
+    "TOOLS": {
+      "TITLE": "Tools",
+      "CHECK_DATA": "Check data in database",
+      "CHECK_AND_REMOVE_ORPHANS": "Check for orphans in database and remove them"
     }
 }

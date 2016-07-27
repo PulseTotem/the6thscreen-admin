@@ -1,6 +1,6 @@
 {
   "name": "pulsetotem-admin",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "dependencies": {},
   "repository": {},
   "devDependencies": {
@@ -37,7 +37,8 @@
     "karma-jasmine": "<=0.1.5",
     "karma-jenkins-reporter": "<=0.0.2",
     "karma-mocha": "<=0.2.0",
-    "karma-phantomjs-launcher": "<=0.1.4"
+    "karma-phantomjs-launcher": "<=0.1.4",
+    "grunt-bumpup": "<=0.6.3"
   },
   "engines": {
     "node": ">=0.10.0"

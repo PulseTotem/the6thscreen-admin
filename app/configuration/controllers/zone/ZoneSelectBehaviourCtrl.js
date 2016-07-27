@@ -12,6 +12,16 @@ angular.module('T6SConfiguration')
 
     $scope.behaviours = [];
 
+    backendSocket.on('AnswerUpdateZone', function (response) {
+      callbackManager(response, function (zone) {
+        $scope.current_zone.complete = zone.complete;
+        $scope.$close();
+      }, function (fail) {
+        console.error(fail);
+        $scope.$close();
+      });
+    });
+
     backendSocket.on('AllBehaviourDescription', function (response) {
       callbackManager(response, function (allBehaviours) {
         $scope.behaviours = allBehaviours;
@@ -32,7 +42,6 @@ angular.module('T6SConfiguration')
     $scope.selectBehaviour = function (behaviour) {
       saveAttribute("UpdateZone", $scope.current_zone.id, "linkBehaviour", behaviour.id);
       $scope.current_zone.behaviour = behaviour;
-      $scope.$close();
     };
 
     $scope.cancel = function () {

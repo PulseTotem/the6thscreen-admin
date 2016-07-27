@@ -12,12 +12,12 @@ angular.module('T6SConfiguration')
 
     backendSocket.on('AnswerCloneSDI', function(response) {
       callbackManager(response, function (sdi) {
-        $scope.listSDI.push(sdi);
+        $scope.$parent.listSDI.push(sdi);
       })
     });
 
-    $scope.cloneSDI = function (sdiId) {
-      backendSocket.emit('CloneSDI', { "SDIId": sdiId });
+    $scope.cloneSDI = function (sdiId, withProfil) {
+      backendSocket.emit('CloneSDI', { "SDIId": sdiId, "cloneProfil": withProfil });
     };
 
   }]);

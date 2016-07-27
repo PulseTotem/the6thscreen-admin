@@ -47,7 +47,7 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="destroyCallType()" ng-if="!callType.complete">Annuler</button>
-    <button type="button" class="btn btn-danger" ng-click="destroyCallType()" ng-if="callType.complete" ng-confirm-click="Etes vous sur de vouloir supprimer ce callType ?">Supprimer</button>
+    <button type="button" class="btn btn-danger" ng-click="destroyCallType()" ng-if="callType.complete && canBeDeleted()" ng-confirm-click="Etes vous sur de vouloir supprimer ce callType ?">Supprimer</button>
     <button type="button" class="btn btn-primary" ng-click="close()" ng-if="callType.complete">Fermer</button>
   </div>
 </div>
