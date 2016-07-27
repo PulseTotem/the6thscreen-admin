@@ -27,7 +27,7 @@
               <div class="col-md-2">
                 <a class="btn btn-primary" ng-href="/custom/sdi/{{sdiId}}/zone/{{zoneId}}/relative/{{relTimeline.id}}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
                 <button ng-if="relTimeline.complete" ng-controller="T6SCustomization.CloneRelativeTimelineCtrl" type="button" class="btn btn-default" ng-click="cloneRelativeTimeline(relTimeline.id)"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>{{ 'ACTIONS.ACTION_CLONE' | translate }}</button>
-                <button ng-controller="T6SCustomization.DeleteRelativeTimelineCtrl" class="btn btn-danger" ng-click="deleteRelativeTimeline(relTimeline.id)" ng-confirm-click="{{ 'CUSTOMIZATION.ZONE_SHOW.CONFIRM_DELETE_TIMELINE' | translate }} ({{ relTimeline.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <button ng-if="canBeDeleted(relTimeline.id)" ng-controller="T6SCustomization.DeleteRelativeTimelineCtrl" class="btn btn-danger" ng-click="deleteRelativeTimeline(relTimeline.id)" ng-confirm-click="{{ 'CUSTOMIZATION.ZONE_SHOW.CONFIRM_DELETE_TIMELINE' | translate }} ({{ relTimeline.name }})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
               </div>
             </div>
           </div>

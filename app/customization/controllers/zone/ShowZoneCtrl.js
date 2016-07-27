@@ -122,4 +122,8 @@ angular.module('T6SCustomization')
       }
     };
 
+    $scope.canBeDeleted = function(relativeTLId) {
+      return ($scope.zoneContentForRelativeTimeline[zoneContentInfo.relativeTimeline.id].profils.length == 0);
+    };
+
   }]);
