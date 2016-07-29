@@ -27,7 +27,7 @@ angular.module('T6SCustomization')
     });
 
     $scope.cloneRelativeTimeline = function (relativeTLid) {
-      var zoneContentId = $scope.$parent.zoneContentForRelativeTimeline[relativeTLid];
+      var zoneContentId = $scope.$parent.zoneContentForRelativeTimeline[relativeTLid].id;
       backendSocket.emit('CloneZoneContent', { "zoneContentId": zoneContentId});
     };
 
