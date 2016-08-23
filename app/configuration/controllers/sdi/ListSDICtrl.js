@@ -26,4 +26,18 @@ angular.module('T6SConfiguration')
       $scope.reloadList = function (newList) {
         $scope.listSDI = newList;
       };
+
+      backendSocket.on('AnswerCheckSDICompleteness', function(response) {
+        callbackManager(response, function (allSDIs) {
+            backendSocket.emit('RetrieveAllSDIDescription');
+          },
+          function (fail) {
+            console.error(fail);
+          }
+        );
+      });
+
+      $scope.checkCompleteness = function (sdiId) {
+        backendSocket.emit('CheckSDICompleteness', {'SDIid': sdiId});
+      };
   }]);

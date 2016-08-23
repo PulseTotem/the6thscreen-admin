@@ -101,8 +101,8 @@ angular
         redirectTo: '/custom/sdi'
       })
       .when('/custom/sdi/', {
-        templateUrl: '../customization/views/sdi/List.html',
-        controller: 'T6SCustomization.ListSDICtrl'
+        templateUrl: '../configuration/views/sdi/list.html',
+        controller: 'T6SConfiguration.ListSDICtrl'
       })
       .when('/custom/sdi/:sdiId', {
         templateUrl: '../customization/views/sdi/Show.html',
