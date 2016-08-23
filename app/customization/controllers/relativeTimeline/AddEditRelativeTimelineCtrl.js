@@ -183,6 +183,9 @@ angular.module('T6SCustomization')
     }
 
     $scope.onDropComplete = function(index, data, evt){
+      console.log("Drop index :"+index);
+      console.log("Drop data position: "+data.position);
+
       if(data.position == -1) {
         if(index == -1) {
           data.position = 0;
@@ -257,56 +260,114 @@ angular.module('T6SCustomization')
       }
     };
 
+    /**
+     * If oldIndex = -1, it is a new element: all indexes > newIndex are moved +1 position
+     * If newIndex = -1, it is a deleted element: all indexes > oldIndex are moved -1 position
+     * If oldIndex and newIndex are different from -1, the minimum between the two is taken and elements are moved accordingly between them
+     * @param oldIndex
+     * @param newIndex
+       */
     var updateRelativeEventsPositions = function(oldIndex, newIndex) {
-      var nbUpdates = 0;
 
-      if(oldIndex != -1) {
+      var updatePosition = function (oldIndex, newIndex) {
+        var updatesToDo = [];
+
+        var addition = false;
         if (oldIndex > newIndex) {
-          nbUpdates = (oldIndex - newIndex) + 1;
-        } else {
-          nbUpdates = (newIndex - oldIndex) + 1;
+          addition = true;
         }
-      } else {
-          nbUpdates = $scope.timeline.relativeEvents.length - newIndex;
-      }
 
-      var newEvents = [];
+        for (var i = 0; i < $scope.timeline.relativeEvents.length; i++) {
+          var relEvent = $scope.timeline.relativeEvents[i];
 
-      backendSocket.on('AnswerUpdateRelativeEvent', function(response) {
-        callbackManager(response, function (relEvent) {
-            newEvents.push(relEvent);
-
-            if(newEvents.length == nbUpdates) {
-              $scope.refreshRelativeTimeline();
+          if (newIndex != -1 && oldIndex == -1 && relEvent.position > newIndex) {
+            updatesToDo.push({'id':relEvent.id, 'position':relEvent.position+1});
+          } else if (oldIndex != -1 && newIndex == -1 && relEvent.position > oldIndex) {
+            updatesToDo.push({'id':relEvent.id, 'position':relEvent.position-1});
+          } else {
+            if (relEvent.position == oldIndex && addition) {
+              updatesToDo.push({'id': relEvent.id, 'position': newIndex});
+            } else if (relEvent.position == oldIndex && !addition) {
+              updatesToDo.push({'id': relEvent.id, 'position': newIndex-1});
+            } else if (addition && relEvent.position >= newIndex && relEvent.position < oldIndex) {
+              updatesToDo.push({'id':relEvent.id, 'position':relEvent.position+1});
+            } else if (!addition && relEvent.position > oldIndex && relEvent.position < newIndex) {
+              updatesToDo.push({'id':relEvent.id, 'position':relEvent.position-1});
             }
-          },
-          function (fail) {
-            console.error(fail);
-          }
-        );
-      });
-
-      $scope.timeline.relativeEvents.forEach(function(relEvent) {
-
-        if(oldIndex != -1) {
-          if (newIndex < oldIndex && newIndex <= relEvent.position && relEvent.position < oldIndex) {
-            saveAttribute("UpdateRelativeEvent", relEvent.id, "setPosition", relEvent.position + 1);
-          }
-
-          if (oldIndex < newIndex && oldIndex < relEvent.position && relEvent.position <= newIndex) {
-            saveAttribute("UpdateRelativeEvent", relEvent.id, "setPosition", relEvent.position - 1);
-          }
-
-          if(relEvent.position == oldIndex) {
-            saveAttribute("UpdateRelativeEvent", relEvent.id, "setPosition", newIndex);
-          }
-        } else {
-          if (relEvent.position >= newIndex) {
-            saveAttribute("UpdateRelativeEvent", relEvent.id, "setPosition", relEvent.position + 1);
           }
         }
 
-      });
+        if (updatesToDo.length > 0) {
+          var nbUpdates = 0;
+          backendSocket.on('AnswerUpdateRelativeEvent', function(response) {
+            callbackManager(response, function (relEvent) {
+                nbUpdates++;
+
+                if(nbUpdates >= updatesToDo.length-1) {
+                  $scope.refreshRelativeTimeline();
+                }
+              },
+              function (fail) {
+                console.error(fail);
+              }
+            );
+          });
+
+          for (var i = 0; i < updatesToDo.length; i++) {
+            var updateToDo = updatesToDo[i];
+            saveAttribute("UpdateRelativeEvent", updateToDo.id, "setPosition", updateToDo.position);
+          }
+
+        }
+      };
+
+      // This only fix position to avoid gap between events: if position are 1, 3, 8, 10, then it will become 1,2,3,4,5
+      var fixPosition = function () {
+        var updatesToDo = [];
+
+        for (var i = 0; i < $scope.timeline.relativeEvents.length; i++) {
+          var relEvent = $scope.timeline.relativeEvents[i];
+
+          if (relEvent.position != i) {
+            updatesToDo.push({'id':relEvent.id, 'position':i});
+            relEvent.position = i;
+
+            if (relEvent.position == oldIndex) {
+              oldIndex = i;
+            }
+
+            if (relEvent.position == newIndex) {
+              newIndex = i;
+            }
+          }
+        }
+
+        if (updatesToDo.length > 0) {
+          var nbUpdates = 0;
+          backendSocket.on('AnswerUpdateRelativeEvent', function(response) {
+            callbackManager(response, function (relEvent) {
+                nbUpdates++;
+
+                if(nbUpdates >= updatesToDo.length-1) {
+                  updatePosition(oldIndex, newIndex);
+                }
+              },
+              function (fail) {
+                console.error(fail);
+              }
+            );
+          });
+
+          for (var i = 0; i < updatesToDo.length; i++) {
+            var updateToDo = updatesToDo[i];
+            saveAttribute("UpdateRelativeEvent", updateToDo.id, "setPosition", updateToDo.position);
+          }
+        } else {
+          updatePosition(oldIndex, newIndex);
+        }
+      };
+
+      fixPosition();
     };
 
     $scope.refreshRelativeTimeline = function() {
@@ -347,7 +408,26 @@ angular.module('T6SCustomization')
 
     backendSocket.on('AnswerCloneRelativeEventAndLinkTimeline', function(response) {
       callbackManager(response, function (relEventId) {
-          $scope.refreshRelativeTimeline();
+          backendSocket.on('AnswerUpdateRelativeEvent', function(response) {
+            callbackManager(response, function (relEvent) {
+                $scope.refreshRelativeTimeline();
+              },
+              function (fail) {
+                console.error(fail);
+                $scope.refreshRelativeTimeline();
+              }
+            );
+          });
+
+          var maxPos = 0;
+          for (var i = 0; i < $scope.timeline.relativeEvents.length; i++) {
+            var event = $scope.timeline.relativeEvents[i];
+            if (event.position > maxPos) {
+              maxPos = event.position;
+            }
+          }
+
+          saveAttribute("UpdateRelativeEvent", relEventId.cloneId, "setPosition", maxPos+1);
         },
         function (fail) {
           console.error(fail);

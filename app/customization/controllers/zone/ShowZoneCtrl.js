@@ -81,10 +81,10 @@ angular.module('T6SCustomization')
       callbackManager(response, function (zoneContentInfo) {
           insertInZoneDescription(zoneContentInfo);
           if(zoneContentInfo.absoluteTimeline != null) {
-            $scope.zoneContentForAbsoluteTimeline[zoneContentInfo.absoluteTimeline.id] = zoneContentInfo.id;
+            $scope.zoneContentForAbsoluteTimeline[zoneContentInfo.absoluteTimeline.id] = zoneContentInfo;
             backendSocket.emit('RetrieveCompleteAbsoluteTimeline', {'timelineId' : zoneContentInfo.absoluteTimeline.id});
           } else if(zoneContentInfo.relativeTimeline != null) {
-            $scope.zoneContentForRelativeTimeline[zoneContentInfo.relativeTimeline.id] = zoneContentInfo.id;
+            $scope.zoneContentForRelativeTimeline[zoneContentInfo.relativeTimeline.id] = zoneContentInfo;
             backendSocket.emit('RetrieveCompleteRelativeTimeline', {'timelineId' : zoneContentInfo.relativeTimeline.id});
           }
         },
@@ -123,7 +123,14 @@ angular.module('T6SCustomization')
     };
 
     $scope.canBeDeleted = function(relativeTLId) {
-      return ($scope.zoneContentForRelativeTimeline[zoneContentInfo.relativeTimeline.id].profils.length == 0);
+      var zoneContentInfos = $scope.zoneContentForRelativeTimeline[relativeTLId];
+
+      if (zoneContentInfos) {
+        return (zoneContentInfos.profils.length == 0);
+      } else {
+        return false;
+      }
+
     };
 
   }]);
